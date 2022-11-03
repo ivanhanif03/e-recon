@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="<?= base_url('/adminlte/css/adminlte.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/fontawesome-free/css/all.min.css'); ?>">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/jqvmap/jqvmap.min.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('/adminlte/css/adminlte.min.css?v=3.2.0'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/daterangepicker/daterangepicker.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/summernote/summernote-bs4.min.css'); ?>">
+    <link rel="stylesheet"
+        href="<?= base_url('/adminlte/plugins/datatables-bs4/css/datatables.bootstrap4.min.css'); ?>">
+    <link rel="stylesheet"
+        href="<?= base_url('/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
+    <link rel="stylesheet"
+        href="<?= base_url('/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -172,22 +175,30 @@
     <?= $this->renderSection('content'); ?>
     <!-- End Content -->
 
+    <script src="<?= base_url('/adminlte/plugins/jquery/jquery.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/jszip/jszip.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/chart.js/Chart.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/sparklines/sparkline.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/jqvmap/jquery.vmap.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/moment/moment.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/summernote/summernote-bs4.min.js'); ?>"></script>
+    <script src="<?= base_url('/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
+    <?= $this->renderSection('script'); ?>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-<script src="<?= base_url('/adminlte/plugins/jquery/jquery.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/chart.js/Chart.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/sparklines/sparkline.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/jqvmap/jquery.vmap.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/jquery-knob/jquery.knob.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/moment/moment.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'); ?>">
-</script>
-<script src="<?= base_url('/adminlte/plugins/summernote/summernote-bs4.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
-<script src="<?= base_url('/adminlte/js/adminlte.js?v=3.2.0'); ?>"></script>
+
 
 </html>

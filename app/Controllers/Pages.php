@@ -16,7 +16,19 @@ class Pages extends BaseController
     public function gangguan()
     {
         $data = [
-            'title' => 'Report Gangguan'
+            'title' => 'Report Gangguan',
+            'provider' => [
+                [
+                    'nama' => 'Telkom',
+                    'kota' => 'Jakarta',
+                    'alamat' => 'Jl. Gang'
+                ],
+                [
+                    'nama' => 'Lintasarta',
+                    'kota' => 'Depok',
+                    'alamat' => 'Jl. Jalan'
+                ]
+            ]
         ];
         return view('pages/gangguan', $data);
 
