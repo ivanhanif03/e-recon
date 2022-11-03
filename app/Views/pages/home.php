@@ -7,6 +7,10 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Dashboard E-Recon</h1>
+                    <div class="card-body">
+                        <h1>FINSENTIUS PUTRA</h1>
+
+                    </div>
                 </div>
             </div>
         </div>
