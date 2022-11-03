@@ -33,4 +33,11 @@ class Pages extends BaseController
         return view('pages/gangguan', $data);
 
     }
+    public function order()
+    {
+        $data = [
+            'title' => 'Order',
+        ];
+        return view('pages/order', $data);
+    }
 }
