@@ -19,15 +19,19 @@ class Pages extends BaseController
             'title' => 'Report Gangguan',
             'provider' => [
                 [
-                    'nama' => 'Telkom',
-                    'kota' => 'Jakarta',
-                    'alamat' => 'Jl. Gang'
+                    'no_tiket' => 'T1',
+                    'provider' => 'Telkom',
+                    'pic' => 'Ahmad',
+                    'alamat' => 'Jl. Gang Merdeka',
+                    'open_time' => '09.30'
                 ],
                 [
-                    'nama' => 'Lintasarta',
-                    'kota' => 'Depok',
-                    'alamat' => 'Jl. Jalan'
-                ]
+                    'no_tiket' => 'L1',
+                    'provider' => 'Lintasarta',
+                    'pic' => 'Joko',
+                    'alamat' => 'Jl. Jalan sama kamu',
+                    'open_time' => '13.34'
+                ],
             ]
         ];
         return view('pages/gangguan', $data);

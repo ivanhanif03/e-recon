@@ -10,32 +10,38 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with default features</h3>
+                            <h3 class="card-title">Data Gangguan</h3>
                         </div>
 
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Kota</th>
+                                        <th>Nomor Tiket</th>
+                                        <th>Provider</th>
+                                        <th>PIC</th>
                                         <th>Alamat</th>
+                                        <th>Open Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($provider as $p) : ?>
                                     <tr>
-                                        <td><?= $p['nama']; ?></td>
-                                        <td><?= $p['kota']; ?></td>
+                                        <td><?= $p['no_tiket']; ?></td>
+                                        <td><?= $p['provider']; ?></td>
+                                        <td><?= $p['pic']; ?></td>
                                         <td><?= $p['alamat']; ?></td>
+                                        <td><?= $p['open_time']; ?></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Kota</th>
+                                        <th>Nomor Tiket</th>
+                                        <th>Provider</th>
+                                        <th>PIC</th>
                                         <th>Alamat</th>
+                                        <th>Open Time</th>
                                     </tr>
                                 </tfoot>
                             </table>
