@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="m-0">Report Gangguan</h1>
+                    <h1 class="mb-4">Report Gangguan</h1>
 
                     <div class="card">
                         <div class="card-header">
