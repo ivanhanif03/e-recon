@@ -35,6 +35,8 @@
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
+                                        <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,6 +48,16 @@
                                         <td><?= $p['alamat']; ?></td>
                                         <td><?= $p['open_time']; ?></td>
                                         <td><?= $p['close_time']; ?></td>
+                                        <td class="text-center">
+                                            <!-- Edit -->
+                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                data-backdrop="static" data-target="#modal-tambah-user"><i
+                                                    class="nav-icon fas fa-edit"></i></a>
+                                            <!-- Delete -->
+                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                                data-backdrop="static" data-target="#modal-hapus-user"><i
+                                                    class=" nav-icon fas fa-trash"></i></a>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -57,6 +69,8 @@
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
+                                        <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
+                                        </th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -99,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Outlet</label>
-                                <select class="form-control select2bs4 text-sm" name="dinas" id="dinas"
+                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Outlet</option>
                                     <option>KC Harmoni</option>
@@ -122,7 +136,7 @@
                 </div>
                 <div class="modal-footer d-flex bd-highlight">
                     <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary swalAddSuccess" data-dismiss="modal">Simpan</button>
+                    <button type="submit" class="btn btn-primary swalSaveSuccess" data-dismiss="modal">Simpan</button>
                 </div>
         </div>
         </form>
@@ -143,7 +157,7 @@
                 <p>Anda yakin ingin menghapus data?</p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-danger swalDeleteSuccess" data-dismiss="modal">Hapus</button>
             </div>
         </div>
