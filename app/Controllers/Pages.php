@@ -8,6 +8,7 @@ class Pages extends BaseController
     {
         $data = [
             'title' => 'Home',
+            'menu' => 'dashboard',
             'tes' => ['satu', 'dua', 'tiga']
         ];
         return view('pages/home', $data);
@@ -17,6 +18,7 @@ class Pages extends BaseController
     {
         $data = [
             'title' => 'Report Gangguan',
+            'menu' => 'gangguan',
             'provider' => [
                 [
                     'no_tiket' => 'T1',
@@ -41,6 +43,7 @@ class Pages extends BaseController
     {
         $data = [
             'title' => 'Order',
+            'menu' => 'order',
         ];
         return view('pages/order', $data);
     }
