@@ -1,17 +1,19 @@
 <!-- Color Sidebar -->
 <style>
     .nav-item>a.active {
-        background-color: #bd1111 !important;
+        background-color: #d10823 !important;
     }
 
     .main-sidebar {
         background-color: #182638 !important
     }
 </style>
+<!-- 182638 -->
 <aside class="main-sidebar sidebar-dark-primary">
-    <a href="index3.html" class="brand-link">
-        <i class="brand-image nav-icon fas fa-link mt-1"></i>
-        <span class="brand-text font-weight-light">E-Recon</span>
+    <a href="<?= base_url(''); ?>" class="brand-link">
+        <img src="<?= base_url('/img/icon_erecon.png'); ?>" alt="E-Recon Logo" class="brand-image">
+        <img src="<?= base_url('/img/text_erecon.png'); ?>" alt="E-Recon Logo" class="brand-text" width="100">
+        <!-- <span class="brand-text font-weight-light">&nbsp;</span> -->
     </a>
 
     <div class="sidebar">
