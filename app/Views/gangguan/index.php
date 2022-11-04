@@ -14,7 +14,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="tableGangguan" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nomor Tiket</th>
@@ -57,14 +57,14 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#example1").DataTable({
+        $("#tableGangguan").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tableGangguan_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>

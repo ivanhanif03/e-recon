@@ -1,7 +1,16 @@
+<!-- Color Sidebar -->
+<style>
+    .nav-item>a.active {
+        background-color: #bd1111 !important;
+    }
+
+    .main-sidebar {
+        background-color: #182638 !important
+    }
+</style>
 <aside class="main-sidebar sidebar-dark-primary">
     <a href="index3.html" class="brand-link">
-        <img src="<?= base_url('/adminlte/img/AdminLTELogo.png'); ?>" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <i class="brand-image nav-icon fas fa-link mt-1"></i>
         <span class="brand-text font-weight-light">E-Recon</span>
     </a>
 
@@ -28,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= base_url('order'); ?>" class="nav-link <?php if ($menu == 'order'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-exclamation-circle"></i>
+                        <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
                             Report Order
                         </p>

@@ -20,4 +20,5 @@
 <script src="<?= base_url('/adminlte/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/summernote/summernote-bs4.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
+<script src="<?= base_url('/adminlte/js/adminlte.min.js?v=3.2.0'); ?>"></script>
 <?= $this->renderSection('script'); ?>
