@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Dashboard E-Recon</h1>
                     <div class="card-body">
-                        <h1>semangat ivan gantenk</h1>
+                        <h1>semangat ivan gantenkk</h1>
 
                     </div>
                 </div>
