@@ -8,7 +8,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
@@ -35,7 +34,6 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
-        <!-- Messages Dropdown Menu -->
         <li class="dropdown user-menu">
             <a href="#" class="nav-link" data-toggle="dropdown">
                 <img src="https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
@@ -58,7 +56,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer mt-3">
                     <div class="text-center">
-                        <a href="#" class="btn btn-default btn-flat text-danger">Sign out</a>
+                        <a href="<?= base_url('/login'); ?>" class="btn btn-default btn-flat text-danger">Logout</a>
                     </div>
                 </li>
             </ul>

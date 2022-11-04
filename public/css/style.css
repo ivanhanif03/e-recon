@@ -5,3 +5,19 @@ body {
 .tooltip {
   top: 0;
 }
+
+.card {
+  border-radius: 14px;
+}
+
+.modal {
+  border-radius: 14px;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.small-box {
+  border-radius: 14px;
+}

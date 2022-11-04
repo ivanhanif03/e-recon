@@ -8,8 +8,7 @@ class Home extends BaseController
     {
         $data = [
             'title' => 'Home',
-            'tes' => ['satu', 'dua', 'tiga']
         ];
-        echo view('pages/home');
+        echo view('pages/home', $data);
     }
 }
