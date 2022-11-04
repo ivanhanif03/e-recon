@@ -1,7 +1,7 @@
 <!-- Color Sidebar -->
 <style>
     .nav-item>a.active {
-        background-color: #d10823 !important;
+        background-color: #cf061a !important;
     }
 
     .main-sidebar {
@@ -13,7 +13,6 @@
     <a href="<?= base_url(''); ?>" class="brand-link">
         <img src="<?= base_url('/img/icon_erecon.png'); ?>" alt="E-Recon Logo" class="brand-image">
         <img src="<?= base_url('/img/text_erecon.png'); ?>" alt="E-Recon Logo" class="brand-text" width="100">
-        <!-- <span class="brand-text font-weight-light">&nbsp;</span> -->
     </a>
 
     <div class="sidebar">
