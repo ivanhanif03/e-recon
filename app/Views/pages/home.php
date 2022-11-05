@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-primary">
+                    <div class="small-box bg-danger shadow-none border">
                         <div class="inner">
                             <h3>150</h3>
                             <p>Jumlah Gangguan</p>
@@ -41,7 +41,7 @@
 
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-primary shadow-none border">
                         <div class="inner">
                             <h3>53</h3>
                             <p>Jumlah Order</p>
@@ -55,7 +55,7 @@
 
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-warning shadow-none border">
                         <div class="inner">
                             <h3>27</h3>
                             <p>Jumlah SLA</p>
@@ -72,7 +72,7 @@
             <div class="row">
                 <section class="col-lg-7 connectedSortable">
 
-                    <div class="card">
+                    <div class="card shadow-none border">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
@@ -106,7 +106,7 @@
 
                 <section class="col-lg-5 connectedSortable">
 
-                    <div class="card bg-gradient-primary">
+                    <div class="card bg-gradient-primary shadow-none border">
                         <div class="card-header border-0">
                             <h3 class="card-title">
                                 <i class="fas fa-map-marker-alt mr-1"></i>

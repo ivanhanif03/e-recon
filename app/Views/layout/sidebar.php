@@ -1,7 +1,9 @@
 <!-- Color Sidebar -->
 <style>
     .nav-item>a.active {
-        background-color: #cf061a !important;
+        /* background-color: #cf061a !important; */
+        border-radius: 10px;
+        padding: 12px;
     }
 
     .main-sidebar {
@@ -18,8 +20,9 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header" style="color: #46586e ;">Menu</li>
 
-                <li class="nav-item">
+                <li class="nav-item mb-2 mt-2">
                     <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard'){echo 'active';}?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -27,7 +30,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-2">
                     <a href="<?= base_url('gangguan'); ?>"
                         class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
                         <i class="nav-icon fas fa-exclamation-circle"></i>
@@ -36,7 +39,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mb-2">
                     <a href="<?= base_url('order'); ?>" class="nav-link <?php if ($menu == 'order'){echo 'active';}?>">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
