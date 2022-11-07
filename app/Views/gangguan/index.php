@@ -35,6 +35,8 @@
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
+                                        <th>Start Stop Clock</th>
+                                        <th>End Stop Clock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -48,6 +50,8 @@
                                         <td><?= $p['alamat']; ?></td>
                                         <td><?= $p['open_time']; ?></td>
                                         <td><?= $p['close_time']; ?></td>
+                                        <td><?= $p['start_stop_clock']; ?></td>
+                                        <td><?= $p['end_stop_clock']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
@@ -69,6 +73,8 @@
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
+                                        <th>Start Stop Clock</th>
+                                        <th>End Stop Clock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>

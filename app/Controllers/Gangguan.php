@@ -16,7 +16,9 @@ class Gangguan extends BaseController
                     'pic' => 'Ahmad',
                     'alamat' => 'Jl. Gang Merdeka',
                     'open_time' => '09.30',
-                    'close_time' => '11.30'
+                    'close_time' => '11.30',
+                    'start_stop_clock' => '10.27',
+                    'end_stop_clock' => '15.30'
                 ],
                 [
                     'no_tiket' => 'L1',
@@ -24,7 +26,9 @@ class Gangguan extends BaseController
                     'pic' => 'Joko',
                     'alamat' => 'Jl. Jalan sama kamu',
                     'open_time' => '13.34',
-                    'close_time' => '15.34'
+                    'close_time' => '15.34',
+                    'start_stop_clock' => '14.15',
+                    'end_stop_clock' => '17.30'
                 ],
             ]
         ];
