@@ -56,7 +56,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer mt-3">
                     <div class="text-center">
-                        <a href="<?= base_url('/login'); ?>" class="btn btn-default btn-flat text-danger">Logout</a>
+                        <a href="<?= base_url('logout'); ?>" class="btn btn-default btn-flat text-danger">Logout</a>
                     </div>
                 </li>
             </ul>

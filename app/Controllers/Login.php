@@ -8,6 +8,7 @@ class Login extends BaseController
     {
         $data = [
             'title' => 'Login',
+            'config' => config('Auth'),
         ];
         echo view('pages/login', $data);
     }
