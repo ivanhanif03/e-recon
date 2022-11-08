@@ -7,11 +7,11 @@ body {
 }
 
 .nav-item. .card {
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 .modal {
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 .btn {
@@ -19,5 +19,9 @@ body {
 }
 
 .small-box {
-  border-radius: 14px;
+  border-radius: 12px;
+}
+
+.card {
+  border-radius: 12px;
 }

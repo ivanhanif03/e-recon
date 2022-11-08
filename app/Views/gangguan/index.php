@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <h1 class="mb-4">Report Gangguan</h1>
 
-                    <div class="card shadow-none border">
+                    <div class="card shadow-none border-0">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="tableGangguan" class="table table-bordered table-striped">
+                            <table id="tableGangguan" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nomor Tiket</th>
