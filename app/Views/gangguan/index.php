@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <h1 class="mb-4">Report Gangguan</h1>
 
-                    <div class="card shadow-none border-0">
+                    <div class="card shadow-none border">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="tableGangguan" class="table table-striped">
+                            <table id="tableGangguan" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nomor Tiket</th>
@@ -42,16 +42,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($provider as $p) : ?>
+                                    <?php foreach ($gangguan as $g) : ?>
                                     <tr>
-                                        <td><?= $p['no_tiket']; ?></td>
-                                        <td><?= $p['provider']; ?></td>
-                                        <td><?= $p['pic']; ?></td>
-                                        <td><?= $p['alamat']; ?></td>
-                                        <td><?= $p['open_time']; ?></td>
-                                        <td><?= $p['close_time']; ?></td>
-                                        <td><?= $p['start_stop_clock']; ?></td>
-                                        <td><?= $p['end_stop_clock']; ?></td>
+                                        <td><?= $g['no_tiket']; ?></td>
+                                        <td><?= $g['provider']; ?></td>
+                                        <td><?= $g['pic']; ?></td>
+                                        <td><?= $g['alamat']; ?></td>
+                                        <td><?= $g['open_time']; ?></td>
+                                        <td><?= $g['close_time']; ?></td>
+                                        <td><?= $g['start_stop_clock']; ?></td>
+                                        <td><?= $g['end_stop_clock']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
