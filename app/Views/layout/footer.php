@@ -19,10 +19,14 @@
 <script src="<?= base_url('/adminlte/plugins/toastr/toastr.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/sparklines/sparkline.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/jqvmap/jquery.vmap.min.js'); ?>"></script>
+<script src="<?= base_url('/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js'); ?>"></script>
+<script src="<?= base_url('/adminlte/plugins/jquery-knob/jquery.knob.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/moment/moment.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/summernote/summernote-bs4.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'); ?>"></script>
 <script src="<?= base_url('/adminlte/js/adminlte.min.js?v=3.2.0'); ?>"></script>
 <script src="<?= base_url('/js/index.js'); ?>"></script>
+<!-- <script src="<?= base_url('/js/demo.js'); ?>"></script>
+<script src="<?= base_url('/js/dashboard.js'); ?>"></script> -->
 <?= $this->renderSection('script'); ?>

@@ -27,21 +27,22 @@
             <div class="row">
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-danger shadow-none border">
+                    <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3>150</h3>
                             <p>Jumlah Gangguan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-wifi"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('gangguan'); ?>" class="small-box-footer bg-danger"
+                            style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-primary shadow-none border">
+                    <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3>53</h3>
                             <p>Jumlah Order</p>
@@ -49,36 +50,37 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-primary"
+                            style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-4">
 
-                    <div class="small-box bg-warning shadow-none border">
+                    <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3>27</h3>
                             <p>Jumlah SLA</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                            <i class="fas fa-percentage"></i> </div>
+                        <a href="#" class="small-box-footer bg-warning" style="color: white !important; ">Detail <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
 
 
             <div class="row">
-                <section class="col-lg-7 connectedSortable">
+                <section class="col-lg-12 connectedSortable">
 
-                    <div class="card shadow-none border">
+                    <div class="card shadow-none border-none">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Sales
+                                <!-- <i class="fas fa-chart mr-1"></i> -->
+                                Daftar SLA
                             </h3>
-                            <div class="card-tools">
+                            <!-- <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
@@ -87,26 +89,52 @@
                                         <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="card-body">
-                            <div class="tab-content p-0">
-
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                            </div>
+                            <table id="tableOrder" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nomor Tiket</th>
+                                        <th>Provider</th>
+                                        <th>PIC</th>
+                                        <th>Alamat</th>
+                                        <th>Gangguan</th>
+                                        <th>SLA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>T11</td>
+                                        <td>Telkom</td>
+                                        <td>Ivan</td>
+                                        <td>Jakarta</td>
+                                        <td>Kabel Rusak</td>
+                                        <td>99,95%</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nomor Tiket</th>
+                                        <th>Provider</th>
+                                        <th>PIC</th>
+                                        <th>Alamat</th>
+                                        <th>Gangguan</th>
+                                        <th>SLA</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </section>
+            </div>
+        </div>
+    </section>
+</div>
 
-                <section class="col-lg-5 connectedSortable">
+<!-- <section class="col-lg-5 connectedSortable">
 
-                    <div class="card bg-gradient-primary shadow-none border">
+                    <div class="card bg-gradient-primary shadow-none border-none">
                         <div class="card-header border-0">
                             <h3 class="card-title">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
@@ -149,11 +177,24 @@
 
                         </div>
                     </div>
-                </section>
-            </div>
-        </div>
-    </section>
-
+                </section> -->
+</div>
+</div>
+</section>
 </div>
 
+<?= $this->endSection(); ?>
+<?= $this->section('script'); ?>
+<script type="text/javascript">
+    $(function () {
+        $("#tableOrder").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "ordering": true,
+            "info": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
+    });
+</script>
 <?= $this->endSection(); ?>

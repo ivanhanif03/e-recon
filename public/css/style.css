@@ -25,3 +25,10 @@ body {
 .card {
   border-radius: 12px;
 }
+
+.dropdown-menu {
+  /* -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; */
+  border: none;
+}

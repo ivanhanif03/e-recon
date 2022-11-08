@@ -4,8 +4,8 @@
 
 <body class="hold-transition login-page text-sm" style="background-image: url('<?= base_url('/img/bg_login.png'); ?>'); background-repeat: no-repeat;
     background-size: 100%;">
-    <div class="login-box">
-        <div class="card card-outline card-primary">
+    <div class="login-box shadow-none">
+        <div class="card card-outline card-primary shadow-none">
             <div class="card-header text-center">
                 <div class="col-12 text-center">
                     <img class="w-50 rounded mb-3 mt-2" src="<?= base_url('/img/logo_erecon.png'); ?>">
