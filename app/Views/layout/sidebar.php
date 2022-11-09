@@ -31,6 +31,14 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a href="<?= base_url('user'); ?>" class="nav-link <?php if ($menu == 'user'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Daftar User
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="<?= base_url('gangguan'); ?>"
                         class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
                         <i class="nav-icon fas fa-exclamation-circle"></i>

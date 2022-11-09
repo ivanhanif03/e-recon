@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="mb-4">Report Order</h1>
+                    <h1 class="mb-4">Daftar User</h1>
 
                     <div class="card shadow-none border-none">
                         <div class="card-header">
@@ -18,7 +18,7 @@
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-order"
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-user"
                                         data-backdrop="static" class="btn btn-block bg-primary">Input Order<i
                                             class="fa fa-plus-circle ml-2"></i></button>
                                 </div>
@@ -29,29 +29,31 @@
                             <table id="tableOrder" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
-                                        <th>Provider</th>
-                                        <th>PIC</th>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Nomor Handphone</th>
                                         <th>Alamat</th>
-                                        <th>Open Time</th>
-                                        <th>Close Time</th>
+                                        <th>Provider</th>
+                                        <th>Hak Akses</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($provider as $p) : ?>
+                                    <?php $i=1; foreach ($user as $p) : ?>
                                     <tr>
-                                        <td><?= $p['no_tiket']; ?></td>
-                                        <td><?= $p['provider']; ?></td>
-                                        <td><?= $p['pic']; ?></td>
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $p['nama']; ?></td>
+                                        <td><?= $p['email']; ?></td>
+                                        <td><?= $p['no_hp']; ?></td>
                                         <td><?= $p['alamat']; ?></td>
-                                        <td><?= $p['open_time']; ?></td>
-                                        <td><?= $p['close_time']; ?></td>
+                                        <td><?= $p['provider']; ?></td>
+                                        <td><?= $p['hak_akses']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-tambah-order"><i
+                                                data-backdrop="static" data-target="#modal-tambah-user"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
                                             <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
@@ -63,12 +65,13 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
-                                        <th>Provider</th>
-                                        <th>PIC</th>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Nomor Handphone</th>
                                         <th>Alamat</th>
-                                        <th>Open Time</th>
-                                        <th>Close Time</th>
+                                        <th>Provider</th>
+                                        <th>Hak Akses</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -83,7 +86,7 @@
 </div>
 
 <!-- Modal Input -->
-<div class="modal fade" id="modal-tambah-order">
+<div class="modal fade" id="modal-tambah-user">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,14 +95,35 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" id="tambah-order">
+            <form action="" id="tambah-user">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control text-sm" name="nama" id="nama"
+                                    placeholder="Masukkan nama">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control text-sm" name="email" id="email"
+                                    placeholder="Masukkan email">
+                            </div>
+                            <div class="form-group">
+                                <label for="no_hp">Nomor Handphone</label>
+                                <input type="email" class="form-control text-sm" name="no_hp" id="no_hp"
+                                    placeholder="Masukkan nomor handphone" maxlength="13"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control text-sm" name="alamat" id="alamat" rows="3"
+                                    placeholder="Masukkan alamat"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label>Provider</label>
-                                <select class="form-control select2bs4 text-sm" name="dinas" id="dinas"
-                                    style="width: 100%;">
+                                <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
+                                <select class="form-control text-sm" name="provider" id="provider" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Provider</option>
                                     <option>Telkom</option>
                                     <option>Lintasarta</option>
@@ -112,24 +136,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Outlet</label>
-                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
+                                <label>Hak Akses</label>
+                                <select class="form-control text-sm" name="hak_akses" id="hak_akses"
                                     style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Outlet</option>
-                                    <option>KC Harmoni</option>
-                                    <option>KC Kuningan</option>
-                                    <option>KCP Palmerah</option>
+                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
+                                    <option>Admin</option>
+                                    <option>User</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="pic">PIC</label>
-                                <input type="text" class="form-control text-sm" name="pic" id="pic"
-                                    placeholder="Masukkan nama PIC">
-                            </div>
-                            <div class="form-group">
-                                <label for="outlet">Alamat</label>
-                                <textarea class="form-control text-sm" name="outlet" id="outlet" rows="3"
-                                    placeholder="Masukkan alamat"></textarea>
                             </div>
                         </div>
                     </div>
