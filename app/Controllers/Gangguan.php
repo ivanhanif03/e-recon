@@ -6,15 +6,14 @@ use App\Models\GangguanModel;
 
 class Gangguan extends BaseController
 {
-    protected $gangguanModel;
     public function __construct()
     {
-        $this->gangguanModel = new GangguanModel();
+        
     }
     public function index()
     {
-
-        $gangguan = $this->$gangguanModel->findAll();
+        $gangguanModel = new GangguanModel();
+        $gangguan = $gangguanModel->findAll();
 
         $data = [
             'title' => 'Report Gangguan',
@@ -22,7 +21,20 @@ class Gangguan extends BaseController
             'gangguan' => $gangguan
         ];
 
-        dd($gangguan);
         return view('gangguan/index', $data);
     }
+
+    public function create()
+    {
+        $gangguanModel = new GangguanModel();
+        $gangguanModel->insert([
+            'provider' => $this->request->getPost('provider'),
+            'outlet' => $this->request->getPost('outlet'),
+            'PIC' => $this->request->getPost('pic'),
+            'alamat' => $this->request->getPost('alamat')
+        ]);
+
+        return redirect()->to(base_url('gangguan/index'));
+    }
+
 }

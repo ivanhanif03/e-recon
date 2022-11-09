@@ -8,4 +8,10 @@ class GangguanModel extends Model
 {
     protected $table = 'tb_gangguan';
     protected $useTimestamps = true;
+    protected $allowedfields = [
+        'provider',
+        'outlet',
+        'PIC',
+        'alamat',
+    ];
 }

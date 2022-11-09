@@ -27,7 +27,7 @@
 
                         <div class="card-body">
                             <table id="tableGangguan" class="table table-bordered table-striped">
-                                <thead>
+                                <thead >
                                     <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
@@ -66,7 +66,7 @@
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
                                         <th>PIC</th>
@@ -77,7 +77,7 @@
                                         <th>End Stop Clock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
@@ -98,7 +98,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" id="tambah-user">
+            <!-- TODO: tambahin URL ke action controler/function-->
+            <!-- TODO: tambahin attribute method  berupa POST-->
+            <form action="<?= base_url('gangguan/create'); ?>" id="tambah-user" method="post" >
+            
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -107,14 +110,14 @@
                                 <select class="form-control select2bs4 text-sm" name="dinas" id="dinas"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Provider</option>
-                                    <option>Telkom</option>
-                                    <option>Lintasarta</option>
-                                    <option>Tigatra</option>
-                                    <option>Primalink</option>
-                                    <option>IPWAN</option>
-                                    <option>IForte</option>
-                                    <option>MILE</option>
-                                    <option>BAS</option>
+                                    <option value="Telkom">Telkom</option>
+                                    <option value="Lintasarta">Lintasarta</option>
+                                    <option value="Tigatra">Tigatra</option>
+                                    <option value="Primalink">Primalink</option>
+                                    <option value="IPWAN">IPWAN</option>
+                                    <option value="IForte">IForte</option>
+                                    <option value="MILE">MILE</option>
+                                    <option value="BAS">BAS</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -122,9 +125,9 @@
                                 <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Outlet</option>
-                                    <option>KC Harmoni</option>
-                                    <option>KC Kuningan</option>
-                                    <option>KCP Palmerah</option>
+                                    <option value="kc_harmoni">KC Harmoni</option>
+                                    <option value="kc_kuningan">KC Kuningan</option>
+                                    <option value="kcp_palmerah">KCP Palmerah</option>
                                 </select>
                             </div>
                             <div class="form-group">
