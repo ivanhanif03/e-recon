@@ -98,8 +98,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <!-- TODO: tambahin URL ke action controler/function-->
-            <!-- TODO: tambahin attribute method  berupa POST-->
+           
             <form action="<?= base_url('gangguan/create'); ?>" id="tambah-user" method="post" >
             
                 <div class="modal-body">
