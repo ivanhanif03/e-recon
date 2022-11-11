@@ -30,6 +30,9 @@
                         </p>
                     </a>
                 </li>
+
+                <!-- Admin -->
+                <?php if( in_groups('admin')) : ?>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('pengguna'); ?>"
                         class="nav-link <?php if ($menu == 'pengguna'){echo 'active';}?>">
@@ -39,6 +42,10 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
+
+                <!-- User -->
+                <?php if( in_groups('user-btn')) : ?>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('gangguan'); ?>"
                         class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
@@ -56,6 +63,7 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
         </nav>
     </div>

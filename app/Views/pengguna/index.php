@@ -7,9 +7,10 @@
             <div class="row mb-2">
                 <div class="col-12">
                     <h1 class="mb-4">Daftar User</h1>
+                    <!-- <h1 class="mb-4">Daftar User</h1> -->
+                    <?= view('Myth\Auth\Views\_message_block') ?>
 
-                    <div class="card shadow-none border-none">
-                        <?= view('Myth\Auth\Views\_message_block') ?>
+                    <div class="card shadow-none border-none mt-2">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
@@ -133,24 +134,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="fullname">Nama Lengkap</label>
-                                <input type="text" class="form-control text-sm" name="fullname" id="fullname"
-                                    placeholder="Masukkan nama lengkap">
+                                <input type="text"
+                                    class="form-control text-sm <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>"
+                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap">
                             </div>
                             <div class="form-group">
                                 <label for="no_hp">Nomor Handphone</label>
-                                <input type="text" class="form-control text-sm" name="no_hp" id="no_hp"
-                                    placeholder="Masukkan nomor handphone" maxlength="13"
+                                <input type="text"
+                                    class="form-control text-sm <?php if (session('errors.no_hp')) : ?>is-invalid<?php endif ?>"
+                                    name="no_hp" id="no_hp" placeholder="Masukkan nomor handphone" maxlength="13"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea class="form-control text-sm" name="alamat" id="alamat" rows="3"
-                                    placeholder="Masukkan alamat"></textarea>
+                                <textarea
+                                    class="form-control text-sm <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>"
+                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>
                                 <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
-                                <select class="form-control text-sm" name="provider" id="provider" style="width: 100%;">
+                                <select
+                                    class="form-control text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
+                                    name="provider" id="provider" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Provider</option>
                                     <option value="btn">BTN</option>
                                     <option value="telkom">Telkom</option>
@@ -165,8 +171,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Hak Akses</label>
-                                <select class="form-control text-sm" name="hak_akses" id="hak_akses"
-                                    style="width: 100%;">
+                                <select
+                                    class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
+                                    name="hak_akses" id="hak_akses" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
                                     <option value="admin">Admin</option>
                                     <option value="user">User</option>

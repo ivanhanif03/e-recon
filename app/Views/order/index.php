@@ -7,6 +7,7 @@
             <div class="row mb-2">
                 <div class="col-12">
                     <h1 class="mb-4">Report Order</h1>
+                    <?= view('Myth\Auth\Views\_message_block') ?>
 
                     <div class="card shadow-none border-none">
                         <div class="card-header">

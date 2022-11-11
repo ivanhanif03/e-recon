@@ -24,7 +24,9 @@
     <section class="content">
         <div class="container-fluid">
 
+            <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="row">
+
                 <div class="col-lg-4 col-4">
 
                     <div class="small-box bg-white shadow-none border-none">

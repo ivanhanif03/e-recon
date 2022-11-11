@@ -36,20 +36,24 @@
         </li>
         <li class="dropdown user-menu">
             <a href="#" class="nav-link" data-toggle="dropdown">
-                <img src="https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                    class="user-image" alt="User Image">
+                <img src="/img/<?= user()->user_image; ?>" class="user-image border" alt="User Image">
+                <!-- <img src="https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                    class="user-image" alt="User Image"> -->
                 <span class="hidden-xs text-success"></span>
             </a>
             <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                    <img src="https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                        class="img-circle" alt="User Image">
+                    <img src="/img/<?= user()->user_image; ?>" class="img-circle" alt="User Image">
+                    <!-- <img src="https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                        class="img-circle" alt="User Image"> -->
 
                     <p>
-                        <b>Ivan Hanif</b> <br>
-                        Admin
-                        <small>Bank BTN</small>
+                        <b><?= user()->fullname; ?></b> <br>
+                        <span class="text-capitalize">
+                            <?= user()->hak_akses; ?>
+                        </span>
+                        <small class="text-capitalize"><?= user()->provider; ?></small>
                     </p>
                 </li>
                 <!-- Menu Body -->

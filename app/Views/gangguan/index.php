@@ -7,6 +7,7 @@
             <div class="row mb-2">
                 <div class="col-12">
                     <h1 class="mb-4">Report Gangguan</h1>
+                    <?= view('Myth\Auth\Views\_message_block') ?>
 
                     <div class="card shadow-none border">
                         <div class="card-header">
@@ -27,7 +28,7 @@
 
                         <div class="card-body">
                             <table id="tableGangguan" class="table table-bordered table-striped">
-                                <thead >
+                                <thead>
                                     <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
@@ -98,9 +99,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-           
-            <form action="<?= base_url('gangguan/create'); ?>" id="tambah-user" method="post" >
-            
+
+            <form action="<?= base_url('gangguan/create'); ?>" id="tambah-user" method="post">
+
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">

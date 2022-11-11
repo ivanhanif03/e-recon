@@ -40,7 +40,8 @@ $routes->get('/', 'Pages::index');
 $routes->get('/gangguan', 'Gangguan::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/login', 'Login::index');
-$routes->get('/pengguna', 'Pengguna::index');
+$routes->get('/pengguna', 'Pengguna::index', ['filter' => 'role:admin']);
+$routes->get('/pengguna/index', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->get('/pengguna/(:segment)', 'Pengguna::detail/$1');
 
 /*
