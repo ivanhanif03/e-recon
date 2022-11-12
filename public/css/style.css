@@ -1,5 +1,6 @@
 body {
   font-family: "DM Sans";
+  height: 100%;
 }
 
 .tooltip {
@@ -7,28 +8,41 @@ body {
 }
 
 .nav-item. .card {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .modal {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .btn {
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .small-box {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .card {
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
+.modal-content {
+  border-radius: 10px;
+}
 .dropdown-menu {
   /* -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; */
   border: none;
+}
+
+.bg-login {
+  /* The image used */
+  background-image: url("/img/bg-login.png");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

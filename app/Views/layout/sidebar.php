@@ -64,6 +64,27 @@
                     </a>
                 </li>
                 <?php endif; ?>
+
+                <!-- User -->
+                <?php if( in_groups('user-provider')) : ?>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('gangguan'); ?>"
+                        class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-exclamation-circle"></i>
+                        <p>
+                            Gangguan Provider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('order'); ?>" class="nav-link <?php if ($menu == 'order'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-truck-loading"></i>
+                        <p>
+                            Order Provider
+                        </p>
+                    </a>
+                </li>
+                <?php endif; ?>
             </ul>
         </nav>
     </div>

@@ -2,16 +2,15 @@
 <html lang="en">
 <?= $this->include('layout/header'); ?>
 
-<body class="hold-transition login-page text-sm" style="background-image: url('<?= base_url('/img/bg_login.png'); ?>'); background-repeat: no-repeat;
-    background-size: 100%;">
+<body class="hold-transition bg-login login-page text-sm">
     <div class="login-box">
-        <div class="card card-outline card-primary">
+        <div class="card card-outline border-0 shadow-none card-primary">
             <div class="card-header text-center">
                 <div class="col-12 text-center">
                     <img class="w-50 rounded mb-3 mt-2" src="<?= base_url('/img/logo_erecon.png'); ?>">
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body p-4">
 
                 <?= view('Myth\Auth\Views\_message_block') ?>
 
@@ -62,11 +61,9 @@
 
                     <br>
 
-                    <button type="submit" class="btn btn-primary btn-block"><?=lang('Auth.loginAction')?></button>
+                    <button type="submit"
+                        class="btn pt-2 pb-2 btn-primary btn-block"><?=lang('Auth.loginAction')?></button>
                 </form>
-                <?php if ($config->allowRegistration) : ?>
-                <p><a href="<?= url_to('register') ?>"><?=lang('Auth.needAnAccount')?></a></p>
-                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -93,7 +93,7 @@
 <!-- Modal Input -->
 <div class="modal fade" id="modal-tambah-user">
     <div class="modal-dialog modal-md">
-        <div class="modal-content">
+        <div class="modal-content border-0">
             <div class="modal-header">
                 <h4 class="modal-title">Form Tambah Pengguna</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -195,7 +195,7 @@
 <!-- Modal Delete -->
 <div class="modal fade" id="modal-hapus-user">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content border-0">
             <div class="modal-header">
                 <h4 class="modal-title">Hapus Data</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
