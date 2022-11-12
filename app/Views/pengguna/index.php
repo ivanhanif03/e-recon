@@ -110,46 +110,49 @@
                                 <input type="email"
                                     class="form-control text-sm <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>"
                                     name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email"
-                                    value="<?= old('email') ?>">
+                                    value="<?= old('email') ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>"
                                     name="username" id="username" placeholder="Masukkan username"
-                                    value="<?= old('username') ?>">
+                                    value="<?= old('username') ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="password"><?=lang('Auth.password')?></label>
                                 <input type="password"
                                     class="form-control text-sm <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>"
-                                    name="password" id="password" placeholder="Masukkan password" autocomplete="off">
+                                    name="password" id="password" placeholder="Masukkan password" autocomplete="off"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="pass_confirm"><?=lang('Auth.repeatPassword')?></label>
                                 <input type="password"
                                     class="form-control text-sm <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>"
                                     name="pass_confirm" id="pass_confirm" placeholder="Masukkan ulang password"
-                                    autocomplete="off">
+                                    autocomplete="off" required>
                             </div>
                             <div class="form-group">
                                 <label for="fullname">Nama Lengkap</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>"
-                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap">
+                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap" required>
                             </div>
                             <div class="form-group">
                                 <label for="no_hp">Nomor Handphone</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.no_hp')) : ?>is-invalid<?php endif ?>"
                                     name="no_hp" id="no_hp" placeholder="Masukkan nomor handphone" maxlength="13"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');">
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
                                 <textarea
                                     class="form-control text-sm <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>"
-                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"></textarea>
+                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"
+                                    required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>

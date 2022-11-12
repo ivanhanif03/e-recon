@@ -40,30 +40,9 @@ class Pengguna extends BaseController
         }
     }
 
-    public function create()
-    {
-        // $pengguna = new PenggunaModel();
-        $data = [
-            'title' => 'Form Tambah Pengguna'
-        ];
-        // $pengguna->createPengguna($data);
-        // return redirect()->to('/pengguna');
-    }
-
-    public function save()
-    {
-        $this->PenggunaModel->save([
-            'email' =>$this->request->getVar('email'),
-            'username' =>$this->request->getVar('username'),
-            'no_hp' =>$this->request->getVar('no_hp'),
-            'fullname' =>$this->request->getVar('fullname'),
-            'password_hash' =>bin2hex($this->request->getVar('password')),
-            'alamat' =>$this->request->getVar('alamat'),
-            'provider' =>$this->request->getVar('provider'),
-            'hak_akses' =>$this->request->getVar('hak_akses'),
-            ''
-        ]);
-
-        return redirect()->to('/pengguna');
-    }
+    // public function delete($id){
+    //     $news = new PenggunaModel();
+    //     $news->delete($id);
+    //     return redirect('pengguna/index');
+    // }
 }
