@@ -63,6 +63,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
+                    <i class="nav-icon fas fa-bible"></i>
+                        <p>
+                            Daftar SLA
+                        </p>
+                    </a>
+                </li>
                 <?php endif; ?>
 
                 <!-- User -->
@@ -81,6 +89,14 @@
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
                             Order Provider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
+                    <i class="nav-icon fas fa-bible"></i>
+                        <p>
+                            Daftar SLA
                         </p>
                     </a>
                 </li>

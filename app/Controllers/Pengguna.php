@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PenggunaModel;
+use \Myth\Auth\Authorization\GroupModel;
 
 class Pengguna extends BaseController
 {
@@ -14,17 +15,25 @@ class Pengguna extends BaseController
     }
 
     public function index()
-    {
-        // $user = $this->PenggunaModel->findAll();
-        
+    {         
         $data = [
             'title' => 'Daftar Pengguna',
             'menu' => 'pengguna',
-            'user' => $this->PenggunaModel->getPengguna()
+            'pengguna' => $this->PenggunaModel->getPengguna()
         ];
-
+        
         return view('pengguna/index', $data);
     }
+    // public function index()
+    // {         
+    //     $data = [
+    //         'title' => 'Daftar Pengguna',
+    //         'menu' => 'pengguna',
+    //         'user' => $this->PenggunaModel->getPengguna()
+    //     ];
+
+    //     return view('pengguna/index', $data);
+    // }
 
     public function detail($id)
     {
@@ -40,9 +49,20 @@ class Pengguna extends BaseController
         }
     }
 
-    // public function delete($id){
-    //     $news = new PenggunaModel();
-    //     $news->delete($id);
-    //     return redirect('pengguna/index');
-    // }
+    public function delete($id)
+    {
+        $this->PenggunaModel->delete($id);
+        session()->setFlashdata('pesan', 'Data deleted successfully');
+        return redirect()->to('pengguna/index');
+    }
+
+    public function edit($id) 
+    {
+        $data = [
+            'title' => 'Form Edit Data Komik',
+            'validation' => \Config\Services::validation(),
+            'pengguna' => $this->PenggunaModel->getPengguna($id)
+        ];
+        return view('pengguna/index', $data);
+    }
 }

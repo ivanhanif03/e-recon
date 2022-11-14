@@ -39,10 +39,13 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Pages::index');
 $routes->get('/gangguan', 'Gangguan::index');
 $routes->get('/order', 'Order::index');
+$routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/pengguna', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->get('/pengguna/index', 'Pengguna::index', ['filter' => 'role:admin']);
-$routes->get('/pengguna/(:segment)', 'Pengguna::detail/$1');
+$routes->delete('/pengguna/(:num)', 'Pengguna::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/pengguna/(:any)', 'Pengguna::detail/$1');
+$routes->get('/pengguna/edit/(:segment)', 'Pengguna::edit/$1');
 
 /*
  * --------------------------------------------------------------------

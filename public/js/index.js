@@ -9,6 +9,28 @@ $('.select2bs4').select2({
 // Tooltip
 $('[data-toggle="tooltip"]').tooltip()
 
+// tombol-hapus
+$('.tombol-hapus').on('click', function (e) {
+
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal({
+        title: 'Apakah anda yakin',
+        text: "data akan dihapus!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Delete'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+
+});
+
 // Sweet Alert
 $('.swalDeleteSuccess').click(function () {
     Swal.fire(
@@ -45,4 +67,12 @@ $('.swalDisetujuiSuccess').click(function () {
             )
         }
     })
+});
+
+$(document).ready(function () {
+    window.setTimeout(function () {
+        $("#alert-delete").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 4000);
 });
