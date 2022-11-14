@@ -32,11 +32,12 @@
                                     <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
+                                        <th>Branch</th>
                                         <th>PIC</th>
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
-                                        <th>Start Stop Clock</th>
+                                        <th>Stop Clock</th>
                                         <th>End Stop Clock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
@@ -47,11 +48,12 @@
                                     <tr>
                                         <td><?= $g['no_tiket']; ?></td>
                                         <td><?= $g['provider']; ?></td>
+                                        <td><?= $g['branch']; ?></td>
                                         <td><?= $g['pic']; ?></td>
                                         <td><?= $g['alamat']; ?></td>
                                         <td><?= $g['open_time']; ?></td>
                                         <td><?= $g['close_time']; ?></td>
-                                        <td><?= $g['start_stop_clock']; ?></td>
+                                        <td><?= $g['stop_clock']; ?></td>
                                         <td><?= $g['end_stop_clock']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
@@ -70,11 +72,12 @@
                                     <!-- <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
+                                        <th>Branch</th>
                                         <th>PIC</th>
                                         <th>Alamat</th>
                                         <th>Open Time</th>
                                         <th>Close Time</th>
-                                        <th>Start Stop Clock</th>
+                                        <th>Stop Clock</th>
                                         <th>End Stop Clock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
@@ -121,10 +124,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Outlet</label>
-                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
+                                <label>Branch</label>
+                                <select class="form-control select2bs4 text-sm" name="branch" id="branch"
                                     style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Outlet</option>
+                                    <option disabled="disabled" selected="selected">Pilih Branch</option>
                                     <option value="kc_harmoni">KC Harmoni</option>
                                     <option value="kc_kuningan">KC Kuningan</option>
                                     <option value="kcp_palmerah">KCP Palmerah</option>
