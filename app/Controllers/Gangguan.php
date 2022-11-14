@@ -28,10 +28,15 @@ class Gangguan extends BaseController
     {
         $gangguanModel = new GangguanModel();
         $gangguanModel->insert([
+            'nomor_tiket' => $this->request->getPost('no_tiket'),
             'provider' => $this->request->getPost('provider'),
-            'outlet' => $this->request->getPost('outlet'),
+            'branch' => $this->request->getPost('branch'),
             'PIC' => $this->request->getPost('pic'),
-            'alamat' => $this->request->getPost('alamat')
+            'alamat' => $this->request->getPost('alamat'),
+            'open_time' => $this->request->getPost('open_time'),
+            'close_time' => $this->request->getPost('close_time'),
+            'stop_clock' => $this->request->getPost('stop_clock'),
+            'end_stop_clock' => $this->request->getPost('end_stop_clock')
         ]);
 
         return redirect()->to(base_url('gangguan/index'));
