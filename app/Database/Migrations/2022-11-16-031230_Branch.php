@@ -23,25 +23,49 @@ class Branch extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
-			'no_hp' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '15'
-			],
-			'alamat'      => [
+			'alamat' => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
+			'no_telp'      => [
+				'type'           => 'CHAR',
+				'constraint'     => '15'
+			],
+			'id_regional'      => [
+				'type'           => 'INT',
+				'constraint'     => '10'
+			],
+			'id_provider'      => [
+				'type'           => 'INT',
+				'constraint'     => '10'
+			],
+			'id_jenis_branch'      => [
+				'type'           => 'INT',
+				'constraint'     => '10'
+			],
+			'id_klasifikasi_branch'      => [
+				'type'           => 'INT',
+				'constraint'     => '10'
+			],
+
 		]);
 
 		// Membuat primary key
 		$this->forge->addKey('id', TRUE);
 
+		// Membuat foreign key
+		$this->forge->addForeignKey('id_regional','regional','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_provider','provider','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_jenis_branch','jenis branch','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_klasifikasi_branch','klasifikasi branch','id','CASCADE','CASCADE');
+
 		// Membuat tabel 
-		$this->forge->createTable('provider', TRUE);
+		$this->forge->createTable('branch', TRUE);
     }
 
-    public function down()
+	public function down()
     {
-        //
+        // menghapus tabel
+		$this->forge->dropTable('branch');
     }
 }
