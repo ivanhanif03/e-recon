@@ -48,7 +48,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($pengguna as $p) : ?>
+                                    <?php $i=1; foreach ($provider as $p) : ?>
                                     <tr>
                                         <td class="align-middle"><?= $i++; ?></td>
                                         <!-- <td class="align-middle text-capitalize"><img src="/img/<?= $p['user_image']; ?>" class="img-circle" width="50" alt="User Image"></td> -->
@@ -145,8 +145,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= url_to('register') ?>" method="post">
-                <?= csrf_field(); ?>
+            <form action="">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -253,8 +252,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/pengguna/update/<?= $p['id']; ?>" method="post">
-                <?= csrf_field(); ?>
+            <form action="">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -263,28 +261,26 @@
                                 <input type="email"
                                     class="form-control text-sm <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>"
                                     name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email"
-                                    value="<?= $p['email']; ?>" required>
+                                    value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>"
-                                    name="username" id="username" placeholder="Masukkan username"
-                                    value="<?= $p['username']; ?>" required>
+                                    name="username" id="username" placeholder="Masukkan username" value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="fullname">Nama Lengkap</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>"
-                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap"
-                                    value="<?= $p['fullname']; ?>" required>
+                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap" value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="no_hp">Nomor Handphone</label>
                                 <input type="text"
                                     class="form-control text-sm <?php if (session('errors.no_hp')) : ?>is-invalid<?php endif ?>"
                                     name="no_hp" id="no_hp" placeholder="Masukkan nomor handphone" maxlength="13"
-                                    value="<?= $p['no_hp']; ?>"
+                                    value=""
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
                                     required>
                             </div>
@@ -293,7 +289,7 @@
                                 <textarea
                                     class="form-control text-sm <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>"
                                     name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"
-                                    required><?= $p['alamat']; ?></textarea>
+                                    required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>
@@ -317,8 +313,7 @@
                                 <label>Hak Akses</label>
                                 <select
                                     class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
-                                    name="hak_akses" id="hak_akses" value="<?= $p['hak_akses']; ?>"
-                                    style="width: 100%;">
+                                    name="hak_akses" id="hak_akses" value="" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
                                     <option value="admin">Admin</option>
                                     <option value="user">User</option>

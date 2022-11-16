@@ -41,6 +41,7 @@ $routes->get('/gangguan', 'Gangguan::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
+$routes->get('/provider', 'Provider::index');
 $routes->get('/pengguna', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->get('/pengguna/index', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->delete('/pengguna/(:num)', 'Pengguna::delete/$1', ['filter' => 'role:admin']);

@@ -22,6 +22,7 @@ class Gangguan extends Migration
             ],
             'provider' => [
                 'type'      => 'VARCHAR',
+                'constraint' => '255'
             ]
         ]);
         $this->forge->addKey('id', true);
