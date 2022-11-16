@@ -5,6 +5,7 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 
 class Stopclock extends Migration
+{
 public function up()
     {
         $this->forge->addField([
@@ -16,19 +17,26 @@ public function up()
 			],
 			'start_pause'       => [
 				'type'           => 'DATETIME',
-				'constraint'     => '10'
 			],
-			'nama_regional'      => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255'
+			'dateline'      => [
+				'type'           => 'DATETIME',
+				
             ]
 
 		]);
         	
         // Membuat primary key
-		$this->forge->addKey('id', TRUE);
+		$this->forge->addKey('no_tiket', TRUE);
 
 		// Membuat tabel 
-		$this->forge->createTable('Regional', TRUE);
+		$this->forge->createTable('stopclock', TRUE);
     }
+    public function down()
+    {
+        // menghapus tabel
+		$this->forge->dropTable('stopclock');
+    }
+}
+
+    
 
