@@ -10,55 +10,51 @@ class Gangguan extends Migration
     {
         //
         $this->forge->addField([
-            'id' => [
-                'type'           => 'INT',
-                'constraint'     => 20,
-                'unsigned'       => true,
-                'auto_increment' => true,
-            ],
             'nomor_tiket' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'type'       => 'INT',
+                'constraint' => '20',
+                'unsigned'       => true,
+                'auto_increment' => true
             ],
             'nama_gangguan' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
-            ]
+            ],
             'id_branch' => [
                 'type'      => 'INT',
                 'constraint' => '5'
-            ]
+            ],
             'id_provider' => [
                 'type'      => 'INT',
                 'constraint' => '5'
-            ]
+            ],
             'id_regional' => [
                 'type'      => 'INT',
                 'constraint' => '5'
-            ]
+            ],
             'detail' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
-            ]
+            ],
             'start' => [
                 'type'      => 'DATETIME',
                 
-            ]
+            ],
             'end' => [
                 'type'      => 'DATETIME',
                 'constraint' => '???'
-            ]
+            ],
             'status' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
-            ]
+            ],
             'approval' => [
                 'type'      => 'ARRAY',
                 'constraint' => '255'
             ]
         ]);
         //Membuat primary key
-        $this->forge->addKey('id', true);
+        $this->forge->addKey('no_tiket', true);
 
         //membuat foreign key
 		$this->forge->addForeignKey('id_branch','branch','id','CASCADE','CASCADE');
