@@ -18,7 +18,7 @@ class HakAkses extends BaseController
         $data = [
             'title' => 'Hak Akses',
             'menu' => 'hak akses',
-            'hak_akses' => $this->HakAksesModel->findAll()
+            'hak_akses' => $this->HakAksesModel->getHakAkses()
         ];
         
         return view('hak_akses/index', $data);

@@ -15,11 +15,11 @@
                                 <div class="col-lg-6 col-sm-4 align-self-center">
                                     <h3 class="card-title">Data Hak Akses</h3>
                                 </div>
-                                <div class="col-sm-4 col-md-2 col-lg-4">
+                                <div class="col-sm-4 col-md-2 col-lg-3">
 
                                 </div>
-                                <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-order"
+                                <div class="col-sm-4 col-md-4 col-lg-3 float-end">
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Hak Akses<i
                                             class="fa fa-plus-circle ml-2"></i></button>
                                 </div>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="tableOrder" class="table table-striped">
+                            <table id="tableHakAkses" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -42,8 +42,8 @@
                                     <?php $i=1; foreach ($hak_akses as $ha) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $ha['group_id']; ?></td>
-                                        <td><?= $ha['user_id']; ?></td>
+                                        <td><?= $ha['name']; ?></td>
+                                        <td><?= $ha['username']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
@@ -77,7 +77,7 @@
 </div>
 
 <!-- Modal Input -->
-<div class="modal fade" id="modal-tambah-regional">
+<div class="modal fade" id="modal-tambah-hak-akses">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,14 +147,14 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tableRegional").DataTable({
+        $("#tableHakAkses").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tableHakAkses_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>
