@@ -27,13 +27,18 @@ class Link extends Migration
 		// Membuat primary key
 		//$this->forge->addKey('id', TRUE);
 
+        // Membuat foreign key
+		$this->forge->addForeignKey('id_branch','branch','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_provider','provider','id','CASCADE','CASCADE');
+        $this->forge->addForeignKey('id_pic','user','id','CASCADE','CASCADE');
+
 		// Membuat tabel 
-		$this->forge->createTable('regional', TRUE);
+		$this->forge->createTable('link', TRUE);
     }
 
     public function down()
     {
         // menghapus tabel
-		$this->forge->dropTable('regional');
+		$this->forge->dropTable('link');
     }
 }
