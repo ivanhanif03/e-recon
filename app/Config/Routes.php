@@ -42,6 +42,7 @@ $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/provider', 'Provider::index');
+$routes->get('/hak_akses', 'HakAkses::index');
 $routes->get('/branch', 'Branch::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/klarifikasi_branch', 'KlarifikasiBranch::index');

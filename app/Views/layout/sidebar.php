@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a href="<?= base_url('provider'); ?>" class="nav-link">
+                            <a href="<?= base_url('hak_akses'); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-key"></i>
                                 <p>
                                     Hak Akses
@@ -68,6 +68,15 @@
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             Provider
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('regional'); ?>"
+                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Regional
                         </p>
                     </a>
                 </li>
