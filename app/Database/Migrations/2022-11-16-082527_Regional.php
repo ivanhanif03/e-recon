@@ -11,13 +11,13 @@ class Regional extends Migration
         $this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
-				'constraint'     => '5',
+				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
 			'kode_regional'       => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11'
 			],
 			'nama_regional'      => [
 				'type'           => 'VARCHAR',

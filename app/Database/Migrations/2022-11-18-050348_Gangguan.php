@@ -12,7 +12,7 @@ class Gangguan extends Migration
         $this->forge->addField([
             'nomor_tiket' => [
                 'type'       => 'INT',
-                'constraint' => '20',
+                'constraint' => '11',
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
@@ -22,15 +22,18 @@ class Gangguan extends Migration
             ],
             'id_branch' => [
                 'type'      => 'INT',
-                'constraint' => '5'
+                'constraint' => '11',
+                'unsigned'       => true,
             ],
             'id_provider' => [
                 'type'      => 'INT',
-                'constraint' => '5'
+                'constraint' => '11',
+                'unsigned'       => true,
             ],
             'id_regional' => [
                 'type'      => 'INT',
-                'constraint' => '5'
+                'constraint' => '11',
+                'unsigned'       => true,
             ],
             'detail' => [
                 'type'      => 'VARCHAR',
@@ -42,19 +45,19 @@ class Gangguan extends Migration
             ],
             'end' => [
                 'type'      => 'DATETIME',
-                'constraint' => '???'
+                
             ],
             'status' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
             ],
             'approval' => [
-                'type'      => 'ARRAY',
+                'type'      => 'VARCHAR',
                 'constraint' => '255'
             ]
         ]);
         //Membuat primary key
-        $this->forge->addKey('no_tiket', true);
+        $this->forge->addKey('nomor_tiket', true);
 
         //membuat foreign key
 		$this->forge->addForeignKey('id_branch','branch','id','CASCADE','CASCADE');
@@ -62,7 +65,7 @@ class Gangguan extends Migration
 		$this->forge->addForeignKey('id_regional','regional','id','CASCADE','CASCADE');
 		
         //membuat tabel
-        $this->forge->createTable('gangguan');
+        $this->forge->createTable('gangguan', true );
     }
 
     public function down()

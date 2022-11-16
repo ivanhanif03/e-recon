@@ -9,11 +9,10 @@ class Stopclock extends Migration
 public function up()
     {
         $this->forge->addField([
-			'no_tiket'          => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255',
+			'nomor_tiket'          => [
+				'type'           => 'INT',
+				'constraint'     => '11',
 				'unsigned'       => true,
-				'auto_increment' => true
 			],
 			'start_pause'       => [
 				'type'           => 'DATETIME',
@@ -26,7 +25,7 @@ public function up()
 		]);
         	
         // Membuat primary key
-		$this->forge->addKey('no_tiket', TRUE);
+		$this->forge->addKey('nomor_tiket', TRUE);
 
 		// Membuat tabel 
 		$this->forge->createTable('stopclock', TRUE);

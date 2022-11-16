@@ -11,13 +11,13 @@ class Branch extends Migration
         $this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
-				'constraint'     => '5',
+				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
 			'kode_branch'       => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11'
 			],
 			'nama_branch'      => [
 				'type'           => 'VARCHAR',
@@ -33,19 +33,23 @@ class Branch extends Migration
 			],
 			'id_regional'      => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11',
+				'unsigned'       => true,
 			],
 			'id_provider'      => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11',
+				'unsigned'       => true,
 			],
 			'id_jenis_branch'      => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11',
+				'unsigned'       => true,
 			],
 			'id_klasifikasi_branch'      => [
 				'type'           => 'INT',
-				'constraint'     => '10'
+				'constraint'     => '11',
+				'unsigned'       => true,
 			],
 
 		]);
@@ -54,10 +58,10 @@ class Branch extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat foreign key
-		$this->forge->addForeignKey('id_regional','regional','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_provider','provider','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_jenis_branch','jenis branch','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_klasifikasi_branch','klasifikasi branch','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_regional','regional','id');
+		$this->forge->addForeignKey('id_provider','provider','id');
+		$this->forge->addForeignKey('id_jenis_branch','jenisBranch','id');
+		$this->forge->addForeignKey('id_klasifikasi_branch','klasifikasiBranch','id');
 
 		// Membuat tabel 
 		$this->forge->createTable('branch', TRUE);
