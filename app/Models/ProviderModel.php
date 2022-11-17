@@ -8,5 +8,11 @@ class ProviderModel extends Model
 {
     protected $table = 'provider';
     protected $useTimestamps = true;
-    protected $allowedFields = ['nama', 'pic,', 'no_hp', 'alamat'];
+    protected $allowedFields = ['id', 'nama', 'pic,', 'no_hp', 'alamat'];
+
+    public function getProvider()
+    {
+        return $this->db->table('provider')
+        ->get()->getResultArray();  
+    }
 }

@@ -13,8 +13,10 @@ class BranchModel extends Model
     public function getBranch()
     {
          return $this->db->table('branch')
-         ->join('auth_groups','auth_groups.id=auth_groups_users.group_id')
-         ->join('users', 'users.id=auth_groups_users.user_id')
+         ->join('provider','provider.id=branch.id_provider')
+         ->join('regional', 'regional.id=branch.id_regional')
+         ->join('jenisbranch', 'jenisbranch.id=branch.id_jenis_branch')
+         ->join('klasifikasibranch', 'klasifikasibranch.id=branch.id_klasifikasi_branch')
          ->get()->getResultArray();  
     }
 }

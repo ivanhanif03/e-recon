@@ -6,15 +6,13 @@ use CodeIgniter\Model;
 
 class KlasifikasiBranchModel extends Model 
 {
-    protected $table = 'auth_groups_users';
+    protected $table = 'klasifikasibranch';
     protected $useTimestamps = true;
-    protected $allowedFields = ['group_id', 'user_id'];
+    protected $allowedFields = ['id', 'nama_klasifikasi'];
 
-    public function getHakAkses()
+    public function getKlasifikasiBranch()
     {
-         return $this->db->table('auth_groups_users')
-         ->join('auth_groups','auth_groups.id=auth_groups_users.group_id')
-         ->join('users', 'users.id=auth_groups_users.user_id')
-         ->get()->getResultArray();  
+        return $this->db->table('klasifikasibranch')
+        ->get()->getResultArray();  
     }
 }
