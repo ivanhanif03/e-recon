@@ -9,6 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet'>
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/fontawesome-free/css/all.min.css'); ?>">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= base_url('/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">

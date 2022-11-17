@@ -3,15 +3,19 @@
 namespace App\Controllers;
 
 use App\Models\PenggunaModel;
+use App\Models\ProviderModel;
+use App\Models\RoleModel;
 use \Myth\Auth\Authorization\GroupModel;
 
 class Pengguna extends BaseController
 {
-    protected $PenggunaModel;
+    protected $PenggunaModel, $RoleModel;
 
     public function __construct()
     {   
         $this->PenggunaModel = new PenggunaModel();
+        $this->RoleModel = new RoleModel();
+        // $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
@@ -19,7 +23,9 @@ class Pengguna extends BaseController
         $data = [
             'title' => 'Daftar Pengguna',
             'menu' => 'pengguna',
-            'pengguna' => $this->PenggunaModel->getPengguna()
+            'pengguna' => $this->PenggunaModel->getPengguna(),
+            'role' => $this->RoleModel->findAll(),
+            // 'provider' => $this->ProviderModel->findAll(),
         ];
         
         return view('pengguna/index', $data);

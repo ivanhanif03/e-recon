@@ -33,10 +33,10 @@
 
                 <!-- Admin -->
                 <?php if( in_groups('admin')) : ?>
-                <li class="nav-item <?php if ($menu == 'pengguna' || $menu == 'provider'){echo 'menu-open';}?>">
+                <li class="nav-item <?php if ($menu == 'pengguna' || $menu == 'hak_akses'){echo 'menu-open';}?>">
                     <a href="#"
                         class="nav-link mb-2 <?php if ($menu == 'pengguna' || $menu == 'provider'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             User
                             <i class="right fas fa-angle-left"></i>
@@ -46,14 +46,15 @@
                         <li class="nav-item mb-2">
                             <a href="<?= base_url('pengguna'); ?>"
                                 class="nav-link <?php if ($menu == 'pengguna'){echo 'active';}?>">
-                                <i class="nav-icon fas fa-user"></i>
+                                <i class="nav-icon fas fa-user-plus"></i>
                                 <p>
                                     Daftar User
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item mb-2">
-                            <a href="<?= base_url('hak_akses'); ?>" class="nav-link">
+                            <a href="<?= base_url('hak_akses'); ?>"
+                                class="nav-link <?php if ($menu == 'hak_akses'){echo 'active';}?>">
                                 <i class="nav-icon fas fa-key"></i>
                                 <p>
                                     Hak Akses
@@ -103,7 +104,7 @@
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-bible"></i>
+                        <i class="nav-icon fas fa-stream"></i>
                         <p>
                             Daftar SLA
                         </p>
@@ -132,7 +133,7 @@
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-bible"></i>
+                        <i class="nav-icon fas fa-stream"></i>
                         <p>
                             Daftar SLA
                         </p>

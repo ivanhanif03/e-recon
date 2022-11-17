@@ -4,22 +4,18 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Provider extends Migration
+class Status extends Migration
 {
     public function up()
     {
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
-				'constraint'     => 11,
+				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'nama_provider'       => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '255'
-			],
-			'alamat'      => [
+			'kategori'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
@@ -29,12 +25,12 @@ class Provider extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat tabel 
-		$this->forge->createTable('provider', TRUE);
+		$this->forge->createTable('status', TRUE);
     }
 
     public function down()
     {
         // menghapus tabel
-		$this->forge->dropTable('provider');
+		$this->forge->dropTable('status');
     }
 }
