@@ -81,12 +81,13 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Hak Akses</h4>
+                <h4 class="modal-title">Ubah Hak Akses</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" id="tambah-order">
+            <form action="/hak_akses/update/<?= $p['id']; ?>" method="post">
+                <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -95,9 +96,9 @@
                                 <select class="form-control select2bs4 text-sm" name="username" id="username"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Username</option>
-                                    <option>adminsatu</option>
-                                    <option>admindua</option>
-                                    <option>telkomsatu</option>
+                                    <?php foreach ($role as $r) : ?>
+                                    <option><?= $r['name']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -105,9 +106,9 @@
                                 <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <option>Admin</option>
-                                    <option>User BTN</option>
-                                    <option>User Provider</option>
+                                    <?php foreach ($pengguna as $p) : ?>
+                                    <option><?= $p['username']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -148,12 +149,16 @@
 <script>
     $(function () {
         $("#tableHakAkses").DataTable({
+            "columnDefs": [{
+                "width": "5%",
+                "targets": 0
+            }],
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableHakAkses_wrapper .col-md-6:eq(0)');
     });
 </script>

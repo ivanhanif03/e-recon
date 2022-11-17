@@ -202,16 +202,6 @@
                                     value="<?= old('alamat') ?>" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Hak Akses</label>
-                                <select
-                                    class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
-                                    name="hak_akses" id="hak_akses" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>Provider</label>
                                 <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
                                 <select
@@ -311,17 +301,6 @@
                                     <option value="iforte">IForte</option>
                                     <option value="mile">MILE</option>
                                     <option value="bas">BAS</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Hak Akses</label>
-                                <select
-                                    class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
-                                    name="hak_akses" id="hak_akses" value="<?= $p['hak_akses']; ?>"
-                                    style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
                                 </select>
                             </div>
                         </div>
