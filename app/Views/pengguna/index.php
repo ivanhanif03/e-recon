@@ -42,7 +42,7 @@
                                         <th>No HP</th>
                                         <!-- <th>Alamat</th> -->
                                         <th>Provider</th>
-                                        <th>Hak Akses</th>
+                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -52,12 +52,16 @@
                                     <tr>
                                         <td class="align-middle"><?= $i++; ?></td>
                                         <!-- <td class="align-middle text-capitalize"><img src="/img/<?= $p['user_image']; ?>" class="img-circle" width="50" alt="User Image"></td> -->
-                                        <td class="align-middle text-capitalize"><?= $p['fullname']; ?></td>
+                                        <td class="align-middle text-capitalize">
+                                            <a href="/hak_akses">
+                                                <?= $p['fullname']; ?>
+                                            </a>
+                                        </td>
                                         <td class="align-middle"><?= $p['email']; ?></td>
                                         <td class="align-middle"><?= $p['no_hp']; ?></td>
                                         <!-- <td class="align-middle text-capitalize"><?= $p['alamat']; ?></td> -->
                                         <td class="align-middle text-capitalize"><?= $p['provider']; ?></td>
-                                        <td class="align-middle text-capitalize"><?= $p['hak_akses']; ?></td>
+                                        <!-- <td class="align-middle text-capitalize"><?= $p['hak_akses']; ?></td> -->
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="/komik/edit/<?= $p['id']; ?>"
@@ -121,7 +125,7 @@
                                         <th>No HP</th>
                                         <!-- <th>Alamat</th> -->
                                         <th>Provider</th>
-                                        <th>Hak Akses</th>
+                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -339,7 +343,7 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
     });
 </script>
