@@ -6,7 +6,15 @@ use CodeIgniter\Model;
 
 class RoleModel extends Model 
 {
-    protected $table = 'auth_groups';
+    protected $table = 'provider';
     protected $useTimestamps = true;
-    // protected $allowedFields = ['group_id', 'user_id'];
+    protected $allowedFields = ['id', 'nama', 'pic,', 'no_hp', 'alamat'];
+
+    public function getProvider()
+    {
+         return $this->db->table('provider')
+         ->join('auth_groups','auth_groups.id=auth_groups_users.group_id')
+         ->join('users', 'users.id=auth_groups_users.user_id')
+         ->get()->getResultArray();  
+    }
 }
