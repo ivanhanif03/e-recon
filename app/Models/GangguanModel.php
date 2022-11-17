@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class GangguanModel extends Model 
 {
-    protected $table = 'tb_gangguan';
+    protected $table = 'gangguan';
     protected $useTimestamps = true;
     protected $allowedfields = [
         'provider',
