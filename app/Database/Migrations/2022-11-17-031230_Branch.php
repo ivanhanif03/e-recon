@@ -29,7 +29,7 @@ class Branch extends Migration
 			],
 			'no_telp'      => [
 				'type'           => 'CHAR',
-				'constraint'     => '15'
+				'constraint'     => '255'
 			],
 			'id_regional'      => [
 				'type'           => 'INT',
