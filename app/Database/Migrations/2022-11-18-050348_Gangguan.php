@@ -11,7 +11,7 @@ class Gangguan extends Migration
         //
         $this->forge->addField([
             'nomor_tiket' => [
-                'type'       => 'INT',
+                'type'       => 'VARCHAR',
                 'constraint' => '11',
                 'unsigned'       => true,
                 'auto_increment' => true
