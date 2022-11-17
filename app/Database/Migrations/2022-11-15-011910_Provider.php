@@ -11,7 +11,7 @@ class Provider extends Migration
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
-				'constraint'     => 11,
+				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
