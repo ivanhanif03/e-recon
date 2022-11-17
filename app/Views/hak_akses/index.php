@@ -31,8 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Hak Akses</th>
                                         <th>Username</th>
+                                        <th>Hak Akses</th>
                                         <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
@@ -42,8 +42,8 @@
                                     <?php $i=1; foreach ($hak_akses as $ha) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $ha['name']; ?></td>
                                         <td><?= $ha['username']; ?></td>
+                                        <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
@@ -60,8 +60,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Hak Akses</th>
                                         <th>Username</th>
+                                        <th>Hak Akses</th>
                                         <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
@@ -86,7 +86,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/hak_akses/update/<?= $p['id']; ?>" method="post">
+            <form action="/hak_akses/update/<?= $ha['id']; ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
