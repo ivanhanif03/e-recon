@@ -70,7 +70,7 @@ class Gangguan extends Migration
 
     public function down()
     {
-        //
+        //menghapus tabel
         $this->forge->dropTable('gangguan');
     }
 }
