@@ -39,7 +39,7 @@ class Link extends Migration
         // Membuat foreign key
 		$this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
 		$this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-        $this->forge->addForeignKey('id_pic','users','id',' ','CASCADE');
+        $this->forge->addForeignKey('id_pic','users','id','','CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('link', TRUE);

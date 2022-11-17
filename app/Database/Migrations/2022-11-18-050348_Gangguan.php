@@ -35,7 +35,7 @@ class Gangguan extends Migration
                 'constraint' => '11',
                 'unsigned'       => true,
             ],
-            'detail' => [xxx
+            'detail' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
             ],
