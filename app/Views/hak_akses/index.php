@@ -47,7 +47,7 @@
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-tambah-regional"><i
+                                                data-backdrop="static" data-target="#modal-edit-hak-akses"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
                                             <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
@@ -77,7 +77,7 @@
 </div>
 
 <!-- Modal Input -->
-<div class="modal fade" id="modal-tambah-hak-akses">
+<div class="modal fade" id="modal-edit-hak-akses">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,22 +92,20 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Username</label>
-                                <select class="form-control select2bs4 text-sm" name="username" id="username"
-                                    style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Username</option>
-                                    <?php foreach ($role as $r) : ?>
-                                    <option><?= $r['name']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label for="username">Username</label>
+                                <input type="text"
+                                    class="form-control text-sm <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>"
+                                    name="username" id="username" value="<?= $ha['username']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label>Hak Akses</label>
-                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
+                                <select class="form-control select2bs4 text-sm" name="hak_akses" id="hak_akses"
                                     style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <?php foreach ($pengguna as $p) : ?>
-                                    <option><?= $p['username']; ?></option>
+                                    <?php foreach ($role as $r) : ?>
+                                    <option value="<?= $r['name']; ?>"
+                                        <?php if ($r['name'] == $ha['username']) : ?>selected<?php endif; ?>>
+                                        <?= $r['name']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

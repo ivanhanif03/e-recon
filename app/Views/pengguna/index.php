@@ -64,9 +64,9 @@
                                         <!-- <td class="align-middle text-capitalize"><?= $p['hak_akses']; ?></td> -->
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/komik/edit/<?= $p['id']; ?>"
+                                            <a href="/pengguna/edit/<?= $p['id']; ?>"
                                                 class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-edit-user"><i
+                                                data-backdrop="static" data-target="#modal-edit-user<?= $p['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
                                             <!-- <form action="/pengguna/<?= $p['id']; ?>" method="post" class="d-inline">
@@ -114,6 +114,99 @@
                                     </div>
                                     <!-- End Modal Delete -->
 
+                                    <!-- Start Modal Edit -->
+                                    <div class="modal fade" id="modal-edit-user<?= $p['id']; ?>">
+                                        <div class="modal-dialog modal-md">
+                                            <div class="modal-content border-0">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Form Edit Pengguna</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/pengguna/update/<?= $p['id']; ?>" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="email"><?=lang('Auth.email')?></label>
+                                                                    <input type="email"
+                                                                        class="form-control text-sm <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>"
+                                                                        name="email" id="email"
+                                                                        aria-describedby="emailHelp"
+                                                                        placeholder="Masukkan email"
+                                                                        value="<?= $p['email']; ?>" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="username">Username</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>"
+                                                                        name="username" id="username"
+                                                                        placeholder="Masukkan username"
+                                                                        value="<?= $p['username']; ?>" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="fullname">Nama Lengkap</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>"
+                                                                        name="fullname" id="fullname"
+                                                                        placeholder="Masukkan nama lengkap"
+                                                                        value="<?= $p['fullname']; ?>" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="no_hp">Nomor Handphone</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?php if (session('errors.no_hp')) : ?>is-invalid<?php endif ?>"
+                                                                        name="no_hp" id="no_hp"
+                                                                        placeholder="Masukkan nomor handphone"
+                                                                        maxlength="13" value="<?= $p['no_hp']; ?>"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                                        required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="alamat">Alamat</label>
+                                                                    <textarea
+                                                                        class="form-control text-sm <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>"
+                                                                        name="alamat" id="alamat" rows="3"
+                                                                        placeholder="Masukkan alamat"
+                                                                        required><?= $p['alamat']; ?></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Provider</label>
+                                                                    <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
+                                                                    <select
+                                                                        class="form-control text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
+                                                                        name="provider" id="provider"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Provider</option>
+                                                                        <option value="btn">BTN</option>
+                                                                        <option value="telkom">Telkom</option>
+                                                                        <option value="lintasarta">Lintasarta</option>
+                                                                        <option value="tigatra">Tigatra</option>
+                                                                        <option value="primalink">Primalink</option>
+                                                                        <option value="ipwan">IPWAN</option>
+                                                                        <option value="iforte">IForte</option>
+                                                                        <option value="mile">MILE</option>
+                                                                        <option value="bas">BAS</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer d-flex bd-highlight">
+                                                        <button type="button" class="btn btn-danger mr-auto"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Ubah</button>
+                                                        <!-- swalSaveSuccess -->
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal Edit -->
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
@@ -248,90 +341,6 @@
     </div>
 </div>
 <!-- End Modal Input -->
-
-<!-- Start Modal Edit -->
-<div class="modal fade" id="modal-edit-user">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content border-0">
-            <div class="modal-header">
-                <h4 class="modal-title">Form Edit Pengguna</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="/pengguna/update/<?= $p['id']; ?>" method="post">
-                <?= csrf_field(); ?>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="email"><?=lang('Auth.email')?></label>
-                                <input type="email"
-                                    class="form-control text-sm <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>"
-                                    name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email"
-                                    value="<?= $p['email']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text"
-                                    class="form-control text-sm <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>"
-                                    name="username" id="username" placeholder="Masukkan username"
-                                    value="<?= $p['username']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">Nama Lengkap</label>
-                                <input type="text"
-                                    class="form-control text-sm <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>"
-                                    name="fullname" id="fullname" placeholder="Masukkan nama lengkap"
-                                    value="<?= $p['fullname']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="no_hp">Nomor Handphone</label>
-                                <input type="text"
-                                    class="form-control text-sm <?php if (session('errors.no_hp')) : ?>is-invalid<?php endif ?>"
-                                    name="no_hp" id="no_hp" placeholder="Masukkan nomor handphone" maxlength="13"
-                                    value="<?= $p['no_hp']; ?>"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="alamat">Alamat</label>
-                                <textarea
-                                    class="form-control text-sm <?php if (session('errors.alamat')) : ?>is-invalid<?php endif ?>"
-                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"
-                                    required><?= $p['alamat']; ?></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Provider</label>
-                                <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
-                                <select
-                                    class="form-control text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
-                                    name="provider" id="provider" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Provider</option>
-                                    <option value="btn">BTN</option>
-                                    <option value="telkom">Telkom</option>
-                                    <option value="lintasarta">Lintasarta</option>
-                                    <option value="tigatra">Tigatra</option>
-                                    <option value="primalink">Primalink</option>
-                                    <option value="ipwan">IPWAN</option>
-                                    <option value="iforte">IForte</option>
-                                    <option value="mile">MILE</option>
-                                    <option value="bas">BAS</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex bd-highlight">
-                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Ubah</button>
-                    <!-- swalSaveSuccess -->
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal Edit -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>

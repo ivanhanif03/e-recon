@@ -29,4 +29,21 @@ class HakAkses extends BaseController
         
         return view('hak_akses/index', $data);
     }
+
+    public function delete($id)
+    {
+        $this->HakAksesModel->delete($id);
+        session()->setFlashdata('pesan', 'Data deleted successfully');
+        return redirect()->to('hak_akses/index');
+    }
+
+    public function edit($id) 
+    {
+        $data = [
+            'title' => 'Form Edit Hak Akses',
+            'validation' => \Config\Services::validation(),
+            'hak_akses' => $this->HakAksesModel->getHakAkses($id)
+        ];
+        return view('hak_akses/index', $data);
+    }
 }

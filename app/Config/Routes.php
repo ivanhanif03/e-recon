@@ -42,7 +42,6 @@ $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/provider', 'Provider::index');
-$routes->get('/hak_akses', 'HakAkses::index');
 $routes->get('/branch', 'Branch::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/klarifikasi_branch', 'KlarifikasiBranch::index');
@@ -50,6 +49,15 @@ $routes->get('/link', 'Link::index');
 $routes->get('/regional', 'Regional::index');
 $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
+
+//Hak Akses
+$routes->get('/hak_akses', 'HakAkses::index');
+$routes->get('/hak_akses', 'HakAkses::index', ['filter' => 'role:admin']);
+$routes->get('/hak_akses/index', 'HakAkses::index', ['filter' => 'role:admin']);
+$routes->delete('/hak_akses/(:num)', 'HakAkses::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/hak_akses/edit/(:segment)', 'HakAkses::edit/$1');
+
+//User
 $routes->get('/user', 'User::index');
 $routes->get('/pengguna', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->get('/pengguna/index', 'Pengguna::index', ['filter' => 'role:admin']);

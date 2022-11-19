@@ -30,16 +30,6 @@ class Pengguna extends BaseController
         
         return view('pengguna/index', $data);
     }
-    // public function index()
-    // {         
-    //     $data = [
-    //         'title' => 'Daftar Pengguna',
-    //         'menu' => 'pengguna',
-    //         'user' => $this->PenggunaModel->getPengguna()
-    //     ];
-
-    //     return view('pengguna/index', $data);
-    // }
 
     public function detail($id)
     {
@@ -65,10 +55,27 @@ class Pengguna extends BaseController
     public function edit($id) 
     {
         $data = [
-            'title' => 'Form Edit Data Komik',
+            'title' => 'Form Edit Pengguna',
             'validation' => \Config\Services::validation(),
             'pengguna' => $this->PenggunaModel->getPengguna($id)
         ];
         return view('pengguna/index', $data);
+    }
+
+    public function update($id) 
+    {
+        $this->PenggunaModel->save([
+            'id' => $id,
+            'email' => $this->request->getVar('email'),
+            'username' => $this->request->getVar('username'),
+            'fullname' => $this->request->getVar('fullname'),
+            'no_hp' => $this->request->getVar('no_hp'),   
+            'alamat' => $this->request->getVar('alamat'),   
+            'provider' => $this->request->getVar('provider'),   
+        ]);
+
+        session()->setFlashdata('pesan', 'Data updated successfully');
+
+        return redirect()->to('/pengguna');
     }
 }
