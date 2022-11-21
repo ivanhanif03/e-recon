@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="mb-4">Daftar User</h1>
+                    <h1 class="mb-4">User</h1>
                     <!-- <h1 class="mb-4">Daftar User</h1> -->
                     <?= view('Myth\Auth\Views\_message_block') ?>
                     <?php if (session()->getFlashdata('pesan')) : ?>
@@ -18,7 +18,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
-                                    <h3 class="card-title">Data Order</h3>
+                                    <h3 class="card-title">Daftar User</h3>
                                 </div>
                                 <div class="col-sm-4 col-md-2 col-lg-4">
 
@@ -36,13 +36,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <!-- <th>Foto</th> -->
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>No HP</th>
-                                        <!-- <th>Alamat</th> -->
                                         <th>Provider</th>
-                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -51,7 +48,6 @@
                                     <?php $i=1; foreach ($pengguna as $p) : ?>
                                     <tr>
                                         <td class="align-middle"><?= $i++; ?></td>
-                                        <!-- <td class="align-middle text-capitalize"><img src="/img/<?= $p['user_image']; ?>" class="img-circle" width="50" alt="User Image"></td> -->
                                         <td class="align-middle text-capitalize">
                                             <a href="/hak_akses">
                                                 <?= $p['fullname']; ?>
@@ -59,26 +55,20 @@
                                         </td>
                                         <td class="align-middle"><?= $p['email']; ?></td>
                                         <td class="align-middle"><?= $p['no_hp']; ?></td>
-                                        <!-- <td class="align-middle text-capitalize"><?= $p['alamat']; ?></td> -->
                                         <td class="align-middle text-capitalize"><?= $p['provider']; ?></td>
-                                        <!-- <td class="align-middle text-capitalize"><?= $p['hak_akses']; ?></td> -->
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="/pengguna/edit/<?= $p['id']; ?>"
                                                 class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static" data-target="#modal-edit-user<?= $p['id']; ?>"><i
-                                                    class="nav-icon fas fa-edit"></i></a>
-                                            <!-- Delete -->
-                                            <!-- <form action="/pengguna/<?= $p['id']; ?>" method="post" class="d-inline">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger"><i
-                                                        class=" nav-icon fas fa-trash"></i></button>
-                                            </form> -->
+                                                    class="nav-icon fas fa-edit"></i>
+                                            </a>
 
+                                            <!-- Delete -->
                                             <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-target="#modal-hapus-pengguna<?= $p['id'] ?>"><i
-                                                    class=" nav-icon fas fa-trash"></i></a>
+                                                    class=" nav-icon fas fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
 
@@ -182,7 +172,12 @@
                                                                         style="width: 100%;">
                                                                         <option disabled="disabled" selected="selected">
                                                                             Pilih Provider</option>
-                                                                        <option value="btn">BTN</option>
+                                                                        <?php foreach ($provider as $prv) : ?>
+                                                                        <option value="<?= $prv['nama_provider']; ?>"
+                                                                            <?php if ($prv['nama_provider'] == $p['provider']) : ?>selected<?php endif; ?>>
+                                                                            <?= $prv['nama_provider']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                        <!-- <option value="btn">BTN</option>
                                                                         <option value="telkom">Telkom</option>
                                                                         <option value="lintasarta">Lintasarta</option>
                                                                         <option value="tigatra">Tigatra</option>
@@ -190,7 +185,7 @@
                                                                         <option value="ipwan">IPWAN</option>
                                                                         <option value="iforte">IForte</option>
                                                                         <option value="mile">MILE</option>
-                                                                        <option value="bas">BAS</option>
+                                                                        <option value="bas">BAS</option> -->
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -211,14 +206,10 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>No</th>
-                                        <!-- <th>Foto</th> -->
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>No HP</th>
-                                        <!-- <th>Alamat</th> -->
                                         <th>Provider</th>
-                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>

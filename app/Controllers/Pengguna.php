@@ -9,13 +9,13 @@ use \Myth\Auth\Authorization\GroupModel;
 
 class Pengguna extends BaseController
 {
-    protected $PenggunaModel, $RoleModel;
+    protected $PenggunaModel, $RoleModel, $ProviderModel;
 
     public function __construct()
     {   
         $this->PenggunaModel = new PenggunaModel();
         $this->RoleModel = new RoleModel();
-        // $this->ProviderModel = new ProviderModel();
+        $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
@@ -25,7 +25,7 @@ class Pengguna extends BaseController
             'menu' => 'pengguna',
             'pengguna' => $this->PenggunaModel->getPengguna(),
             'role' => $this->RoleModel->findAll(),
-            // 'provider' => $this->ProviderModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
         ];
         
         return view('pengguna/index', $data);

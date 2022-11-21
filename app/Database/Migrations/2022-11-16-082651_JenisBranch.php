@@ -19,6 +19,12 @@ class JenisBranch extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
 			],
+			'created_at'      => [
+				'type'           => 'DATETIME',
+			],
+			'updated_at'      => [
+				'type'           => 'DATETIME',
+			],
 
 		]);
 
