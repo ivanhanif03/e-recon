@@ -10,7 +10,7 @@ class GangguanModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = ['nomor_tiket', 'nama_gangguan', 'id_branch', 'id_provider', 'id_regional', 'detail', 'start', 'end', 'status', 'approval'];
 
-    public function getJenisBranch()
+    public function getGangguan()
     {
          return $this->db->table('gangguan')
          ->join('provider','provider.id=gangguan.id_provider')
