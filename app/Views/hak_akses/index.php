@@ -90,7 +90,7 @@
                                                                         <option disabled="disabled" selected="selected">
                                                                             Pilih Hak Akses</option>
                                                                         <?php foreach ($role as $r) : ?>
-                                                                        <option value="<?= $r['name']; ?>"
+                                                                        <option value="<?= $ha['name']; ?>"
                                                                             <?php if ($r['name'] == $ha['name']) : ?>selected<?php endif; ?>>
                                                                             <?= $r['name']; ?></option>
                                                                         <?php endforeach; ?>

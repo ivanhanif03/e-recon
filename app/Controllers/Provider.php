@@ -14,10 +14,11 @@ class Provider extends BaseController
     }
 
     public function index()
-    {         
+    {      
         $data = [
             'title' => 'Daftar Provider',
             'menu' => 'provider',
+            'validation' => \Config\Services::validation(),
             'provider' => $this->ProviderModel->findAll()
         ];
         
@@ -26,6 +27,14 @@ class Provider extends BaseController
 
     public function save()
     {
+        //Validation
+        if (!$this->validate([
+            'kode_provider' => 'required|max_length[3]|is_unique[provider.kode_provider]',
+            'nama_provider' => 'required'
+        ])) {
+            return redirect()->to('/provider/index')->withInput()->with('errors', $this->validator->getErrors());
+        }
+
         $this->ProviderModel->save([
             'kode_provider' => $this->request->getVar('kode_provider'),
             'nama_provider' => $this->request->getVar('nama_provider'),
@@ -34,7 +43,7 @@ class Provider extends BaseController
 
         session()->setFlashdata('pesan', 'Data created successfully');
 
-        return redirect()->to('/provider');
+        return redirect()->to('/provider/index');
     }
 
     public function delete($id)

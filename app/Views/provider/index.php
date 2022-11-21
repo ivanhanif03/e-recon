@@ -7,7 +7,6 @@
             <div class="row mb-2">
                 <div class="col-12">
                     <h1 class="mb-4">Provider</h1>
-                    <!-- <h1 class="mb-4">Daftar User</h1> -->
                     <?= view('Myth\Auth\Views\_message_block') ?>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                     <div class="alert alert-success" role="alert" id="alert-delete">
@@ -115,26 +114,38 @@
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label for="kode_provider">Kode Provider</label>
-                                                                    <input type="text" class="form-control text-sm"
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('kode_provider')) ? 'is-invalid' : ''; ?>"
                                                                         name="kode_provider" id="kode_provider"
                                                                         placeholder="Masukkan kode provider"
                                                                         maxlength="3"
                                                                         value="<?= $p['kode_provider']; ?>" autofocus
                                                                         required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('kode_provider'); ?>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="nama_provider">Nama Provider</label>
-                                                                    <input type="text" class="form-control text-sm"
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>"
                                                                         name="nama_provider" id="nama_provider"
                                                                         placeholder="Masukkan nama provider"
                                                                         value="<?= $p['nama_provider']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('nama_provider'); ?>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="alamat">Alamat</label>
-                                                                    <textarea class="form-control text-sm" name="alamat"
-                                                                        id="alamat" rows="3"
+                                                                    <textarea
+                                                                        class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
+                                                                        name="alamat" id="alamat" rows="3"
                                                                         placeholder="Masukkan alamat"
                                                                         required><?= $p['alamat']; ?></textarea>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('alamat'); ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -189,18 +200,33 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="kode_provider">Kode Provider</label>
-                                <input type="text" class="form-control text-sm" name="kode_provider" id="kode_provider"
-                                    placeholder="Masukkan kode provider" maxlength="3" autofocus required>
+                                <input type="text"
+                                    class="form-control text-sm <?= ($validation->hasError('kode_provider')) ? 'is-invalid' : ''; ?>"
+                                    name="kode_provider" id="kode_provider" maxlength="3" minlength="3"
+                                    style="text-transform:uppercase" autofocus required>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('kode_provider'); ?>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="nama_provider">Nama Provider</label>
-                                <input type="text" class="form-control text-sm" name="nama_provider" id="nama_provider"
-                                    placeholder="Masukkan nama provider" required>
+                                <input type="text"
+                                    class="form-control text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>"
+                                    name="nama_provider" id="nama_provider" placeholder="Masukkan nama provider"
+                                    required>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('nama_provider'); ?>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea class="form-control text-sm" name="alamat" id="alamat" rows="3"
-                                    placeholder="Masukkan alamat" required></textarea>
+                                <textarea
+                                    class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
+                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"
+                                    required></textarea>
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('alamat'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +251,7 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableProvider_wrapper .col-md-6:eq(0)');
     });
 </script>

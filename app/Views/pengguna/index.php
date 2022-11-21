@@ -177,15 +177,6 @@
                                                                             <?php if ($prv['nama_provider'] == $p['provider']) : ?>selected<?php endif; ?>>
                                                                             <?= $prv['nama_provider']; ?></option>
                                                                         <?php endforeach; ?>
-                                                                        <!-- <option value="btn">BTN</option>
-                                                                        <option value="telkom">Telkom</option>
-                                                                        <option value="lintasarta">Lintasarta</option>
-                                                                        <option value="tigatra">Tigatra</option>
-                                                                        <option value="primalink">Primalink</option>
-                                                                        <option value="ipwan">IPWAN</option>
-                                                                        <option value="iforte">IForte</option>
-                                                                        <option value="mile">MILE</option>
-                                                                        <option value="bas">BAS</option> -->
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -206,6 +197,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>No HP</th>
@@ -296,15 +288,11 @@
                                     class="form-control select2bs4 text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
                                     name="provider" id="provider" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Provider</option>
-                                    <option value="btn">BTN</option>
-                                    <option value="telkom">Telkom</option>
-                                    <option value="lintasarta">Lintasarta</option>
-                                    <option value="tigatra">Tigatra</option>
-                                    <option value="primalink">Primalink</option>
-                                    <option value="ipwan">IPWAN</option>
-                                    <option value="iforte">IForte</option>
-                                    <option value="mile">MILE</option>
-                                    <option value="bas">BAS</option>
+                                    <?php foreach ($provider as $prv) : ?>
+                                    <option value="<?= $prv['nama_provider']; ?>">
+                                        <?= $prv['nama_provider']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -315,7 +303,7 @@
                                     name="provider" id="provider" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
                                     <?php foreach ($role as $r) : ?>
-                                    <option><?= $r['name']; ?></option>
+                                    <option value="<?= $r['name']; ?>"><?= $r['name']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
