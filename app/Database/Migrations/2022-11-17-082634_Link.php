@@ -9,12 +9,16 @@ class Link extends Migration
     public function up()
     {
         $this->forge->addField([
-			// 'id'          => [
-			// 	'type'           => 'INT',
-			// 	'constraint'     => '11',
-			// 	'unsigned'       => true,
-			// 	'auto_increment' => true
-			// ],
+			'id'          => [
+				'type'           => 'INT',
+				'constraint'     => '11',
+				'unsigned'       => true,
+				'auto_increment' => true
+			],
+			'nama_link'          => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '255',	
+			],
 			'id_branch'          => [
 				'type'           => 'INT',
 				'constraint'     => '11',
@@ -40,7 +44,7 @@ class Link extends Migration
 		]);
 
 		// Membuat primary key
-		$this->forge->addKey(['id_branch','id_provider','id_pic']);
+		$this->forge->addKey('id', true);
 
         // Membuat foreign key
 		$this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
