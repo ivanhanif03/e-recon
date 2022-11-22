@@ -60,9 +60,9 @@ class Gangguan extends Migration
         $this->forge->addKey('nomor_tiket', true);
 
         //membuat foreign key
-		$this->forge->addForeignKey('id_branch','branch','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_provider','provider','id','CASCADE','CASCADE');
-		$this->forge->addForeignKey('id_regional','regional','id','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
+		$this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
+		$this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
 		
         //membuat tabel
         $this->forge->createTable('gangguan', true );
