@@ -78,6 +78,8 @@
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label for="username">Username</label>
+                                                                    <input type="hidden" name="user_id" id="user_id"
+                                                                        value="<?= $ha['user_id']; ?>">
                                                                     <input type="text" class="form-control text-sm"
                                                                         name="username" id="username"
                                                                         value="<?= $ha['username']; ?>" readonly>
@@ -85,12 +87,13 @@
                                                                 <div class="form-group">
                                                                     <label>Hak Akses</label>
                                                                     <select class="form-control select2bs4 text-sm"
-                                                                        name="hak_akses" id="hak_akses"
+                                                                        name="group_id" id="group_id"
                                                                         style="width: 100%;">
                                                                         <option disabled="disabled" selected="selected">
-                                                                            Pilih Hak Akses</option>
+                                                                            Pilih Hak Akses
+                                                                        </option>
                                                                         <?php foreach ($role as $r) : ?>
-                                                                        <option value="<?= $ha['name']; ?>"
+                                                                        <option value="<?= $r['id']; ?>"
                                                                             <?php if ($r['name'] == $ha['name']) : ?>selected<?php endif; ?>>
                                                                             <?= $r['name']; ?></option>
                                                                         <?php endforeach; ?>
