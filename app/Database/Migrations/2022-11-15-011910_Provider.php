@@ -15,6 +15,10 @@ class Provider extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
+			'kode_provider'       => [
+				'type'           => 'CHAR',
+				'constraint'     => '5'
+			],
 			'nama_provider'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
@@ -22,6 +26,12 @@ class Provider extends Migration
 			'alamat'      => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
+			],
+			'created_at'      => [
+				'type'           => 'DATETIME',
+			],
+			'updated_at'      => [
+				'type'           => 'DATETIME',
 			],
 		]);
 

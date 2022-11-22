@@ -51,6 +51,12 @@ class Branch extends Migration
 				'constraint'     => '11',
 				'unsigned'       => true,
 			],
+			'created_at'      => [
+				'type'           => 'DATETIME',
+			],
+			'updated_at'      => [
+				'type'           => 'DATETIME',
+			],
 
 		]);
 

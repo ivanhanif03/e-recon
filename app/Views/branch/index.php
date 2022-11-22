@@ -6,68 +6,67 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="mb-4">Provider</h1>
+                    <h1 class="mb-4">Branch</h1>
                     <?= view('Myth\Auth\Views\_message_block') ?>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                     <div class="alert alert-success" role="alert" id="alert-delete">
                         <?= session()->getFlashdata('pesan'); ?>
                     </div>
                     <?php endif; ?>
-                    <div class="card shadow-none border-none mt-2">
+                    <div class="card shadow-none border-none">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
-                                    <h3 class="card-title">Data Provider</h3>
+                                    <h3 class="card-title">Daftar Branch</h3>
                                 </div>
                                 <div class="col-sm-4 col-md-2 col-lg-4">
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-provider"
-                                        data-backdrop="static" class="btn btn-block bg-primary">Tambah Provider<i
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-branch"
+                                        data-backdrop="static" class="btn btn-block bg-primary">Tambah Branch<i
                                             class="fa fa-plus-circle ml-2"></i></button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <table id="tableProvider" class="table table-striped">
+                            <table id="tableBranch" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode Provider</th>
-                                        <th>Nama Provider</th>
+                                        <th>Kode Branch</th>
+                                        <th>Nama Branch</th>
                                         <th>Alamat</th>
+                                        <th>No Telp</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($provider as $p) : ?>
+                                    <?php $i=1; foreach ($branch as $brch) : ?>
                                     <tr>
-                                        <td class="align-middle"><?= $i++; ?></td>
-                                        <td class="align-middle"><?= $p['kode_provider']; ?></td>
-                                        <td class="align-middle"><?= $p['nama_provider']; ?></td>
-                                        <td class="align-middle"><?= $p['alamat']; ?></td>
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $brch['kode_branch']; ?></td>
+                                        <td><?= $brch['nama_branch']; ?></td>
+                                        <td><?= $brch['alamat']; ?></td>
+                                        <td><?= $brch['no_telp']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/provider/edit/<?= $p['id']; ?>"
-                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
-                                                data-target="#modal-edit-provider<?= $p['id'] ?>"><i
-                                                    class="nav-icon fas fa-edit"></i>
-                                            </a>
-
+                                                data-target="#modal-edit-branch<?= $brch['id']; ?>"><i
+                                                    class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
                                             <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                                                data-target="#modal-hapus-provider<?= $p['id'] ?>"><i
-                                                    class=" nav-icon fas fa-trash"></i>
-                                            </a>
+                                                data-backdrop="static"
+                                                data-target="#modal-hapus-branch<?= $brch['id']; ?>"><i
+                                                    class=" nav-icon fas fa-trash"></i></a>
                                         </td>
                                     </tr>
 
                                     <!-- Start Modal Delete -->
-                                    <div class="modal fade" id="modal-hapus-provider<?= $p['id'] ?>">
+                                    <div class="modal fade" id="modal-hapus-branch<?= $brch['id'] ?>">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header">
@@ -80,12 +79,14 @@
                                                 <div class="modal-body text-center">
                                                     <span>Anda yakin ingin menghapus data?</span><br>
                                                     <span class="text-capitalize font-weight-bolder text-primary">
-                                                        <?= $p['nama_provider']; ?>
+                                                        <?= $brch['nama_branch']; ?>
+                                                        <?= $brch['alamat']; ?>
+                                                        <?= $brch['no_telp']; ?>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-primary"
                                                         data-dismiss="modal">Batal</button>
-                                                    <form action="/provider/<?= $p['id']; ?>" method="post">
+                                                    <form action="/branch/<?= $brch['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -97,54 +98,66 @@
                                     <!-- End Modal Delete -->
 
                                     <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-provider<?= $p['id']; ?>">
+                                    <div class="modal fade" id="modal-edit-branch<?= $brch['id']; ?>">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Form Edit Provider</h4>
+                                                    <h4 class="modal-title">Form Edit Branch</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/provider/update/<?= $p['id']; ?>" method="post">
+                                                <form action="/branch/update/<?= $brch['id']; ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label for="kode_provider">Kode Provider</label>
+                                                                    <label for="kode_branch">Kode Branch</label>
                                                                     <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('kode_provider')) ? 'is-invalid' : ''; ?>"
-                                                                        name="kode_provider" id="kode_provider"
-                                                                        placeholder="Masukkan kode provider"
+                                                                        class="form-control text-sm <?= ($validation->hasError('kode_branch')) ? 'is-invalid' : ''; ?>"
+                                                                        name="kode_branch" id="kode_branch"
+                                                                        placeholder="Masukkan kode branch"
                                                                         maxlength="3"
-                                                                        value="<?= $p['kode_provider']; ?>" autofocus
-                                                                        required>
+                                                                        value="<?= $brch['kode_branch']; ?>"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                                                        autofocus required>
                                                                     <div class="invalid-feedback">
-                                                                        <?= $validation->getError('kode_provider'); ?>
+                                                                        <?= $validation->getError('kode_branch'); ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="nama_provider">Nama Provider</label>
+                                                                    <label for="nama_branch">Nama Branch</label>
                                                                     <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>"
-                                                                        name="nama_provider" id="nama_provider"
-                                                                        placeholder="Masukkan nama provider"
-                                                                        value="<?= $p['nama_provider']; ?>" required>
+                                                                        class="form-control text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>"
+                                                                        name="nama_branch" id="nama_branch"
+                                                                        placeholder="Masukkan nama branch"
+                                                                        value="<?= $brch['nama_branch']; ?>" required>
                                                                     <div class="invalid-feedback">
-                                                                        <?= $validation->getError('nama_provider'); ?>
+                                                                        <?= $validation->getError('nama_branch'); ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="alamat">Alamat</label>
-                                                                    <textarea
+                                                                    <input type="text"
                                                                         class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
-                                                                        name="alamat" id="alamat" rows="3"
-                                                                        placeholder="Masukkan alamat"
-                                                                        required><?= $p['alamat']; ?></textarea>
+                                                                        name="alamat" id="alamat"
+                                                                        placeholder="Masukkan Alamat"
+                                                                        value="<?= $brch['alamat']; ?>" required>
                                                                     <div class="invalid-feedback">
                                                                         <?= $validation->getError('alamat'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="no_telp">No Telp</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('no_telp')) ? 'is-invalid' : ''; ?>"
+                                                                        name="no_telp" id="no_telp"
+                                                                        placeholder="Masukkan nomor telpon"
+                                                                        value="<?= $brch['no_telp']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('no_telp'); ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -161,15 +174,15 @@
                                         </div>
                                     </div>
                                     <!-- End Modal Edit -->
-
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode Provider</th>
-                                        <th>Nama Provider</th>
+                                        <th>Kode Branch</th>
+                                        <th>Nama Branch</th>
                                         <th>Alamat</th>
+                                        <th>No Telp</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -182,51 +195,42 @@
         </div>
     </div>
 </div>
-
 <!-- Start Modal Input -->
-<div class="modal fade" id="modal-tambah-provider">
+<div class="modal fade" id="modal-tambah-branch">
     <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h4 class="modal-title">Form Tambah Provider</h4>
+                <h4 class="modal-title">Form Tambah Branch</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/provider/save" method="post">
+            <form action="/branch/save" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="kode_provider">Kode Provider</label>
-                                <input type="text"
-                                    class="form-control text-sm <?= ($validation->hasError('kode_provider')) ? 'is-invalid' : ''; ?>"
-                                    name="kode_provider" id="kode_provider" maxlength="3" minlength="3"
-                                    style="text-transform:uppercase" autofocus required>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('kode_provider'); ?>
-                                </div>
+                                <label for="kode_branch">Kode Branch</label>
+                                <input type="text" class="form-control text-sm" name="kode_branch" id="kode_branch"
+                                    placeholder="Masukkan kode branch" maxlength="3"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                    autofocus required>
                             </div>
                             <div class="form-group">
-                                <label for="nama_provider">Nama Provider</label>
-                                <input type="text"
-                                    class="form-control text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>"
-                                    name="nama_provider" id="nama_provider" placeholder="Masukkan nama provider"
-                                    required>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('nama_provider'); ?>
-                                </div>
+                                <label for="nama_branch">Nama Branch</label>
+                                <input type="text" class="form-control text-sm" name="nama_branch" id="nama_branch"
+                                    placeholder="Masukkan nama branch" required>
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <textarea
-                                    class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
-                                    name="alamat" id="alamat" rows="3" placeholder="Masukkan alamat"
-                                    required></textarea>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('alamat'); ?>
-                                </div>
+                                <input type="text" class="form-control text-sm" name="alamat" id="alamat"
+                                    placeholder="Masukkan alamat" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_telp">No Telp</label>
+                                <input type="text" class="form-control text-sm" name="no_telp" id="no_telp"
+                                    placeholder="Masukkan nomor telpon" required>
                             </div>
                         </div>
                     </div>
@@ -245,14 +249,18 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tableProvider").DataTable({
+        $("#tableBranch").DataTable({
+            "columnDefs": [{
+                "width": "8%",
+                "targets": 0
+            }],
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tableProvider_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tableBranch_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>

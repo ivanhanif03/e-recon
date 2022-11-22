@@ -8,7 +8,7 @@ class ProviderModel extends Model
 {
     protected $table = 'provider';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id', 'nama', 'pic,', 'no_hp', 'alamat'];
+    protected $allowedFields = ['id','kode_provider', 'nama_provider', 'alamat'];
 
     public function getProvider()
     {

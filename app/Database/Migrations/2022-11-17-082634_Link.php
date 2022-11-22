@@ -29,7 +29,13 @@ class Link extends Migration
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
-            ]
+            ],
+			'created_at'      => [
+				'type'           => 'DATETIME',
+			],
+			'updated_at'      => [
+				'type'           => 'DATETIME',
+			],
 
 		]);
 

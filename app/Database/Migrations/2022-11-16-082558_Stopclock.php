@@ -20,7 +20,13 @@ public function up()
 			'dateline'      => [
 				'type'           => 'DATETIME',
 				
-            ]
+            ],
+			'created_at'      => [
+				'type'           => 'DATETIME',
+			],
+			'updated_at'      => [
+				'type'           => 'DATETIME',
+			],
 
 		]);
         	
@@ -38,4 +44,3 @@ public function up()
 }
 
     
-

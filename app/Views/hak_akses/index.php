@@ -13,15 +13,16 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
-                                    <h3 class="card-title">Data Hak Akses</h3>
+                                    <h3 class="card-title">Daftar Hak Akses</h3>
                                 </div>
                                 <div class="col-sm-4 col-md-2 col-lg-3">
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-3 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
+                                    <!-- <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Hak Akses<i
-                                            class="fa fa-plus-circle ml-2"></i></button>
+                                            class="fa fa-plus-circle ml-2"></i>
+                                    </button> -->
                                 </div>
                             </div>
                         </div>
@@ -33,7 +34,6 @@
                                         <th>No</th>
                                         <th>Username</th>
                                         <th>Hak Akses</th>
-                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -46,15 +46,72 @@
                                         <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-tambah-regional"><i
-                                                    class="nav-icon fas fa-edit"></i></a>
+                                            <a href="/hak_akses/edit/<?= $ha['user_id']; ?>"
+                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                data-backdrop="static"
+                                                data-target="#modal-edit-hak-akses<?= $ha['user_id'] ?>"><i
+                                                    class="nav-icon fas fa-edit"></i>
+                                            </a>
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-hapus-regional"><i
-                                                    class=" nav-icon fas fa-trash"></i></a>
+                                            <!-- <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                                data-backdrop="static" data-target="#modal-hapus-hak-akses"><i
+                                                    class=" nav-icon fas fa-trash"></i>
+                                            </a> -->
                                         </td>
                                     </tr>
+
+                                    <!-- Start Modal Edit -->
+                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['user_id'] ?>">
+                                        <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Ubah Hak Akses</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="/hakakses/update/<?= $ha['user_id'] ?>" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="username">Username</label>
+                                                                    <input type="hidden" name="user_id" id="user_id"
+                                                                        value="<?= $ha['user_id']; ?>">
+                                                                    <input type="text" class="form-control text-sm"
+                                                                        name="username" id="username"
+                                                                        value="<?= $ha['username']; ?>" readonly>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Hak Akses</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="group_id" id="group_id"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Hak Akses
+                                                                        </option>
+                                                                        <?php foreach ($role as $r) : ?>
+                                                                        <option value="<?= $r['id']; ?>"
+                                                                            <?php if ($r['name'] == $ha['name']) : ?>selected<?php endif; ?>>
+                                                                            <?= $r['name']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer d-flex bd-highlight">
+                                                        <button type="button" class="btn btn-danger mr-auto"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal Edit -->
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
@@ -62,8 +119,7 @@
                                         <th>No</th>
                                         <th>Username</th>
                                         <th>Hak Akses</th>
-                                        <!-- <th>Hak Akses</th> -->
-                                        <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
+                                        <th style=" width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
                                 </tfoot>
@@ -71,74 +127,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Input -->
-<div class="modal fade" id="modal-tambah-hak-akses">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Ubah Hak Akses</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="/hak_akses/update/<?= $ha['id']; ?>" method="post">
-                <?= csrf_field(); ?>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <select class="form-control select2bs4 text-sm" name="username" id="username"
-                                    style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Username</option>
-                                    <?php foreach ($role as $r) : ?>
-                                    <option><?= $r['name']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Hak Akses</label>
-                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
-                                    style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <?php foreach ($pengguna as $p) : ?>
-                                    <option><?= $p['username']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex bd-highlight">
-                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary swalSaveSuccess" data-dismiss="modal">Simpan</button>
-                </div>
-        </div>
-        </form>
-    </div>
-</div>
-
-<!-- Modal Delete -->
-<div class="modal fade" id="modal-hapus-user">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Hapus Data</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Anda yakin ingin menghapus data?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger swalDeleteSuccess" data-dismiss="modal">Hapus</button>
             </div>
         </div>
     </div>
