@@ -20,17 +20,22 @@ class Gangguan extends Migration
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'id_branch' => [
-                'type'      => 'INT',
-                'constraint' => '11',
-                'unsigned'       => true,
-            ],
-            'id_provider' => [
-                'type'      => 'INT',
-                'constraint' => '11',
-                'unsigned'       => true,
-            ],
-            'id_regional' => [
+            // 'id_branch' => [
+            //     'type'      => 'INT',
+            //     'constraint' => '11',
+            //     'unsigned'       => true,
+            // ],
+            // 'id_provider' => [
+            //     'type'      => 'INT',
+            //     'constraint' => '11',
+            //     'unsigned'       => true,
+            // ],
+            // 'id_regional' => [
+            //     'type'      => 'INT',
+            //     'constraint' => '11',
+            //     'unsigned'       => true,
+            //],
+            'id_link' => [
                 'type'      => 'INT',
                 'constraint' => '11',
                 'unsigned'       => true,
@@ -66,9 +71,10 @@ class Gangguan extends Migration
         $this->forge->addKey('nomor_tiket', true);
 
         //membuat foreign key
-		$this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
-		$this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-		$this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
+        $this->forge->addForeignKey('id_link','link','id','','CASCADE');
+		// $this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
+		// $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
+		// $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
 		
         //membuat tabel
         $this->forge->createTable('gangguan', true );
