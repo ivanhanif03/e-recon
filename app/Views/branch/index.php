@@ -118,8 +118,7 @@
                                                                     <input type="text"
                                                                         class="form-control text-sm <?= ($validation->hasError('kode_branch')) ? 'is-invalid' : ''; ?>"
                                                                         name="kode_branch" id="kode_branch"
-                                                                        placeholder="Masukkan kode branch"
-                                                                        maxlength="3"
+                                                                        placeholder="Masukkan kode branch" maxlength="3"
                                                                         value="<?= $brch['kode_branch']; ?>"
                                                                         oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
                                                                         autofocus required>

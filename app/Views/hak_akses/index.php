@@ -46,7 +46,7 @@
                                         <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/hak_akses/edit/<?= $ha['user_id']; ?>"
+                                            <a href="/hak_akses/edit/<?= $ha['id']; ?>"
                                                 class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-hak-akses<?= $ha['user_id'] ?>"><i
@@ -61,7 +61,7 @@
                                     </tr>
 
                                     <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['user_id'] ?>">
+                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['id'] ?>">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -71,7 +71,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/hakakses/update/<?= $ha['user_id'] ?>" method="post">
+                                                <form action="/hakakses/update/<?= $ha['id'] ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
