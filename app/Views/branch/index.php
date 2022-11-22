@@ -23,7 +23,7 @@
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-regional"
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-branch"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Branch<i
                                             class="fa fa-plus-circle ml-2"></i></button>
                                 </div>

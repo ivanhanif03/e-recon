@@ -34,7 +34,7 @@ class Branch extends BaseController
             'kode_branch' => 'required',
             'nama_branch' => 'required',
             'alamat' => 'required',
-            'no_telp' => 'required'
+            'no_telp' => 'required',
         ])) {
             return redirect()->to('/branch/index')->withInput()->with('errors', $this->validator->getErrors());
         }
