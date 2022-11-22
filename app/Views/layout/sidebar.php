@@ -81,6 +81,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('branch'); ?>"
+                        class="nav-link <?php if ($menu == 'branch'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-globe-asia"></i>
+                        <p>
+                            Branch
+                        </p>
+                    </a>
+                </li>
                 <?php endif; ?>
 
                 <!-- User -->

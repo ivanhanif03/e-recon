@@ -21,6 +21,8 @@ class Branch extends BaseController
             'validation' => \Config\Services::validation(),
             'branch' => $this->BranchModel->findAll()
         ];
+
+        // die($data);
         
         return view('branch/index', $data);
     }
