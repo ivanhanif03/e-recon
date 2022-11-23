@@ -69,11 +69,15 @@ class Branch extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat foreign key
+<<<<<<< HEAD
+		//$this->forge->addForeignKey('id_link','link','id','','CASCADE');
+=======
 		$this->forge->addForeignKey('id_link','link','id','','CASCADE');
+>>>>>>> 36544b8a87ed04b50fa324ec660fa99250112f24
 		$this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
 		// $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-		// $this->forge->addForeignKey('id_jenis_branch','jenisBranch','id','','CASCADE');
-		// $this->forge->addForeignKey('id_klasifikasi_branch','klasifikasiBranch','id','','CASCADE');
+		$this->forge->addForeignKey('id_jenis_branch','jenisBranch','id','','CASCADE');
+		$this->forge->addForeignKey('id_klasifikasi_branch','klasifikasiBranch','id','','CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('branch', TRUE);
