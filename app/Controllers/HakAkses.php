@@ -23,11 +23,11 @@ class HakAkses extends BaseController
             'title' => 'Hak Akses',
             'menu' => 'hak_akses',
             'hak_akses' => $this->HakAksesModel->getHakAkses(),
+            'no_hak_akses' => $this->HakAksesModel->getNoHakAkses(),
             'role' => $this->RoleModel->findAll(),
             'pengguna' => $this->PenggunaModel->findAll()
         ];
-        
-        return view('hak_akses/index', $data);
+                return view('hak_akses/index', $data);
     }
 
     public function save()
