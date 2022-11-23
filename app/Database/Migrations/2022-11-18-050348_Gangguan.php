@@ -54,7 +54,7 @@ class Gangguan extends Migration
             ],
             'id_status' => [
                 'type'      => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
                 'unsigned'       => true,
             ],
             'approval' => [
