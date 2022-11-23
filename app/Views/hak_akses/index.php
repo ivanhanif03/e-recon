@@ -19,10 +19,10 @@
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-3 float-end">
-                                    <!-- <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Hak Akses<i
                                             class="fa fa-plus-circle ml-2"></i>
-                                    </button> -->
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                         <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/hak_akses/edit/<?= $ha['user_id']; ?>"
+                                            <a href="/hak_akses/edit/<?= $ha['id']; ?>"
                                                 class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-hak-akses<?= $ha['user_id'] ?>"><i
@@ -61,7 +61,7 @@
                                     </tr>
 
                                     <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['user_id'] ?>">
+                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['id'] ?>">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -71,7 +71,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/hakakses/update/<?= $ha['user_id'] ?>" method="post">
+                                                <form action="/hakakses/update/<?= $ha['id'] ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -131,6 +131,62 @@
         </div>
     </div>
 </div>
+
+<!-- Start Modal Edit -->
+<div class="modal fade" id="modal-tambah-hak-akses">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Hak Akses</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/hakakses/save" method="post">
+                <?= csrf_field(); ?>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <select class="form-control select2bs4 text-sm" name="user_id" id="user_id"
+                                    style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">
+                                        Pilih Username
+                                    </option>
+                                    <?php foreach ($pengguna as $p) : ?>
+                                    <option value="<?= $p['id']; ?>"
+                                        <?php if($p['username'] == $ha['username']) : ?>hidden <?php endif; ?>>
+                                        <?= $p['username']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Hak Akses</label>
+                                <select class="form-control select2bs4 text-sm" name="group_id" id="group_id"
+                                    style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">
+                                        Pilih Hak Akses
+                                    </option>
+                                    <?php foreach ($role as $r) : ?>
+                                    <option value="<?= $r['id']; ?>"
+                                        <?php if ($r['name'] == $ha['name']) : ?>selected<?php endif; ?>>
+                                        <?= $r['name']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex bd-highlight">
+                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+<!-- End Modal Edit -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>

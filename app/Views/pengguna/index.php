@@ -40,6 +40,7 @@
                                         <th>Email</th>
                                         <th>No HP</th>
                                         <th>Provider</th>
+                                        <th>Hak Akses</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -56,6 +57,7 @@
                                         <td class="align-middle"><?= $p['email']; ?></td>
                                         <td class="align-middle"><?= $p['no_hp']; ?></td>
                                         <td class="align-middle text-capitalize"><?= $p['provider']; ?></td>
+                                        <td class="align-middle"><?= $p['hak_akses']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="/pengguna/edit/<?= $p['id']; ?>"
@@ -202,6 +204,7 @@
                                         <th>Email</th>
                                         <th>No HP</th>
                                         <th>Provider</th>
+                                        <th>Hak Akses</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -282,6 +285,19 @@
                                     value="<?= old('alamat') ?>" required></textarea>
                             </div>
                             <div class="form-group">
+                                <label>Hak Akses</label>
+                                <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
+                                <select
+                                    class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
+                                    name="hak_akses" id="hak_akses" style="width: 100%;"
+                                    onchange="showDiv('select_provider', this)">
+                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
+                                    <?php foreach ($role as $r) : ?>
+                                    <option value="<?= $r['name']; ?>"><?= $r['name']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group" id="select_provider" style="display: none;">
                                 <label>Provider</label>
                                 <select
                                     class="form-control select2bs4 text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
@@ -291,18 +307,6 @@
                                     <option value="<?= $prv['nama_provider']; ?>">
                                         <?= $prv['nama_provider']; ?>
                                     </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Hak Akses</label>
-                                <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
-                                <select
-                                    class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
-                                    name="provider" id="provider" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
-                                    <?php foreach ($role as $r) : ?>
-                                    <option value="<?= $r['name']; ?>"><?= $r['name']; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -333,5 +337,10 @@
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
     });
+</script>
+<script>
+    function showDiv(divId, element) {
+        document.getElementById(divId).style.display = element.value == 'user-provider' ? 'block' : 'none';
+    }
 </script>
 <?= $this->endSection(); ?>
