@@ -7,20 +7,20 @@
     }
 
     .main-sidebar {
-        background-color: #0d2b50 !important
+        background-color: #052454 !important
     }
 </style>
 <!-- 182638 -->
 <aside class="main-sidebar sidebar-dark-primary">
-    <a href="<?= base_url(''); ?>" class="brand-link">
-        <img src="<?= base_url('/img/icon.png'); ?>" alt="E-Recon Logo" class="brand-image mt-1">
-        <img src="<?= base_url('/img/islan.png'); ?>" alt="E-Recon Logo" class="brand-text" width="70">
+    <a href="<?= base_url(''); ?>" class="brand-link bg-white">
+        <img src="<?= base_url('/img/icon.png'); ?>" alt="E-Recon Logo" class="brand-image ">
+        <img src="<?= base_url('/img/islan-fix.png'); ?>" alt="E-Recon Logo" class="brand-text" width="70">
     </a>
 
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header" style="color: #ffffff ;">Menu</li>
+                <li class="nav-header" style="color: #ffffff ; font-size:20px "> <b>Menu</b></li>
 
                 <li class="nav-item mb-2 mt-2">
                     <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard'){echo 'active';}?>">
@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('regional'); ?>"
-                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>">
+                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>" >
                         <i class="nav-icon fas fa-globe-asia"></i>
                         <p>
                             Regional
