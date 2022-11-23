@@ -53,8 +53,8 @@ class Gangguan extends Migration
                 
             ],
             'id_status' => [
-                'type'      => 'VARCHAR',
-                'constraint' => '255'
+                'type'      => 'INT',
+                'constraint' => '11'
                 'unsigned'       => true,
             ],
             'approval' => [
