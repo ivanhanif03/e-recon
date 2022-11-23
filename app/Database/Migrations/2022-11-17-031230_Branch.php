@@ -31,26 +31,31 @@ class Branch extends Migration
 				'type'           => 'CHAR',
 				'constraint'     => '255'
 			],
-			'id_regional'      => [
+			'id_link'      => [
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
-			],
-			'id_provider'      => [
-				'type'           => 'INT',
-				'constraint'     => '11',
-				'unsigned'       => true,
-			],
-			'id_jenis_branch'      => [
-				'type'           => 'INT',
-				'constraint'     => '11',
-				'unsigned'       => true,
-			],
-			'id_klasifikasi_branch'      => [
-				'type'           => 'INT',
-				'constraint'     => '11',
-				'unsigned'       => true,
-			],
+				],
+			// 'id_regional'      => [
+			// 	'type'           => 'INT',
+			// 	'constraint'     => '11',
+			// 	'unsigned'       => true,
+			// ],
+			// 'id_provider'      => [
+			// 	'type'           => 'INT',
+			// 	'constraint'     => '11',
+			// 	'unsigned'       => true,
+			// ],
+			// 'id_jenis_branch'      => [
+			// 	'type'           => 'INT',
+			// 	'constraint'     => '11',
+			// 	'unsigned'       => true,
+			// ],
+			// 'id_klasifikasi_branch'      => [
+			// 	'type'           => 'INT',
+			// 	'constraint'     => '11',
+			// 	'unsigned'       => true,
+			// ],
 			'created_at'      => [
 				'type'           => 'DATETIME',
 			],
@@ -64,10 +69,11 @@ class Branch extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat foreign key
-		$this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
-		$this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-		$this->forge->addForeignKey('id_jenis_branch','jenisBranch','id','','CASCADE');
-		$this->forge->addForeignKey('id_klasifikasi_branch','klasifikasiBranch','id','','CASCADE');
+		$this->forge->addForeignKey('id_link','link','id','','CASCADE');
+		// $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
+		// $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
+		// $this->forge->addForeignKey('id_jenis_branch','jenisBranch','id','','CASCADE');
+		// $this->forge->addForeignKey('id_klasifikasi_branch','klasifikasiBranch','id','','CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('branch', TRUE);
