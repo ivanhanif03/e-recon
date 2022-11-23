@@ -30,6 +30,18 @@ class HakAkses extends BaseController
         return view('hak_akses/index', $data);
     }
 
+    public function save()
+    {
+        $this->HakAksesModel->save([
+            'group_id' => $this->request->getVar('group_id'),
+            'user_id' => $this->request->getVar('user_id'),
+        ]);
+
+        session()->setFlashdata('pesan', 'Data created successfully');
+
+        return redirect()->to('/hak_akses/index');
+    }
+
     public function delete($id)
     {
         $this->HakAksesModel->delete($id);
@@ -47,9 +59,10 @@ class HakAkses extends BaseController
         return view('hak_akses/index', $data);
     }
 
-    public function update($id) 
+    public function update($user_id) 
     {
         $this->HakAksesModel->save([
+            'user_id' => $user_id,
             'group_id' => $this->request->getVar('group_id'),
             'user_id' => $this->request->getVar('user_id'),
         ]);
