@@ -32,10 +32,10 @@ class Branch extends Migration
 				'constraint'     => '255'
 			],
 			'id_link'      => [
-				'type'           => 'INT',
+			'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
-				],
+			],
 			// 'id_regional'      => [
 			// 	'type'           => 'INT',
 			// 	'constraint'     => '11',
