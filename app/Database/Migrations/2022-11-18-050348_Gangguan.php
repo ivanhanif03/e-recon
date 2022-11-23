@@ -52,9 +52,10 @@ class Gangguan extends Migration
                 'type'      => 'DATETIME',
                 
             ],
-            'status' => [
+            'id_status' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
+                'unsigned'       => true,
             ],
             'approval' => [
                 'type'      => 'VARCHAR',
@@ -72,6 +73,7 @@ class Gangguan extends Migration
 
         //membuat foreign key
         $this->forge->addForeignKey('id_link','link','id','','CASCADE');
+        $this->forge->addForeignKey('id_status','status','id','','CASCADE');
 		// $this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
 		// $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
 		// $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
