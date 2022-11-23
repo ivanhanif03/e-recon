@@ -44,6 +44,10 @@ class Branch extends BaseController
             'nama_branch' => $this->request->getVar('nama_branch'),
             'alamat' => $this->request->getVar('alamat'),
             'no_telp' => $this->request->getVar('no_telp'),
+            'id_regional' => $this->request->getVar('id_regional'),
+            'id_provider' => $this->request->getVar('id_provider'),
+            'id_jenis_branch' => $this->request->getVar('id_jenis_branch'),
+            'id_klasifikasi_branch' => $this->request->getVar('id_klasifikasi_branch'),
         ]);
 
         session()->setFlashdata('pesan', 'Data created successfully');
@@ -64,7 +68,7 @@ class Branch extends BaseController
         $data = [
             'title' => 'Form Edit Branch',
             'validation' => \Config\Services::validation(),
-            'provider' => $this->BranchModel->getBranch($id)
+            'branch' => $this->BranchModel->getBranch($id)
         ];
         return view('branch/index', $data);
     }
@@ -77,6 +81,11 @@ class Branch extends BaseController
             'nama_branch' => $this->request->getVar('nama_branch'),
             'alamat' => $this->request->getVar('alamat'),
             'no_telp' => $this->request->getVar('no_telp'),
+            'id_regional' => $this->request->getVar('id_regional'),
+            'id_provider' => $this->request->getVar('id_provider'),
+            'id_jenis_branch' => $this->request->getVar('id_jenis_branch'),
+            'id_klasifikasi_branch' => $this->request->getVar('id_klasifikasi_branch'),
+            
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
