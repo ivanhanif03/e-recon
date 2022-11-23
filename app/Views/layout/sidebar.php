@@ -7,20 +7,20 @@
     }
 
     .main-sidebar {
-        background-color: #182638 !important
+        background-color: #052454 !important
     }
 </style>
 <!-- 182638 -->
 <aside class="main-sidebar sidebar-dark-primary">
-    <a href="<?= base_url(''); ?>" class="brand-link">
-        <img src="<?= base_url('/img/icon_erecon.png'); ?>" alt="E-Recon Logo" class="brand-image">
-        <img src="<?= base_url('/img/text_erecon.png'); ?>" alt="E-Recon Logo" class="brand-text" width="100">
+    <a href="<?= base_url(''); ?>" class="brand-link bg-white">
+        <img src="<?= base_url('/img/icon.png'); ?>" alt="E-Recon Logo" class="brand-image ">
+        <img src="<?= base_url('/img/islan-fix.png'); ?>" alt="E-Recon Logo" class="brand-text" width="70">
     </a>
 
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header" style="color: #46586e ;">Menu</li>
+                <li class="nav-header" style="color: #ffffff ; font-size:20px "> <b>Menu</b></li>
 
                 <li class="nav-item mb-2 mt-2">
                     <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard'){echo 'active';}?>">
@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('regional'); ?>"
-                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>">
+                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>" >
                         <i class="nav-icon fas fa-globe-asia"></i>
                         <p>
                             Regional
@@ -94,9 +94,18 @@
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('jenis_branch'); ?>"
                         class="nav-link <?php if ($menu == 'jenis_branch'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-globe-asia"></i>
+                        <i class="nav-icon fab fa-uncharted"></i>
                         <p>
                             Jenis Branch
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('klasifikasi_branch'); ?>"
+                        class="nav-link <?php if ($menu == 'klasifikasi_branch'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>
+                            Klasifikasi Branch
                         </p>
                     </a>
                 </li>
