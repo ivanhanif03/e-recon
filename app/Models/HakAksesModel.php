@@ -17,4 +17,12 @@ class HakAksesModel extends Model
          ->join('users', 'users.id=auth_groups_users.user_id')
          ->get()->getResultArray();  
     }
+
+    public function getNoHakAkses()
+    {
+        return $this->db->table('auth_groups_users')
+        ->join('auth_groups', 'auth_groups.id=auth_groups_users.user_id')
+        ->where('auth_groups.id!=auth_groups_users.user_id')
+        ->get()->getResultArray();
+    }
 }

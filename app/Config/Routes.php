@@ -62,6 +62,13 @@ $routes->get('/provider/index', 'Provider::index', ['filter' => 'role:admin']);
 $routes->delete('/provider/(:num)', 'Provider::delete/$1', ['filter' => 'role:admin']);
 $routes->get('/provider/edit/(:segment)', 'Provider::edit/$1');
 
+//Jenis Branch
+$routes->get('/jenis_branch', 'JenisBranch::index');
+$routes->get('/jenis_branch', 'JenisBranch::index', ['filter' => 'role:admin']);
+$routes->get('/jenis_branch/index', 'JenisBranch::index', ['filter' => 'role:admin']);
+$routes->delete('/jenis_branch/(:num)', 'JenisBranch::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/jenis_branch/edit/(:segment)', 'JenisBranch::edit/$1');
+
 //Hak Akses
 $routes->get('/hak_akses', 'HakAkses::index');
 $routes->get('/hak_akses', 'HakAkses::index', ['filter' => 'role:admin']);

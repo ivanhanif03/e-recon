@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="tableJenisBranch" class="table table-striped">
+                            <table id="jenis_branch" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($jenisBranch as $jb) : ?>
+                                    <?php $i=1; foreach ($JenisBranch as $jb) : ?>
                                     <tr>
                                         <td class="align-middle"><?= $i++; ?></td>
                                         <td class="align-middle"><?= $jb['jenis_branch']; ?></td>
@@ -197,14 +197,14 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tableJenisBranch").DataTable({
+        $("#tablejenis_branch").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tableJenisBranch_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tablejenis_branch_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>
