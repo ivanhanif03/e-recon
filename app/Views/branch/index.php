@@ -39,6 +39,10 @@
                                         <th>Nama Branch</th>
                                         <th>Alamat</th>
                                         <th>No Telp</th>
+                                        <th>Regional</th>
+                                        <th>Provider</th>
+                                        <th>Jenis Branch</th>
+                                        <th>Klasifikasi Branch</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -160,6 +164,50 @@
                                                                         <?= $validation->getError('no_telp'); ?>
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_regional">Regional</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('id_regional')) ? 'is-invalid' : ''; ?>"
+                                                                        name="regional" id="id_regional"
+                                                                        placeholder="Masukkan regional"
+                                                                        value="<?= $brch['id_regional']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('id_regional'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_provider">Provider</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('id_provider')) ? 'is-invalid' : ''; ?>"
+                                                                        name="provider" id="id_provider"
+                                                                        placeholder="Masukkan provider"
+                                                                        value="<?= $brch['id_provider']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('id_provider'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_jenis_branch">Jenis Branch</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('id_jenis_branch')) ? 'is-invalid' : ''; ?>"
+                                                                        name="jenis_branch" id="id_jenis_branch"
+                                                                        placeholder="Masukkan jenis branch"
+                                                                        value="<?= $brch['id_jenis_branch']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('id_jenis_branch'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_klasifikasi_branch">Klasifikasi Branch</label>
+                                                                    <input type="text"
+                                                                        class="form-control text-sm <?= ($validation->hasError('id_klasifikasi_branch')) ? 'is-invalid' : ''; ?>"
+                                                                        name="klasifikasi_branch" id="id_klasifikasi_branch"
+                                                                        placeholder="Masukkan klasifikasi branch"
+                                                                        value="<?= $brch['id_klasifikasi_branch']; ?>" required>
+                                                                    <div class="invalid-feedback">
+                                                                        <?= $validation->getError('id_klasifikasi_branch'); ?>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -183,6 +231,10 @@
                                         <th>Nama Branch</th>
                                         <th>Alamat</th>
                                         <th>No Telp</th>
+                                        <th>Regional</th>
+                                        <th>Provider</th>
+                                        <th>Jenis Branch</th>
+                                        <th>Klasifikasi Branch</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -210,6 +262,20 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
+                        <div class="form-group">
+                                <label>Provider</label>
+                                <select
+                                    class="form-control select2bs4 text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
+                                    name="provider" id="id_provider" style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">Provider</option>
+                                    <? echo $provider ?>
+                                    <?php foreach ($provider as $prv) : ?>
+                                    <option value="<?= $prv['id_provider']; ?>">
+                                        <?= $prv['nama_provider']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="kode_branch">Kode Branch</label>
                                 <input type="text" class="form-control text-sm" name="kode_branch" id="kode_branch"
@@ -231,6 +297,21 @@
                                 <label for="no_telp">No Telp</label>
                                 <input type="text" class="form-control text-sm" name="no_telp" id="no_telp"
                                     placeholder="Masukkan nomor telpon" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="regional">Regional</label>
+                                <input type="text" class="form-control text-sm" name="regional" id="regional"
+                                    placeholder="Masukkan regional" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jenis_branch">Jenis Branch</label>
+                                <input type="text" class="form-control text-sm" name="jenis_branch" id="jenis_branch"
+                                    placeholder="Masukkan jenis branch" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="klasifikasi_branch">Klasifikasi Branch</label>
+                                <input type="text" class="form-control text-sm" name="klasifikasi_branch" id="klasifikasi_branch"
+                                    placeholder="Masukkan klasifikasi branch" required>
                             </div>
                         </div>
                     </div>

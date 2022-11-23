@@ -283,7 +283,6 @@
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>
-                                <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
                                 <select
                                     class="form-control select2bs4 text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
                                     name="provider" id="provider" style="width: 100%;">
