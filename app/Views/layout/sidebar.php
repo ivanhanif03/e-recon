@@ -91,6 +91,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('jenis_branch'); ?>"
+                        class="nav-link <?php if ($menu == 'jenis_branch'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-globe-asia"></i>
+                        <p>
+                            Jenis Branch
+                        </p>
+                    </a>
+                </li>
                 <?php endif; ?>
 
                 <!-- User -->
