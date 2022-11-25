@@ -8,18 +8,14 @@ class BranchModel extends Model
 {
     protected $table = 'branch';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id', 'kode_branch', 'nama_branch', 'alamat', 'no_telp', 'id_regional', 'id_provider', 'id_jenis_branch', 'id_klasifikasi_branch'];
+    protected $allowedFields = ['id', 'kode_branch', 'nama_branch', 'alamat', 'no_telp', 'id_regional', 'id_jenis_branch', 'id_klasifikasi_branch'];
 
-    public $providers = [];
-
-    public function getProviders()
+    public function getBranchAll()
     {
-        $providers = $this->db->table('provider')
-        ->get()->getResultArray();
-    }
-
-    public function getBranch()
-    {
-           
-    }
+        return $this->db->table('branch')
+        ->join('regional','regional.id=branch.id_regional', 'left')
+        ->join('jenis_branch', 'jenis_branch.id=branch.id_jenis_branch', 'left')
+        ->join('klasifikasi_branch', 'klasifikasi_branch.id=branch.id_klasifikasi_branch', 'left')
+        ->get()->getResultArray();  
+   }
 }

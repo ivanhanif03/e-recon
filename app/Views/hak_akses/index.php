@@ -18,12 +18,12 @@
                                 <div class="col-sm-4 col-md-2 col-lg-3">
 
                                 </div>
-                                <div class="col-sm-4 col-md-4 col-lg-3 float-end">
+                                <!-- <div class="col-sm-4 col-md-4 col-lg-3 float-end">
                                     <button type="button" data-toggle="modal" data-target="#modal-tambah-hak-akses"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Hak Akses<i
                                             class="fa fa-plus-circle ml-2"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -46,22 +46,53 @@
                                         <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/hak_akses/edit/<?= $ha['id']; ?>"
+                                            <a href="/hak_akses/edit/<?= $ha['user_id']; ?>"
                                                 class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-hak-akses<?= $ha['user_id'] ?>"><i
                                                     class="nav-icon fas fa-edit"></i>
                                             </a>
                                             <!-- Delete -->
-                                            <!-- <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-hapus-hak-akses"><i
+                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                                data-target="#modal-hapus-hak-akses<?= $ha['user_id'] ?>"><i
                                                     class=" nav-icon fas fa-trash"></i>
-                                            </a> -->
+                                            </a>
                                         </td>
                                     </tr>
 
+                                    <!-- Start Modal Delete -->
+                                    <div class="modal fade" id="modal-hapus-hak-akses<?= $ha['user_id'] ?>">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content border-0">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Hapus Data</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <span>Anda yakin ingin menghapus hak akses?</span><br>
+                                                    <span class="text-capitalize font-weight-bolder text-primary">
+                                                        <?= $ha['username']; ?> <br>
+                                                        <?= $ha['name']; ?> <br>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-dismiss="modal">Batal</button>
+                                                    <form action="/hak_akses/<?= $ha['user_id']; ?>" method="post">
+                                                        <?= csrf_field(); ?>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal Delete -->
+
                                     <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['id'] ?>">
+                                    <div class="modal fade" id="modal-edit-hak-akses<?= $ha['user_id'] ?>">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -71,7 +102,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/hakakses/update/<?= $ha['id'] ?>" method="post">
+                                                <form action="/hakakses/update/<?= $ha['user_id'] ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">

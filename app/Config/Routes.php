@@ -41,7 +41,6 @@ $routes->get('/gangguan', 'Gangguan::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
-$routes->get('/branch', 'Branch::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/link', 'Link::index');
 $routes->get('/status', 'Status::index');
@@ -53,6 +52,13 @@ $routes->get('/regional', 'Regional::index', ['filter' => 'role:admin']);
 $routes->get('/regional/index', 'Regional::index', ['filter' => 'role:admin']);
 $routes->delete('/regional/(:num)', 'Regional::delete/$1', ['filter' => 'role:admin']);
 $routes->get('/regional/edit/(:segment)', 'Regional::edit/$1');
+
+//Branch
+$routes->get('/branch', 'Branch::index');
+$routes->get('/branch', 'Branch::index', ['filter' => 'role:admin']);
+$routes->get('/branch/index', 'Branch::index', ['filter' => 'role:admin']);
+$routes->delete('/branch/(:num)', 'Branch::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/branch/edit/(:segment)', 'Branch::edit/$1');
 
 //Provider
 $routes->get('/provider', 'Provider::index');

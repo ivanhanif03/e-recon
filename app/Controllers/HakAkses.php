@@ -23,11 +23,12 @@ class HakAkses extends BaseController
             'title' => 'Hak Akses',
             'menu' => 'hak_akses',
             'hak_akses' => $this->HakAksesModel->getHakAkses(),
-            'no_hak_akses' => $this->HakAksesModel->getNoHakAkses(),
+            // 'no_hak_akses' => $this->HakAksesModel->getNoHakAkses(),
             'role' => $this->RoleModel->findAll(),
             'pengguna' => $this->PenggunaModel->findAll()
         ];
-                return view('hak_akses/index', $data);
+        
+        return view('hak_akses/index', $data);
     }
 
     public function save()
@@ -42,19 +43,19 @@ class HakAkses extends BaseController
         return redirect()->to('/hak_akses/index');
     }
 
-    public function delete($id)
+    public function delete($user_id)
     {
-        $this->HakAksesModel->delete($id);
+        $this->HakAksesModel->delete($user_id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
         return redirect()->to('hak_akses/index');
     }
 
-    public function edit($id) 
+    public function edit($user_id) 
     {
         $data = [
             'title' => 'Form Edit Hak Akses',
             'validation' => \Config\Services::validation(),
-            'hak_akses' => $this->HakAksesModel->getHakAkses($id)
+            'hak_akses' => $this->HakAksesModel->getHakAkses($user_id)
         ];
         return view('hak_akses/index', $data);
     }

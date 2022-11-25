@@ -37,10 +37,9 @@
                                         <th>No</th>
                                         <th>Kode Branch</th>
                                         <th>Nama Branch</th>
-                                        <th>Alamat</th>
                                         <th>No Telp</th>
+                                        <th>Alamat</th>
                                         <th>Regional</th>
-                                        <th>Provider</th>
                                         <th>Jenis Branch</th>
                                         <th>Klasifikasi Branch</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
@@ -48,13 +47,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($branch as $brch) : ?>
+                                    <?php $i=1; foreach ($branch_all as $brch) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
                                         <td><?= $brch['kode_branch']; ?></td>
                                         <td><?= $brch['nama_branch']; ?></td>
-                                        <td><?= $brch['alamat']; ?></td>
                                         <td><?= $brch['no_telp']; ?></td>
+                                        <td><?= $brch['alamat']; ?></td>
+                                        <td><?= $brch['nama_regional']; ?></td>
+                                        <td><?= $brch['jenis_branch']; ?></td>
+                                        <td><?= $brch['nama_klasifikasi']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
@@ -83,9 +85,9 @@
                                                 <div class="modal-body text-center">
                                                     <span>Anda yakin ingin menghapus data?</span><br>
                                                     <span class="text-capitalize font-weight-bolder text-primary">
-                                                        <?= $brch['nama_branch']; ?>
-                                                        <?= $brch['alamat']; ?>
-                                                        <?= $brch['no_telp']; ?>
+                                                        <?= $brch['nama_branch']; ?> :
+                                                        <?= $brch['nama_regional']; ?> <br>
+                                                        <?= $brch['jenis_branch']; ?>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-primary"
@@ -143,11 +145,11 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="alamat">Alamat</label>
-                                                                    <input type="text"
+                                                                    <textarea rows="3"
                                                                         class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
                                                                         name="alamat" id="alamat"
                                                                         placeholder="Masukkan Alamat"
-                                                                        value="<?= $brch['alamat']; ?>" required>
+                                                                        required><?= $brch['alamat']; ?></textarea>
                                                                     <div class="invalid-feedback">
                                                                         <?= $validation->getError('alamat'); ?>
                                                                     </div>
@@ -164,48 +166,49 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="id_regional">Regional</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('id_regional')) ? 'is-invalid' : ''; ?>"
-                                                                        name="regional" id="id_regional"
-                                                                        placeholder="Masukkan regional"
-                                                                        value="<?= $brch['id_regional']; ?>" required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('id_regional'); ?>
-                                                                    </div>
+                                                                    <label>Regional</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="regional" id="regional"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Regional
+                                                                        </option>
+                                                                        <?php foreach ($regional as $r) : ?>
+                                                                        <option value="<?= $r['id']; ?>"
+                                                                            <?php if ($r['nama_regional'] == $brch['nama_regional']) : ?>selected<?php endif; ?>>
+                                                                            <?= $r['nama_regional']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="id_provider">Provider</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('id_provider')) ? 'is-invalid' : ''; ?>"
-                                                                        name="provider" id="id_provider"
-                                                                        placeholder="Masukkan provider"
-                                                                        value="<?= $brch['id_provider']; ?>" required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('id_provider'); ?>
-                                                                    </div>
+                                                                    <label>Jenis Branch</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="jenis_branch" id="jenis_branch"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Jenis Branch
+                                                                        </option>
+                                                                        <?php foreach ($jenis_branch as $jb) : ?>
+                                                                        <option value="<?= $jb['id']; ?>"
+                                                                            <?php if ($jb['jenis_branch'] == $brch['jenis_branch']) : ?>selected<?php endif; ?>>
+                                                                            <?= $jb['jenis_branch']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="id_jenis_branch">Jenis Branch</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('id_jenis_branch')) ? 'is-invalid' : ''; ?>"
-                                                                        name="jenis_branch" id="id_jenis_branch"
-                                                                        placeholder="Masukkan jenis branch"
-                                                                        value="<?= $brch['id_jenis_branch']; ?>" required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('id_jenis_branch'); ?>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_klasifikasi_branch">Klasifikasi Branch</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('id_klasifikasi_branch')) ? 'is-invalid' : ''; ?>"
-                                                                        name="klasifikasi_branch" id="id_klasifikasi_branch"
-                                                                        placeholder="Masukkan klasifikasi branch"
-                                                                        value="<?= $brch['id_klasifikasi_branch']; ?>" required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('id_klasifikasi_branch'); ?>
-                                                                    </div>
+                                                                    <label>Klasifikasi Branch</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="klasifikasi_branch"
+                                                                        id="klasifikasi_branch" style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Klasifikasi Branch
+                                                                        </option>
+                                                                        <?php foreach ($klasifikasi_branch as $kb) : ?>
+                                                                        <option value="<?= $kb['id']; ?>"
+                                                                            <?php if ($kb['nama_klasifikasi'] == $brch['nama_klasifikasi']) : ?>selected<?php endif; ?>>
+                                                                            <?= $kb['nama_klasifikasi']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -228,10 +231,9 @@
                                         <th>No</th>
                                         <th>Kode Branch</th>
                                         <th>Nama Branch</th>
-                                        <th>Alamat</th>
                                         <th>No Telp</th>
+                                        <th>Alamat</th>
                                         <th>Regional</th>
-                                        <th>Provider</th>
                                         <th>Jenis Branch</th>
                                         <th>Klasifikasi Branch</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
@@ -261,24 +263,10 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                                <label>Provider</label>
-                                <select
-                                    class="form-control select2bs4 text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>"
-                                    name="provider" id="id_provider" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Provider</option>
-                                    <? echo $provider ?>
-                                    <?php foreach ($provider as $prv) : ?>
-                                    <option value="<?= $prv['id_provider']; ?>">
-                                        <?= $prv['nama_provider']; ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
                             <div class="form-group">
                                 <label for="kode_branch">Kode Branch</label>
                                 <input type="text" class="form-control text-sm" name="kode_branch" id="kode_branch"
-                                    placeholder="Masukkan kode branch" maxlength="3"
+                                    placeholder="Masukkan kode branch"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
                                     autofocus required>
                             </div>
@@ -289,28 +277,58 @@
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <input type="text" class="form-control text-sm" name="alamat" id="alamat"
-                                    placeholder="Masukkan alamat" required>
+                                <textarea class="form-control text-sm" name="alamat" id="alamat"
+                                    placeholder="Masukkan alamat" rows="3" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="no_telp">No Telp</label>
                                 <input type="text" class="form-control text-sm" name="no_telp" id="no_telp"
-                                    placeholder="Masukkan nomor telpon" required>
+                                    placeholder="Masukkan nomor telpon"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
+                                    required>
                             </div>
                             <div class="form-group">
-                                <label for="regional">Regional</label>
-                                <input type="text" class="form-control text-sm" name="regional" id="regional"
-                                    placeholder="Masukkan regional" required>
+                                <label>Regional</label>
+                                <select
+                                    class="form-control select2bs4 text-sm <?= ($validation->hasError('regional')) ? 'is-invalid' : ''; ?>"
+                                    name="regional" id="regional" style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">
+                                        Pilih Regional</option>
+                                    <?php foreach ($regional as $r) : ?>
+                                    <option value="<?= $r['id']; ?>">
+                                        <?= $r['nama_regional']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="jenis_branch">Jenis Branch</label>
-                                <input type="text" class="form-control text-sm" name="jenis_branch" id="jenis_branch"
-                                    placeholder="Masukkan jenis branch" required>
+                                <label>Jenis Branch</label>
+                                <select
+                                    class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_branch')) ? 'is-invalid' : ''; ?>"
+                                    name="jenis_branch" id="jenis_branch" style="width: 100%;"
+                                    onchange="showDiv('klasifikasi', this)">
+                                    <option disabled="disabled" selected="selected">
+                                        Pilih Jenis Branch</option>
+                                    <?php foreach ($jenis_branch as $jb) : ?>
+                                    <option value="<?= $jb['id']; ?>">
+                                        <?= $jb['jenis_branch']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="klasifikasi_branch">Klasifikasi Branch</label>
-                                <input type="text" class="form-control text-sm" name="klasifikasi_branch" id="klasifikasi_branch"
-                                    placeholder="Masukkan klasifikasi branch" required>
+                            <div class="form-group" id="klasifikasi" style="display: none;">
+                                <label>Klasifikasi Branch</label>
+                                <select
+                                    class="form-control select2bs4 text-sm <?= ($validation->hasError('klasifikasi_branch')) ? 'is-invalid' : ''; ?>"
+                                    name="klasifikasi_branch" id="klasifikasi_branch" style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">
+                                        Pilih Klasifikasi Branch</option>
+                                    <?php foreach ($klasifikasi_branch as $kb) : ?>
+                                    <option value="<?= $kb['id']; ?>">
+                                        <?= $kb['nama_klasifikasi']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -342,5 +360,10 @@
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableBranch_wrapper .col-md-6:eq(0)');
     });
+</script>
+<script>
+    function showDiv(divId, element) {
+        document.getElementById(divId).style.display = element.value == 2 ? 'block' : 'none';
+    }
 </script>
 <?= $this->endSection(); ?>
