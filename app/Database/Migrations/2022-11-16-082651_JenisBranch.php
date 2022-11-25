@@ -32,12 +32,12 @@ class JenisBranch extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat tabel 
-		$this->forge->createTable('jenisBranch', TRUE);
+		$this->forge->createTable('jenis_branch', TRUE);
     }
 
     public function down()
     {
         // menghapus tabel
-		$this->forge->dropTable('jenisBranch');
+		$this->forge->dropTable('jenis_branch');
     }
 }

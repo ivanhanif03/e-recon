@@ -43,7 +43,6 @@ $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/branch', 'Branch::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
-$routes->get('/klarifikasi_branch', 'KlarifikasiBranch::index');
 $routes->get('/link', 'Link::index');
 $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
@@ -68,6 +67,13 @@ $routes->get('/jenis_branch', 'JenisBranch::index', ['filter' => 'role:admin']);
 $routes->get('/jenis_branch/index', 'JenisBranch::index', ['filter' => 'role:admin']);
 $routes->delete('/jenis_branch/(:num)', 'JenisBranch::delete/$1', ['filter' => 'role:admin']);
 $routes->get('/jenis_branch/edit/(:segment)', 'JenisBranch::edit/$1');
+
+//Klasifikasi Branch
+$routes->get('/klasifikasi_branch', 'KlasifikasiBranch::index');
+$routes->get('/klasifikasi_branch', 'KlasifikasiBranch::index', ['filter' => 'role:admin']);
+$routes->get('/klasifikasi_branch/index', 'KlasifikasiBranch::index', ['filter' => 'role:admin']);
+$routes->delete('/klasifikasi_branch/(:num)', 'KlasifikasiBranch::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/klasifikasi_branch/edit/(:segment)', 'KlasifikasiBranch::edit/$1');
 
 //Hak Akses
 $routes->get('/hak_akses', 'HakAkses::index');

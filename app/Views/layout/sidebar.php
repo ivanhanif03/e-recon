@@ -63,7 +63,7 @@
                         </li>
                     </ul>
                 </li>
-      
+
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('provider'); ?>"
                         class="nav-link <?php if ($menu == 'provider'){echo 'active';}?>">
@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('regional'); ?>"
-                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>" >
+                        class="nav-link <?php if ($menu == 'regional'){echo 'active';}?>">
                         <i class="nav-icon fas fa-globe-asia"></i>
                         <p>
                             Regional

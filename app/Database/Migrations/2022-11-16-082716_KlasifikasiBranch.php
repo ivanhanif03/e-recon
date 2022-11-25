@@ -32,12 +32,12 @@ class KlasifikasiBranch extends Migration
 		$this->forge->addKey('id', TRUE);
 
 		// Membuat tabel 
-		$this->forge->createTable('klasifikasiBranch', TRUE);
+		$this->forge->createTable('klasifikasi_branch', TRUE);
     }
 
     public function down()
     {
         // menghapus tabel
-		$this->forge->dropTable('klasifikasiBranch');
+		$this->forge->dropTable('klasifikasi_branch');
     }
 }

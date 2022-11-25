@@ -17,12 +17,12 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
-                                    <h3 class="card-title">Jenis Branch</h3>
+                                    <h3 class="card-title">Daftar Jenis Branch</h3>
                                 </div>
-                                <div class="col-sm-4 col-md-2 col-lg-4">
+                                <div class="col-sm-4 col-md-2 col-lg-3">
 
                                 </div>
-                                <div class="col-sm-4 col-md-4 col-lg-2 float-end">
+                                <div class="col-sm-4 col-md-4 col-lg-3 float-end">
                                     <button type="button" data-toggle="modal" data-target="#modal-tambah-jenis_branch"
                                         data-backdrop="static" class="btn btn-block bg-primary">Tambah Jenis Branch<i
                                             class="fa fa-plus-circle ml-2"></i></button>
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table id="tablejenis_branch" class="table table-striped">
+                            <table id="tablejenisBranch" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($JenisBranch as $jb) : ?>
+                                    <?php $i=1; foreach ($jenis_branch as $jb) : ?>
                                     <tr>
                                         <td class="align-middle"><?= $i++; ?></td>
                                         <td class="align-middle"><?= $jb['jenis_branch']; ?></td>
@@ -103,7 +103,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/jenis_branch/update/<?= $jb['id']; ?>" method="post">
+                                                <form action="/jenisBranch/update/<?= $jb['id']; ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -114,7 +114,6 @@
                                                                         class="form-control text-sm <?= ($validation->hasError('jenis_branch')) ? 'is-invalid' : ''; ?>"
                                                                         name="jenis_branch" id="jenis_branch"
                                                                         placeholder="Masukkan jenis branch"
-                                                                        maxlength="3"
                                                                         value="<?= $jb['jenis_branch']; ?>" autofocus
                                                                         required>
                                                                     <div class="invalid-feedback">
@@ -165,7 +164,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/jenis_branch/save" method="post">
+            <form action="/jenisBranch/save" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
@@ -174,8 +173,7 @@
                                 <label for="jenis_branch">Jenis Branch</label>
                                 <input type="text"
                                     class="form-control text-sm <?= ($validation->hasError('jenis_branch')) ? 'is-invalid' : ''; ?>"
-                                    name="jenis_branch" id="jenis_branch" maxlength="3" minlength="3"
-                                    style="text-transform:uppercase" autofocus required>
+                                    name="jenis_branch" id="jenis_branch" autofocus required>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('jenis_branch'); ?>
                                 </div>
@@ -197,14 +195,14 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tablejenis_branch").DataTable({
+        $("#tablejenisBranch").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tablejenis_branch_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tablejenisBranch_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>

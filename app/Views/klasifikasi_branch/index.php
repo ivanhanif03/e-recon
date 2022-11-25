@@ -41,27 +41,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i=1; foreach ($klasifikasi as $reg) : ?>
+                                    <?php $i=1; foreach ($klasifikasi_branch as $kls) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $reg['kode_regional']; ?></td>
-                                        <td><?= $reg['nama_regional']; ?></td>
+                                        <td><?= $kls['nama_klasifikasi']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
-                                                data-target="#modal-edit-regional<?= $reg['id']; ?>"><i
+                                                data-target="#modal-edit-klasifikasi<?= $kls['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
                                             <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-backdrop="static"
-                                                data-target="#modal-hapus-regional<?= $reg['id']; ?>"><i
+                                                data-target="#modal-hapus-klasifikasi<?= $kls['id']; ?>"><i
                                                     class=" nav-icon fas fa-trash"></i></a>
                                         </td>
                                     </tr>
 
                                     <!-- Start Modal Delete -->
-                                    <div class="modal fade" id="modal-hapus-regional<?= $reg['id'] ?>">
+                                    <div class="modal fade" id="modal-hapus-klasifikasi<?= $kls['id'] ?>">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header">
@@ -74,12 +73,12 @@
                                                 <div class="modal-body text-center">
                                                     <span>Anda yakin ingin menghapus data?</span><br>
                                                     <span class="text-capitalize font-weight-bolder text-primary">
-                                                        <?= $reg['nama_regional']; ?>
+                                                        <?= $kls['nama_klasifikasi']; ?>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-primary"
                                                         data-dismiss="modal">Batal</button>
-                                                    <form action="/regional/<?= $reg['id']; ?>" method="post">
+                                                    <form action="/klasifikasi_branch/<?= $kls['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -91,44 +90,33 @@
                                     <!-- End Modal Delete -->
 
                                     <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-regional<?= $reg['id']; ?>">
+                                    <div class="modal fade" id="modal-edit-klasifikasi<?= $kls['id']; ?>">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content border-0">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Form Edit Regional</h4>
+                                                    <h4 class="modal-title">Form Edit Klasifikasi Branch</h4>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/regional/update/<?= $reg['id']; ?>" method="post">
+                                                <form action="/klasifikasiBranch/update/<?= $kls['id']; ?>"
+                                                    method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
-                                                                    <label for="kode_regional">Kode Regional</label>
+                                                                    <label for="nama_klasifikasi">Nama
+                                                                        Klasifikasi Branch</label>
                                                                     <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('kode_regional')) ? 'is-invalid' : ''; ?>"
-                                                                        name="kode_regional" id="kode_regional"
-                                                                        placeholder="Masukkan kode regional"
-                                                                        maxlength="3"
-                                                                        value="<?= $reg['kode_regional']; ?>"
-                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
-                                                                        autofocus required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('kode_regional'); ?>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="nama_regional">Nama Regional</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('nama_regional')) ? 'is-invalid' : ''; ?>"
-                                                                        name="nama_regional" id="nama_regional"
+                                                                        class="form-control text-sm <?= ($validation->hasError('nama_klasifikasi')) ? 'is-invalid' : ''; ?>"
+                                                                        name="nama_klasifikasi" id="nama_klasifikasi"
                                                                         placeholder="Masukkan nama regional"
-                                                                        value="<?= $reg['nama_regional']; ?>" required>
+                                                                        value="<?= $kls['nama_klasifikasi']; ?>"
+                                                                        required>
                                                                     <div class="invalid-feedback">
-                                                                        <?= $validation->getError('nama_regional'); ?>
+                                                                        <?= $validation->getError('nama_klasifikasi'); ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -150,8 +138,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode Regional</th>
-                                        <th>Nama Regional</th>
+                                        <th>Nama Klasifikasi Branch</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -165,31 +152,24 @@
     </div>
 </div>
 <!-- Start Modal Input -->
-<div class="modal fade" id="modal-tambah-regional">
+<div class="modal fade" id="modal-tambah-klasifikasi">
     <div class="modal-dialog modal-md">
         <div class="modal-content border-0">
             <div class="modal-header">
-                <h4 class="modal-title">Form Tambah Regional</h4>
+                <h4 class="modal-title">Form Tambah Klasifikasi Branch</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/regional/save" method="post">
+            <form action="/klasifikasiBranch/save" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="kode_regional">Kode Regional</label>
-                                <input type="text" class="form-control text-sm" name="kode_regional" id="kode_regional"
-                                    placeholder="Masukkan kode regional" maxlength="3"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"
-                                    autofocus required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nama_regional">Nama Regional</label>
-                                <input type="text" class="form-control text-sm" name="nama_regional" id="nama_regional"
-                                    placeholder="Masukkan nama regional" required>
+                                <label for="nama_klasifikasi">Nama Klasifikasi Branch</label>
+                                <input type="text" class="form-control text-sm" name="nama_klasifikasi"
+                                    id="nama_klasifikasi" placeholder="Masukkan nama klasifikasi branch" required>
                             </div>
                         </div>
                     </div>
@@ -208,7 +188,7 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tableRegional").DataTable({
+        $("#tableKlasifikasiBranch").DataTable({
             "columnDefs": [{
                 "width": "8%",
                 "targets": 0
@@ -219,7 +199,7 @@
             "ordering": true,
             "info": true,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#tableRegional_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tableKlasifikasiBranch_wrapper .col-md-6:eq(0)');
     });
 </script>
 <?= $this->endSection(); ?>

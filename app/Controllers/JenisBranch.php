@@ -19,7 +19,7 @@ class JenisBranch extends BaseController
             'title' => 'Jenis Branch',
             'menu' => 'jenis_branch',
             'validation' => \Config\Services::validation(),
-            'provider' => $this->JenisBranchModel->findAll()
+            'jenis_branch' => $this->JenisBranchModel->findAll()
         ];
         
         return view('jenis_branch/index', $data);
