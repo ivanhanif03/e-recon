@@ -31,6 +31,24 @@
                     </a>
                 </li>
 
+                <!-- User -->
+                <?php if( in_groups('user')) : ?>
+
+                <?php endif; ?>
+
+                <!-- Supervisor -->
+                <?php if( in_groups('supervisor')) : ?>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('provider'); ?>"
+                        class="nav-link <?php if ($menu == 'provider'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-clipboard-check"></i>
+                        <p>
+                            Approval
+                        </p>
+                    </a>
+                </li>
+                <?php endif; ?>
+
                 <!-- Admin -->
                 <?php if( in_groups('admin')) : ?>
                 <li class="nav-item <?php if ($menu == 'pengguna' || $menu == 'hak_akses'){echo 'menu-open';}?>">
@@ -63,7 +81,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('provider'); ?>"
                         class="nav-link <?php if ($menu == 'provider'){echo 'active';}?>">
@@ -111,7 +128,7 @@
                 </li>
                 <?php endif; ?>
 
-                <!-- User -->
+                <!-- User BTN -->
                 <?php if( in_groups('user-btn')) : ?>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('gangguan'); ?>"
@@ -122,14 +139,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-2">
+                <!-- <li class="nav-item mb-2">
                     <a href="<?= base_url('order'); ?>" class="nav-link <?php if ($menu == 'order'){echo 'active';}?>">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
                             Report Order
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
                         <i class="nav-icon fas fa-stream"></i>
@@ -140,7 +157,7 @@
                 </li>
                 <?php endif; ?>
 
-                <!-- User -->
+                <!-- User Provider -->
                 <?php if( in_groups('user-provider')) : ?>
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('gangguan'); ?>"
@@ -151,14 +168,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item mb-2">
+                <!-- <li class="nav-item mb-2">
                     <a href="<?= base_url('order'); ?>" class="nav-link <?php if ($menu == 'order'){echo 'active';}?>">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>
                             Order Provider
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla'){echo 'active';}?>">
                         <i class="nav-icon fas fa-stream"></i>

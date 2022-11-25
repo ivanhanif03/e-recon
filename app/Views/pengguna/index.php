@@ -166,6 +166,24 @@
                                                                         required><?= $p['alamat']; ?></textarea>
                                                                 </div>
                                                                 <div class="form-group">
+                                                                    <label>Role</label>
+                                                                    <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
+                                                                    <select
+                                                                        class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
+                                                                        name="hak_akses" id="hak_akses"
+                                                                        onchange="showDiv('edit_select_provider', this)"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Role</option>
+                                                                        <?php foreach ($role as $r) : ?>
+                                                                        <option value="<?= $r['name']; ?>"
+                                                                            <?php if ($r['name'] == $p['hak_akses']) : ?>selected<?php endif; ?>>
+                                                                            <?= $r['name']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group" id="edit_select_provider"
+                                                                    style="display: none;">
                                                                     <label>Provider</label>
                                                                     <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
                                                                     <select
@@ -285,13 +303,13 @@
                                     value="<?= old('alamat') ?>" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Hak Akses</label>
+                                <label>Role</label>
                                 <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
                                 <select
                                     class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>"
                                     name="hak_akses" id="hak_akses" style="width: 100%;"
                                     onchange="showDiv('select_provider', this)">
-                                    <option disabled="disabled" selected="selected">Pilih Hak Akses</option>
+                                    <option disabled="disabled" selected="selected">Pilih Role</option>
                                     <?php foreach ($role as $r) : ?>
                                     <option value="<?= $r['name']; ?>"><?= $r['name']; ?></option>
                                     <?php endforeach; ?>

@@ -18,7 +18,7 @@ class CreateAuthTables extends Migration
             'hak_akses'        => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'alamat'           => ['type' => 'varchar', 'constraint' => 255],
             'provider'         => ['type' => 'varchar', 'constraint' => 255,'null' => true],
-            'user_image'       => ['type' => 'varchar', 'constraint' => 255, 'default' => 'icon_erecon.png'],
+            'user_image'       => ['type' => 'varchar', 'constraint' => 255, 'default' => 'user-default.png'],
             'password_hash'    => ['type' => 'varchar', 'constraint' => 255],
             'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'reset_at'         => ['type' => 'datetime', 'null' => true],

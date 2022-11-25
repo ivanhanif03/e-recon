@@ -76,3 +76,11 @@ $(document).ready(function () {
         });
     }, 4000);
 });
+
+$(document).ready(function () {
+    window.setTimeout(function () {
+        $("#alert-myth").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 8000);
+});

@@ -7,7 +7,7 @@
         <div class="card card-outline border-0 shadow-none card-primary">
             <div class="card-header text-center">
                 <div class="col-12 text-center">
-                    <img class="w-50 rounded mb-3 mt-2" src="<?= base_url('/img/logo_erecon.png'); ?>">
+                    <img class="w-50 rounded mb-3 mt-2" src="<?= base_url('/img/logo-islan.png'); ?>">
                 </div>
             </div>
             <div class="card-body p-4">
