@@ -76,7 +76,7 @@ class Branch extends BaseController
         $data = [
             'title' => 'Form Edit Branch',
             'validation' => \Config\Services::validation(),
-            'branch' => $this->BranchModel->getBranch($id)
+            'branch' => $this->BranchModel->getBranchAll($id)
         ];
         return view('branch/index', $data);
     }

@@ -42,9 +42,15 @@ $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
-$routes->get('/link', 'Link::index');
 $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
+
+//Link
+$routes->get('/link', 'Link::index');
+$routes->get('/link', 'Link::index', ['filter' => 'role:admin']);
+$routes->get('/link/index', 'Link::index', ['filter' => 'role:admin']);
+$routes->delete('/link/(:num)', 'Link::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/link/edit/(:segment)', 'Link::edit/$1');
 
 //Regional
 $routes->get('/regional', 'Regional::index');

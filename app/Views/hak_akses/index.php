@@ -53,10 +53,10 @@
                                                     class="nav-icon fas fa-edit"></i>
                                             </a>
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            <!-- <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-target="#modal-hapus-hak-akses<?= $ha['user_id'] ?>"><i
                                                     class=" nav-icon fas fa-trash"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
 

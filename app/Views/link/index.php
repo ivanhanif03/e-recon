@@ -53,8 +53,8 @@
                                         <td><?= $l['fullname']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static"
+                                            <a href="/link/edit/<?= $l['id']; ?>" class="btn btn-sm btn-outline-primary"
+                                                data-toggle="modal" data-backdrop="static"
                                                 data-target="#modal-edit-link<?= $l['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
@@ -106,8 +106,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="/link/update/<?= $l['id']; ?>"
-                                                    method="post">
+                                                <form action="/link/update/<?= $l['id']; ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -119,61 +118,59 @@
                                                                         class="form-control text-sm <?= ($validation->hasError('nama_link')) ? 'is-invalid' : ''; ?>"
                                                                         name="nama_link" id="nama_link"
                                                                         placeholder="Masukkan nama link"
-                                                                        value="<?= $l['nama_link']; ?>"
-                                                                        required>
+                                                                        value="<?= $l['nama_link']; ?>" required>
                                                                     <div class="invalid-feedback">
                                                                         <?= $validation->getError('nama_link'); ?>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Branch</label>
-                                                                <select class="form-control select2bs4 text-sm"
-                                                                    name="nama_branch" id="nama_branch"
-                                                                    style="width: 100%;">
-                                                                    <option disabled="disabled" selected="selected">
-                                                                        Pilih Branch
-                                                                    </option>
-                                                                    <?php foreach ($branch as $b) : ?>
-                                                                    <option value="<?= $b['id']; ?>"
-                                                                        <?php if ($b['nama_branch'] == $l['nama_branch']) : ?>selected<?php endif; ?>>
-                                                                        <?= $b['nama_branch']; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
+
+                                                                <div class="form-group">
+                                                                    <label>Branch</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="nama_branch" id="nama_branch"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Branch
+                                                                        </option>
+                                                                        <?php foreach ($branch as $b) : ?>
+                                                                        <option value="<?= $b['id']; ?>"
+                                                                            <?php if ($b['nama_branch'] == $l['nama_branch']) : ?>selected<?php endif; ?>>
+                                                                            <?= $b['nama_branch']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Provider</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="nama_provider" id="nama_provider"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih Provider
+                                                                        </option>
+                                                                        <?php foreach ($provider as $p) : ?>
+                                                                        <option value="<?= $p['id']; ?>"
+                                                                            <?php if ($p['nama_provider'] == $l['nama_provider']) : ?>selected<?php endif; ?>>
+                                                                            <?= $p['nama_provider']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>PIC</label>
+                                                                    <select class="form-control select2bs4 text-sm"
+                                                                        name="fullname" id="fullname"
+                                                                        style="width: 100%;">
+                                                                        <option disabled="disabled" selected="selected">
+                                                                            Pilih PIC
+                                                                        </option>
+                                                                        <?php foreach ($users as $u) : ?>
+                                                                        <option value="<?= $u['id']; ?>"
+                                                                            <?php if ($u['fullname'] == $l['fullname']) : ?>selected<?php endif; ?>>
+                                                                            <?= $u['fullname']; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                                <label>Provider</label>
-                                                                <select class="form-control select2bs4 text-sm"
-                                                                    name="nama_provider" id="nama_provider"
-                                                                    style="width: 100%;">
-                                                                    <option disabled="disabled" selected="selected">
-                                                                        Pilih Provider
-                                                                    </option>
-                                                                    <?php foreach ($provider as $p) : ?>
-                                                                    <option value="<?= $p['id']; ?>"
-                                                                        <?php if ($p['nama_provider'] == $l['nama_provider']) : ?>selected<?php endif; ?>>
-                                                                        <?= $p['nama_provider']; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                                <label>PIC</label>
-                                                                <select class="form-control select2bs4 text-sm"
-                                                                    name="fullname" id="fullname"
-                                                                    style="width: 100%;">
-                                                                    <option disabled="disabled" selected="selected">
-                                                                        Pilih PIC
-                                                                    </option>
-                                                                    <?php foreach ($pic as $pic) : ?>
-                                                                    <option value="<?= $pic['id']; ?>"
-                                                                        <?php if ($pic['fullname'] == $l['fullname']) : ?>selected<?php endif; ?>>
-                                                                        <?= $pic['fullname']; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                                                            </div>
-                                                    </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
                                                         <button type="button" class="btn btn-danger mr-auto"
@@ -224,8 +221,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="nama_link">Nama Link</label>
-                                <input type="text" class="form-control text-sm" name="nama_link"
-                                    id="nama_link" placeholder="Masukkan nama link" required>
+                                <input type="text" class="form-control text-sm" name="nama_link" id="nama_link"
+                                    placeholder="Masukkan nama link" required>
                             </div>
                             <div class="form-group">
                                 <label>Branch</label>
@@ -262,10 +259,9 @@
                                     name="fullname" id="fullname" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama PIC</option>
-                                    <?php foreach ($pic as $pic) : ?>
-                                    <option value="<?= $pic['id']; ?>">
-                                        <?= $pic['fullname']; ?>
-                                    </option>
+                                    <?php foreach ($users as $u) : ?>
+                                    <option value="<?= $u['id']; ?>">
+                                        <?= $u['fullname']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -286,7 +282,7 @@
 <?= $this->section('script'); ?>
 <script>
     $(function () {
-        $("#tablelink").DataTable({
+        $("#tableLink").DataTable({
             "columnDefs": [{
                 "width": "8%",
                 "targets": 0
@@ -296,7 +292,7 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "searching": false,
+            // "searching": false,
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableLink_wrapper .col-md-6:eq(0)');
     });

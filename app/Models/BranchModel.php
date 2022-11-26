@@ -16,6 +16,11 @@ class BranchModel extends Model
         ->join('regional','regional.id=branch.id_regional', 'left')
         ->join('jenis_branch', 'jenis_branch.id=branch.id_jenis_branch', 'left')
         ->join('klasifikasi_branch', 'klasifikasi_branch.id=branch.id_klasifikasi_branch', 'left')
+        ->select('regional.nama_regional')
+        ->select('jenis_branch.jenis_branch')
+        ->select('klasifikasi_branch.nama_klasifikasi')
+        ->select('branch.*')
+        ->orderBy('branch.id')
         ->get()->getResultArray();  
    }
 }
