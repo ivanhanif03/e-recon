@@ -20,8 +20,6 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header" style="color: #ffffff ; font-size:20px "> <b>Menu</b></li>
-
                 <li class="nav-item mb-2 mt-2">
                     <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard'){echo 'active';}?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -51,6 +49,7 @@
 
                 <!-- Admin -->
                 <?php if( in_groups('admin')) : ?>
+                <li class="nav-header text-white"> <b>User</b></li>
                 <li class="nav-item <?php if ($menu == 'pengguna' || $menu == 'hak_akses'){echo 'menu-open';}?>">
                     <a href="#"
                         class="nav-link mb-2 <?php if ($menu == 'pengguna' || $menu == 'hak_akses'){echo 'active';}?>">
@@ -81,6 +80,8 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-header text-white"> <b>Data Master</b></li>
+
                 <li class="nav-item mb-2">
                     <a href="<?= base_url('provider'); ?>"
                         class="nav-link <?php if ($menu == 'provider'){echo 'active';}?>">
@@ -127,9 +128,8 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="<?= base_url('link'); ?>"
-                        class="nav-link <?php if ($menu == 'link'){echo 'active';}?>">
-                        <i class="nav-icon fas fa-link"></i>                        
+                    <a href="<?= base_url('link'); ?>" class="nav-link <?php if ($menu == 'link'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-link"></i>
                         <p>
                             Link
                         </p>
