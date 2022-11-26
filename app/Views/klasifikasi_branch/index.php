@@ -112,7 +112,7 @@
                                                                     <input type="text"
                                                                         class="form-control text-sm <?= ($validation->hasError('nama_klasifikasi')) ? 'is-invalid' : ''; ?>"
                                                                         name="nama_klasifikasi" id="nama_klasifikasi"
-                                                                        placeholder="Masukkan nama regional"
+                                                                        placeholder="Masukkan nama klasifikasi branch"
                                                                         value="<?= $kls['nama_klasifikasi']; ?>"
                                                                         required>
                                                                     <div class="invalid-feedback">

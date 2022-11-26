@@ -126,6 +126,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="<?= base_url('link'); ?>"
+                        class="nav-link <?php if ($menu == 'link'){echo 'active';}?>">
+                        <i class="nav-icon fas fa-link"></i>                        
+                        <p>
+                            Link
+                        </p>
+                    </a>
+                </li>
                 <?php endif; ?>
 
                 <!-- User BTN -->
