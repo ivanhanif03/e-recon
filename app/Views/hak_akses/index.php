@@ -46,8 +46,7 @@
                                         <td><?= $ha['name']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/hak_akses/edit/<?= $ha['user_id']; ?>"
-                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-hak-akses<?= $ha['user_id'] ?>"><i
                                                     class="nav-icon fas fa-edit"></i>

@@ -47,12 +47,12 @@
                                         <td><?= $kls['nama_klasifikasi']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-klasifikasi<?= $kls['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-hapus-klasifikasi<?= $kls['id']; ?>"><i
                                                     class=" nav-icon fas fa-trash"></i></a>

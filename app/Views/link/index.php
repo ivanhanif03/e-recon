@@ -53,12 +53,11 @@
                                         <td><?= $l['fullname']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/link/edit/<?= $l['id']; ?>" class="btn btn-sm btn-outline-primary"
-                                                data-toggle="modal" data-backdrop="static"
-                                                data-target="#modal-edit-link<?= $l['id']; ?>"><i
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                                data-backdrop="static" data-target="#modal-edit-link<?= $l['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-hapus-link<?= $l['id']; ?>"><i
                                                     class=" nav-icon fas fa-trash"></i></a>

@@ -59,13 +59,12 @@
                                         <td><?= $brch['nama_klasifikasi']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/branch/edit/<?= $brch['id']; ?>"
-                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-branch<?= $brch['id']; ?>"><i
                                                     class="nav-icon fas fa-edit"></i></a>
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-hapus-branch<?= $brch['id']; ?>"><i
                                                     class=" nav-icon fas fa-trash"></i></a>

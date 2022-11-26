@@ -51,15 +51,14 @@
                                         <td class="align-middle"><?= $p['alamat']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
-                                            <a href="/provider/edit/<?= $p['id']; ?>"
-                                                class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                                 data-backdrop="static"
                                                 data-target="#modal-edit-provider<?= $p['id'] ?>"><i
                                                     class="nav-icon fas fa-edit"></i>
                                             </a>
 
                                             <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                                 data-target="#modal-hapus-provider<?= $p['id'] ?>"><i
                                                     class=" nav-icon fas fa-trash"></i>
                                             </a>
