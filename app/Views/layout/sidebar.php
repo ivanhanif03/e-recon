@@ -144,7 +144,7 @@
                         class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
                         <i class="nav-icon fas fa-exclamation-circle"></i>
                         <p>
-                            Report Gangguan
+                            Gangguan Jaringan
                         </p>
                     </a>
                 </li>
