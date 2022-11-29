@@ -4,17 +4,19 @@ namespace App\Controllers;
 
 use App\Models\GangguanModel;
 use App\Models\LinkModel;
+use App\Models\ProviderModel;
 use App\Models\StatusModel;
 
 class Gangguan extends BaseController
 {
-    protected $GangguanModel, $LinkModel, $StatusModel;
+    protected $GangguanModel, $LinkModel, $StatusModel, $ProviderModel;
 
     public function __construct()
     {   
         $this->GangguanModel = new GangguanModel();
         $this->LinkModel = new LinkModel();
         $this->StatusModel = new StatusModel();
+        $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
@@ -26,6 +28,7 @@ class Gangguan extends BaseController
             'gangguan' => $this->GangguanModel->getGangguan(),
             'link' => $this->LinkModel->findAll(),
             'status' => $this->StatusModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
         ];
 
         // dd($data);
@@ -35,13 +38,28 @@ class Gangguan extends BaseController
 
     public function save()
     {
+        //START AND END GANGGUAN
         $start = date('Y-m-d H:i:s');
         $end = date('Y-m-d H:i:s', strtotime('+ 2 hours'));
 
+        //COUNT DATA GANGGUAN
+        $jml_gangguan = $this->GangguanModel->getJumlahGangguan();
+
+        //EXPLODE EACH VALUE LINK
+        $link = $this->request->getVar('link');
+        $sprd = explode("_", $link);
+        $nama_link = $sprd[1];
+        $id_link = $sprd[0];
+
+        //EXPLODE EACH FIRST LETTER NAMA LINK + ID
+        $expr = '/(?<=\s|^)\w/iu';
+        preg_match_all($expr, $nama_link, $matches);
+        $no_ticket = strtoupper(implode('', $matches[0])).$jml_gangguan ;
+
         $this->GangguanModel->save([
-            'nomor_tiket' => 'TLK1',
+            'no_tiket' => $no_ticket,
             'nama_gangguan' => $this->request->getVar('nama_gangguan'),
-            'id_link' => $this->request->getVar('link'),
+            'id_link' => $id_link,
             'detail' => $this->request->getVar('detail'),
             'start' => $start,
             'end' => $end,

@@ -45,14 +45,12 @@
                                     <?php foreach ($gangguan as $g) : ?>
                                     <tr>
                                         <td><?= $g['no_tiket']; ?></td>
-                                        <td><?= $g['provider']; ?></td>
-                                        <td><?= $g['branch']; ?></td>
-                                        <td><?= $g['pic']; ?></td>
-                                        <td><?= $g['alamat']; ?></td>
-                                        <td><?= $g['open_time']; ?></td>
-                                        <td><?= $g['close_time']; ?></td>
-                                        <td><?= $g['stop_clock']; ?></td>
-                                        <td><?= $g['end_stop_clock']; ?></td>
+                                        <td><?= $g['nama_gangguan']; ?></td>
+                                        <td><?= $g['nama_link']; ?></td>
+                                        <td><?= $g['start']; ?></td>
+                                        <td><?= $g['end']; ?></td>
+                                        <td><?= $g['kategori']; ?></td>
+                                        <td><?= $g['approval']; ?></td>
                                         <td class="text-center">
                                             <!-- Edit -->
                                             <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal"
@@ -81,7 +79,7 @@
                                                 <div class="modal-body text-center">
                                                     <span>Anda yakin ingin menghapus data?</span><br>
                                                     <span class="text-capitalize font-weight-bolder text-primary">
-                                                        <?= $g['nomor_tiket']; ?>
+                                                        <?= $g['no_tiket']; ?>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-primary"
@@ -97,71 +95,6 @@
                                     </div>
                                     <!-- End Modal Delete -->
 
-                                    <!-- Start Modal Edit -->
-                                    <div class="modal fade" id="modal-edit-gangguan<?= $g['id']; ?>">
-                                        <div class="modal-dialog modal-md">
-                                            <div class="modal-content border-0">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Form Edit Gangguan</h4>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form action="/provider/update/<?= $p['id']; ?>" method="post">
-                                                    <?= csrf_field(); ?>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <label for="kode_provider">Kode Provider</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('kode_provider')) ? 'is-invalid' : ''; ?>"
-                                                                        name="kode_provider" id="kode_provider"
-                                                                        placeholder="Masukkan kode provider"
-                                                                        maxlength="3"
-                                                                        value="<?= $p['kode_provider']; ?>" autofocus
-                                                                        required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('kode_provider'); ?>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="nama_provider">Nama Provider</label>
-                                                                    <input type="text"
-                                                                        class="form-control text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>"
-                                                                        name="nama_provider" id="nama_provider"
-                                                                        placeholder="Masukkan nama provider"
-                                                                        value="<?= $p['nama_provider']; ?>" required>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('nama_provider'); ?>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="alamat">Alamat</label>
-                                                                    <textarea
-                                                                        class="form-control text-sm <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>"
-                                                                        name="alamat" id="alamat" rows="3"
-                                                                        placeholder="Masukkan alamat"
-                                                                        required><?= $p['alamat']; ?></textarea>
-                                                                    <div class="invalid-feedback">
-                                                                        <?= $validation->getError('alamat'); ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer d-flex bd-highlight">
-                                                        <button type="button" class="btn btn-danger mr-auto"
-                                                            data-dismiss="modal">Batal</button>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        <!-- swalSaveSuccess -->
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal Edit -->
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
@@ -209,6 +142,11 @@
                                     placeholder="Masukkan nama gangguan" required>
                             </div>
                             <div class="form-group">
+                                <label for="detail">Detail</label>
+                                <textarea type="text" class="form-control text-sm" name="detail" id="detail"
+                                    placeholder="Masukkan detail" required></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label>Link</label>
                                 <select
                                     class="form-control select2bs4 text-sm <?= ($validation->hasError('link')) ? 'is-invalid' : ''; ?>"
@@ -216,16 +154,12 @@
                                     <option disabled="disabled" selected="selected">
                                         Pilih Link</option>
                                     <?php foreach ($link as $l) : ?>
-                                    <option value="<?= $l['id']; ?>">
+                                    <!-- <option hidden="hidden" value="<?= $l['nama_link']; ?>"></option> -->
+                                    <option value="<?= $l['id']."_".$l['nama_link']; ?>">
                                         <?= $l['nama_link']; ?>
                                     </option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="detail">Detail</label>
-                                <textarea type="text" class="form-control text-sm" name="detail" id="detail"
-                                    placeholder="Masukkan detail" required></textarea>
                             </div>
                         </div>
                     </div>

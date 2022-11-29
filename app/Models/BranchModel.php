@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class BranchModel extends Model 
 {
     protected $table = 'branch';
+    protected $primaryKey = 'id';
     protected $useTimestamps = true;
     protected $allowedFields = ['id', 'kode_branch', 'nama_branch', 'alamat', 'no_telp', 'id_regional', 'id_jenis_branch', 'id_klasifikasi_branch'];
 
