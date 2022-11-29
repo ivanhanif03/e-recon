@@ -7,7 +7,7 @@ use App\Models\LinkModel;
 use App\Models\ProviderModel;
 use App\Models\StatusModel;
 
-class Gangguan extends BaseController
+class GangguanBtn extends BaseController
 {
     protected $GangguanModel, $LinkModel, $StatusModel, $ProviderModel;
 
@@ -23,7 +23,7 @@ class Gangguan extends BaseController
     {         
         $data = [
             'title' => 'Daftar Gangguan',
-            'menu' => 'gangguan',
+            'menu' => 'gangguan_btn',
             'validation' => \Config\Services::validation(),
             'gangguan' => $this->GangguanModel->getGangguan(),
             'link' => $this->LinkModel->findAll(),
@@ -33,7 +33,7 @@ class Gangguan extends BaseController
 
         // dd($data);
         
-        return view('gangguan/index', $data);
+        return view('gangguan/btn/index', $data);
     }
 
     public function save()
@@ -68,43 +68,38 @@ class Gangguan extends BaseController
 
         session()->setFlashdata('pesan', 'Data created successfully');
 
-        return redirect()->to('/gangguan/index');
+        return redirect()->to('/gangguan/btn/index');
     }
 
     
     public function delete($id)
     {
-        $this->BranchModel->delete($id);
+        $this->GangguanModel->delete($id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('branch/index');
+        return redirect()->to('gangguan/btn/index');
     }
 
     public function edit($id) 
     {
         $data = [
-            'title' => 'Form Edit Branch',
+            'title' => 'Form Edit Gangguan',
             'validation' => \Config\Services::validation(),
-            'branch' => $this->BranchModel->getBranchAll($id)
+            'branch' => $this->GangguanModel->getGangguan($id)
         ];
-        return view('branch/index', $data);
+        return view('gangguan/btn/index', $data);
     }
 
     public function update($id) 
     {
-        $this->BranchModel->save([
+        $this->GangguanModel->save([
             'id' => $id,
-            'kode_branch' => $this->request->getVar('kode_branch'),
-            'nama_branch' => $this->request->getVar('nama_branch'),
-            'alamat' => $this->request->getVar('alamat'),
-            'no_telp' => $this->request->getVar('no_telp'),
-            'id_regional' => $this->request->getVar('regional'),
-            'id_jenis_branch' => $this->request->getVar('jenis_branch'),
-            'id_klasifikasi_branch' => $this->request->getVar('klasifikasi_branch'),
-            
+            'nama_gangguan' => $this->request->getVar('nama_gangguan'),
+            'id_link' => $this->request->getVar('nama_link'),
+            'detail' => $this->request->getVar('detail')
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
 
-        return redirect()->to('/branch');
+        return redirect()->to('/gangguan/btn');
     }
 }

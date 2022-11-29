@@ -140,8 +140,8 @@
                 <!-- User BTN -->
                 <?php if( in_groups('user-btn')) : ?>
                 <li class="nav-item mb-2">
-                    <a href="<?= base_url('gangguan'); ?>"
-                        class="nav-link <?php if ($menu == 'gangguan'){echo 'active';}?>">
+                    <a href="<?= base_url('gangguan/btn'); ?>"
+                        class="nav-link <?php if ($menu == 'gangguan_btn'){echo 'active';}?>">
                         <i class="nav-icon fas fa-exclamation-circle"></i>
                         <p>
                             Gangguan Jaringan

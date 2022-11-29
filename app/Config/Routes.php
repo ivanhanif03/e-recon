@@ -45,11 +45,11 @@ $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
 
 //Gangguan
-$routes->get('/gangguan', 'Gangguan::index');
-$routes->get('/gangguan', 'Gangguan::index', ['filter' => 'role:user-btn']);
-$routes->get('/gangguan/index', 'Gangguan::index', ['filter' => 'role:user-btn']);
-$routes->delete('/gangguan/(:num)', 'Gangguan::delete/$1', ['filter' => 'role:user-btn']);
-$routes->get('/gangguan/edit/(:segment)', 'Gangguan::edit/$1');
+$routes->get('/gangguan/btn', 'GangguanBtn::index');
+$routes->get('/gangguan/btn', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
+$routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
+$routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
+$routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1');
 
 //Link
 $routes->get('/link', 'Link::index');
