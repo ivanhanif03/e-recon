@@ -8,14 +8,13 @@ class GangguanModel extends Model
 {
     protected $table = 'gangguan';
     protected $useTimestamps = true;
-    protected $allowedFields = ['nomor_tiket', 'nama_gangguan', 'id_branch', 'id_provider', 'id_regional', 'detail', 'start', 'end', 'status', 'approval'];
+    protected $allowedFields = ['nomor_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval'];
 
     public function getGangguan()
     {
          return $this->db->table('gangguan')
-         ->join('provider','provider.id=gangguan.id_provider')
-         ->join('branch', 'branch.id=gangguan.id_branch')
-         ->join('regional', 'regional.id=gangguan.id_regional')
+         ->join('link','link.id=gangguan.id_link')
+         ->join('status', 'status.id=gangguan.id_status')
          ->get()->getResultArray();  
     }
 }

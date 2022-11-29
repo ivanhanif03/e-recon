@@ -3,43 +3,87 @@
 namespace App\Controllers;
 
 use App\Models\GangguanModel;
+use App\Models\LinkModel;
+use App\Models\StatusModel;
 
 class Gangguan extends BaseController
 {
-    public function __construct()
-    {
-        
-    }
-    public function index()
-    {
-        $gangguanModel = new GangguanModel();
-        $gangguan = $gangguanModel->findAll();
+    protected $GangguanModel, $LinkModel, $StatusModel;
 
+    public function __construct()
+    {   
+        $this->GangguanModel = new GangguanModel();
+        $this->LinkModel = new LinkModel();
+        $this->StatusModel = new StatusModel();
+    }
+
+    public function index()
+    {         
         $data = [
-            'title' => 'Report Gangguan',
-            'menu' => 'gangguan',
-            'gangguan' => $gangguan
+            'title' => 'Daftar Branch',
+            'menu' => 'branch',
+            'validation' => \Config\Services::validation(),
+            'gangguan' => $this->GangguanModel->getGangguan(),
+            'link' => $this->LinkModel->findAll(),
+            'status' => $this->StatusModel->findAll(),
         ];
 
+        // dd($data);
+        
         return view('gangguan/index', $data);
     }
 
-    public function create()
+    public function save()
     {
-        $gangguanModel = new GangguanModel();
-        $gangguanModel->insert([
-            'nomor_tiket' => $this->request->getPost('no_tiket'),
-            'provider' => $this->request->getPost('provider'),
-            'branch' => $this->request->getPost('branch'),
-            'PIC' => $this->request->getPost('pic'),
-            'alamat' => $this->request->getPost('alamat'),
-            'open_time' => $this->request->getPost('open_time'),
-            'close_time' => $this->request->getPost('close_time'),
-            'stop_clock' => $this->request->getPost('stop_clock'),
-            'end_stop_clock' => $this->request->getPost('end_stop_clock')
+        $this->BranchModel->save([
+            'nama_gangguan' => $this->request->getVar('nama_gangguan'),
+            'id_link' => $this->request->getVar('link'),
+            'detail' => $this->request->getVar('detail'),
+            'end' => $this->request->getVar('no_telp'),
+            'id_regional' => $this->request->getVar('regional'),
+            'id_jenis_branch' => $this->request->getVar('jenis_branch'),
+            'id_klasifikasi_branch' => $this->request->getVar('klasifikasi_branch'),
         ]);
 
-        return redirect()->to(base_url('gangguan/index'));
+        session()->setFlashdata('pesan', 'Data created successfully');
+
+        return redirect()->to('/branch/index');
     }
 
+    
+    public function delete($id)
+    {
+        $this->BranchModel->delete($id);
+        session()->setFlashdata('pesan', 'Data deleted successfully');
+        return redirect()->to('branch/index');
+    }
+
+    public function edit($id) 
+    {
+        $data = [
+            'title' => 'Form Edit Branch',
+            'validation' => \Config\Services::validation(),
+            'branch' => $this->BranchModel->getBranchAll($id)
+        ];
+        return view('branch/index', $data);
+    }
+
+    public function update($id) 
+    {
+        $this->BranchModel->save([
+            'id' => $id,
+            'kode_branch' => $this->request->getVar('kode_branch'),
+            'nama_branch' => $this->request->getVar('nama_branch'),
+            'alamat' => $this->request->getVar('alamat'),
+            'no_telp' => $this->request->getVar('no_telp'),
+            'id_regional' => $this->request->getVar('regional'),
+            'id_jenis_branch' => $this->request->getVar('jenis_branch'),
+            'id_klasifikasi_branch' => $this->request->getVar('klasifikasi_branch'),
+            
+        ]);
+
+        session()->setFlashdata('pesan', 'Data updated successfully');
+
+        return redirect()->to('/branch');
+    }
 }
