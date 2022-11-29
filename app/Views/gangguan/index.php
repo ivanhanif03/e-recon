@@ -201,8 +201,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <input type="hidden" id="end" name="end">
-                            <input type="hidden" id="status" name="status" value="">
+                            <input type="hidden" id="kode_provider" name="kode_provider" value="kode">
                             <input type="hidden" id="approval" name="approval">
                             <div class="form-group">
                                 <label for="nama_gangguan">Nama Gangguan</label>

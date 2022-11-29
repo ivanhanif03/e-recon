@@ -10,31 +10,20 @@ class Gangguan extends Migration
     {
         //
         $this->forge->addField([
-            'nomor_tiket' => [
+            'id' => [
                 'type'       => 'INT',
                 'constraint' => '11',
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
+            'no_tiket' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255'
+            ],
             'nama_gangguan' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255'
             ],
-            // 'id_branch' => [
-            //     'type'      => 'INT',
-            //     'constraint' => '11',
-            //     'unsigned'       => true,
-            // ],
-            // 'id_provider' => [
-            //     'type'      => 'INT',
-            //     'constraint' => '11',
-            //     'unsigned'       => true,
-            // ],
-            // 'id_regional' => [
-            //     'type'      => 'INT',
-            //     'constraint' => '11',
-            //     'unsigned'       => true,
-            //],
             'id_link' => [
                 'type'      => 'INT',
                 'constraint' => '11',
@@ -59,7 +48,8 @@ class Gangguan extends Migration
             ],
             'approval' => [
                 'type'      => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '255',
+                'null' => true
             ],
             'created_at'      => [
 				'type'           => 'DATETIME',
@@ -69,7 +59,7 @@ class Gangguan extends Migration
 			],
         ]);
         //Membuat primary key
-        $this->forge->addKey('nomor_tiket', true);
+        $this->forge->addKey('id', true);
 
         //membuat foreign key
         $this->forge->addForeignKey('id_link','link','id','','CASCADE');

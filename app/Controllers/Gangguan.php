@@ -20,8 +20,8 @@ class Gangguan extends BaseController
     public function index()
     {         
         $data = [
-            'title' => 'Daftar Branch',
-            'menu' => 'branch',
+            'title' => 'Daftar Gangguan',
+            'menu' => 'gangguan',
             'validation' => \Config\Services::validation(),
             'gangguan' => $this->GangguanModel->getGangguan(),
             'link' => $this->LinkModel->findAll(),
@@ -35,19 +35,22 @@ class Gangguan extends BaseController
 
     public function save()
     {
-        $this->BranchModel->save([
+        $start = date('Y-m-d H:i:s');
+        $end = date('Y-m-d H:i:s', strtotime('+ 2 hours'));
+
+        $this->GangguanModel->save([
+            'nomor_tiket' => 'TLK1',
             'nama_gangguan' => $this->request->getVar('nama_gangguan'),
             'id_link' => $this->request->getVar('link'),
             'detail' => $this->request->getVar('detail'),
-            'end' => $this->request->getVar('no_telp'),
-            'id_regional' => $this->request->getVar('regional'),
-            'id_jenis_branch' => $this->request->getVar('jenis_branch'),
-            'id_klasifikasi_branch' => $this->request->getVar('klasifikasi_branch'),
+            'start' => $start,
+            'end' => $end,
+            'id_status' => 1,
         ]);
 
         session()->setFlashdata('pesan', 'Data created successfully');
 
-        return redirect()->to('/branch/index');
+        return redirect()->to('/gangguan/index');
     }
 
     
