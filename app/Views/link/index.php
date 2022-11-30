@@ -201,7 +201,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Branch</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>" name="nama_branch" id="nama_branch" style="width: 100%;">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>" name="nama_branch" id="nama_branch_tambah" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama Branch</option>
                                     <?php foreach ($branch as $b) : ?>
@@ -213,7 +213,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>" name="nama_provider" id="nama_provider" style="width: 100%;">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>" name="nama_provider" id="nama_provider_tambah" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama Provider</option>
                                     <?php foreach ($provider as $p) : ?>
@@ -225,7 +225,7 @@
                             </div>
                             <div class="form-group">
                                 <label>PIC</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('fullname')) ? 'is-invalid' : ''; ?>" name="fullname" id="fullname" style="width: 100%;">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('fullname')) ? 'is-invalid' : ''; ?>" name="fullname" id="fullname_tambah" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama PIC</option>
                                     <?php foreach ($users as $u) : ?>
@@ -265,6 +265,8 @@
             // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#tableLink_wrapper .col-md-6:eq(0)');
     });
+</script>
+<script>
 </script>
 <?php foreach ($link as $l) : ?>
     <script>
