@@ -75,7 +75,7 @@
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                                                        <form action="/link/<?= $l['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/link') . '/' . $l['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -96,7 +96,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/link/update/<?= $l['id']; ?>" method="post">
+                                                    <form action="<?= base_url('/link/update') . '/' . $l['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <div class="modal-body">
                                                             <div class="row">
@@ -190,7 +190,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/link/save" method="post">
+            <form action="<?= base_url('/link/save') ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">

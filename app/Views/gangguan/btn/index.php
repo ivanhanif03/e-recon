@@ -47,11 +47,30 @@
                                             <td><?= $g['nama_link']; ?></td>
                                             <td><?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
                                             <td><?= date("d-m-Y H:i:s", strtotime($g['end'])); ?></td>
-                                            <td><span class="badge badge-pill badge-success"><?= $g['kategori']; ?></span></td>
-                                            <td><?= $g['approval']; ?></td>
+                                            <td class="text-uppercase">
+                                                <span class="badge badge-pill 
+                                                <?php if ($g['id_status'] === '1') : ?>
+                                                badge-warning
+                                                <?php elseif ($g['id_status'] === '2') : ?>
+                                                badge-primary
+                                                <?php elseif ($g['id_status'] === '3') : ?>
+                                                badge-danger
+                                                <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-secondary
+                                                <?php else : ?>
+                                                badge-success
+                                                <?php endif ?>">
+                                                    <?= $g['kategori']; ?>
+                                                </span>
+                                            </td>
+                                            <td class="text-center"><?php if ($g['approval'] === null) : ?> -
+                                                <?php else : ?>
+                                                    <?= $g['approval']; ?>
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="text-center">
                                                 <!-- Edit -->
-                                                <a href="/gangguan/edit/<?= $g['id'] ?>" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
+                                                <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
                                                 <!-- Delete -->
                                                 <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-backdrop="static" data-target="#modal-hapus-gangguan<?= $g['id']; ?>"><i class=" nav-icon fas fa-trash"></i></a>
                                             </td>
@@ -74,7 +93,7 @@
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                                                        <form action="/gangguan/<?= $g['id']; ?>" method="post">
+                                                        <form action="<?= base_url('/gangguan') . '/' . $g['id']; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -95,7 +114,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/gangguanBtn/update/<?= $g['id']; ?>" method="post">
+                                                    <form action="<?= base_url('/gangguanBtn/update/') . '/' . $g['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <div class="modal-body">
                                                             <div class="row">
@@ -170,7 +189,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/gangguanBtn/save" method="post">
+            <form action="<?= base_url('/gangguanBtn/save/') ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="row">

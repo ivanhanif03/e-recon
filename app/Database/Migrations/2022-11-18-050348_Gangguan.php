@@ -35,11 +35,11 @@ class Gangguan extends Migration
             ],
             'start' => [
                 'type'      => 'DATETIME',
-                
+
             ],
             'end' => [
                 'type'      => 'DATETIME',
-                
+
             ],
             'id_status' => [
                 'type'      => 'INT',
@@ -51,25 +51,35 @@ class Gangguan extends Migration
                 'constraint' => '255',
                 'null' => true
             ],
+            'keterangan_submit' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
+            'bukti_submit' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
             'created_at'      => [
-				'type'           => 'DATETIME',
-			],
-			'updated_at'      => [
-				'type'           => 'DATETIME',
-			],
+                'type'           => 'DATETIME',
+            ],
+            'updated_at'      => [
+                'type'           => 'DATETIME',
+            ],
         ]);
         //Membuat primary key
         $this->forge->addKey('id', true);
 
         //membuat foreign key
-        $this->forge->addForeignKey('id_link','link','id','','CASCADE');
-        $this->forge->addForeignKey('id_status','status','id','','CASCADE');
-		// $this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
-		// $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-		// $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
-		
+        $this->forge->addForeignKey('id_link', 'link', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('id_status', 'status', 'id', '', 'CASCADE');
+        // $this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
+        // $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
+        // $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
+
         //membuat tabel
-        $this->forge->createTable('gangguan', true );
+        $this->forge->createTable('gangguan', true);
     }
 
     public function down()
