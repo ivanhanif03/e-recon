@@ -38,20 +38,40 @@ class GangguanProvider extends BaseController
 
     public function submit($id)
     {
+        //  Validation
+        if (!$this->validate(
+            [
+                'keterangan_submit' => 'required',
+                'bukti_submit' => [
+                    'rules' => 'uploaded[bukti_submit]|max_size[bukti_submit,500]|mime_in[bukti_submit,image/jpg,image/jpeg,image/png]',
+                    'errors' => [
+                        'uploaded' => 'Harus ada file yang diupload',
+                        'mime_in' => 'File extention harus berupa jpg,jpeg,png',
+                        'max_size' => 'Ukuran file maksimal 2 MB'
+                    ]
+
+                ]
+            ],
+        )) {
+            return redirect()->to('/gangguan/provider/index')->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $upload = $this->request->getFile('bukti_submit');
+        $upload->move(WRITEPATH . '../public/img_submit/');
+        $fileName = $upload->getName();
+
         $this->GangguanModel->save([
             'id' => $id,
-            'keterangan_submit' => $$this->request->getVar('keterangan_submit'),
-            'submit' => $this->request->getVar('nama_gangguan'),
-            'id_link' => $id_link,
-            'detail' => $this->request->getVar('detail'),
-            'start' => $start,
-            'end' => $end,
-            'id_status' => 1,
+            'bukti_submit' => $fileName,
+            'keterangan_submit' => $this->request->getVar('keterangan_submit'),
+            'id_status' => 2
         ]);
 
-        session()->setFlashdata('pesan', 'Data created successfully');
+        // $upload->move(base_url('../img_submit/bukti'), $fileName);
 
-        return redirect()->to('/gangguan/btn/index');
+        session()->setFlashdata('pesan', 'Data submited successfully');
+
+        return redirect()->to('/gangguan/provider/index');
     }
 
 

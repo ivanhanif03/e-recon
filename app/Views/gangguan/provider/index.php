@@ -49,14 +49,16 @@
                                             <td><?= date("d-m-Y H:i:s", strtotime($g['end'])); ?></td>
                                             <td class="text-uppercase">
                                                 <span class="badge badge-pill 
-                                                <?php if ($g['kategori'] === 'on process') : ?>
-                                                badge-primary
-                                                <?php elseif ($g['kategori'] === 'finish') : ?>
-                                                badge-success
-                                                <?php elseif ($g['kategori'] === 'stop clock') : ?>
+                                                <?php if ($g['id_status'] === '1') : ?>
                                                 badge-warning
-                                                <?php else : ?>
+                                                <?php elseif ($g['id_status'] === '2') : ?>
+                                                badge-primary
+                                                <?php elseif ($g['id_status'] === '3') : ?>
                                                 badge-danger
+                                                <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-secondary
+                                                <?php else : ?>
+                                                badge-success
                                                 <?php endif ?>">
                                                     <?= $g['kategori']; ?>
                                                 </span>
@@ -67,10 +69,158 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <!-- Sumbmit -->
-                                                <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-clipboard-check"></i></a>
+                                                <?php if ($g['id_status'] == 1) : ?>
+                                                    <!-- Sumbmit -->
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-check-square"></i></a>
+                                                <?php else : ?>
+                                                    <!-- Detail -->
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
+
+                                        <!-- Start Modal Detail -->
+                                        <div class="modal fade" id="modal-detail-gangguan<?= $g['id']; ?>">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content border-0">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Data Detail Gangguan</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Nomor Tiker</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <b>
+                                                                            <?= $g['no_tiket']; ?>
+                                                                        </b>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Nama Gangguan</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['nama_gangguan']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Link</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['nama_link']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Detail Gangguan</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['detail']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Start</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8 text-primary">
+                                                                        <?= $g['start']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3 ">
+                                                                        <b>End</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8 text-danger">
+                                                                        <?= $g['end']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Status</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <span class="badge badge-pill text-uppercase 
+                                                                        <?php if ($g['id_status'] === '1') : ?>
+                                                                        badge-warning
+                                                                        <?php elseif ($g['id_status'] === '2') : ?>
+                                                                        badge-primary
+                                                                        <?php elseif ($g['id_status'] === '3') : ?>
+                                                                        badge-danger
+                                                                        <?php elseif ($g['id_status'] === '4') : ?>
+                                                                        badge-secondary
+                                                                        <?php else : ?>
+                                                                        badge-success
+                                                                        <?php endif ?>">
+                                                                            <?= $g['kategori']; ?>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Keterangan Submit</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['keterangan_submit']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Bukti Submit</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal Detail -->
 
                                         <!-- Start Modal Edit -->
                                         <div class="modal fade" id="modal-submit-gangguan<?= $g['id']; ?>">
@@ -82,21 +232,24 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/gangguanProvider/update/<?= $g['id']; ?>" method="post">
+                                                    <form action="<?= base_url('gangguanprovider/submit') . '/' . $g['id']; ?>" method="post" enctype="multipart/form-data">
                                                         <?= csrf_field(); ?>
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="form-group">
-                                                                        <label for="nama_link">Keterangan Perbaikan</label>
-                                                                        <input type="text" class="form-control text-sm <?= ($validation->hasError('keterangan_submit')) ? 'is-invalid' : ''; ?>" name="keterangan_submit" id="keterangan_submit" placeholder="Masukkan keterangan perbaikan" value="<?= $g['keterangan_submit']; ?>" required>
+                                                                        <label for="keterangan_submit">Keterangan Perbaikan</label>
+                                                                        <textarea class="form-control text-sm" rows="3" name="keterangan_submit" id="keterangan_submit" placeholder="Masukkan keterangan perbaikan" <?= ($validation->hasError('keterangan_submit')) ? 'is-invalid' : ''; ?> required></textarea>
                                                                         <div class="invalid-feedback">
                                                                             <?= $validation->getError('keterangan_submit'); ?>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="exampleFormControlFile1">Example file input</label>
-                                                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                        <label for="bukti_submit">Foto Bukti Perbaikan</label>
+                                                                        <input type="file" name="bukti_submit" id="bukti_submit" class="form-control-file" <?= ($validation->hasError('bukti_submit')) ? 'is-invalid' : ''; ?>>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= $validation->getError('bukti_submit'); ?>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -104,7 +257,6 @@
                                                         <div class="modal-footer d-flex bd-highlight">
                                                             <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            <!-- swalSaveSuccess -->
                                                         </div>
                                                     </form>
                                                 </div>

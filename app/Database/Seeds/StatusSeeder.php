@@ -13,13 +13,16 @@ class StatusSeeder extends Seeder
                 'kategori' => 'on process'
             ],
             [
-                'kategori' => 'finish'
+                'kategori' => 'submitted'
             ],
             [
                 'kategori' => 'over sla'
             ],
             [
                 'kategori' => 'stop clock'
+            ],
+            [
+                'kategori' => 'finish'
             ],
         ];
 

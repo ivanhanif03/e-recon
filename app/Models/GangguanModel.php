@@ -9,7 +9,7 @@ class GangguanModel extends Model
     protected $table = 'gangguan';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval'];
+    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'bukti_submit'];
 
     public function getGangguan()
     {
