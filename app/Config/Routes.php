@@ -44,12 +44,19 @@ $routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
 
-//Gangguan
+//Gangguan BTN
 $routes->get('/gangguan/btn', 'GangguanBtn::index');
 $routes->get('/gangguan/btn', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
 $routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
 $routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
 $routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1');
+
+//Gangguan BTN
+$routes->get('/gangguan/provider', 'GangguanProvider::index');
+$routes->get('/gangguan/provider', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
+$routes->get('/gangguan/provider/index', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
+$routes->delete('/gangguan/provider/(:num)', 'GangguanProvider::delete/$1', ['filter' => 'role:user-provider']);
+$routes->get('/gangguan/provider/edit/(:segment)', 'GangguanProvider::edit/$1');
 
 //Link
 $routes->get('/link', 'Link::index');
