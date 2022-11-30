@@ -37,13 +37,19 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
-$routes->get('/gangguan', 'Gangguan::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/status', 'Status::index');
 $routes->get('/stop_clock', 'StopClock::index');
+
+//Gangguan
+$routes->get('/gangguan/btn', 'GangguanBtn::index');
+$routes->get('/gangguan/btn', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
+$routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
+$routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
+$routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1');
 
 //Link
 $routes->get('/link', 'Link::index');
