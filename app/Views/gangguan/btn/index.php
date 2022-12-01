@@ -70,7 +70,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <!-- STATUS ON PROCESS AWAL -->
-                                                <?php if ($g['id_status'] === '1') : ?>
+                                                <?php if (($g['id_status'] === '1') && ($g['keterangan_reject'] === null)) : ?>
                                                     <!-- Edit -->
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
                                                     <!-- Delete -->
@@ -82,8 +82,9 @@
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
 
                                                     <!-- STATUS REJECT -->
-                                                <?php elseif ($g['id_status'] === '1' && $g['approval'] == 'NO') : ?>
-                                                    A
+                                                <?php elseif (($g['id_status'] === '1') && ($g['keterangan_reject'] !== null)) : ?>
+                                                    <!-- Detail -->
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -243,12 +244,15 @@
                                                     <div class="modal-footer d-flex bd-highlight">
                                                         <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
-                                                        <!-- Reject -->
-                                                        <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
+                                                        <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                            <span></span>
+                                                        <?php else : ?>
+                                                            <!-- Reject -->
+                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
 
-                                                        <!-- Approval -->
-                                                        <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
-
+                                                            <!-- Approval -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
