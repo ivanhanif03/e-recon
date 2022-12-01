@@ -56,6 +56,7 @@ class GangguanProvider extends BaseController
             return redirect()->to('/gangguan/provider/index')->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $submit = date('Y-m-d H:i:s');
         $upload = $this->request->getFile('bukti_submit');
         $upload->move(WRITEPATH . '../public/img_submit/');
         $fileName = $upload->getName();
@@ -63,6 +64,7 @@ class GangguanProvider extends BaseController
         $this->GangguanModel->save([
             'id' => $id,
             'bukti_submit' => $fileName,
+            'waktu_submit' => $submit,
             'keterangan_submit' => $this->request->getVar('keterangan_submit'),
             'id_status' => 2
         ]);

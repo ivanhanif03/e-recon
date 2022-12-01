@@ -51,11 +51,10 @@ $routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:use
 $routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
 $routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1');
 
-//Gangguan BTN
+//Gangguan Provider
 $routes->get('/gangguan/provider', 'GangguanProvider::index');
 $routes->get('/gangguan/provider', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
 $routes->get('/gangguan/provider/index', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
-$routes->delete('/gangguan/provider/(:num)', 'GangguanProvider::delete/$1', ['filter' => 'role:user-provider']);
 $routes->get('/gangguan/provider/edit/(:segment)', 'GangguanProvider::edit/$1');
 
 //Link

@@ -6,13 +6,14 @@ use App\Models\GangguanModel;
 use App\Models\LinkModel;
 use App\Models\ProviderModel;
 use App\Models\StatusModel;
+use DateTime;
 
 class GangguanBtn extends BaseController
 {
     protected $GangguanModel, $LinkModel, $StatusModel, $ProviderModel;
 
     public function __construct()
-    {   
+    {
         $this->GangguanModel = new GangguanModel();
         $this->LinkModel = new LinkModel();
         $this->StatusModel = new StatusModel();
@@ -20,7 +21,7 @@ class GangguanBtn extends BaseController
     }
 
     public function index()
-    {         
+    {
         $data = [
             'title' => 'Daftar Gangguan',
             'menu' => 'gangguan_btn',
@@ -32,7 +33,7 @@ class GangguanBtn extends BaseController
         ];
 
         // dd($data);
-        
+
         return view('gangguan/btn/index', $data);
     }
 
@@ -54,7 +55,7 @@ class GangguanBtn extends BaseController
         //EXPLODE EACH FIRST LETTER NAMA LINK + ID
         $expr = '/(?<=\s|^)\w/iu';
         preg_match_all($expr, $nama_link, $matches);
-        $no_ticket = strtoupper(implode('', $matches[0])).$jml_gangguan ;
+        $no_ticket = strtoupper(implode('', $matches[0])) . $jml_gangguan;
 
         $this->GangguanModel->save([
             'no_tiket' => $no_ticket,
@@ -71,15 +72,59 @@ class GangguanBtn extends BaseController
         return redirect()->to('/gangguan/btn/index');
     }
 
-    
+    public function approval($id)
+    {
+        $data_submit = $this->GangguanModel->getWaktuSubmit($id);
+        $data_end = $this->GangguanModel->getWaktuEnd($id);
+
+        $string_data_submit = (string)$data_submit->waktu_submit;
+        $string_data_end = (string)$data_end->end;
+
+        $waktu_submit = strtotime($string_data_submit);
+        $waktu_end = strtotime($string_data_end);
+
+        $status = 0;
+
+        if ($waktu_submit > $waktu_end) {
+            $status = 3;
+        } else {
+            $status = 5;
+        }
+
+        $this->GangguanModel->save([
+            'id' => $id,
+            'approval' => "YES",
+            'id_status' => $status,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data approved successfully');
+
+        return redirect()->to('/gangguan/btn');
+    }
+
+    public function reject($id)
+    {
+        $this->GangguanModel->save([
+            'id' => $id,
+            'keterangan_reject' => $this->request->getVar('keterangan_reject'),
+            'approval' => "NO",
+            'id_status' => 1,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data rejected successfully');
+
+        return redirect()->to('/gangguan/btn');
+    }
+
+
     public function delete($id)
     {
         $this->GangguanModel->delete($id);
         session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('gangguan/btn/index');
+        return redirect()->to('gangguan/btn');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Edit Gangguan',
@@ -89,7 +134,7 @@ class GangguanBtn extends BaseController
         return view('gangguan/btn/index', $data);
     }
 
-    public function update($id) 
+    public function update($id)
     {
         $this->GangguanModel->save([
             'id' => $id,

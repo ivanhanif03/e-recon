@@ -18,9 +18,9 @@
                                 <div class="col-sm-4 col-md-2 col-lg-4">
 
                                 </div>
-                                <div class="col-sm-4 col-md-4 col-lg-2 float-end">
+                                <!-- <div class="col-sm-4 col-md-4 col-lg-2 float-end">
                                     <button type="button" data-toggle="modal" data-target="#modal-tambah-gangguan" data-backdrop="static" class="btn btn-block bg-primary">Input Gangguan<i class="fa fa-plus-circle ml-2"></i></button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
@@ -69,15 +69,113 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($g['id_status'] == 1) : ?>
+                                                <?php if ($g['id_status'] == '1') : ?>
                                                     <!-- Sumbmit -->
-                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-check-square"></i></a>
-                                                <?php else : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-edit"></i></a>
+                                                    <!-- Detail Awal -->
+                                                    <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#modal-detail-awal-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
+
+                                                <?php elseif ($g['id_status'] === '2') : ?>
                                                     <!-- Detail -->
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-check"></i></a>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
+
+
+                                        <!-- Start Modal Detail -->
+                                        <div class="modal fade" id="modal-detail-awal-gangguan<?= $g['id']; ?>">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content border-0">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Detail Gangguan</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Nomor Tiker</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <b>
+                                                                            <?= $g['no_tiket']; ?>
+                                                                        </b>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Nama Gangguan</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['nama_gangguan']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Link</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['nama_link']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Detail Gangguan</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['detail']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Start</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8 text-primary">
+                                                                        <?= $g['start']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3 ">
+                                                                        <b>End</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8 text-danger">
+                                                                        <?= $g['end']; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal Detail -->
 
                                         <!-- Start Modal Detail -->
                                         <div class="modal fade" id="modal-detail-gangguan<?= $g['id']; ?>">
@@ -200,6 +298,18 @@
                                                                     </div>
                                                                     <div class="col-8">
                                                                         <?= $g['keterangan_submit']; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Waktu Submit</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['waktu_submit']; ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
