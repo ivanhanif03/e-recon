@@ -19,9 +19,36 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
+            // ->where('gangguan.approval !=', 'YES')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
+
+    public function getProvider()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.id_provider')
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
+    public function getGangguanProvider($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.nama_link')
+            ->select('status.kategori')
+            ->select('gangguan.*')
+            // ->where('gangguan.approval !=', 'YES')
+            ->where('link.id_provider', $id_provider)
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
+
 
     public function getWaktuSubmit($id)
     {

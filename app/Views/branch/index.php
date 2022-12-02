@@ -132,7 +132,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="no_telp">No Telp</label>
-                                                                        <input type="text" class="form-control text-sm <?= ($validation->hasError('no_telp')) ? 'is-invalid' : ''; ?>" name="no_telp" id="no_telp" oninput="this.value = this.value.replace(/[^0-9,-]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukkan nomor telpon" value="<?= $brch['no_telp']; ?>" required>
+                                                                        <input type="text" class="form-control text-sm <?= ($validation->hasError('no_telp')) ? 'is-invalid' : ''; ?>" name="no_telp" id="no_telp" oninput="this.value = this.value.replace(/[^0-9,-()]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukkan nomor telpon" value="<?= $brch['no_telp']; ?>" required>
                                                                         <div class="invalid-feedback">
                                                                             <?= $validation->getError('no_telp'); ?>
                                                                         </div>

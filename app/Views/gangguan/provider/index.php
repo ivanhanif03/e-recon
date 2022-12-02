@@ -42,7 +42,9 @@
                                 <tbody>
                                     <?php foreach ($gangguan as $g) : ?>
                                         <tr>
-                                            <td><?= $g['no_tiket']; ?></td>
+                                            <td data-toggle="modal" data-target="#modal-detail-awal-gangguan<?= $g['id']; ?>">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Detail" class="font-weight-bolder"><?= $g['no_tiket']; ?></a>
+                                            </td>
                                             <td><?= $g['nama_gangguan']; ?></td>
                                             <td><?= $g['nama_link']; ?></td>
                                             <td><?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
@@ -72,9 +74,8 @@
                                                 <?php if ($g['id_status'] == '1') : ?>
                                                     <!-- Sumbmit -->
                                                     <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-edit"></i></a>
-                                                    <!-- Detail Awal -->
-                                                    <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#modal-detail-awal-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-
+                                                    <!-- Stop Clock -->
+                                                    <a href="" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modal-stopclock-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Stop Clock" class="nav-icon fas fa-clock"></i></a>
                                                 <?php elseif ($g['id_status'] === '2') : ?>
                                                     <!-- Detail -->
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-check"></i></a>
@@ -83,7 +84,7 @@
                                         </tr>
 
 
-                                        <!-- Start Modal Detail -->
+                                        <!-- Start Modal Detail Awal -->
                                         <div class="modal fade" id="modal-detail-awal-gangguan<?= $g['id']; ?>">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content border-0">
@@ -169,6 +170,23 @@
                                                                         <?= $g['end']; ?>
                                                                     </div>
                                                                 </div>
+                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3 ">
+                                                                            <b>Keterangan Reject</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-danger">
+                                                                            <b class="text-danger">
+                                                                                <?= $g['keterangan_reject']; ?>
+                                                                            </b>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -177,7 +195,7 @@
                                         </div>
                                         <!-- End Modal Detail -->
 
-                                        <!-- Start Modal Detail -->
+                                        <!-- Start Modal Detail Awal -->
                                         <div class="modal fade" id="modal-detail-gangguan<?= $g['id']; ?>">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content border-0">
@@ -332,7 +350,7 @@
                                         </div>
                                         <!-- End Modal Detail -->
 
-                                        <!-- Start Modal Edit -->
+                                        <!-- Start Modal Submit -->
                                         <div class="modal fade" id="modal-submit-gangguan<?= $g['id']; ?>">
                                             <div class="modal-dialog modal-md">
                                                 <div class="modal-content border-0">
@@ -347,6 +365,20 @@
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-lg-12">
+                                                                    <div class="form_group">
+                                                                        <span>
+                                                                            <b>
+                                                                                Keterangan Reject Perbaikan
+                                                                            </b>
+                                                                            <br>
+                                                                            <small class="text-danger">
+                                                                                <b>
+                                                                                    <?= $g['keterangan_reject']; ?>
+                                                                                </b>
+                                                                            </small>
+                                                                        </span>
+                                                                    </div>
+                                                                    <hr>
                                                                     <div class="form-group">
                                                                         <label for="keterangan_submit">Keterangan Perbaikan</label>
                                                                         <textarea class="form-control text-sm" rows="3" name="keterangan_submit" id="keterangan_submit" placeholder="Masukkan keterangan perbaikan" <?= ($validation->hasError('keterangan_submit')) ? 'is-invalid' : ''; ?> required></textarea>
@@ -372,7 +404,53 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Modal Edit -->
+                                        <!-- End Modal Submit -->
+
+                                        <!-- Start Modal Stop Clock -->
+                                        <div class="modal fade" id="modal-stopclock-gangguan<?= $g['id']; ?>">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content border-0">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Form Pengajuan Stopclock</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="<?= base_url('gangguanprovider/stopClock') . '/' . $g['id']; ?>" method="post">
+                                                        <?= csrf_field(); ?>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group">
+                                                                        <label for="keterangan_submit">Keterangan StopClock</label>
+                                                                        <textarea class="form-control text-sm" rows="3" name="keterangan_stopclock" id="keterangan_stopclock" placeholder="Masukkan keterangan pengajuan stopclock" <?= ($validation->hasError('keterangan_stopclock')) ? 'is-invalid' : ''; ?> required></textarea>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= $validation->getError('keterangan_stopclock'); ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="id_start_datetime">Dateline StopClock</label>
+                                                                        <div class="input-group date" id="id_1">
+                                                                            <input type="text" value="05/16/2018 11:31:00" class="form-control" required />
+                                                                            <div class="input-group-addon input-group-append">
+                                                                                <div class="input-group-text">
+                                                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer d-flex bd-highlight">
+                                                            <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal Stop Clock -->
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
@@ -421,5 +499,18 @@
         });
     </script>
 <?php endforeach; ?>
+<script>
+    (function($) {
+        $(function() {
+            $('#id_1').datetimepicker({
+                "allowInputToggle": true,
+                "showClose": true,
+                "showClear": true,
+                "showTodayButton": true,
+                "format": "MM/DD/YYYY HH:mm:ss",
+            });
+        });
+    })(jQuery);
+</script>
 
 <?= $this->endSection(); ?>

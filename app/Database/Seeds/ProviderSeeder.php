@@ -16,7 +16,7 @@ class ProviderSeeder extends Seeder
             ],
             [
                 'kode_provider' => 'TGR',
-                'nama_provider' => 'Tigatra',
+                'nama_provider' => 'Trigatra',
                 'alamat'        => 'Jakarta'
             ],
             [
@@ -54,7 +54,7 @@ class ProviderSeeder extends Seeder
                 'nama_provider' => 'Millenial',
                 'alamat'        => 'Jakarta'
             ],
-        
+
         ];
 
         // Using Query Builder

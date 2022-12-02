@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
                 'username'    => 'admin',
                 'no_hp'    => '085200001111',
                 'hak_akses'    => 'admin',
-                'alamat'    => 'harmoni',
+                'alamat'    => 'Harmoni',
                 'user_image'    => 'user-default.png',
                 //PASSWORD : batara123
                 'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'username'    => 'supervisor',
                 'no_hp'    => '085222221111',
                 'hak_akses'    => 'supervisor',
-                'alamat'    => 'harmoni',
+                'alamat'    => 'Jakbar',
                 'user_image'    => 'user-default.png',
                 //PASSWORD : batara123
                 'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                 'username'    => 'userbtn',
                 'no_hp'    => '085333335555',
                 'hak_akses'    => 'user-btn',
-                'alamat'    => 'harmoni',
+                'alamat'    => 'Jakut',
                 'user_image'    => 'user-default.png',
                 //PASSWORD : batara123
                 'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
@@ -58,10 +58,25 @@ class UserSeeder extends Seeder
             [
                 'fullname' => 'User Telkom',
                 'email'    => 'userprovider@telkom.com',
-                'username'    => 'userprovider',
+                'username'    => 'usertelkom',
                 'no_hp'    => '085388889999',
                 'hak_akses'    => 'user-provider',
-                'alamat'    => 'harmoni',
+                'alamat'    => 'Jaksel',
+                'user_image'    => 'user-default.png',
+                //PASSWORD : batara123
+                'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
+                'active'    => '1',
+                'force_pass_reset'    => '0',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
+            ],
+            [
+                'fullname' => 'User Trigatra',
+                'email'    => 'userprovider@trigatra.com',
+                'username'    => 'usertrigatra',
+                'no_hp'    => '085277736123',
+                'hak_akses'    => 'user-provider',
+                'alamat'    => 'Jakpus',
                 'user_image'    => 'user-default.png',
                 //PASSWORD : batara123
                 'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',
@@ -76,7 +91,7 @@ class UserSeeder extends Seeder
                 'username'    => 'user',
                 'no_hp'    => '082177778888',
                 'hak_akses'    => 'user',
-                'alamat'    => 'harmoni',
+                'alamat'    => 'Depok',
                 'user_image'    => 'user-default.png',
                 //PASSWORD : batara123
                 'password_hash'    => '$2y$10$h7xC8SaarmEMvwTpS/2NUO9/rhFMT7nPirHQBMtXtLb1ucblPROzu',

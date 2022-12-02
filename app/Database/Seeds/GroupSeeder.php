@@ -26,8 +26,12 @@ class GroupSeeder extends Seeder
                 'user_id'    => 4,
             ],
             [
-                'group_id' => 5,
+                'group_id' => 4,
                 'user_id'    => 5,
+            ],
+            [
+                'group_id' => 5,
+                'user_id'    => 6,
             ],
         ];
 

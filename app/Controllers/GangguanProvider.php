@@ -21,17 +21,34 @@ class GangguanProvider extends BaseController
 
     public function index()
     {
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
         $data = [
             'title' => 'Daftar Gangguan',
             'menu' => 'gangguan_provider',
             'validation' => \Config\Services::validation(),
-            'gangguan' => $this->GangguanModel->getGangguan(),
-            // 'link' => $this->LinkModel->findAll(),
-            // 'status' => $this->StatusModel->findAll(),
-            // 'provider' => $this->ProviderModel->findAll(),
+            'gangguan' => $this->GangguanModel->getGangguanProvider($id_provider),
         ];
-
-        // dd($data);
 
         return view('gangguan/provider/index', $data);
     }
@@ -69,33 +86,14 @@ class GangguanProvider extends BaseController
             'id_status' => 2
         ]);
 
-        // $upload->move(base_url('../img_submit/bukti'), $fileName);
-
         session()->setFlashdata('pesan', 'Data submited successfully');
 
         return redirect()->to('/gangguan/provider/index');
     }
 
-
-    public function delete($id)
+    public function stopClock($id)
     {
-        $this->GangguanModel->delete($id);
-        session()->setFlashdata('pesan', 'Data deleted successfully');
-        return redirect()->to('gangguan/btn/index');
-    }
 
-    public function edit($id)
-    {
-        $data = [
-            'title' => 'Form Edit Gangguan',
-            'validation' => \Config\Services::validation(),
-            'branch' => $this->GangguanModel->getGangguan($id)
-        ];
-        return view('gangguan/btn/index', $data);
-    }
-
-    public function update($id)
-    {
         $this->GangguanModel->save([
             'id' => $id,
             'nama_gangguan' => $this->request->getVar('nama_gangguan'),

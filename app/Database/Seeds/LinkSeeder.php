@@ -10,7 +10,6 @@ class LinkSeeder extends Seeder
     {
         $data = [
             [
-                'id'               => 1,    
                 'nama_link'        => 'Jakarta Harmoni Telkom',
                 'id_branch'        => 1,
                 'id_provider'      => 1,

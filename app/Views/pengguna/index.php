@@ -136,7 +136,7 @@
                                                                     <div class="form-group">
                                                                         <label>Role</label>
                                                                         <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
-                                                                        <select class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>" name="hak_akses" id="hak_akses" onchange="showDiv('edit_select_provider', this)" style="width: 100%;">
+                                                                        <select disabled class="form-control text-sm <?php if (session('errors.hak_akses')) : ?>is-invalid<?php endif ?>" name="hak_akses" id="hak_akses_edit" style="width: 100%;">
                                                                             <option disabled="disabled" selected="selected">
                                                                                 Pilih Role</option>
                                                                             <?php foreach ($role as $r) : ?>
@@ -145,7 +145,7 @@
                                                                             <?php endforeach; ?>
                                                                         </select>
                                                                     </div>
-                                                                    <div class="form-group" id="edit_select_provider" style="display: none;">
+                                                                    <div class="form-group" style="<?php if ($p['hak_akses'] === 'user-provider') : ?>display:block<?php else : ?>display:none<?php endif; ?>">
                                                                         <label>Provider</label>
                                                                         <!-- <select class="form-control select2bs4 text-sm" name="provider" id="provider" -->
                                                                         <select class="form-control text-sm <?php if (session('errors.provider')) : ?>is-invalid<?php endif ?>" name="provider" id="provider" style="width: 100%;">
@@ -290,4 +290,5 @@
         document.getElementById(divId).style.display = element.value == 'user-provider' ? 'block' : 'none';
     }
 </script>
+
 <?= $this->endSection(); ?>

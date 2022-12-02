@@ -69,8 +69,12 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <!-- STATUS ON PROCESS AWAL -->
-                                                <?php if (($g['id_status'] === '1') && ($g['keterangan_reject'] === null)) : ?>
+                                                <!-- PERBAIKAN SELESAI -->
+                                                <?php if ($g['approval'] === 'YES') : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
+
+                                                    <!-- STATUS ON PROCESS AWAL -->
+                                                <?php elseif (($g['id_status'] === '1') && ($g['keterangan_reject'] === null)) : ?>
                                                     <!-- Edit -->
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
                                                     <!-- Delete -->
@@ -201,6 +205,21 @@
                                                                     </div>
                                                                 </div>
                                                                 <hr>
+                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan Reject</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-danger">
+                                                                            <?= $g['keterangan_reject']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <b>Keterangan Submit</b>
@@ -242,16 +261,28 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                        <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+                                                        <?php if (($g['keterangan_reject'] === null) && ($g['approval'] === null)) : ?>
+                                                            <!-- Batal -->
+                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
-                                                        <?php if ($g['keterangan_reject'] !== null) : ?>
-                                                            <span></span>
-                                                        <?php else : ?>
                                                             <!-- Reject -->
                                                             <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
 
                                                             <!-- Approval -->
                                                             <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
+                                                        <?php elseif (($g['keterangan_reject'] === null) && ($g['approval'] === 'YES')) : ?>
+                                                            <span></span>
+                                                        <?php elseif (($g['keterangan_reject'] !== null) && ($g['approval'] === 'NO')) : ?>
+                                                            <!-- Batal -->
+                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+
+                                                            <!-- Reject -->
+                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
+
+                                                            <!-- Approval -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
+                                                        <?php else : ?>
+                                                            <span></span>
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
@@ -259,7 +290,7 @@
                                         </div>
                                         <!-- End Modal Detail -->
 
-                                        <!-- Start Modal Reject -->
+                                        <!-- Start Modal Confirmation Reject -->
                                         <div class="modal fade" id="modal-reject-gangguan<?= $g['id'] ?>">
                                             <div class="modal-dialog modal-md">
                                                 <div class="modal-content border-0">
@@ -294,9 +325,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Modal Reject -->
+                                        <!-- End Modal Confirmation Reject -->
 
-                                        <!-- Start Modal Approval -->
+                                        <!-- Start Modal Confirmation Approval -->
                                         <div class="modal fade" id="modal-approval-gangguan<?= $g['id'] ?>">
                                             <div class="modal-dialog modal-md">
                                                 <div class="modal-content border-0">
@@ -322,7 +353,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Modal Approval -->
+                                        <!-- End Modal Confirmation Approval -->
 
                                         <!-- Start Modal Delete -->
                                         <div class="modal fade" id="modal-hapus-gangguan<?= $g['id'] ?>">
@@ -381,7 +412,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Link</label>
-                                                                        <select class="form-control select2bs4 text-sm <?= ($validation->hasError('link')) ? 'is-invalid' : ''; ?>" name="link" id="link_edit" style="width: 100%;">
+                                                                        <select disabled class="form-control select2bs4 text-sm <?= ($validation->hasError('link')) ? 'is-invalid' : ''; ?>" name="link" id="link_edit" style="width: 100%;">
                                                                             <option disabled="disabled" selected="selected">
                                                                                 Pilih Link</option>
                                                                             <?php foreach ($link as $l) : ?>

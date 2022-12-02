@@ -6,42 +6,50 @@ use CodeIgniter\Database\Migration;
 
 class Stopclock extends Migration
 {
-public function up()
-    {
-        $this->forge->addField([
-			'nomor_tiket'          => [
+	public function up()
+	{
+		$this->forge->addField([
+			'id'          => [
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
+			],
+			'id_gangguan'      => [
+				'type'           => 'INT',
+				'constraint'     => '11',
+				'unsigned'       => true,
+			],
+			'keterangan_stopclock'       => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '255'
 			],
 			'start_pause'       => [
 				'type'           => 'DATETIME',
 			],
 			'dateline'      => [
 				'type'           => 'DATETIME',
-				
-            ],
+			],
 			'created_at'      => [
 				'type'           => 'DATETIME',
 			],
 			'updated_at'      => [
 				'type'           => 'DATETIME',
 			],
-
 		]);
-        	
-        // Membuat primary key
-		$this->forge->addKey('nomor_tiket', TRUE);
+
+		// Membuat primary key
+		$this->forge->addKey('id', TRUE);
+
+		// Membuat foreign key
+		$this->forge->addForeignKey('id_gangguan', 'gangguan', 'id', '', 'CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('stopclock', TRUE);
-    }
-    public function down()
-    {
-        // menghapus tabel
+	}
+	public function down()
+	{
+		// menghapus tabel
 		$this->forge->dropTable('stopclock');
-    }
+	}
 }
-
-    
