@@ -187,6 +187,71 @@
                                                                     </div>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
+                                                                <?php if ($g['approval'] === null) : ?>
+                                                                    <span></span>
+                                                                <?php else : ?>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Status</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <span class="badge badge-pill text-uppercase 
+                                                                        <?php if ($g['id_status'] === '1') : ?>
+                                                                        badge-warning
+                                                                        <?php elseif ($g['id_status'] === '2') : ?>
+                                                                        badge-primary
+                                                                        <?php elseif ($g['id_status'] === '3') : ?>
+                                                                        badge-danger
+                                                                        <?php elseif ($g['id_status'] === '4') : ?>
+                                                                        badge-secondary
+                                                                        <?php else : ?>
+                                                                        badge-success
+                                                                        <?php endif ?>">
+                                                                                <?= $g['kategori']; ?>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['keterangan_submit']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Waktu Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['waktu_submit']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Bukti Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -429,22 +494,36 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="id_start_datetime">Dateline StopClock</label>
-                                                                        <div class="input-group date" id="id_1">
-                                                                            <input type="text" value="05/16/2018 11:31:00" class="form-control" required />
-                                                                            <div class="input-group-addon input-group-append">
-                                                                                <div class="input-group-text">
-                                                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        <label>Tambahan Waktu Penyelesaian</label>
+                                                                        <select class="form-control text-sm" name="dateline" id="dateline" style="width: 100%;">
+                                                                            <option disabled="disabled" selected="selected">
+                                                                                Pilih Durasi</option>
+                                                                            <option value="1">
+                                                                                1 Jam
+                                                                            </option>
+                                                                            <option value="2">
+                                                                                2 Jam
+                                                                            </option>
+                                                                            <option value="3">
+                                                                                3 Jam
+                                                                            </option>
+                                                                            <option value="4">
+                                                                                4 Jam
+                                                                            </option>
+                                                                            <option value="5">
+                                                                                5 Jam
+                                                                            </option>
+                                                                            <option value="6">
+                                                                                6 Jam
+                                                                            </option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
+                                                                <div class="modal-footer d-flex bd-highlight">
+                                                                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
+                                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer d-flex bd-highlight">
-                                                            <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary">Simpan</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -500,17 +579,8 @@
     </script>
 <?php endforeach; ?>
 <script>
-    (function($) {
-        $(function() {
-            $('#id_1').datetimepicker({
-                "allowInputToggle": true,
-                "showClose": true,
-                "showClear": true,
-                "showTodayButton": true,
-                "format": "MM/DD/YYYY HH:mm:ss",
-            });
-        });
-    })(jQuery);
+    $(document).ready(function() {
+        $('.datetimepickers').datetimepicker();
+    });
 </script>
-
 <?= $this->endSection(); ?>

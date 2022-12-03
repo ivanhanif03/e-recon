@@ -15,11 +15,6 @@ class Stopclock extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'id_gangguan'      => [
-				'type'           => 'INT',
-				'constraint'     => '11',
-				'unsigned'       => true,
-			],
 			'keterangan_stopclock'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255'
@@ -40,9 +35,6 @@ class Stopclock extends Migration
 
 		// Membuat primary key
 		$this->forge->addKey('id', TRUE);
-
-		// Membuat foreign key
-		$this->forge->addForeignKey('id_gangguan', 'gangguan', 'id', '', 'CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('stopclock', TRUE);

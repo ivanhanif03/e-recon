@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class GangguanModel extends Model
 {
-    protected $table = 'gangguan';
+    protected $table = 'stopclock';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit'];
+    protected $allowedFields = ['id_gangguan', 'keterangan_stopclock', 'start_pause', 'dateline'];
 
 
     public function getGangguan()
