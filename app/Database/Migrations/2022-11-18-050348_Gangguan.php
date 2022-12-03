@@ -70,6 +70,11 @@ class Gangguan extends Migration
                 'constraint' => '255',
                 'null' => true
             ],
+            'id_stopclock' => [
+                'type'      => 'INT',
+                'constraint' => '11',
+                'unsigned'       => true,
+            ],
             'created_at'      => [
                 'type'           => 'DATETIME',
             ],
@@ -83,9 +88,7 @@ class Gangguan extends Migration
         //membuat foreign key
         $this->forge->addForeignKey('id_link', 'link', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('id_status', 'status', 'id', '', 'CASCADE');
-        // $this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
-        // $this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-        // $this->forge->addForeignKey('id_regional','regional','id','','CASCADE');
+        $this->forge->addForeignKey('id_stopclock', 'stopclock', 'id', '', 'CASCADE');
 
         //membuat tabel
         $this->forge->createTable('gangguan', true);
