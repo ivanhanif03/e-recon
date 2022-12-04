@@ -10,7 +10,7 @@
         background-color: #052454 !important
     }
 </style>
-<!-- 182638 -->
+
 <aside class="main-sidebar sidebar-dark-primary">
     <a href="<?= base_url(''); ?>" class="brand-link bg-white">
         <img src="<?= base_url('/img/icon.png'); ?>" alt="E-Recon Logo" class="brand-image ">
@@ -39,9 +39,9 @@
                 <!-- Supervisor -->
                 <?php if (in_groups('supervisor')) : ?>
                     <li class="nav-item mb-2">
-                        <a href="<?= base_url('provider'); ?>" class="nav-link <?php if ($menu == 'provider') {
-                                                                                    echo 'active';
-                                                                                } ?>">
+                        <a href="<?= base_url('gangguan/supervisor'); ?>" class="nav-link <?php if ($menu == 'supervisor') {
+                                                                                                echo 'active';
+                                                                                            } ?>">
                             <i class="nav-icon fas fa-clipboard-check"></i>
                             <p>
                                 Approval

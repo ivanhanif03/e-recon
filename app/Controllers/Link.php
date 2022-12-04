@@ -12,7 +12,7 @@ class Link extends BaseController
     protected $LinkModel, $BranchModel, $ProviderModel, $PenggunaModel;
 
     public function __construct()
-    {   
+    {
         $this->LinkModel = new LinkModel();
         $this->BranchModel = new BranchModel();
         $this->ProviderModel = new ProviderModel();
@@ -20,7 +20,7 @@ class Link extends BaseController
     }
 
     public function index()
-    {         
+    {
         $data = [
             'title' => 'Daftar Link',
             'menu' => 'link',
@@ -28,11 +28,11 @@ class Link extends BaseController
             'link' => $this->LinkModel->getLink(),
             'branch' => $this->BranchModel->findAll(),
             'provider' => $this->ProviderModel->findAll(),
-            'users' => $this->PenggunaModel->findAll(),
+            'users' => $this->PenggunaModel->getPenggunaProvider(),
         ];
 
         // dd($data);
-        
+
         return view('link/index', $data);
     }
 
@@ -50,7 +50,7 @@ class Link extends BaseController
         return redirect()->to('/link/index');
     }
 
-    
+
     public function delete($id)
     {
         $this->LinkModel->delete($id);
@@ -58,7 +58,7 @@ class Link extends BaseController
         return redirect()->to('link/index');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Edit Link',
@@ -68,7 +68,7 @@ class Link extends BaseController
         return view('link/index', $data);
     }
 
-    public function update($id) 
+    public function update($id)
     {
         $this->LinkModel->save([
             'id' => $id,

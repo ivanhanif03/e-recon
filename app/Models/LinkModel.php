@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LinkModel extends Model 
+class LinkModel extends Model
 {
     protected $table = 'link';
     protected $primaryKey = 'id';
@@ -14,14 +14,14 @@ class LinkModel extends Model
     public function getLink()
     {
         return $this->db->table('link')
-        ->join('branch','branch.id=link.id_branch', 'left')
-        ->join('provider', 'provider.id=link.id_provider', 'left')
-        ->join('users', 'users.id=link.id_pic', 'left')
-        ->select('branch.nama_branch')
-        ->select('provider.nama_provider')
-        ->select('users.fullname')
-        ->select('link.*')
-        ->orderBy('link.id')
-        ->get()->getResultArray();  
-   }
+            ->join('branch', 'branch.id=link.id_branch', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->join('users', 'users.id=link.id_pic', 'left')
+            ->select('branch.nama_branch')
+            ->select('provider.nama_provider')
+            ->select('users.fullname')
+            ->select('link.*')
+            ->orderBy('link.id')
+            ->get()->getResultArray();
+    }
 }

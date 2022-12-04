@@ -15,6 +15,18 @@ class LinkSeeder extends Seeder
                 'id_provider'      => 1,
                 'id_pic'           => 4
             ],
+            [
+                'nama_link'        => 'Antapani Trigatra',
+                'id_branch'        => 2,
+                'id_provider'      => 2,
+                'id_pic'           => 5
+            ],
+            [
+                'nama_link'        => 'Cempaka Putih Permai Telkom',
+                'id_branch'        => 3,
+                'id_provider'      => 1,
+                'id_pic'           => 4
+            ],
         ];
 
         // Using Query Builder

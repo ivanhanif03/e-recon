@@ -9,7 +9,7 @@ class GangguanModel extends Model
     protected $table = 'gangguan';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit'];
+    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock'];
 
 
     public function getGangguan()
@@ -25,12 +25,27 @@ class GangguanModel extends Model
             ->get()->getResultArray();
     }
 
+    public function getGangguanSupervisor()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.nama_link')
+            ->select('status.kategori')
+            ->select('gangguan.*')
+            ->where('gangguan.approval_stopclock !=', null)
+            // ->where('gangguan.approval !=', 'YES')
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
     public function getProvider()
     {
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->join('status', 'status.id=gangguan.id_status', 'left')
             ->select('link.id_provider')
+            // ->where('gangguan.approval !=', 'YES')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
@@ -48,8 +63,6 @@ class GangguanModel extends Model
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
-
-
 
     public function getWaktuSubmit($id)
     {

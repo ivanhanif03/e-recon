@@ -40,79 +40,73 @@ $routes->get('/', 'Pages::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
 $routes->get('/login', 'Login::index');
-$routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/status', 'Status::index');
-$routes->get('/stop_clock', 'StopClock::index');
+
+//Gangguan Supervisor
+$routes->get('/gangguan/supervisor', 'GangguanSupervisor::index', ['filter' => 'role:supervisor']);
+$routes->get('/gangguan/supervisor/index', 'GangguanSupervisor::index', ['filter' => 'role:supervisor']);
+$routes->delete('/gangguan/supervisor/(:num)', 'GangguanSupervisor::delete/$1', ['filter' => 'role:supervisor']);
+// $routes->get('/gangguan/supervisor/edit/(:segment)', 'GangguanSupervisor::edit/$1', ['filter' => 'role:supervisor']);
 
 //Gangguan BTN
-$routes->get('/gangguan/btn', 'GangguanBtn::index');
 $routes->get('/gangguan/btn', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
 $routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
 $routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
-$routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1');
+// $routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1', ['filter' => 'role:user-btn']);
 
 //Gangguan Provider
-$routes->get('/gangguan/provider', 'GangguanProvider::index');
 $routes->get('/gangguan/provider', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
 $routes->get('/gangguan/provider/index', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
-$routes->get('/gangguan/provider/edit/(:segment)', 'GangguanProvider::edit/$1');
+// $routes->get('/gangguan/provider/edit/(:segment)', 'GangguanProvider::edit/$1');
 
 //Link
-$routes->get('/link', 'Link::index');
 $routes->get('/link', 'Link::index', ['filter' => 'role:admin']);
 $routes->get('/link/index', 'Link::index', ['filter' => 'role:admin']);
 $routes->delete('/link/(:num)', 'Link::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/link/edit/(:segment)', 'Link::edit/$1');
+// $routes->get('/link/edit/(:segment)', 'Link::edit/$1');
 
 //Regional
-$routes->get('/regional', 'Regional::index');
 $routes->get('/regional', 'Regional::index', ['filter' => 'role:admin']);
 $routes->get('/regional/index', 'Regional::index', ['filter' => 'role:admin']);
 $routes->delete('/regional/(:num)', 'Regional::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/regional/edit/(:segment)', 'Regional::edit/$1');
+// $routes->get('/regional/edit/(:segment)', 'Regional::edit/$1');
 
 //Branch
-$routes->get('/branch', 'Branch::index');
 $routes->get('/branch', 'Branch::index', ['filter' => 'role:admin']);
 $routes->get('/branch/index', 'Branch::index', ['filter' => 'role:admin']);
 $routes->delete('/branch/(:num)', 'Branch::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/branch/edit/(:segment)', 'Branch::edit/$1');
+// $routes->get('/branch/edit/(:segment)', 'Branch::edit/$1');
 
 //Provider
-$routes->get('/provider', 'Provider::index');
 $routes->get('/provider', 'Provider::index', ['filter' => 'role:admin']);
 $routes->get('/provider/index', 'Provider::index', ['filter' => 'role:admin']);
 $routes->delete('/provider/(:num)', 'Provider::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/provider/edit/(:segment)', 'Provider::edit/$1');
+// $routes->get('/provider/edit/(:segment)', 'Provider::edit/$1');
 
 //Jenis Branch
-$routes->get('/jenis_branch', 'JenisBranch::index');
 $routes->get('/jenis_branch', 'JenisBranch::index', ['filter' => 'role:admin']);
 $routes->get('/jenis_branch/index', 'JenisBranch::index', ['filter' => 'role:admin']);
 $routes->delete('/jenis_branch/(:num)', 'JenisBranch::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/jenis_branch/edit/(:segment)', 'JenisBranch::edit/$1');
+// $routes->get('/jenis_branch/edit/(:segment)', 'JenisBranch::edit/$1');
 
 //Klasifikasi Branch
-$routes->get('/klasifikasi_branch', 'KlasifikasiBranch::index');
 $routes->get('/klasifikasi_branch', 'KlasifikasiBranch::index', ['filter' => 'role:admin']);
 $routes->get('/klasifikasi_branch/index', 'KlasifikasiBranch::index', ['filter' => 'role:admin']);
 $routes->delete('/klasifikasi_branch/(:num)', 'KlasifikasiBranch::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/klasifikasi_branch/edit/(:segment)', 'KlasifikasiBranch::edit/$1');
+// $routes->get('/klasifikasi_branch/edit/(:segment)', 'KlasifikasiBranch::edit/$1');
 
 //Hak Akses
-$routes->get('/hak_akses', 'HakAkses::index');
 $routes->get('/hak_akses', 'HakAkses::index', ['filter' => 'role:admin']);
 $routes->get('/hak_akses/index', 'HakAkses::index', ['filter' => 'role:admin']);
 $routes->delete('/hak_akses/(:num)', 'HakAkses::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/hak_akses/edit/(:segment)', 'HakAkses::edit/$1');
+// $routes->get('/hak_akses/edit/(:segment)', 'HakAkses::edit/$1');
 
 //User
-$routes->get('/user', 'User::index');
 $routes->get('/pengguna', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->get('/pengguna/index', 'Pengguna::index', ['filter' => 'role:admin']);
 $routes->delete('/pengguna/(:num)', 'Pengguna::delete/$1', ['filter' => 'role:admin']);
-$routes->get('/pengguna/(:any)', 'Pengguna::detail/$1');
-$routes->get('/pengguna/edit/(:segment)', 'Pengguna::edit/$1');
+$routes->get('/pengguna/(:any)', 'Pengguna::detail/$1', ['filter' => 'role:admin']);
+// $routes->get('/pengguna/edit/(:segment)', 'Pengguna::edit/$1');
 
 /*
  * --------------------------------------------------------------------

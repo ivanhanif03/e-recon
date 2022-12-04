@@ -6,20 +6,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="mb-4">Gangguan Jaringan</h1>
+                    <h1 class="mb-4">Approval StopClock Gangguan Jaringan</h1>
                     <?= view('Myth\Auth\Views\_message_block') ?>
 
                     <div class="card shadow-none border-0">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-lg-6 col-sm-4 align-self-center">
+                                <div class="col-12 align-self-center">
                                     <h3 class="card-title">Daftar Gangguan</h3>
-                                </div>
-                                <div class="col-sm-4 col-md-2 col-lg-4">
-
-                                </div>
-                                <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-gangguan" data-backdrop="static" class="btn btn-block bg-primary">Input Gangguan<i class="fa fa-plus-circle ml-2"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +65,7 @@
                                             <td class="text-center">
                                                 <!-- PERBAIKAN SELESAI -->
                                                 <?php if ($g['approval'] === 'YES') : ?>
-                                                    <a href="" class="btn btn-sm <?php if ($g['id_status'] === '3') : ?>btn-outline-danger<?php elseif ($g['id_status'] === '5') : ?>btn-outline-success<?php else : ?>btn-outline-secondary<?php endif; ?>" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas <?php if (($g['id_status'] === '3') || ($g['id_status'] === '5')) : ?>fa-check<?php else : ?>fa-list <?php endif; ?>"></i></a>
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
 
                                                     <!-- STATUS ON PROCESS AWAL -->
                                                 <?php elseif (($g['id_status'] === '1') && ($g['keterangan_reject'] === null)) : ?>
@@ -204,8 +198,8 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
+                                                                <hr>
                                                                 <?php if ($g['keterangan_reject'] !== null) : ?>
-                                                                    <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Keterangan Reject</b>
@@ -220,106 +214,48 @@
                                                                     <hr>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
-                                                                <?php if ($g['keterangan_submit'] !== null) : ?>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Keterangan Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['keterangan_submit']; ?>
-                                                                        </div>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Keterangan Submit</b>
                                                                     </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Waktu Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <b>
-                                                                                <?= $g['waktu_submit']; ?>
-                                                                            </b>
-                                                                        </div>
+                                                                    <div class="col-1">
+                                                                        :
                                                                     </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Bukti Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
-                                                                        </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['keterangan_submit']; ?>
                                                                     </div>
-                                                                <?php else : ?>
-                                                                <?php endif; ?>
-                                                                <?php if ($g['keterangan_stopclock'] !== null) : ?>
-                                                                    <hr>
-                                                                    <h6 class="text-danger">
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Waktu Submit</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
                                                                         <b>
-                                                                            Permohonan StopClock
+                                                                            <?= $g['waktu_submit']; ?>
                                                                         </b>
-                                                                    </h6>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Keterangan StopClock</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['keterangan_stopclock']; ?>
-                                                                        </div>
                                                                     </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Start StopClock</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8 text-secondary font-weight-bold">
-                                                                            <?= $g['start_stopclock']; ?>
-                                                                        </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <b>Bukti Submit</b>
                                                                     </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Waktu Tambahan</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['extra_time_stopclock']; ?> Jam
-                                                                        </div>
+                                                                    <div class="col-1">
+                                                                        :
                                                                     </div>
-                                                                <?php else : ?>
-                                                                <?php endif; ?>
+                                                                    <div class="col-8">
+                                                                        <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                        <?php if (($g['keterangan_reject'] === null) && ($g['approval'] === null) && ($g['keterangan_stopclock'] !== null)) : ?>
-                                                            <!-- Batal -->
-                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
-
-                                                            <!-- Reject -->
-                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject StopClock</button>
-
-                                                            <!-- Approval -->
-                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-secondary">Approval StopClock</button>
-                                                        <?php elseif (($g['keterangan_reject'] === null) && ($g['approval'] === null)) : ?>
+                                                        <?php if (($g['keterangan_reject'] === null) && ($g['approval'] === null)) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
@@ -483,7 +419,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer d-flex bd-highlight">
-                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+                                                            <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                                             <!-- swalSaveSuccess -->
                                                         </div>
@@ -516,56 +452,6 @@
     </div>
 </div>
 
-<!-- Start Modal Input -->
-<div class="modal fade" id="modal-tambah-gangguan">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content border-0">
-            <div class="modal-header">
-                <h4 class="modal-title">Form Tambah Gangguan</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('/gangguanBtn/save/') ?>" method="post">
-                <?= csrf_field(); ?>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input type="hidden" id="kode_provider" name="kode_provider" value="kode">
-                            <input type="hidden" id="approval" name="approval">
-                            <div class="form-group">
-                                <label for="nama_gangguan">Nama Gangguan</label>
-                                <input type="text" class="form-control text-sm" name="nama_gangguan" id="nama_gangguan" placeholder="Masukkan nama gangguan" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="detail">Detail</label>
-                                <textarea type="text" class="form-control text-sm" name="detail" id="detail" placeholder="Masukkan detail" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Link</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('link')) ? 'is-invalid' : ''; ?>" name="link" id="link_tambah" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">
-                                        Pilih Link</option>
-                                    <?php foreach ($link as $l) : ?>
-                                        <!-- <option hidden="hidden" value="<?= $l['nama_link']; ?>"></option> -->
-                                        <option value="<?= $l['id'] . "_" . $l['nama_link']; ?>">
-                                            <?= $l['nama_link']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex bd-highlight">
-                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal Input -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>
