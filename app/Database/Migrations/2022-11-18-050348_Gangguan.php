@@ -104,6 +104,16 @@ class Gangguan extends Migration
                 'constraint' => '255',
                 'null' => true
             ],
+            'offline' => [
+                'type'      => 'INT',
+                'constraint' => '11',
+                'null' => true
+            ],
+            'sla' => [
+                'type'      => 'INT',
+                'constraint' => '11',
+                'null' => true
+            ],
             'created_at'      => [
                 'type'           => 'DATETIME',
             ],
