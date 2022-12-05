@@ -9,7 +9,7 @@ class GangguanModel extends Model
     protected $table = 'gangguan';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock'];
+    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock', 'approval_stopclock', 'ket_reject_stopclock', 'approval_stopclock_spv', 'ket_reject_stopclock_spv'];
 
 
     public function getGangguan()
@@ -33,7 +33,7 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            ->where('gangguan.approval_stopclock !=', null)
+            ->where('gangguan.approval_stopclock', 'YES')
             // ->where('gangguan.approval !=', 'YES')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();

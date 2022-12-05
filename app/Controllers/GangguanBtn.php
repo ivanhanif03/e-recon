@@ -116,6 +116,32 @@ class GangguanBtn extends BaseController
         return redirect()->to('/gangguan/btn');
     }
 
+    public function approvalStopClock($id)
+    {
+        $this->GangguanModel->save([
+            'id' => $id,
+            'approval_stopclock' => "YES",
+        ]);
+
+        session()->setFlashdata('pesan', 'Data approved successfully');
+
+        return redirect()->to('/gangguan/btn/index');
+    }
+
+    public function rejectStopClock($id)
+    {
+        $this->GangguanModel->save([
+            'id' => $id,
+            'ket_reject_stopclock' => $this->request->getVar('keterangan_reject'),
+            'approval_stopclock' => "NO",
+            'id_status' => 1,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data rejected successfully');
+
+        return redirect()->to('/gangguan/btn');
+    }
+
 
     public function delete($id)
     {
@@ -139,8 +165,8 @@ class GangguanBtn extends BaseController
         $this->GangguanModel->save([
             'id' => $id,
             'nama_gangguan' => $this->request->getVar('nama_gangguan'),
-            'id_link' => $this->request->getVar('nama_link'),
-            'detail' => $this->request->getVar('detail')
+            'detail' => $this->request->getVar('detail'),
+            'id_link' => $this->request->getVar('link'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');

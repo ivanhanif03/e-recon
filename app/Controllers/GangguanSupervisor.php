@@ -3,14 +3,20 @@
 namespace App\Controllers;
 
 use App\Models\GangguanModel;
+use App\Models\LinkModel;
+use App\Models\ProviderModel;
+use App\Models\StatusModel;
 
 class GangguanSupervisor extends BaseController
 {
-    protected $GangguanModel;
+    protected $GangguanModel, $LinkModel, $StatusModel, $ProviderModel;
 
     public function __construct()
     {
         $this->GangguanModel = new GangguanModel();
+        $this->LinkModel = new LinkModel();
+        $this->StatusModel = new StatusModel();
+        $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
@@ -20,6 +26,9 @@ class GangguanSupervisor extends BaseController
             'menu' => 'supervisor',
             'validation' => \Config\Services::validation(),
             'gangguan' => $this->GangguanModel->getGangguanSupervisor(),
+            'link' => $this->LinkModel->findAll(),
+            'status' => $this->StatusModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
         ];
 
         return view('gangguan/supervisor/index', $data);

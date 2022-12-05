@@ -8,7 +8,11 @@
                 <div class="col-12">
                     <h1 class="mb-4">Approval StopClock Gangguan Jaringan</h1>
                     <?= view('Myth\Auth\Views\_message_block') ?>
-
+                    <?php if (session()->getFlashdata('pesan')) : ?>
+                        <div class="alert alert-success" role="alert" id="alert-delete">
+                            <?= session()->getFlashdata('pesan'); ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="card shadow-none border-0">
                         <div class="card-header">
                             <div class="row">
@@ -57,9 +61,9 @@
                                                     <?= $g['kategori']; ?>
                                                 </span>
                                             </td>
-                                            <td class="text-center"><?php if ($g['approval'] === null) : ?> -
+                                            <td class="text-center"><?php if ($g['approval_stopclock_spv'] === null) : ?> -
                                                 <?php else : ?>
-                                                    <?= $g['approval']; ?>
+                                                    <?= $g['approval_stopclock_spv']; ?>
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
@@ -198,64 +202,56 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
-                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                                <?php if ($g['keterangan_stopclock'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            Permohonan StopClock
+                                                                        </b>
+                                                                    </h6>
+                                                                    <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
-                                                                            <b>Keterangan Reject</b>
+                                                                            <b>Keterangan StopClock</b>
                                                                         </div>
                                                                         <div class="col-1">
                                                                             :
                                                                         </div>
-                                                                        <div class="col-8 text-danger">
-                                                                            <?= $g['keterangan_reject']; ?>
+                                                                        <div class="col-8">
+                                                                            <?= $g['keterangan_stopclock']; ?>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Start StopClock</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-secondary font-weight-bold">
+                                                                            <?= $g['start_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Waktu Tambahan</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['extra_time_stopclock']; ?> Jam
+                                                                        </div>
+                                                                    </div>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
-                                                                <div class="row">
-                                                                    <div class="col-3">
-                                                                        <b>Keterangan Submit</b>
-                                                                    </div>
-                                                                    <div class="col-1">
-                                                                        :
-                                                                    </div>
-                                                                    <div class="col-8">
-                                                                        <?= $g['keterangan_submit']; ?>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                <div class="row">
-                                                                    <div class="col-3">
-                                                                        <b>Waktu Submit</b>
-                                                                    </div>
-                                                                    <div class="col-1">
-                                                                        :
-                                                                    </div>
-                                                                    <div class="col-8">
-                                                                        <b>
-                                                                            <?= $g['waktu_submit']; ?>
-                                                                        </b>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                <div class="row">
-                                                                    <div class="col-3">
-                                                                        <b>Bukti Submit</b>
-                                                                    </div>
-                                                                    <div class="col-1">
-                                                                        :
-                                                                    </div>
-                                                                    <div class="col-8">
-                                                                        <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                        <?php if (($g['keterangan_reject'] === null) && ($g['approval'] === null)) : ?>
+                                                        <?php if ($g['ket_reject_stopclock_spv'] === null) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 

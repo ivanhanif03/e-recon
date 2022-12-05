@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class ProviderSeeder extends Seeder
 {
@@ -12,47 +13,65 @@ class ProviderSeeder extends Seeder
             [
                 'kode_provider' => 'TLK',
                 'nama_provider' => 'Telkom',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'TGR',
                 'nama_provider' => 'Trigatra',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'PML',
                 'nama_provider' => 'PrimaLink',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'LTA',
                 'nama_provider' => 'LintasArta',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'IPW',
                 'nama_provider' => 'IPWAN',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'BAS',
                 'nama_provider' => 'BAS',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'CMT',
                 'nama_provider' => 'ComNet',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'IFT',
                 'nama_provider' => 'IForte',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_provider' => 'MLN',
                 'nama_provider' => 'Millenial',
-                'alamat'        => 'Jakarta'
+                'alamat'        => 'Jakarta',
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
 
         ];

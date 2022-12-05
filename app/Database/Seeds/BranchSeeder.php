@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class BranchSeeder extends Seeder
 {
@@ -16,7 +17,9 @@ class BranchSeeder extends Seeder
                 'no_telp'          => '0216336789',
                 'id_regional'      => 2,
                 'id_jenis_branch'  => 1,
-                'id_klasifikasi_branch'  => null
+                'id_klasifikasi_branch'  => null,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_branch'      => 90,
@@ -25,7 +28,9 @@ class BranchSeeder extends Seeder
                 'no_telp'          => '0227200720',
                 'id_regional'      => 1,
                 'id_jenis_branch'  => 2,
-                'id_klasifikasi_branch'  => 2
+                'id_klasifikasi_branch'  => 2,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'kode_branch'      => 396,
@@ -34,7 +39,9 @@ class BranchSeeder extends Seeder
                 'no_telp'          => '021-91274176',
                 'id_regional'      => 2,
                 'id_jenis_branch'  => 2,
-                'id_klasifikasi_branch'  => 3
+                'id_klasifikasi_branch'  => 3,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
         ];
 

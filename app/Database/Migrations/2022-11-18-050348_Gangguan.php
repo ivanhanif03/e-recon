@@ -89,9 +89,19 @@ class Gangguan extends Migration
                 'constraint' => '50',
                 'null' => true
             ],
+            'ket_reject_stopclock' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
             'approval_stopclock_spv' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '50',
+                'null' => true
+            ],
+            'ket_reject_stopclock_spv' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255',
                 'null' => true
             ],
             'created_at'      => [

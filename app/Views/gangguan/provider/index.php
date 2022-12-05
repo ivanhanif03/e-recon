@@ -8,7 +8,11 @@
                 <div class="col-12">
                     <h1 class="mb-4">Gangguan Jaringan</h1>
                     <?= view('Myth\Auth\Views\_message_block') ?>
-
+                    <?php if (session()->getFlashdata('pesan')) : ?>
+                        <div class="alert alert-success" role="alert" id="alert-delete">
+                            <?= session()->getFlashdata('pesan'); ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="card shadow-none border-0">
                         <div class="card-header">
                             <div class="row">
@@ -606,6 +610,9 @@
 <script>
     $(function() {
         $("#tableGangguan").DataTable({
+            "order": [
+                [3, 'asc']
+            ],
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,

@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class LinkSeeder extends Seeder
 {
@@ -13,19 +14,25 @@ class LinkSeeder extends Seeder
                 'nama_link'        => 'Jakarta Harmoni Telkom',
                 'id_branch'        => 1,
                 'id_provider'      => 1,
-                'id_pic'           => 4
+                'id_pic'           => 4,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'nama_link'        => 'Antapani Trigatra',
                 'id_branch'        => 2,
                 'id_provider'      => 2,
-                'id_pic'           => 5
+                'id_pic'           => 5,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
             [
                 'nama_link'        => 'Cempaka Putih Permai Telkom',
                 'id_branch'        => 3,
                 'id_provider'      => 1,
-                'id_pic'           => 4
+                'id_pic'           => 4,
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
             ],
         ];
 
