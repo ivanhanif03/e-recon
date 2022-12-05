@@ -46,7 +46,7 @@ class RegionalSeeder extends Seeder
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],
-        
+
         ];
 
         // Simple Queries

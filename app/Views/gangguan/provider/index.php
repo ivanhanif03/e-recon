@@ -83,6 +83,9 @@
                                                 <?php elseif ($g['id_status'] === '2') : ?>
                                                     <!-- Detail -->
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-check"></i></a>
+                                                <?php elseif (($g['id_status'] === '4') && ($g['start'] < $now)) : ?>
+                                                    <!-- Sumbmit -->
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-edit"></i></a>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -375,47 +378,14 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                                <?php if ($g['keterangan_submit'] === null) : ?>
-                                                                    <span></span>
-                                                                <?php else : ?>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Keterangan Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['keterangan_submit']; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Waktu Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['waktu_submit']; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Bukti Submit</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
-                                                                        </div>
-                                                                    </div>
-                                                                <?php endif; ?>
+
                                                                 <?php if ($g['keterangan_stopclock'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            STOPCLOCK
+                                                                        </b>
+                                                                    </h6>
                                                                     <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
@@ -453,6 +423,72 @@
                                                                         </div>
                                                                     </div>
                                                                 <?php else : ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            REJECT PERBAIKAN
+                                                                        </b>
+                                                                    </h6>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-danger">
+                                                                            <?= $g['keterangan_reject']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($g['keterangan_submit'] === null) : ?>
+                                                                <?php else : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-primary">
+                                                                        <b>
+                                                                            SUBMIT PERBAIKAN
+                                                                        </b>
+                                                                    </h6>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['keterangan_submit']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Waktu Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['waktu_submit']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Bukti Submit</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <img class="rounded" src="<?= base_url('img_submit') . '/' . $g['bukti_submit']; ?>" alt="Bukti Submit" width="100%">
+                                                                        </div>
+                                                                    </div>
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>

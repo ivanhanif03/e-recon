@@ -13,7 +13,7 @@ class StatusSeeder extends Seeder
                 'kategori' => 'on process'
             ],
             [
-                'kategori' => 'submitted'
+                'kategori' => 'waiting approval'
             ],
             [
                 'kategori' => 'over sla'

@@ -21,6 +21,8 @@ class GangguanProvider extends BaseController
 
     public function index()
     {
+        $now = date('Y-m-d H:i:s');
+
         $provider = user()->provider;
         $id_provider = 0;
         if ($provider == "Telkom") {
@@ -44,6 +46,7 @@ class GangguanProvider extends BaseController
         }
 
         $data = [
+            'now' => $now,
             'title' => 'Daftar Gangguan',
             'menu' => 'gangguan_provider',
             'validation' => \Config\Services::validation(),

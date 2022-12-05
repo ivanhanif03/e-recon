@@ -48,6 +48,16 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a href="<?= base_url('gangguan/supervisor/stopclock'); ?>" class="nav-link <?php if ($menu == 'supervisor_stopclock') {
+                                                                                                        echo 'active';
+                                                                                                    } ?>">
+                            <i class="nav-icon fas fa-clock"></i>
+                            <p>
+                                StopClock
+                            </p>
+                        </a>
+                    </li>
                 <?php endif; ?>
 
                 <!-- Admin -->
@@ -165,9 +175,9 @@
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla') {
-                                                                                echo 'active';
-                                                                            } ?>">
+                        <a href="<?= base_url('gangguan/btn/sla'); ?>" class="nav-link <?php if ($menu == 'gangguan_btn_sla') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
                             <i class="nav-icon fas fa-stream"></i>
                             <p>
                                 Daftar SLA

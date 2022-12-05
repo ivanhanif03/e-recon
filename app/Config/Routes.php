@@ -44,12 +44,14 @@ $routes->get('/status', 'Status::index');
 
 //Gangguan Supervisor
 $routes->get('/gangguan/supervisor', 'GangguanSupervisor::index', ['filter' => 'role:supervisor']);
+$routes->get('/gangguan/supervisor/stopclock', 'GangguanSupervisor::stopClock', ['filter' => 'role:supervisor']);
 $routes->get('/gangguan/supervisor/index', 'GangguanSupervisor::index', ['filter' => 'role:supervisor']);
 $routes->delete('/gangguan/supervisor/(:num)', 'GangguanSupervisor::delete/$1', ['filter' => 'role:supervisor']);
 // $routes->get('/gangguan/supervisor/edit/(:segment)', 'GangguanSupervisor::edit/$1', ['filter' => 'role:supervisor']);
 
 //Gangguan BTN
 $routes->get('/gangguan/btn', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
+$routes->get('/gangguan/btn/sla', 'GangguanBtn::daftarSla', ['filter' => 'role:user-btn']);
 $routes->get('/gangguan/btn/index', 'GangguanBtn::index', ['filter' => 'role:user-btn']);
 $routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => 'role:user-btn']);
 // $routes->get('/gangguan/btn/edit/(:segment)', 'GangguanBtn::edit/$1', ['filter' => 'role:user-btn']);

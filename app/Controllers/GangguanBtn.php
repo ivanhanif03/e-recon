@@ -32,9 +32,34 @@ class GangguanBtn extends BaseController
             'provider' => $this->ProviderModel->findAll(),
         ];
 
-        // dd($data);
 
         return view('gangguan/btn/index', $data);
+    }
+
+    public function daftarSla()
+    {
+        // $data_submit = $this->GangguanModel->getAllWaktuSubmit();
+        // $data_start = $this->GangguanModel->getAllWaktuEnd();
+
+        // $sla = $data_submit - $data_submit;
+        // $string_data_submit = (string)$data_submit->waktu_submit;
+        // $string_data_start = (string)$data_end->end;
+
+        // $waktu_submit = strtotime($string_data_submit);
+        // $waktu_end = strtotime($string_data_end);
+
+        $data = [
+            'title' => 'Daftar SLA',
+            'menu' => 'gangguan_btn_sla',
+            'validation' => \Config\Services::validation(),
+            'gangguan' => $this->GangguanModel->getGangguanSelesai(),
+            'link' => $this->LinkModel->findAll(),
+            'status' => $this->StatusModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
+        ];
+
+
+        return view('gangguan/btn/daftar_sla', $data);
     }
 
     public function save()
@@ -74,14 +99,28 @@ class GangguanBtn extends BaseController
 
     public function approval($id)
     {
+        //GET DATA WAKTU SUBMIT, START, END BY ID
         $data_submit = $this->GangguanModel->getWaktuSubmit($id);
         $data_end = $this->GangguanModel->getWaktuEnd($id);
+        $data_start = $this->GangguanModel->getWaktuStart($id);
 
+        //CONVER TO STRING
         $string_data_submit = (string)$data_submit->waktu_submit;
         $string_data_end = (string)$data_end->end;
+        $string_data_start = (string)$data_start->start;
 
+        //STRING TO TIME
         $waktu_submit = strtotime($string_data_submit);
         $waktu_end = strtotime($string_data_end);
+        $waktu_start = strtotime($string_data_start);
+
+        //DURASI PENGERJAAN
+        $durasi = $waktu_submit - $waktu_start;
+
+        //DURASI OPERASI LAYANAN DALAM DETIK
+        $durasi_layanan = 2678400;
+        $availability = (($durasi_layanan - $durasi) / $durasi_layanan) * 100;
+        $sla = round($availability);
 
         $status = 0;
 
@@ -93,6 +132,8 @@ class GangguanBtn extends BaseController
 
         $this->GangguanModel->save([
             'id' => $id,
+            'sla' => $sla,
+            'offline' => $durasi,
             'approval' => "YES",
             'id_status' => $status,
         ]);

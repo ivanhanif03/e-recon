@@ -34,28 +34,50 @@ class GangguanSupervisor extends BaseController
         return view('gangguan/supervisor/index', $data);
     }
 
+    public function stopClock()
+    {
+        $data = [
+            'title' => 'Daftar Stopclock',
+            'menu' => 'supervisor_stopclock',
+            'validation' => \Config\Services::validation(),
+            'gangguan' => $this->GangguanModel->getStopClockSupervisor(),
+            'link' => $this->LinkModel->findAll(),
+            'status' => $this->StatusModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
+        ];
+
+        return view('gangguan/supervisor/stopclock', $data);
+    }
+
     public function approval($id)
     {
         //GET TAMBAHAN EXTRA TIME 
-        $extra_time = $this->request->getVar('extra_time');
+        $extra_time = $this->GangguanModel->getWaktuExtra($id);
+        $end = $this->GangguanModel->getWaktuEnd($id);
+        $start = $this->GangguanModel->getWaktuStart($id);
 
         //TO STRING DATE END PERBAIKAN GANGGUAN
-        $end = $this->GangguanModel->getWaktuEnd($id);
+        $string_extra = (string)$extra_time->extra_time_stopclock;
+        $string_start = (string)$start->start;
         $string_end = (string)$end->end;
 
         //UPDATE EDN + EXTRA TIME
-        $waktu_end_extra = strtotime("+" . $extra_time . " hours", strtotime($string_end));
+        $waktu_end_extra = strtotime("+" . $string_extra . " hours", strtotime($string_end));
         $end_update = date("Y-m-d H:i:s", $waktu_end_extra);
+        $waktu_start_extra = strtotime("+" . $string_extra . " hours", strtotime($string_start));
+        $start_update = date("Y-m-d H:i:s", $waktu_start_extra);
 
         // dd($end_update);
 
         $this->GangguanModel->save([
             'id' => $id,
+            'start' => $start_update,
             'end' => $end_update,
             'id_status' => 4,
+            'approval_stopclock_spv' => 'YES'
         ]);
 
-        session()->setFlashdata('pesan', 'Data created successfully');
+        session()->setFlashdata('pesan', 'Data approved successfully');
 
         return redirect()->to('/gangguan/supervisor');
     }

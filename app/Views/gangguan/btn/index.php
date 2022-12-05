@@ -32,13 +32,13 @@
                             <table id="tableGangguan" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Nama Gangguan</th>
                                         <th>Link</th>
                                         <th>End</th>
                                         <th>Status</th>
                                         <th>Approval</th>
-                                        <th>Aprv StopClock</th>
+                                        <th>Approval StopClock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -94,12 +94,10 @@
                                                     <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
 
                                                     <!-- STATUS REJECT -->
-                                                <?php elseif (($g['id_status'] === '1') && ($g['keterangan_reject'] !== null)) : ?>
+                                                <?php elseif (($g['id_status'] === '1') && (($g['keterangan_reject'] !== null) || ($g['ket_reject_stopclock'] !== null))) : ?>
                                                     <!-- Detail -->
                                                     <a href="" class="btn btn-sm btn-outline-warning" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-
-                                                    <!-- STATUS REJECT STOPCLOCK -->
-                                                <?php elseif (($g['id_status'] === '1') && ($g['ket_reject_stopclock'] !== null)) : ?>
+                                                <?php else : ?>
                                                     <a href="" class="btn btn-sm btn-outline-warning" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
 
                                                 <?php endif; ?>
@@ -217,7 +215,83 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+
+                                                                <?php if ($g['keterangan_stopclock'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            STOPCLOCK
+                                                                        </b>
+                                                                    </h6>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan StopClock</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['keterangan_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Start StopClock</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-secondary font-weight-bold">
+                                                                            <?= $g['start_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Waktu Tambahan</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['extra_time_stopclock']; ?> Jam
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Approval StopClock</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['approval_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Approval Supervisor</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['approval_stopclock_spv']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($g['ket_reject_stopclock'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            REJECT STOPCLOCK
+                                                                        </b>
+                                                                    </h6>
                                                                     <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
@@ -227,13 +301,39 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8 text-danger">
+                                                                            <?= $g['ket_reject_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php else : ?>
+                                                                <?php endif; ?>
+                                                                <?php if ($g['keterangan_reject'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-danger">
+                                                                        <b>
+                                                                            REJECT PERBAIKAN
+                                                                        </b>
+                                                                    </h6>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8 text-danger">
                                                                             <?= $g['keterangan_reject']; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
                                                                 <?php if ($g['keterangan_submit'] !== null) : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-primary">
+                                                                        <b>
+                                                                            SUBMIT PERBAIKAN
+                                                                        </b>
+                                                                    </h6>
                                                                     <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
@@ -274,78 +374,21 @@
                                                                     </div>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
-                                                                <?php if ($g['keterangan_stopclock'] !== null) : ?>
-                                                                    <hr>
-                                                                    <h6 class="text-danger">
-                                                                        <b>
-                                                                            Permohonan StopClock
-                                                                        </b>
-                                                                    </h6>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Keterangan StopClock</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['keterangan_stopclock']; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Start StopClock</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8 text-secondary font-weight-bold">
-                                                                            <?= $g['start_stopclock']; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Waktu Tambahan</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8">
-                                                                            <?= $g['extra_time_stopclock']; ?> Jam
-                                                                        </div>
-                                                                    </div>
-                                                                <?php else : ?>
-                                                                <?php endif; ?>
-                                                                <?php if ($g['ket_reject_stopclock'] !== null) : ?>
-                                                                    <hr>
-                                                                    <h6 class="text-danger">
-                                                                        <b>
-                                                                            Reject Permohonan StopClock
-                                                                        </b>
-                                                                    </h6>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-3">
-                                                                            <b>Keterangan Reject</b>
-                                                                        </div>
-                                                                        <div class="col-1">
-                                                                            :
-                                                                        </div>
-                                                                        <div class="col-8 text-danger">
-                                                                            <?= $g['ket_reject_stopclock']; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php else : ?>
-                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                        <?php if ($g['approval_stopclock'] !== null) : ?>
+                                                        <?php if (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] !== null) && ($g['id_status'] !== 2)) : ?>
                                                             <span></span>
+                                                        <?php elseif (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] !== null)) : ?>
+                                                            <!-- Batal -->
+                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+
+                                                            <!-- Reject -->
+                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
+
+                                                            <!-- Approval -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
                                                         <?php elseif (($g['keterangan_reject'] === null) && ($g['approval'] === null) && ($g['keterangan_stopclock'] !== null)) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
@@ -366,7 +409,7 @@
                                                             <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
                                                         <?php elseif (($g['keterangan_reject'] === null) && ($g['approval'] === 'YES')) : ?>
                                                             <span></span>
-                                                        <?php elseif (($g['keterangan_reject'] !== null) && ($g['approval'] === 'NO')) : ?>
+                                                        <?php elseif (($g['keterangan_reject'] !== null) && ($g['approval'] === 'NO') && ($g['id_status'] === '2')) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
@@ -375,6 +418,7 @@
 
                                                             <!-- Approval -->
                                                             <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
+                                                        <?php elseif (($g['keterangan_reject'] !== null) && ($g['approval'] === 'NO') && ($g['id_status'] !== '2')) : ?>
                                                         <?php else : ?>
                                                             <span></span>
                                                         <?php endif; ?>
@@ -598,13 +642,13 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Nama Gangguan</th>
                                         <th>Link</th>
                                         <th>End</th>
                                         <th>Status</th>
                                         <th>Approval</th>
-                                        <th>Aprv StopClock</th>
+                                        <th>Approval StopClock</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>

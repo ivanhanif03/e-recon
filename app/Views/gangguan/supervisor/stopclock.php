@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-12">
-                    <h1 class="mb-4">Approval StopClock Gangguan Jaringan</h1>
+                    <h1 class="mb-4">StopClock Gangguan Jaringan</h1>
                     <?= view('Myth\Auth\Views\_message_block') ?>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-success" role="alert" id="alert-delete">
@@ -238,20 +238,6 @@
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer d-flex bd-highlight">
-                                                        <?php if ($g['ket_reject_stopclock_spv'] === null) : ?>
-                                                            <!-- Batal -->
-                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
-
-                                                            <!-- Reject -->
-                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
-
-                                                            <!-- Approval -->
-                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
-                                                        <?php elseif (($g['keterangan_reject'] === null) && ($g['approval'] === 'YES')) : ?>
-
-                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
