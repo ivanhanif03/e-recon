@@ -35,6 +35,8 @@ class LinkSeeder extends Seeder
                 'id_branch'        => 3,
                 'id_provider'      => 1,
                 'id_pic'           => 4,
+                'bandwidth'        => 128,
+                'jenis_link'   => 'MPLS',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],
