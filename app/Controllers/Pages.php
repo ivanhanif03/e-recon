@@ -21,12 +21,21 @@ class Pages extends BaseController
 
     public function index()
     {
+        $total_gangguan = $this->GangguanModel->getTotalGangguan();
+
+        $sum_sla = $this->GangguanModel->getJumlahAllSla();
+        $sla = (double)$sum_sla;
+
+        $avg_sla = $sla / $total_gangguan;
+        $sla_format = number_format($avg_sla, 2, '.', '');
+
         $data = [
             'title' => 'Home',
             'menu' => 'dashboard',
             'validation' => \Config\Services::validation(),
             'total_gangguan' => $this->GangguanModel->getTotalGangguan(),
             'current_gangguan' => $this->GangguanModel->getGangguanCurrent(),
+            'avg_sla' => $sla_format
         ];
 
         // dd($data);

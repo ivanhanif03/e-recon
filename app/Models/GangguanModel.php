@@ -179,4 +179,10 @@ class GangguanModel extends Model
             ->where('MONTH(gangguan.start)', date('m'))
             ->get()->getResultArray();
     }
+    public function getJumlahAllSla()
+    {
+        return  $this->db->table('gangguan')
+        ->selectSum('gangguan.sla', 'sum_sla')
+            ->get()->getRow()->sum_sla; 
+    }
 }

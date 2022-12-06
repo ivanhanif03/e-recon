@@ -54,7 +54,7 @@
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3>27</h3>
+                            <h3><?= $avg_sla; ?> %</h3>
                             <p>Persentase SLA</p>
                         </div>
                         <div class="icon">
