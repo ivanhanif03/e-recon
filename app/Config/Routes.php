@@ -39,7 +39,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Pages::index');
 $routes->get('/order', 'Order::index');
 $routes->get('/daftar_sla', 'Sla::index');
-$routes->get('/login', 'Login::index');
+// $routes->get('/login', 'Login::index');
 $routes->get('/status', 'Status::index');
 
 //Gangguan Supervisor

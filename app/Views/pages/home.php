@@ -19,7 +19,6 @@
 
     <section class="content">
         <div class="container-fluid">
-
             <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="row">
 
@@ -27,14 +26,13 @@
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3><?= $total_gangguan; ?></h3>
                             <p>Jumlah Gangguan</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-wifi"></i>
                         </div>
-                        <a href="<?= base_url('gangguan'); ?>" class="small-box-footer bg-danger"
-                            style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('gangguan'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -48,8 +46,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-primary"
-                            style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-primary" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -61,9 +58,9 @@
                             <p>Jumlah SLA</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-percentage"></i> </div>
-                        <a href="#" class="small-box-footer bg-warning" style="color: white !important; ">Detail <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <a href="#" class="small-box-footer bg-danger" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -95,31 +92,33 @@
                                     <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
-                                        <th>PIC</th>
+                                        <!-- <th>PIC</th>
                                         <th>Alamat</th>
                                         <th>Gangguan</th>
-                                        <th>SLA</th>
+                                        <th>SLA</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>T11</td>
-                                        <td>Telkom</td>
-                                        <td>Ivan</td>
-                                        <td>Jakarta</td>
-                                        <td>Kabel Rusak</td>
-                                        <td>99,95%</td>
-                                    </tr>
+                                    <?php foreach ($current_gangguan as $gc) : ?>
+                                        <tr>
+                                            <td><?= $gc['no_tiket']; ?></td>
+                                            <td><?= $gc['id_link']; ?></td>
+                                            <!-- <td>Ivan</td>
+                                            <td>Jakarta</td>
+                                            <td>Kabel Rusak</td>
+                                            <td>99,95%</td> -->
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Nomor Tiket</th>
                                         <th>Provider</th>
-                                        <th>PIC</th>
+                                        <!-- <th>PIC</th>
                                         <th>Alamat</th>
                                         <th>Gangguan</th>
                                         <th>SLA</th>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
@@ -184,7 +183,7 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $("#tableOrder").DataTable({
             "responsive": true,
             "lengthChange": false,

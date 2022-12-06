@@ -19,22 +19,43 @@
                                 <div class="col-lg-6 col-sm-4 align-self-center">
                                     <h3 class="card-title">Daftar Gangguan</h3>
                                 </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <!-- <label></label> -->
-                                        <select class="form-control provider" name="">
-                                            <option>-- Pilih Provider --</option>
-                                            <option value="">Semua Provider</option>
-                                            <option value="telkom">Telkom</option>
-                                            <option value="trigatra">Trigatra</option>
-                                            <option value="primaLink">PrimaLink</option>
-                                            <option value="lintasArta">LintasArta</option>
-                                            <option value="ipwan">IPWAN</option>
-                                            <option value="bas">BAS</option>
-                                            <option value="comnet">ComNet</option>
-                                            <option value="iforte">IForte</option>
-                                            <option value="millenial">Millenial</option>
-                                        </select>
+                                <div class="col-6">
+                                    <div class="row d-flext justify-content-end">
+                                        <div class="col-4 form-group">
+                                            <!-- <label></label> -->
+                                            <select class="form-control bulan" name="">
+                                                <option value="">-- Pilih Bulan --</option>
+                                                <!-- <option value="">Semua Provider</option> -->
+                                                <option value="1-2022">Januari</option>
+                                                <option value="2-2022">Februari</option>
+                                                <option value="3-2022">Maret</option>
+                                                <option value="4-2022">April</option>
+                                                <option value="5-2022">Mei</option>
+                                                <option value="6-2022">Juni</option>
+                                                <option value="7-2022">Juli</option>
+                                                <option value="8-2022">Agustus</option>
+                                                <option value="9-2022">September</option>
+                                                <option value="10-2022">Oktober</option>
+                                                <option value="11-2022">November</option>
+                                                <option value="12-2022">Desember</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 form-group">
+                                            <!-- <label></label> -->
+                                            <select class="form-control provider" name="">
+                                                <option value="">-- Pilih Provider --</option>
+                                                <option value="">Semua Provider</option>
+                                                <option value="telkom">Telkom</option>
+                                                <option value="trigatra">Trigatra</option>
+                                                <option value="primaLink">PrimaLink</option>
+                                                <option value="lintasArta">LintasArta</option>
+                                                <option value="ipwan">IPWAN</option>
+                                                <option value="bas">BAS</option>
+                                                <option value="comnet">ComNet</option>
+                                                <option value="iforte">IForte</option>
+                                                <option value="millenial">Millenial</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -580,6 +601,21 @@
         });
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableGangguan').DataTable();
+
+        function filterData() {
+            $('#tableGangguan').DataTable().search(
+                $('.bulan').val()
+            ).draw();
+        }
+        $('.bulan').on('change', function() {
+            filterData();
+        });
+    });
+</script>
+
 
 
 <?= $this->endSection(); ?>

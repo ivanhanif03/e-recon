@@ -8,7 +8,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
@@ -33,7 +33,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
-        </li>
+        </li> -->
         <li class="dropdown user-menu">
             <a href="#" class="nav-link" data-toggle="dropdown">
                 <img src="/img/<?= user()->user_image; ?>" class="user-image border" alt="User Image">

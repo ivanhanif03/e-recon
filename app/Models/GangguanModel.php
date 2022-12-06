@@ -23,7 +23,8 @@ class GangguanModel extends Model
             // ->where('gangguan.id_status', '1')
             // ->orWhere('gangguan.id_status', '2')
             // ->where('gangguan.approval', null)
-            ->Where('gangguan.approval !=', 'YES')
+            ->Where('gangguan.approval', null)
+            ->orWhere('gangguan.approval', 'NO')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
@@ -158,5 +159,24 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->countAllResults() + 1;
+    }
+
+    public function getTotalGangguan()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->countAllResults();
+    }
+
+    public function getGangguanCurrent()
+    {
+        return $this->db->table('gangguan')
+            // ->join('link', 'link.id=gangguan.id_link', 'left')
+            // ->join('status', 'status.id=gangguan.id_status', 'left')
+            // ->select('link.nama_link')
+            ->select('*')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->get()->getResultArray();
     }
 }

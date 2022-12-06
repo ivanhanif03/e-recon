@@ -6,9 +6,9 @@ use CodeIgniter\Database\Migration;
 
 class Link extends Migration
 {
-    public function up()
-    {
-        $this->forge->addField([
+	public function up()
+	{
+		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
 				'constraint'     => '11',
@@ -17,7 +17,7 @@ class Link extends Migration
 			],
 			'nama_link'          => [
 				'type'           => 'VARCHAR',
-				'constraint'     => '255',	
+				'constraint'     => '255',
 			],
 			'id_branch'          => [
 				'type'           => 'INT',
@@ -33,7 +33,15 @@ class Link extends Migration
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
-            ],
+			],
+			'bandwidth'          => [
+				'type'           => 'INT',
+				'constraint'     => '11',
+			],
+			'jenis_link'          => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '255',
+			],
 			'created_at'      => [
 				'type'           => 'DATETIME',
 			],
@@ -46,18 +54,18 @@ class Link extends Migration
 		// Membuat primary key
 		$this->forge->addKey('id', true);
 
-        // Membuat foreign key
-		$this->forge->addForeignKey('id_branch','branch','id','','CASCADE');
-		$this->forge->addForeignKey('id_provider','provider','id','','CASCADE');
-        $this->forge->addForeignKey('id_pic','users','id','','CASCADE');
+		// Membuat foreign key
+		$this->forge->addForeignKey('id_branch', 'branch', 'id', '', 'CASCADE');
+		$this->forge->addForeignKey('id_provider', 'provider', 'id', '', 'CASCADE');
+		$this->forge->addForeignKey('id_pic', 'users', 'id', '', 'CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('link', TRUE);
-    }
+	}
 
-    public function down()
-    {
-        // menghapus tabel
+	public function down()
+	{
+		// menghapus tabel
 		$this->forge->dropTable('link');
-    }
+	}
 }
