@@ -32,6 +32,7 @@ class GangguanBtn extends BaseController
             'provider' => $this->ProviderModel->findAll(),
         ];
 
+        // dd($data);
 
         return view('gangguan/btn/index', $data);
     }
@@ -120,7 +121,8 @@ class GangguanBtn extends BaseController
         //DURASI OPERASI LAYANAN DALAM DETIK
         $durasi_layanan = 2678400;
         $availability = (($durasi_layanan - $durasi) / $durasi_layanan) * 100;
-        $sla = round($availability);
+        $sla_format = number_format($availability, 2, '.', '');
+        $sla = (float)$sla_format;
 
         $status = 0;
 

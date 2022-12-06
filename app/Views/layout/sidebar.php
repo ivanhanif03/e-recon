@@ -199,9 +199,9 @@
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="<?= base_url('sla'); ?>" class="nav-link <?php if ($menu == 'sla') {
-                                                                                echo 'active';
-                                                                            } ?>">
+                        <a href="<?= base_url('gangguan/provider/sla'); ?>" class="nav-link <?php if ($menu == 'sla') {
+                                                                                                echo 'active';
+                                                                                            } ?>">
                             <i class="nav-icon fas fa-stream"></i>
                             <p>
                                 Daftar SLA

@@ -422,6 +422,30 @@
                                                                             <?= $g['extra_time_stopclock']; ?> Jam
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Approval User</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['approval_stopclock']; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Approval SPV</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['approval_stopclock_spv']; ?>
+                                                                        </div>
+                                                                    </div>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
                                                                 <?php if ($g['keterangan_reject'] !== null) : ?>
@@ -606,11 +630,11 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer d-flex bd-highlight">
-                                                                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                                </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="modal-footer d-flex bd-highlight">
+                                                            <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan</button>
                                                         </div>
                                                     </form>
                                                 </div>

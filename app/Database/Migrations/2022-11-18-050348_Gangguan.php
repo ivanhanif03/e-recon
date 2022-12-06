@@ -110,7 +110,7 @@ class Gangguan extends Migration
                 'null' => true
             ],
             'sla' => [
-                'type'      => 'INT',
+                'type'      => 'FLOAT',
                 'constraint' => '11',
                 'null' => true
             ],

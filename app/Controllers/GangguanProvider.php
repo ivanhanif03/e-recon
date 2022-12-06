@@ -52,8 +52,57 @@ class GangguanProvider extends BaseController
             'validation' => \Config\Services::validation(),
             'gangguan' => $this->GangguanModel->getGangguanProvider($id_provider),
         ];
+        // dd($data);
 
         return view('gangguan/provider/index', $data);
+    }
+
+    public function daftarSla()
+    {
+        // $data_submit = $this->GangguanModel->getAllWaktuSubmit();
+        // $data_start = $this->GangguanModel->getAllWaktuEnd();
+
+        // $sla = $data_submit - $data_submit;
+        // $string_data_submit = (string)$data_submit->waktu_submit;
+        // $string_data_start = (string)$data_end->end;
+
+        // $waktu_submit = strtotime($string_data_submit);
+        // $waktu_end = strtotime($string_data_end);
+
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
+        $data = [
+            'title' => 'Daftar SLA',
+            'menu' => 'sla',
+            'validation' => \Config\Services::validation(),
+            'gangguan' => $this->GangguanModel->getGangguanSelesaiProvider($id_provider),
+            'link' => $this->LinkModel->findAll(),
+            'status' => $this->StatusModel->findAll(),
+            'provider' => $this->ProviderModel->findAll(),
+        ];
+
+
+        return view('gangguan/provider/daftar_sla', $data);
     }
 
     public function submit($id)

@@ -20,7 +20,10 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            ->where('gangguan.approval', null)
+            // ->where('gangguan.id_status', '1')
+            // ->orWhere('gangguan.id_status', '2')
+            // ->where('gangguan.approval', null)
+            ->Where('gangguan.approval !=', 'YES')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
@@ -46,7 +49,8 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            ->where('gangguan.approval_stopclock_spv !=', 'YES')
+            ->where('gangguan.approval_stopclock', 'YES')
+            ->where('gangguan.approval_stopclock_spv', null)
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
@@ -83,8 +87,23 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            // ->where('gangguan.approval !=', 'YES')
             ->where('link.id_provider', $id_provider)
+            ->where('gangguan.approval', 'NO')
+            ->orWhere('gangguan.approval', null)
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
+    public function getGangguanSelesaiProvider($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.nama_link')
+            ->select('status.kategori')
+            ->select('gangguan.*')
+            ->where('link.id_provider', $id_provider)
+            ->where('gangguan.approval', 'YES')
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }

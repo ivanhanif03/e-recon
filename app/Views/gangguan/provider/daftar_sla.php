@@ -15,27 +15,9 @@
                     <?php endif; ?>
                     <div class="card shadow-none border-0">
                         <div class="card-header">
-                            <div class="row d-flex justify-content-between">
+                            <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
                                     <h3 class="card-title">Daftar Gangguan</h3>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <!-- <label></label> -->
-                                        <select class="form-control provider" name="">
-                                            <option>-- Pilih Provider --</option>
-                                            <option value="">Semua Provider</option>
-                                            <option value="telkom">Telkom</option>
-                                            <option value="trigatra">Trigatra</option>
-                                            <option value="primaLink">PrimaLink</option>
-                                            <option value="lintasArta">LintasArta</option>
-                                            <option value="ipwan">IPWAN</option>
-                                            <option value="bas">BAS</option>
-                                            <option value="comnet">ComNet</option>
-                                            <option value="iforte">IForte</option>
-                                            <option value="millenial">Millenial</option>
-                                        </select>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -483,56 +465,6 @@
     </div>
 </div>
 
-<!-- Start Modal Input -->
-<div class="modal fade" id="modal-tambah-gangguan">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content border-0">
-            <div class="modal-header">
-                <h4 class="modal-title">Form Tambah Gangguan</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('/gangguanBtn/save/') ?>" method="post">
-                <?= csrf_field(); ?>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input type="hidden" id="kode_provider" name="kode_provider" value="kode">
-                            <input type="hidden" id="approval" name="approval">
-                            <div class="form-group">
-                                <label for="nama_gangguan">Nama Gangguan</label>
-                                <input type="text" class="form-control text-sm" name="nama_gangguan" id="nama_gangguan" placeholder="Masukkan nama gangguan" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="detail">Detail</label>
-                                <textarea type="text" class="form-control text-sm" name="detail" id="detail" placeholder="Masukkan detail" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Link</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('link')) ? 'is-invalid' : ''; ?>" name="link" id="link_tambah" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">
-                                        Pilih Link</option>
-                                    <?php foreach ($link as $l) : ?>
-                                        <!-- <option hidden="hidden" value="<?= $l['nama_link']; ?>"></option> -->
-                                        <option value="<?= $l['id'] . "_" . $l['nama_link']; ?>">
-                                            <?= $l['nama_link']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer d-flex bd-highlight">
-                    <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal Input -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>
@@ -566,20 +498,6 @@
         });
     </script>
 <?php endforeach; ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#tableGangguan').DataTable();
-
-        function filterData() {
-            $('#tableGangguan').DataTable().search(
-                $('.provider').val()
-            ).draw();
-        }
-        $('.provider').on('change', function() {
-            filterData();
-        });
-    });
-</script>
 
 
 <?= $this->endSection(); ?>

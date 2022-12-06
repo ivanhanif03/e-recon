@@ -58,6 +58,7 @@ $routes->delete('/gangguan/btn/(:num)', 'GangguanBtn::delete/$1', ['filter' => '
 
 //Gangguan Provider
 $routes->get('/gangguan/provider', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
+$routes->get('/gangguan/provider/sla', 'GangguanProvider::daftarSla', ['filter' => 'role:user-provider']);
 $routes->get('/gangguan/provider/index', 'GangguanProvider::index', ['filter' => 'role:user-provider']);
 // $routes->get('/gangguan/provider/edit/(:segment)', 'GangguanProvider::edit/$1');
 
