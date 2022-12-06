@@ -27,7 +27,7 @@
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3><?= $total_gangguan; ?></h3>
-                            <p>Jumlah Gangguan</p>
+                            <p>Total Gangguan</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-wifi"></i>
@@ -41,7 +41,7 @@
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3>53</h3>
-                            <p>Jumlah Order</p>
+                            <p>Total Restitusi</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -55,7 +55,7 @@
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3>27</h3>
-                            <p>Jumlah SLA</p>
+                            <p>Persentase SLA</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-percentage"></i>
