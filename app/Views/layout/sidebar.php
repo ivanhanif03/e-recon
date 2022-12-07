@@ -20,24 +20,33 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item mb-2 mt-2">
-                    <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
-                                                                        echo 'active';
-                                                                    } ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
 
                 <!-- User -->
                 <?php if (in_groups('user')) : ?>
-
+                    <li class="nav-item mb-2 mt-2">
+                        <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
+                                                                            echo 'active';
+                                                                        } ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                 <?php endif; ?>
 
                 <!-- Supervisor -->
                 <?php if (in_groups('supervisor')) : ?>
+                    <li class="nav-item mb-2 mt-2">
+                        <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
+                                                                            echo 'active';
+                                                                        } ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item mb-2">
                         <a href="<?= base_url('gangguan/supervisor'); ?>" class="nav-link <?php if ($menu == 'supervisor') {
                                                                                                 echo 'active';
@@ -164,6 +173,16 @@
 
                 <!-- User BTN -->
                 <?php if (in_groups('user-btn')) : ?>
+                    <li class="nav-item mb-2 mt-2">
+                        <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
+                                                                            echo 'active';
+                                                                        } ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item mb-2">
                         <a href="<?= base_url('gangguan/btn'); ?>" class="nav-link <?php if ($menu == 'gangguan_btn') {
                                                                                         echo 'active';
@@ -188,6 +207,16 @@
 
                 <!-- User Provider -->
                 <?php if (in_groups('user-provider')) : ?>
+                    <li class="nav-item mb-2 mt-2">
+                        <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
+                                                                            echo 'active';
+                                                                        } ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item mb-2">
                         <a href="<?= base_url('gangguan/provider'); ?>" class="nav-link <?php if ($menu == 'gangguan_provider') {
                                                                                             echo 'active';

@@ -9,7 +9,7 @@ class LinkModel extends Model
     protected $table = 'link';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id', 'nama_link', 'id_branch', 'id_provider', 'id_pic'];
+    protected $allowedFields = ['id', 'nama_link', 'id_branch', 'id_provider', 'id_pic',  'bandwidth', 'jenis_link', 'biaya_bulanan'];
 
     public function getLink()
     {

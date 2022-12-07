@@ -9,7 +9,7 @@ class GangguanModel extends Model
     protected $table = 'gangguan';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock', 'approval_stopclock', 'ket_reject_stopclock', 'approval_stopclock_spv', 'ket_reject_stopclock_spv', 'offline', 'sla'];
+    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock', 'approval_stopclock', 'ket_reject_stopclock', 'approval_stopclock_spv', 'ket_reject_stopclock_spv', 'offline', 'sla', 'restitusi', 'tagihan_bulanan'];
 
 
     public function getGangguan()
@@ -155,6 +155,15 @@ class GangguanModel extends Model
             ->get()->getRow();
     }
 
+    public function getBiayaBulanan($id)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('link.biaya_bulanan', 'biaya_bulanan')
+            ->where('gangguan.id', $id)
+            ->get()->getRow()->biaya_bulanan;
+    }
+
     public function getJumlahGangguan()
     {
         return $this->db->table('gangguan')
@@ -169,20 +178,76 @@ class GangguanModel extends Model
             ->countAllResults();
     }
 
+    public function getTotalGangguanSla()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+
     public function getGangguanCurrent()
     {
         return $this->db->table('gangguan')
-            // ->join('link', 'link.id=gangguan.id_link', 'left')
-            // ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->join('branch', 'branch.id=link.id_branch', 'left')
+            ->join('jenis_branch', 'jenis_branch.id=branch.id_jenis_branch', 'left')
             // ->select('link.nama_link')
             ->select('*')
             ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
             ->get()->getResultArray();
     }
+
+    public function getAllSla()
+    {
+        return  $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link')
+            ->select('gangguan.sla')
+            ->select('link.biaya_bulanan')
+            ->select('gangguan.no_tiket')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
     public function getJumlahAllSla()
     {
         return  $this->db->table('gangguan')
-        ->selectSum('gangguan.sla', 'sum_sla')
-            ->get()->getRow()->sum_sla; 
+            ->selectSum('gangguan.sla', 'sum_sla')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->get()->getRow()->sum_sla;
     }
+
+    public function getJumlahAllBiayaBulanan()
+    {
+        return  $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link')
+            ->selectSum('link.biaya_bulanan', 'sum_biaya_bulanan')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->orderBy('gangguan.id')
+            ->get()->getRow()->sum_biaya_bulanan;
+    }
+
+    public function getBandwidthLink()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.bandwidth')
+            ->get()->getResultArray();
+    }
+
+    // public function getBiayaBulananLink()
+    // {
+    //     return $this->db->table('gangguan')
+    //         ->join('link', 'link.id=gangguan.id_link', 'left')
+    //         ->join('status', 'status.id=gangguan.id_status', 'left')
+    //         ->select('link.biaya_bulanan')
+    //         ->get()->getResultArray();
+    // }
 }

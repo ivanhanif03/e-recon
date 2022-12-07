@@ -42,6 +42,10 @@ class Link extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => '255',
 			],
+			'biaya_bulanan'          => [
+				'type'           => 'INT',
+				'constraint'     => '50',
+			],
 			'created_at'      => [
 				'type'           => 'DATETIME',
 			],

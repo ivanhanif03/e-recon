@@ -10,7 +10,11 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Dashboard</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 text-right">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Bulan </li>
+                        <li class="breadcrumb-item active text-primary font-weight-bold"><?= $month; ?></li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -22,7 +26,7 @@
             <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="row">
 
-                <div class="col-lg-4 col-4">
+                <div class="col-lg-3 col-3">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
@@ -32,16 +36,29 @@
                         <div class="icon">
                             <i class="fas fa-wifi"></i>
                         </div>
-                        <a href="<?= base_url('gangguan'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('gangguan'); ?>" class="small-box-footer bg-warning" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-4">
+                <div class="col-lg-3 col-3">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3>53</h3>
+                            <h3>Rp<?= number_format($sum_denda, 0, '', '.'); ?></h3>
                             <p>Total Restitusi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-3">
+
+                    <div class="small-box bg-white shadow-none border-none">
+                        <div class="inner">
+                            <h3>Rp<?= number_format($biaya_bulanan_final, 0, '', '.'); ?></h3>
+                            <p>Total Tagihan All</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -50,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-4">
+                <div class="col-lg-3 col-3">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
@@ -71,54 +88,90 @@
 
                     <div class="card shadow-none border-none">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                <!-- <i class="fas fa-chart mr-1"></i> -->
-                                Daftar SLA
-                            </h3>
-                            <!-- <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                    </li>
-                                </ul>
-                            </div> -->
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-4 align-self-center">
+                                    <h3 class="card-title">Daftar Gangguan</h3>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <div class="col-4 mt-2 form-group">
+                                        <!-- <label></label> -->
+                                        <select class="form-control provider" name="">
+                                            <option value="">-- Pilih Provider --</option>
+                                            <option value="">Semua Provider</option>
+                                            <option value="telkom">Telkom</option>
+                                            <option value="tigatra">Tigatra</option>
+                                            <option value="primaLink">PrimaLink</option>
+                                            <option value="lintasArta">LintasArta</option>
+                                            <option value="ipwan">IPWAN</option>
+                                            <option value="bas">BAS</option>
+                                            <option value="comnet">ComNet</option>
+                                            <option value="iforte">IForte</option>
+                                            <option value="millenial">Millenial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
-                            <table id="tableOrder" class="table table-striped">
+                            <table id="tableDashboard" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nomor Tiket</th>
-                                        <th>Provider</th>
-                                        <!-- <th>PIC</th>
-                                        <th>Alamat</th>
-                                        <th>Gangguan</th>
-                                        <th>SLA</th> -->
+                                        <th>Link</th>
+                                        <th>Jenis Link</th>
+                                        <th>Open</th>
+                                        <th>Close</th>
+                                        <th>Offline</th>
+                                        <th>SLA</th>
+                                        <th>Status</th>
+                                        <th>Restitusi</th>
+                                        <th>Tagihan Bulanan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($current_gangguan as $gc) : ?>
                                         <tr>
                                             <td><?= $gc['no_tiket']; ?></td>
-                                            <td><?= $gc['id_link']; ?></td>
-                                            <!-- <td>Ivan</td>
-                                            <td>Jakarta</td>
-                                            <td>Kabel Rusak</td>
-                                            <td>99,95%</td> -->
+                                            <td><?= $gc['nama_link']; ?></td>
+                                            <td><?= $gc['jenis_link']; ?></td>
+                                            <td class="text-primary"><?= $gc['start']; ?></td>
+                                            <td class="text-danger"><?= $gc['waktu_submit']; ?></td>
+                                            <td><?= $gc['offline']; ?> s</td>
+                                            <td><?= $gc['sla']; ?> %</td>
+                                            <td class="text-uppercase">
+                                                <span class="badge badge-pill 
+                                                <?php if ($gc['id_status'] === '1') : ?>
+                                                badge-warning
+                                                <?php elseif ($gc['id_status'] === '2') : ?>
+                                                badge-primary
+                                                <?php elseif ($gc['id_status'] === '3') : ?>
+                                                badge-danger
+                                                <?php elseif ($gc['id_status'] === '4') : ?>
+                                                badge-secondary
+                                                <?php else : ?>
+                                                badge-success
+                                                <?php endif ?>">
+                                                    <?= $gc['kategori']; ?>
+                                                </span>
+                                            </td>
+                                            <td>Rp<?= number_format($gc['restitusi'], 0, '', '.'); ?></td>
+                                            <td>Rp<?= number_format($gc['tagihan_bulanan'], 0, '', '.'); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Nomor Tiket</th>
-                                        <th>Provider</th>
-                                        <!-- <th>PIC</th>
-                                        <th>Alamat</th>
-                                        <th>Gangguan</th>
+                                        <th>Link</th>
+                                        <th>Jenis Link</th>
+                                        <th>Open</th>
+                                        <th>Close</th>
+                                        <th>Offline</th>
                                         <th>SLA</th>
-                                    </tr> -->
+                                        <th>Status</th>
+                                        <th>Restitusi</th>
+                                        <th>Tagihan Bulanan</th>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -127,57 +180,6 @@
             </div>
         </div>
     </section>
-</div>
-
-<!-- <section class="col-lg-5 connectedSortable">
-
-                    <div class="card bg-gradient-primary shadow-none border-none">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                Visitors
-                            </h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
-                                    title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <div class="card-body">
-                            <div id="world-map" style="height: 250px; width: 100%;"></div>
-                        </div>
-
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-1"></div>
-                                    <div class="text-white">Visitors</div>
-                                </div>
-
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-2"></div>
-                                    <div class="text-white">Online</div>
-                                </div>
-
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-3"></div>
-                                    <div class="text-white">Sales</div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </section> -->
-</div>
-</div>
-</section>
 </div>
 
 <?= $this->endSection(); ?>
@@ -190,8 +192,22 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "excel", "print", "colvis"]
         }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableDashboard').DataTable();
+
+        function filterData() {
+            $('#tableDashboard').DataTable().search(
+                $('.provider').val()
+            ).draw();
+        }
+        $('.provider').on('change', function() {
+            filterData();
+        });
     });
 </script>
 <?= $this->endSection(); ?>

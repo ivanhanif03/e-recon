@@ -124,6 +124,27 @@ class GangguanBtn extends BaseController
         $sla_format = number_format($availability, 2, '.', '');
         $sla = (float)$sla_format;
 
+        //GET BIAYA BULANAN BY ID
+        $biaya_bulanan = $this->GangguanModel->getBiayaBulanan($id);
+        $biaya = (float)$biaya_bulanan;
+
+        // dd($biaya);
+        if ($sla >= 99.8) {
+            $denda = ($biaya * 0);
+        } elseif ($sla >= 98.8 and $sla < 99.8) {
+            $denda = ($biaya * 0.1);
+        } elseif ($sla >= 97.8 and $sla < 98.8) {
+            $denda = ($biaya * 0.2);
+        } elseif ($sla >= 96.8 and $sla < 97.8) {
+            $denda = ($biaya * 0.3);
+        } elseif ($sla >= 95.8 and $sla < 96.8) {
+            $denda = ($biaya * 0.5);
+        } elseif ($sla < 95.8) {
+            $denda = ($biaya * 1);
+        }
+
+        $tagihan_bulanan = $biaya - $denda;
+
         $status = 0;
 
         if ($waktu_submit > $waktu_end) {
@@ -138,6 +159,8 @@ class GangguanBtn extends BaseController
             'offline' => $durasi,
             'approval' => "YES",
             'id_status' => $status,
+            'restitusi' => $denda,
+            'tagihan_bulanan' => $tagihan_bulanan,
         ]);
 
         session()->setFlashdata('pesan', 'Data approved successfully');

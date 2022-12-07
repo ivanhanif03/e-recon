@@ -26,18 +26,18 @@
                                             <select class="form-control bulan" name="">
                                                 <option value="">-- Pilih Bulan --</option>
                                                 <!-- <option value="">Semua Provider</option> -->
-                                                <option value="1-2022">Januari</option>
-                                                <option value="2-2022">Februari</option>
-                                                <option value="3-2022">Maret</option>
-                                                <option value="4-2022">April</option>
-                                                <option value="5-2022">Mei</option>
-                                                <option value="6-2022">Juni</option>
-                                                <option value="7-2022">Juli</option>
-                                                <option value="8-2022">Agustus</option>
-                                                <option value="9-2022">September</option>
-                                                <option value="10-2022">Oktober</option>
-                                                <option value="11-2022">November</option>
-                                                <option value="12-2022">Desember</option>
+                                                <option value="-1-">Januari</option>
+                                                <option value="-2-">Februari</option>
+                                                <option value="-3-">Maret</option>
+                                                <option value="-4-">April</option>
+                                                <option value="-5-">Mei</option>
+                                                <option value="-6-">Juni</option>
+                                                <option value="-7-">Juli</option>
+                                                <option value="-8-">Agustus</option>
+                                                <option value="-9-">September</option>
+                                                <option value="-10-">Oktober</option>
+                                                <option value="-11-">November</option>
+                                                <option value="-12-">Desember</option>
                                             </select>
                                         </div>
                                         <div class="col-4 form-group">

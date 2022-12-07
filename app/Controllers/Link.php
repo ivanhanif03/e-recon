@@ -38,12 +38,54 @@ class Link extends BaseController
 
     public function save()
     {
-        $this->LinkModel->save([
-            'nama_link' => $this->request->getVar('nama_link'),
+        $bandwidth = $this->request->getVar('bandwidth');
+
+        //EXPLODE EACH VALUE BRANCH
+        $branch = $this->request->getVar('nama_branch');
+        $sprd = explode("_", $branch);
+        $nama_branch = $sprd[1];
+
+        //EXPLODE EACH VALUE PROVIDER
+        $provider = $this->request->getVar('nama_provider');
+        $sprd = explode("_", $provider);
+        $nama_provider = $sprd[1];
+
+        //COMBINER BRANCH & PROVIDER
+        $nama_link = $nama_branch . " " . $nama_provider;
+
+        //SET BIAYA BULANAN
+        $biaya_bulanan = 0;
+        if ($bandwidth == '32') {
+            $biaya_bulanan = 1250000;
+        } elseif ($bandwidth == '64') {
+            $biaya_bulanan = 1125000;
+        } elseif ($bandwidth == '128') {
+            $biaya_bulanan = 1550000;
+        } elseif ($bandwidth == '256') {
+            $biaya_bulanan = 2500000;
+        } elseif ($bandwidth == '512') {
+            $biaya_bulanan = 2950000;
+        } elseif ($bandwidth == '1000') {
+            $biaya_bulanan = 3750000;
+        } elseif ($bandwidth == '2000') {
+            $biaya_bulanan = 4550000;
+        } elseif ($bandwidth == '4000') {
+            $biaya_bulanan = 6100000;
+        } else {
+            $biaya_bulanan = 6100000;
+        }
+
+
+        $data = $this->LinkModel->save([
+            'nama_link' => $nama_link,
             'id_branch' => $this->request->getVar('nama_branch'),
             'id_provider' => $this->request->getVar('nama_provider'),
             'id_pic' => $this->request->getVar('fullname'),
+            'bandwidth' => $this->request->getVar('bandwidth'),
+            'jenis_link' => $this->request->getVar('jenis_link'),
+            'biaya_bulanan' => $biaya_bulanan,
         ]);
+        // dd($data);
 
         session()->setFlashdata('pesan', 'Data created successfully');
 
@@ -72,7 +114,6 @@ class Link extends BaseController
     {
         $this->LinkModel->save([
             'id' => $id,
-            'nama_link' => $this->request->getVar('nama_link'),
             'id_branch' => $this->request->getVar('nama_branch'),
             'id_provider' => $this->request->getVar('nama_provider'),
             'id_pic' => $this->request->getVar('fullname'),

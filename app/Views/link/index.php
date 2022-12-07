@@ -36,7 +36,10 @@
                                         <th>Nama Link</th>
                                         <th>Branch</th>
                                         <th>Provider</th>
-                                        <th>PIC</th>
+                                        <!-- <th>PIC</th> -->
+                                        <th>Bandwidth</th>
+                                        <th>Jenis Link</th>
+                                        <th>Biaya Bulanan</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -49,7 +52,14 @@
                                             <td><?= $l['nama_link']; ?></td>
                                             <td><?= $l['nama_branch']; ?></td>
                                             <td><?= $l['nama_provider']; ?></td>
-                                            <td><?= $l['fullname']; ?></td>
+                                            <td><?php if ($l['bandwidth'] >= 1000) : ?>
+                                                    <?= $l['bandwidth'] / 1000 ?> Mbps
+                                                <?php else : ?>
+                                                    <?= $l['bandwidth']; ?> Kbps
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= $l['jenis_link']; ?></td>
+                                            <td>Rp<?= number_format($l['biaya_bulanan'], 0, '', '.'); ?></td>
                                             <td class="text-center">
                                                 <!-- Edit -->
                                                 <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-link<?= $l['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
@@ -102,15 +112,6 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="form-group">
-                                                                        <label for="nama_link">Nama
-                                                                            Link</label>
-                                                                        <input type="text" class="form-control text-sm <?= ($validation->hasError('nama_link')) ? 'is-invalid' : ''; ?>" name="nama_link" id="nama_link" placeholder="Masukkan nama link" value="<?= $l['nama_link']; ?>" required>
-                                                                        <div class="invalid-feedback">
-                                                                            <?= $validation->getError('nama_link'); ?>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-group">
                                                                         <label>Branch</label>
                                                                         <select class="form-control select2bs4 text-sm" name="nama_branch" id="nama_branch" style="width: 100%;">
                                                                             <option disabled="disabled" selected="selected">
@@ -146,6 +147,98 @@
                                                                             <?php endforeach; ?>
                                                                         </select>
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <label>Bandwidth</label>
+                                                                        <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;">
+                                                                            <option disabled="disabled" selected="selected">Pilih Bandwidth</option>
+                                                                            <?php if ($l['bandwidth'] = 32) : ?>
+                                                                                <option selected value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 64) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option selected value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 128) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option selected value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 256) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option selected value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 512) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option selected value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 1000) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option selected value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php elseif ($l['bandwidth'] = 2000) : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option selected value="2000">2 Mbps</option>
+                                                                                <option value="4000">4 Mbps</option>
+                                                                            <?php else : ?>
+                                                                                <option value="32">32 Kbps</option>
+                                                                                <option value="64">64 Kbps</option>
+                                                                                <option value="128">128 Kbps</option>
+                                                                                <option value="256">256 Kbps</option>
+                                                                                <option value="512">512 Kbps</option>
+                                                                                <option value="1000">1 Mbps</option>
+                                                                                <option value="2000">2 Mbps</option>
+                                                                                <option selected value="4000">4 Mbps</option>
+                                                                            <?php endif; ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Jenis Link</label>
+                                                                        <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;">
+                                                                            <option disabled="disabled" selected="selected">Pilih Jenis Link</option>
+                                                                            <?php if ($l['jenis_link'] = 'MPLS') : ?>
+                                                                                <option selected value="MPLS">MPLS</option>
+                                                                                <option value="Internet">Internet</option>
+                                                                            <?php else : ?>
+                                                                                <option value="Internet">Internet</option>
+                                                                                <option selected value="MPLS">MPLS</option>
+                                                                            <?php endif; ?>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -167,7 +260,10 @@
                                         <th>Nama Link</th>
                                         <th>Branch</th>
                                         <th>Provider</th>
-                                        <th>PIC</th>
+                                        <!-- <th>PIC</th> -->
+                                        <th>Bandwidth</th>
+                                        <th>Jenis Link</th>
+                                        <th>Biaya Bulanan</th>
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -196,16 +292,13 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="nama_link">Nama Link</label>
-                                <input type="text" class="form-control text-sm" name="nama_link" id="nama_link" placeholder="Masukkan nama link" required>
-                            </div>
-                            <div class="form-group">
                                 <label>Branch</label>
                                 <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>" name="nama_branch" id="nama_branch_tambah" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama Branch</option>
                                     <?php foreach ($branch as $b) : ?>
-                                        <option value="<?= $b['id']; ?>">
+                                        <?php if ($b['id']) ?>
+                                        <option value="<?= $b['id'] . "_" . $b['nama_branch']; ?>">
                                             <?= $b['nama_branch']; ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -217,7 +310,7 @@
                                     <option disabled="disabled" selected="selected">
                                         Pilih Nama Provider</option>
                                     <?php foreach ($provider as $p) : ?>
-                                        <option value="<?= $p['id']; ?>">
+                                        <option value="<?= $p['id'] . "_" . $p['nama_provider']; ?>">
                                             <?= $p['nama_provider']; ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -232,6 +325,34 @@
                                         <option value="<?= $u['id']; ?>">
                                             <?= $u['fullname']; ?> </option>
                                     <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Bandwidth</label>
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">Pilih Bandwidth</option>
+                                    <option value="32">32 Kbps</option>
+                                    <option value="64">64 Kbps</option>
+                                    <option value="128">128 Kbps</option>
+                                    <option value="256">256 Kbps</option>
+                                    <option value="512">512 Kbps</option>
+                                    <option value="1000">1 Mbps</option>
+                                    <option value="2000">2 Mbps</option>
+                                    <option value="4000">4 Mbps</option>
+                                    <!-- <option selected="selected">5 Mbps</option>
+                                    <option selected="selected">6 Mbps</option>
+                                    <option selected="selected">8 Mbps</option>
+                                    <option selected="selected">10 Mbps</option>
+                                    <option selected="selected">15 Mbps</option>
+                                    <option selected="selected">20 Mbps</option> -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Link</label>
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;">
+                                    <option disabled="disabled" selected="selected">Pilih Jenis Link</option>
+                                    <option value="MPLS">MPLS</option>
+                                    <option value="Internet">Internet</option>
                                 </select>
                             </div>
                         </div>

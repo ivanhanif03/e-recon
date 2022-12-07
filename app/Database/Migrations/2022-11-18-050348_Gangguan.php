@@ -114,6 +114,16 @@ class Gangguan extends Migration
                 'constraint' => '11',
                 'null' => true
             ],
+            'restitusi' => [
+                'type'      => 'FLOAT',
+                'constraint' => '50',
+                'null' => true
+            ],
+            'tagihan_bulanan' => [
+                'type'      => 'FLOAT',
+                'constraint' => '50',
+                'null' => true
+            ],
             'created_at'      => [
                 'type'           => 'DATETIME',
             ],
