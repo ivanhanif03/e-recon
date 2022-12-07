@@ -19,7 +19,7 @@ class ProviderSeeder extends Seeder
             ],
             [
                 'kode_provider' => 'TGR',
-                'nama_provider' => 'Trigatra',
+                'nama_provider' => 'Tigatra',
                 'alamat'        => 'Jakarta',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),

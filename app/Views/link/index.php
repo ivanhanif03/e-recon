@@ -323,7 +323,7 @@
                                         Pilih Nama PIC</option>
                                     <?php foreach ($users as $u) : ?>
                                         <option value="<?= $u['id']; ?>">
-                                            <?= $u['fullname']; ?> </option>
+                                            <?= $u['fullname']; ?> - <?= $u['provider']; ?> </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

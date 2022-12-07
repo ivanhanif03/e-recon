@@ -65,15 +65,25 @@ class Pages extends BaseController
         //SUM ALL DENDA
         $sum_denda = array_sum($denda);
 
-
         //GET CURRENT MONTH
         $month = date("F", strtotime('m'));
 
         //GET TOTAL GANGGUAN YANG ADA SLA
         $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
 
+        if ($total_gangguan == 0) {
+            $total_gangguan = 1;
+        } else {
+            $total_gangguan;
+        }
+
         //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
         $sum_sla = $this->GangguanModel->getJumlahAllSla();
+        if ($sum_sla == 0) {
+            $sum_sla = 0;
+        } else {
+            $sum_sla;
+        }
         $sla = (float)$sum_sla;
 
         //GET JUMLAH TOTAL BIAYA BULANAN CONVERT TO FLOAT

@@ -186,14 +186,14 @@
 <?= $this->section('script'); ?>
 <script type="text/javascript">
     $(function() {
-        $("#tableOrder").DataTable({
+        $("#tableDashboard").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "ordering": true,
             "info": true,
             "buttons": ["copy", "excel", "print", "colvis"]
-        }).buttons().container().appendTo('#tableOrder_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#tableDashboard_wrapper .col-md-6:eq(0)');
     });
 </script>
 <script type="text/javascript">
