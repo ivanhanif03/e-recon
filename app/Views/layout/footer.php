@@ -33,4 +33,5 @@
 <script src="<?= base_url('/js/index.js'); ?>"></script>
 <!-- <script src="<?= base_url('/js/demo.js'); ?>"></script>
 <script src="<?= base_url('/js/dashboard.js'); ?>"></script> -->
+<!-- <script src="<?= base_url('/js/dashboard.js'); ?>"></script> -->
 <?= $this->renderSection('script'); ?>

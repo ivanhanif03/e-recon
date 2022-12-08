@@ -26,7 +26,7 @@
             <?= view('Myth\Auth\Views\_message_block') ?>
             <div class="row">
 
-                <div class="col-lg-3 col-3">
+                <div class="col-lg-3 col-md-6 col-sm-12">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-3">
+                <div class="col-lg-3 col-md-6 col-sm-12">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
@@ -53,7 +53,7 @@
                         <a href="<?= base_url('restitusi'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-3">
+                <div class="col-lg-3 col-md-6 col-sm-12">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
@@ -67,17 +67,148 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-3">
+                <div class="col-lg-3 col-md-6 col-sm-12">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
                             <h3><?= $avg_sla; ?> %</h3>
-                            <p>Persentase SLA</p>
+                            <p>Avg Persentase SLA</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-percentage"></i>
                         </div>
                         <a href="<?= base_url('sla'); ?>" class="small-box-footer bg-danger" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow-none border-none">
+                        <div class="card-header">
+                            <h5 class="card-title">Report Rekap Bulanan</h5>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p class="text-center">
+                                        <strong>Grafik Perbandingan Jumlah Gangguan Finish dan Over SLA <?= date('Y'); ?> </strong>
+                                    </p>
+                                    <div class="chart">
+
+                                        <canvas id="gangguanChart" height="300" style="height: 300px;"></canvas>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <p class="text-center">
+                                        <strong>Jumlah Gangguan</strong>
+                                    </p>
+                                    <div class="progress-group">
+                                        Telkom
+                                        <span class="float-right"><b><?= $gangguan_provider_telkom; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary" style="width: <?= $gangguan_provider_telkom; ?>%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-group">
+                                        Tigatra
+                                        <span class="float-right"><b><?= $gangguan_provider_tigatra; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger" style="width: <?= $gangguan_provider_tigatra; ?>%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-group">
+                                        <span class="progress-text">Primalink</span>
+                                        <span class="float-right"><b><?= $gangguan_provider_primalink; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success" style="width: <?= $gangguan_provider_primalink; ?>%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-group">
+                                        LintasArta
+                                        <span class="float-right"><b><?= $gangguan_provider_lintasarta; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning" style="width: <?= $gangguan_provider_lintasarta; ?>%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-group">
+                                        IPWAN
+                                        <span class="float-right"><b><?= $gangguan_provider_ipwan; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary" style="width: <?= $gangguan_provider_ipwan; ?>%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-group">
+                                        BAS
+                                        <span class="float-right"><b><?= $gangguan_provider_bas; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger" style="width: <?= $gangguan_provider_bas; ?>%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-group">
+                                        IForte
+                                        <span class="float-right"><b><?= $gangguan_provider_iforte; ?></b>/100</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success" style="width: <?= $gangguan_provider_iforte; ?>%"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-success"><i class="fas fa-check-circle"></i></span>
+                                        <h5 class="description-header"><?= $finish; ?></h5>
+                                        <span class="description-text">TOTAL GANGGUAN FINISH</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-danger"><i class="fas fa-exclamation-circle"></i></span>
+                                        <h5 class="description-header"><?= $over; ?></h5>
+                                        <span class="description-text">TOTAL GANGGUAN OVER</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-warning"><i class="fas fa-hourglass-half"></i></span>
+                                        <h5 class="description-header"><?= $process; ?></h5>
+                                        <span class="description-text">TOTAL GANGGUAN ON PROCESS</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block">
+                                        <span class="description-percentage text-secondary"><i class="fas fa-clock"></i></span>
+                                        <h5 class="description-header"><?= $stop_clock; ?></h5>
+                                        <span class="description-text">TOTAL GANGGUAN STOPCLOCK</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,5 +355,64 @@
             filterData();
         });
     });
+</script>
+
+<!-- GRAFIK -->
+<script>
+    $(function() {
+        'use strict'
+        var arrayFinish = <?= json_encode($gangguan_finish_month); ?>;
+        var arrayOver = <?= json_encode($gangguan_over_month); ?>;
+        var gangguanChartCanvas = $('#gangguanChart').get(0).getContext('2d')
+        var gangguanChartData = {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                label: 'Gangguan Finish',
+                backgroundColor: 'rgba(0, 123, 255,0.9)',
+                borderColor: 'rgba(0, 123, 255,0.8)',
+                pointRadius: false,
+                pointColor: '#3b8bba',
+                pointStrokeColor: 'rgba(0, 123, 255,1)',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(0, 123, 255,1)',
+                data: arrayFinish
+            }, {
+                label: 'Gangguan Over SLA',
+                backgroundColor: 'rgba(220, 53, 69, 1)',
+                borderColor: 'rgba(220, 53, 69, 1)',
+                pointRadius: false,
+                pointColor: 'rgba(220, 53, 69, 1)',
+                pointStrokeColor: '#c1c7d1',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220, 53, 69,1)',
+                data: arrayOver
+            }]
+        }
+        var gangguanChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: true
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: true
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: true
+                    }
+                }]
+            }
+        }
+
+        var gangguanChart = new Chart(gangguanChartCanvas, {
+            type: 'line',
+            data: gangguanChartData,
+            options: gangguanChartOptions
+        })
+    })
 </script>
 <?= $this->endSection(); ?>

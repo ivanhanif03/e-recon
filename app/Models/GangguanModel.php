@@ -290,16 +290,6 @@ class GangguanModel extends Model
             ->where('link.id_provider', $id_provider)
             ->get()->getRow()->sum_restitusi;
     }
-    // public function getJumlahAllBiayaBulanan()
-    // {
-    //     return  $this->db->table('gangguan')
-    //         ->join('link', 'link.id=gangguan.id_link')
-    //         ->selectSum('link.biaya_bulanan', 'sum_biaya_bulanan')
-    //         ->where('MONTH(gangguan.start)', date('m'))
-    //         ->where('gangguan.sla !=', null)
-    //         ->orderBy('gangguan.id')
-    //         ->get()->getRow()->sum_biaya_bulanan;
-    // }
 
     public function getBandwidthLink()
     {
@@ -310,12 +300,204 @@ class GangguanModel extends Model
             ->get()->getResultArray();
     }
 
-    // public function getBiayaBulananLink()
-    // {
-    //     return $this->db->table('gangguan')
-    //         ->join('link', 'link.id=gangguan.id_link', 'left')
-    //         ->join('status', 'status.id=gangguan.id_status', 'left')
-    //         ->select('link.biaya_bulanan')
-    //         ->get()->getResultArray();
-    // }
+    public function getTotalGangguanFinish($month)
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 5)
+            ->where('MONTH(gangguan.start)', $month)
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+    public function getTotalGangguanFinishProvider($month, $provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 5)
+            ->where('MONTH(gangguan.start)', $month)
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanFinishCurrent()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 5)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+    public function getTotalGangguanFinishCurrentProvider($provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 5)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanOver($month)
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 3)
+            ->where('MONTH(gangguan.start)', $month)
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanOverProvider($month, $provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 3)
+            ->where('MONTH(gangguan.start)', $month)
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanOverCurrent()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 3)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanOverProviderCurrent($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 3)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $id_provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanProcessCurrent()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 1)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanProcessProviderCurrent($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 1)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $id_provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanStopClockCurrent()
+    {
+        return $this->db->table('gangguan')
+            ->select('*')
+            ->where('gangguan.id_status', 4)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanStopClockProviderCurrent($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('gangguan.id_status', 4)
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('YEAR(gangguan.start)', date('Y'))
+            ->where('link.id_provider', $id_provider)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanAllTelkom()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'Telkom')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllTigatra()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'Tigatra')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllPrimalink()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'PrimaLink')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllLintasarta()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'LintasArta')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllIpwan()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'IPWAN')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllBas()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'BAS')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+    public function getTotalGangguanAllIForte()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->select('*')
+            ->where('provider.nama_provider', 'IForte')
+            ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
 }
