@@ -50,20 +50,20 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('restitusi'); ?>" class="small-box-footer bg-success" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-3">
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3>Rp<?= number_format($biaya_bulanan_final, 0, '', '.'); ?></h3>
+                            <h3>Rp<?= number_format($sum_tagihan_bulanan, 0, '', '.'); ?></h3>
                             <p>Total Tagihan All</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="<?= base_url('order'); ?>" class="small-box-footer bg-primary" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('tagihan'); ?>" class="small-box-footer bg-primary" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                         <div class="icon">
                             <i class="fas fa-percentage"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-danger" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('sla'); ?>" class="small-box-footer bg-danger" style="color: white !important; ">Detail <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -187,12 +187,27 @@
 <script type="text/javascript">
     $(function() {
         $("#tableDashboard").DataTable({
+            "order": [
+                [3, 'asc']
+            ],
             "responsive": true,
             "lengthChange": false,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "excel", "print", "colvis"]
+            "buttons": [
+                "copy",
+                "excel",
+                {
+                    extend: 'print',
+                    customize: function(doc) {
+                        $(doc.document.body).find('h1').css('font-size', '20pt');
+                        $(doc.document.body).find('h1').css('font-weight', 'bold');
+                        $(doc.document.body).find('h1').css('text-align', 'center');
+                    }
+                }, "colvis"
+            ]
         }).buttons().container().appendTo('#tableDashboard_wrapper .col-md-6:eq(0)');
     });
 </script>

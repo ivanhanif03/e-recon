@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Models\GangguanModel;
 use App\Models\LinkModel;
-use App\Models\ProviderModel;
-use App\Models\StatusModel;
 
 class Pages extends BaseController
 {
@@ -15,101 +13,510 @@ class Pages extends BaseController
     {
         $this->GangguanModel = new GangguanModel();
         $this->LinkModel = new LinkModel();
-        // $this->StatusModel = new StatusModel();
-        // $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
     {
-        //GET BIAYA BULANAN AND SLA
-        $sla = $this->GangguanModel->getAllSla();
-
-        //SET BIAYA BULANAN - DENDA
-        $biaya_denda = array();
-        foreach ($sla as $s) {
-            if ($s['sla'] >= 99.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 0));
-            } elseif ($s['sla'] >= 98.8 and $s['sla'] < 99.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 0.1));
-            } elseif ($s['sla'] >= 97.8 and $s['sla'] < 98.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 0.2));
-            } elseif ($s['sla'] >= 96.8 and $s['sla'] < 97.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 0.3));
-            } elseif ($s['sla'] >= 95.8 and $s['sla'] < 96.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 0.5));
-            } elseif ($s['sla'] < 95.8) {
-                $biaya_denda[] = ($s['biaya_bulanan'] - ($s['biaya_bulanan'] * 1));
-            }
+        //GET ID PROVIDER FROM LOGIN
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
         }
 
-        // dd($biaya_denda);
+        //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
+        $get_data_all = $this->GangguanModel->getGangguanCurrent();
+        $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
 
-        //SET DENDA
-        $denda = array();
-        foreach ($sla as $s) {
-            if ($s['sla'] >= 99.8) {
-                $denda[] = ($s['biaya_bulanan'] * 0);
-            } elseif ($s['sla'] >= 98.8 and $s['sla'] < 99.8) {
-                $denda[] = ($s['biaya_bulanan'] * 0.1);
-            } elseif ($s['sla'] >= 97.8 and $s['sla'] < 98.8) {
-                $denda[] = ($s['biaya_bulanan'] * 0.2);
-            } elseif ($s['sla'] >= 96.8 and $s['sla'] < 97.8) {
-                $denda[] = ($s['biaya_bulanan'] * 0.3);
-            } elseif ($s['sla'] >= 95.8 and $s['sla'] < 96.8) {
-                $denda[] = ($s['biaya_bulanan'] * 0.5);
-            } elseif ($s['sla'] < 95.8) {
-                $denda[] = ($s['biaya_bulanan'] * 1);
-            }
+        //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
+        $get_total_all = $this->GangguanModel->getTotalGangguan();
+        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
+        $sum_sla_provider = $this->GangguanModel->getJumlahAllSlaProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_restitusi_all = $this->GangguanModel->getJumlahRestitusi();
+        $sum_restitusi_provider = $this->GangguanModel->getJumlahRestitusiProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_biaya_all = $this->GangguanModel->getJumlahAllBiayaBulanan();
+        $sum_biaya_provider = $this->GangguanModel->getJumlahAllBiayaBulananProvider($id_provider);
+
+        //SET DATA IF USER PROVIDER OR NOT
+        if ($provider != null) {
+            $current_gangguan = $get_data_provider;
+            $total_gangguan = $get_total_provider;
+            $sum_sla = $sum_sla_provider;
+            $sum_restitusi = $sum_restitusi_provider;
+            $sum_biaya_bulanan = $sum_biaya_provider;
+        } else {
+            $current_gangguan = $get_data_all;
+            $total_gangguan = $get_total_all;
+            $sum_sla = $sum_sla_all;
+            $sum_restitusi = $sum_restitusi_all;
+            $sum_biaya_bulanan = $sum_biaya_all;
         }
 
-        //SUM ALL DENDA
-        $sum_denda = array_sum($denda);
-
-        //GET CURRENT MONTH
-        $month = date("F", strtotime('m'));
-
-        //GET TOTAL GANGGUAN YANG ADA SLA
-        $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
-
+        //SET DEFAULT TOTAL GANGGUAN IF NULL
         if ($total_gangguan == 0) {
             $total_gangguan = 1;
         } else {
             $total_gangguan;
         }
 
-        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
-        $sum_sla = $this->GangguanModel->getJumlahAllSla();
+        //SET DEFAULT SUM SLA IF NULL
         if ($sum_sla == 0) {
             $sum_sla = 0;
         } else {
             $sum_sla;
         }
-        $sla = (float)$sum_sla;
 
-        //GET JUMLAH TOTAL BIAYA BULANAN CONVERT TO FLOAT
-        $biaya_bulanan = $this->GangguanModel->getJumlahAllBiayaBulanan();
-        $sum_biaya_bulanan = (float)$biaya_bulanan;
-        $biaya_bulanan_final = $sum_biaya_bulanan - $sum_denda;
+        //CONVERT TO FLOAT
+        $sla = (float)$sum_sla;
+        // $buaya_bulanan = (float)$sum_biaya;
 
         //AVERAGE SLA KESELURUHAN PERBULAN
         $avg_sla = $sla / $total_gangguan;
-        $sla_format = number_format($avg_sla, 2, '.', '');
+        $avg_sla_format = number_format($avg_sla, 2, '.', '');
+
+        //GET CURRENT MONTH
+        $month = date("F", strtotime('m-y'));
 
         $data = [
-            'title' => 'Home',
+            'title' => 'Daftar Gangguan Bulan ' . $month,
             'menu' => 'dashboard',
             'validation' => \Config\Services::validation(),
-            'total_gangguan' => $this->GangguanModel->getTotalGangguan(),
-            'current_gangguan' => $this->GangguanModel->getGangguanCurrent(),
-            'avg_sla' => $sla_format,
+            'total_gangguan' => $total_gangguan,
+            'current_gangguan' => $current_gangguan,
+            'avg_sla' => $avg_sla_format,
             'month' => $month,
-            'sum_denda' => $sum_denda,
-            'biaya_bulanan_final' => $biaya_bulanan_final,
-            'biaya_denda' => $biaya_denda
+            'sum_denda' => $sum_restitusi,
+            'sum_tagihan_bulanan' => $sum_biaya_bulanan,
         ];
 
-        // dd($data);
-
         return view('pages/home', $data);
+    }
+
+    public function gangguan()
+    {
+        //GET ID PROVIDER FROM LOGIN
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
+        //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
+        $get_data_all = $this->GangguanModel->getGangguanCurrent();
+        $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
+
+        //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
+        $get_total_all = $this->GangguanModel->getTotalGangguan();
+        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
+        $sum_sla_provider = $this->GangguanModel->getJumlahAllSlaProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_restitusi_all = $this->GangguanModel->getJumlahRestitusi();
+        $sum_restitusi_provider = $this->GangguanModel->getJumlahRestitusiProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_biaya_all = $this->GangguanModel->getJumlahAllBiayaBulanan();
+        $sum_biaya_provider = $this->GangguanModel->getJumlahAllBiayaBulananProvider($id_provider);
+
+        //SET DATA IF USER PROVIDER OR NOT
+        if ($provider != null) {
+            $current_gangguan = $get_data_provider;
+            $total_gangguan = $get_total_provider;
+            $sum_sla = $sum_sla_provider;
+            $sum_restitusi = $sum_restitusi_provider;
+            $sum_biaya_bulanan = $sum_biaya_provider;
+        } else {
+            $current_gangguan = $get_data_all;
+            $total_gangguan = $get_total_all;
+            $sum_sla = $sum_sla_all;
+            $sum_restitusi = $sum_restitusi_all;
+            $sum_biaya_bulanan = $sum_biaya_all;
+        }
+
+        //SET DEFAULT TOTAL GANGGUAN IF NULL
+        if ($total_gangguan == 0) {
+            $total_gangguan = 1;
+        } else {
+            $total_gangguan;
+        }
+
+        //SET DEFAULT SUM SLA IF NULL
+        if ($sum_sla == 0) {
+            $sum_sla = 0;
+        } else {
+            $sum_sla;
+        }
+
+        //CONVERT TO FLOAT
+        $sla = (float)$sum_sla;
+        // $buaya_bulanan = (float)$sum_biaya;
+
+        //AVERAGE SLA KESELURUHAN PERBULAN
+        $avg_sla = $sla / $total_gangguan;
+        $avg_sla_format = number_format($avg_sla, 2, '.', '');
+
+        //GET CURRENT MONTH
+        $month = date("F", strtotime('m-y'));
+
+        $data = [
+            'title' => 'Daftar Gangguan Bulan ' . $month,
+            'menu' => 'dashboard',
+            'validation' => \Config\Services::validation(),
+            'total_gangguan' => $total_gangguan,
+            'current_gangguan' => $current_gangguan,
+            'avg_sla' => $avg_sla_format,
+            'month' => $month,
+            'sum_denda' => $sum_restitusi,
+            'sum_tagihan_bulanan' => $sum_biaya_bulanan,
+        ];
+
+        return view('pages/gangguan', $data);
+    }
+
+    public function restitusi()
+    {
+        //GET ID PROVIDER FROM LOGIN
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
+        //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
+        $get_data_all = $this->GangguanModel->getGangguanCurrent();
+        $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
+
+        //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
+        $get_total_all = $this->GangguanModel->getTotalGangguan();
+        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
+        $sum_sla_provider = $this->GangguanModel->getJumlahAllSlaProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_restitusi_all = $this->GangguanModel->getJumlahRestitusi();
+        $sum_restitusi_provider = $this->GangguanModel->getJumlahRestitusiProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_biaya_all = $this->GangguanModel->getJumlahAllBiayaBulanan();
+        $sum_biaya_provider = $this->GangguanModel->getJumlahAllBiayaBulananProvider($id_provider);
+
+        //SET DATA IF USER PROVIDER OR NOT
+        if ($provider != null) {
+            $current_gangguan = $get_data_provider;
+            $total_gangguan = $get_total_provider;
+            $sum_sla = $sum_sla_provider;
+            $sum_restitusi = $sum_restitusi_provider;
+            $sum_biaya_bulanan = $sum_biaya_provider;
+        } else {
+            $current_gangguan = $get_data_all;
+            $total_gangguan = $get_total_all;
+            $sum_sla = $sum_sla_all;
+            $sum_restitusi = $sum_restitusi_all;
+            $sum_biaya_bulanan = $sum_biaya_all;
+        }
+
+        //SET DEFAULT TOTAL GANGGUAN IF NULL
+        if ($total_gangguan == 0) {
+            $total_gangguan = 1;
+        } else {
+            $total_gangguan;
+        }
+
+        //SET DEFAULT SUM SLA IF NULL
+        if ($sum_sla == 0) {
+            $sum_sla = 0;
+        } else {
+            $sum_sla;
+        }
+
+        //CONVERT TO FLOAT
+        $sla = (float)$sum_sla;
+        // $buaya_bulanan = (float)$sum_biaya;
+
+        //AVERAGE SLA KESELURUHAN PERBULAN
+        $avg_sla = $sla / $total_gangguan;
+        $avg_sla_format = number_format($avg_sla, 2, '.', '');
+
+        //GET CURRENT MONTH
+        $month = date("F", strtotime('m'));
+
+        $data = [
+            'title' => 'Daftar Restitusi Bulan ' . $month,
+            'menu' => 'dashboard',
+            'validation' => \Config\Services::validation(),
+            'total_gangguan' => $total_gangguan,
+            'current_gangguan' => $current_gangguan,
+            'avg_sla' => $avg_sla_format,
+            'month' => $month,
+            'sum_denda' => $sum_restitusi,
+            'sum_tagihan_bulanan' => $sum_biaya_bulanan,
+        ];
+
+        return view('pages/restitusi', $data);
+    }
+
+    public function tagihan()
+    {
+        //GET ID PROVIDER FROM LOGIN
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
+        //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
+        $get_data_all = $this->GangguanModel->getGangguanCurrent();
+        $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
+
+        //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
+        $get_total_all = $this->GangguanModel->getTotalGangguan();
+        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
+        $sum_sla_provider = $this->GangguanModel->getJumlahAllSlaProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_restitusi_all = $this->GangguanModel->getJumlahRestitusi();
+        $sum_restitusi_provider = $this->GangguanModel->getJumlahRestitusiProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_biaya_all = $this->GangguanModel->getJumlahAllBiayaBulanan();
+        $sum_biaya_provider = $this->GangguanModel->getJumlahAllBiayaBulananProvider($id_provider);
+
+        //SET DATA IF USER PROVIDER OR NOT
+        if ($provider != null) {
+            $current_gangguan = $get_data_provider;
+            $total_gangguan = $get_total_provider;
+            $sum_sla = $sum_sla_provider;
+            $sum_restitusi = $sum_restitusi_provider;
+            $sum_biaya_bulanan = $sum_biaya_provider;
+        } else {
+            $current_gangguan = $get_data_all;
+            $total_gangguan = $get_total_all;
+            $sum_sla = $sum_sla_all;
+            $sum_restitusi = $sum_restitusi_all;
+            $sum_biaya_bulanan = $sum_biaya_all;
+        }
+
+        //SET DEFAULT TOTAL GANGGUAN IF NULL
+        if ($total_gangguan == 0) {
+            $total_gangguan = 1;
+        } else {
+            $total_gangguan;
+        }
+
+        //SET DEFAULT SUM SLA IF NULL
+        if ($sum_sla == 0) {
+            $sum_sla = 0;
+        } else {
+            $sum_sla;
+        }
+
+        //CONVERT TO FLOAT
+        $sla = (float)$sum_sla;
+        // $buaya_bulanan = (float)$sum_biaya;
+
+        //AVERAGE SLA KESELURUHAN PERBULAN
+        $avg_sla = $sla / $total_gangguan;
+        $avg_sla_format = number_format($avg_sla, 2, '.', '');
+
+        //GET CURRENT MONTH
+        $month = date("F", strtotime('m-y'));
+
+        $data = [
+            'title' => 'Daftar Total Tagihan Bulan ' . $month,
+            'menu' => 'dashboard',
+            'validation' => \Config\Services::validation(),
+            'total_gangguan' => $total_gangguan,
+            'current_gangguan' => $current_gangguan,
+            'avg_sla' => $avg_sla_format,
+            'month' => $month,
+            'sum_denda' => $sum_restitusi,
+            'sum_tagihan_bulanan' => $sum_biaya_bulanan,
+        ];
+
+        return view('pages/tagihan', $data);
+    }
+
+    public function sla()
+    {
+        //GET ID PROVIDER FROM LOGIN
+        $provider = user()->provider;
+        $id_provider = 0;
+        if ($provider == "Telkom") {
+            $id_provider = 1;
+        } elseif ($provider == "Trigatra") {
+            $id_provider = 2;
+        } elseif ($provider == "PrimaLink") {
+            $id_provider = 3;
+        } elseif ($provider == "LintasArta") {
+            $id_provider = 4;
+        } elseif ($provider == "IPWAN") {
+            $id_provider = 5;
+        } elseif ($provider == "BAS") {
+            $id_provider = 6;
+        } elseif ($provider == "ComNet") {
+            $id_provider = 7;
+        } elseif ($provider == "IForte") {
+            $id_provider = 8;
+        } else {
+            $id_provider = 9;
+        }
+
+        //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
+        $get_data_all = $this->GangguanModel->getGangguanCurrent();
+        $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
+
+        //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
+        $get_total_all = $this->GangguanModel->getTotalGangguan();
+        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
+        $sum_sla_provider = $this->GangguanModel->getJumlahAllSlaProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_restitusi_all = $this->GangguanModel->getJumlahRestitusi();
+        $sum_restitusi_provider = $this->GangguanModel->getJumlahRestitusiProvider($id_provider);
+
+        //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
+        $sum_biaya_all = $this->GangguanModel->getJumlahAllBiayaBulanan();
+        $sum_biaya_provider = $this->GangguanModel->getJumlahAllBiayaBulananProvider($id_provider);
+
+        //SET DATA IF USER PROVIDER OR NOT
+        if ($provider != null) {
+            $current_gangguan = $get_data_provider;
+            $total_gangguan = $get_total_provider;
+            $sum_sla = $sum_sla_provider;
+            $sum_restitusi = $sum_restitusi_provider;
+            $sum_biaya_bulanan = $sum_biaya_provider;
+        } else {
+            $current_gangguan = $get_data_all;
+            $total_gangguan = $get_total_all;
+            $sum_sla = $sum_sla_all;
+            $sum_restitusi = $sum_restitusi_all;
+            $sum_biaya_bulanan = $sum_biaya_all;
+        }
+
+        //SET DEFAULT TOTAL GANGGUAN IF NULL
+        if ($total_gangguan == 0) {
+            $total_gangguan = 1;
+        } else {
+            $total_gangguan;
+        }
+
+        //SET DEFAULT SUM SLA IF NULL
+        if ($sum_sla == 0) {
+            $sum_sla = 0;
+        } else {
+            $sum_sla;
+        }
+
+        //CONVERT TO FLOAT
+        $sla = (float)$sum_sla;
+        // $buaya_bulanan = (float)$sum_biaya;
+
+        //AVERAGE SLA KESELURUHAN PERBULAN
+        $avg_sla = $sla / $total_gangguan;
+        $avg_sla_format = number_format($avg_sla, 2, '.', '');
+
+        //GET CURRENT MONTH
+        $month = date("F", strtotime('m-y'));
+
+        $data = [
+            'title' => 'Daftar SLA Bulan ' . $month,
+            'menu' => 'dashboard',
+            'validation' => \Config\Services::validation(),
+            'total_gangguan' => $total_gangguan,
+            'current_gangguan' => $current_gangguan,
+            'avg_sla' => $avg_sla_format,
+            'month' => $month,
+            'sum_denda' => $sum_restitusi,
+            'sum_tagihan_bulanan' => $sum_biaya_bulanan,
+        ];
+
+        return view('pages/sla', $data);
     }
 }

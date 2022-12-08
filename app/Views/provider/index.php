@@ -214,6 +214,7 @@
         $("#tableProvider").DataTable({
             "responsive": true,
             "lengthChange": false,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,

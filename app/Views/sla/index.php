@@ -11,7 +11,7 @@
                     <h1 class="m-0">Daftar SLA</h1>
                 </div>
                 <div class="col-sm-6">
-                  
+
                 </div>
             </div>
         </div>
@@ -139,10 +139,11 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $("#tableOrder").DataTable({
             "responsive": true,
             "lengthChange": false,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,

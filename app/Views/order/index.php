@@ -19,9 +19,7 @@
 
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-2 float-end">
-                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-order"
-                                        data-backdrop="static" class="btn btn-block bg-primary">Input Order<i
-                                            class="fa fa-plus-circle ml-2"></i></button>
+                                    <button type="button" data-toggle="modal" data-target="#modal-tambah-order" data-backdrop="static" class="btn btn-block bg-primary">Input Order<i class="fa fa-plus-circle ml-2"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -42,24 +40,20 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($provider as $p) : ?>
-                                    <tr>
-                                        <td><?= $p['no_tiket']; ?></td>
-                                        <td><?= $p['provider']; ?></td>
-                                        <td><?= $p['pic']; ?></td>
-                                        <td><?= $p['alamat']; ?></td>
-                                        <td><?= $p['open_time']; ?></td>
-                                        <td><?= $p['close_time']; ?></td>
-                                        <td class="text-center">
-                                            <!-- Edit -->
-                                            <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-tambah-order"><i
-                                                    class="nav-icon fas fa-edit"></i></a>
-                                            <!-- Delete -->
-                                            <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                                                data-backdrop="static" data-target="#modal-hapus-user"><i
-                                                    class=" nav-icon fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $p['no_tiket']; ?></td>
+                                            <td><?= $p['provider']; ?></td>
+                                            <td><?= $p['pic']; ?></td>
+                                            <td><?= $p['alamat']; ?></td>
+                                            <td><?= $p['open_time']; ?></td>
+                                            <td><?= $p['close_time']; ?></td>
+                                            <td class="text-center">
+                                                <!-- Edit -->
+                                                <a href="#" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-tambah-order"><i class="nav-icon fas fa-edit"></i></a>
+                                                <!-- Delete -->
+                                                <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-backdrop="static" data-target="#modal-hapus-user"><i class=" nav-icon fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
@@ -99,8 +93,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Provider</label>
-                                <select class="form-control select2bs4 text-sm" name="dinas" id="dinas"
-                                    style="width: 100%;">
+                                <select class="form-control select2bs4 text-sm" name="dinas" id="dinas" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Provider</option>
                                     <option>Telkom</option>
                                     <option>Lintasarta</option>
@@ -114,8 +107,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Outlet</label>
-                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet"
-                                    style="width: 100%;">
+                                <select class="form-control select2bs4 text-sm" name="outlet" id="outlet" style="width: 100%;">
                                     <option disabled="disabled" selected="selected">Pilih Outlet</option>
                                     <option>KC Harmoni</option>
                                     <option>KC Kuningan</option>
@@ -124,13 +116,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="pic">PIC</label>
-                                <input type="text" class="form-control text-sm" name="pic" id="pic"
-                                    placeholder="Masukkan nama PIC">
+                                <input type="text" class="form-control text-sm" name="pic" id="pic" placeholder="Masukkan nama PIC">
                             </div>
                             <div class="form-group">
                                 <label for="outlet">Alamat</label>
-                                <textarea class="form-control text-sm" name="outlet" id="outlet" rows="3"
-                                    placeholder="Masukkan alamat"></textarea>
+                                <textarea class="form-control text-sm" name="outlet" id="outlet" rows="3" placeholder="Masukkan alamat"></textarea>
                             </div>
                         </div>
                     </div>
@@ -168,10 +158,11 @@
 
 <?= $this->section('script'); ?>
 <script>
-    $(function () {
+    $(function() {
         $("#tableOrder").DataTable({
             "responsive": true,
             "lengthChange": false,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,

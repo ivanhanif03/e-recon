@@ -100,8 +100,14 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
+            ->join('branch', 'branch.id=link.id_branch', 'left')
+            ->join('jenis_branch', 'jenis_branch.id=branch.id_jenis_branch', 'left')
             ->select('link.nama_link')
+            ->select('link.jenis_link')
             ->select('status.kategori')
+            ->select('branch.nama_branch')
+            ->select('provider.nama_provider')
             ->select('gangguan.*')
             ->where('link.id_provider', $id_provider)
             ->where('gangguan.approval', 'YES')
@@ -178,6 +184,16 @@ class GangguanModel extends Model
             ->countAllResults();
     }
 
+    public function getTotalGangguanProvider($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('link.id_provider', $id_provider)
+            ->countAllResults();
+    }
+
     public function getTotalGangguanSla()
     {
         return $this->db->table('gangguan')
@@ -222,16 +238,67 @@ class GangguanModel extends Model
             ->get()->getRow()->sum_sla;
     }
 
+    public function getJumlahAllSlaProvider($id_provider)
+    {
+        return  $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->selectSum('gangguan.sla', 'sum_sla')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('link.id_provider', $id_provider)
+            ->get()->getRow()->sum_sla;
+    }
+
     public function getJumlahAllBiayaBulanan()
     {
         return  $this->db->table('gangguan')
-            ->join('link', 'link.id=gangguan.id_link')
-            ->selectSum('link.biaya_bulanan', 'sum_biaya_bulanan')
+            // ->join('link', 'link.id=gangguan.id_link')
+            ->selectSum('gangguan.tagihan_bulanan', 'sum_biaya_bulanan')
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('gangguan.sla !=', null)
-            ->orderBy('gangguan.id')
             ->get()->getRow()->sum_biaya_bulanan;
     }
+
+    public function getJumlahAllBiayaBulananProvider($id_provider)
+    {
+        return  $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link')
+            ->selectSum('gangguan.tagihan_bulanan', 'sum_biaya_bulanan')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->where('link.id_provider', $id_provider)
+            ->get()->getRow()->sum_biaya_bulanan;
+    }
+
+    public function getJumlahRestitusi()
+    {
+        return  $this->db->table('gangguan')
+            // ->join('link', 'link.id=gangguan.id_link')
+            ->selectSum('gangguan.restitusi', 'sum_restitusi')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->get()->getRow()->sum_restitusi;
+    }
+
+    public function getJumlahRestitusiProvider($id_provider)
+    {
+        return  $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link')
+            ->selectSum('gangguan.restitusi', 'sum_restitusi')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->where('link.id_provider', $id_provider)
+            ->get()->getRow()->sum_restitusi;
+    }
+    // public function getJumlahAllBiayaBulanan()
+    // {
+    //     return  $this->db->table('gangguan')
+    //         ->join('link', 'link.id=gangguan.id_link')
+    //         ->selectSum('link.biaya_bulanan', 'sum_biaya_bulanan')
+    //         ->where('MONTH(gangguan.start)', date('m'))
+    //         ->where('gangguan.sla !=', null)
+    //         ->orderBy('gangguan.id')
+    //         ->get()->getRow()->sum_biaya_bulanan;
+    // }
 
     public function getBandwidthLink()
     {

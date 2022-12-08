@@ -1,19 +1,36 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+
 <div class="content-wrapper">
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-12">
-                    <h1 class="mb-4">Daftar SLA</h1>
-                    <?= view('Myth\Auth\Views\_message_block') ?>
-                    <?php if (session()->getFlashdata('pesan')) : ?>
-                        <div class="alert alert-success" role="alert" id="alert-delete">
-                            <?= session()->getFlashdata('pesan'); ?>
-                        </div>
-                    <?php endif; ?>
-                    <div class="card shadow-none border-0">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Gangguan Jaringan</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="<?= base_url(''); ?>">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">Gangguan Jaringan</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <?= view('Myth\Auth\Views\_message_block') ?>
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card shadow-none border-none">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-4 align-self-center">
@@ -21,32 +38,35 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-body">
-                            <table id="tableGangguan" class="table table-striped">
+                            <table id="tableDashboard" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>No. Tiket</th>
-                                        <th>Nama Gangguan</th>
+                                        <th>Nomor Tiket</th>
                                         <th>Link</th>
-                                        <th>Start</th>
-                                        <th>Submit</th>
+                                        <th>Jenis Link</th>
+                                        <th>Open</th>
+                                        <th>Close</th>
                                         <th>Offline</th>
                                         <th>SLA</th>
                                         <th>Status</th>
-                                        <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
-                                        </th>
+                                        <th>Restitusi</th>
+                                        <th>Tagihan Bulanan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($gangguan as $g) : ?>
+                                    <?php foreach ($current_gangguan as $g) : ?>
                                         <tr>
-                                            <td><?= $g['no_tiket']; ?></td>
-                                            <td><?= $g['nama_gangguan']; ?></td>
+                                            <td data-toggle=" tooltip" data-placement="top" title="Detail">
+                                                <a class="font-weight-bold" href="" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>">
+                                                    <?= $g['no_tiket']; ?>
+                                                </a>
+                                            </td>
                                             <td><?= $g['nama_link']; ?></td>
-                                            <td><?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
-                                            <td class="text-primary font-weight-bold"><?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td>
-                                            <td><?= $g['offline']; ?> detik</td>
+                                            <td><?= $g['jenis_link']; ?></td>
+                                            <td class=" text-primary"><?= $g['start']; ?></td>
+                                            <td class="text-danger"><?= $g['waktu_submit']; ?></td>
+                                            <td><?= $g['offline']; ?> s</td>
                                             <td><?= $g['sla']; ?> %</td>
                                             <td class="text-uppercase">
                                                 <span class="badge badge-pill 
@@ -64,32 +84,8 @@
                                                     <?= $g['kategori']; ?>
                                                 </span>
                                             </td>
-                                            <td class="text-center">
-                                                <!-- PERBAIKAN SELESAI -->
-                                                <?php if ($g['approval'] === 'YES') : ?>
-                                                    <a href="" class="btn btn-sm <?php if ($g['id_status'] === '3') : ?>btn-outline-danger<?php elseif ($g['id_status'] === '5') : ?>btn-outline-success<?php else : ?>btn-outline-secondary<?php endif; ?>" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas <?php if (($g['id_status'] === '3') || ($g['id_status'] === '5')) : ?>fa-check<?php else : ?>fa-list <?php endif; ?>"></i></a>
-
-                                                    <!-- STATUS ON PROCESS AWAL -->
-                                                <?php elseif (($g['id_status'] === '1') && ($g['keterangan_reject'] === null) && ($g['ket_reject_stopclock'] === null)) : ?>
-                                                    <!-- Edit -->
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-gangguan<?= $g['id']; ?>"><i class="nav-icon fas fa-edit"></i></a>
-                                                    <!-- Delete -->
-                                                    <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-backdrop="static" data-target="#modal-hapus-gangguan<?= $g['id']; ?>"><i class=" nav-icon fas fa-trash"></i></a>
-
-                                                    <!-- STATUS SUBMITTED -->
-                                                <?php elseif ($g['id_status'] === '2') : ?>
-                                                    <!-- Detail -->
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-
-                                                    <!-- STATUS REJECT -->
-                                                <?php elseif (($g['id_status'] === '1') && (($g['keterangan_reject'] !== null) || ($g['ket_reject_stopclock'] !== null))) : ?>
-                                                    <!-- Detail -->
-                                                    <a href="" class="btn btn-sm btn-outline-warning" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-                                                <?php else : ?>
-                                                    <a href="" class="btn btn-sm btn-outline-warning" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-
-                                                <?php endif; ?>
-                                            </td>
+                                            <td>Rp<?= number_format($g['restitusi'], 0, '', '.'); ?></td>
+                                            <td>Rp<?= number_format($g['tagihan_bulanan'], 0, '', '.'); ?></td>
                                         </tr>
 
                                         <!-- Start Modal Detail -->
@@ -463,66 +459,69 @@
                                             </div>
                                         </div>
                                         <!-- End Modal Detail -->
-
                                     <?php endforeach; ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>No. Tiket</th>
-                                        <th>Nama Gangguan</th>
+                                        <th>Nomor Tiket</th>
                                         <th>Link</th>
-                                        <th>Start</th>
-                                        <th>Submit</th>
+                                        <th>Jenis Link</th>
+                                        <th>Open</th>
+                                        <th>Close</th>
                                         <th>Offline</th>
                                         <th>SLA</th>
                                         <th>Status</th>
-                                        <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
-                                        </th>
+                                        <th>Restitusi</th>
+                                        <th>Tagihan Bulanan</th>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <?= $this->endSection(); ?>
-
 <?= $this->section('script'); ?>
-<script>
+<script type="text/javascript">
     $(function() {
-        $("#tableGangguan").DataTable({
+        $("#tableDashboard").DataTable({
             "order": [
                 [3, 'asc']
             ],
             "responsive": true,
             "lengthChange": false,
             "pageLength": 100,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print",
-                "colvis"
-            ]
-        }).buttons().container().appendTo(
-            '#tableGangguan_wrapper .col-md-6:eq(0)');
+            "buttons": ["copy", "excel", {
+                extend: 'print',
+                customize: function(doc) {
+                    $(doc.document.body).find('h1').css('font-size', '20pt');
+                    $(doc.document.body).find('h1').css('font-weight', 'bold');
+                    $(doc.document.body).find('h1').css('text-align', 'center');
+                }
+            }, "colvis"]
+        }).buttons().container().appendTo('#tableDashboard_wrapper .col-md-6:eq(0)');
     });
 </script>
-<script>
-    $("#link_tambah").select2({
-        dropdownParent: $('#modal-tambah-gangguan')
-    });
-</script>
-<?php foreach ($gangguan as $g) : ?>
-    <script>
-        $("#link").select2({
-            dropdownParent: $('#modal-edit-gangguan<?= $g['id'] ?>')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableDashboard').DataTable();
+
+        function filterData() {
+            $('#tableDashboard').DataTable().search(
+                $('.provider').val()
+            ).draw();
+        }
+        $('.provider').on('change', function() {
+            filterData();
         });
-    </script>
-<?php endforeach; ?>
-
-
+    });
+</script>
 <?= $this->endSection(); ?>

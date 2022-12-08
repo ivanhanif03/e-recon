@@ -36,11 +36,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+// $routes->get('/order', 'Order::index');
+// $routes->get('/daftar_sla', 'Sla::index');
+// $routes->get('/status', 'Status::index');
+
+//Pages
 $routes->get('/', 'Pages::index');
-$routes->get('/order', 'Order::index');
-$routes->get('/daftar_sla', 'Sla::index');
-// $routes->get('/login', 'Login::index');
-$routes->get('/status', 'Status::index');
+$routes->get('/gangguan', 'Pages::gangguan');
+$routes->get('/restitusi', 'Pages::restitusi');
+$routes->get('/tagihan', 'Pages::tagihan');
+$routes->get('/sla', 'Pages::sla');
 
 //Gangguan Supervisor
 $routes->get('/gangguan/supervisor', 'GangguanSupervisor::index', ['filter' => 'role:supervisor']);

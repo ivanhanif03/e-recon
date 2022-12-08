@@ -266,6 +266,30 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3 ">
+                                                                        <b>Restitusi</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        Rp<?= number_format($g['restitusi'], 0, '', '.'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3 ">
+                                                                        <b>Total Tagihan</b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8 text-success font-weight-bold">
+                                                                        Rp<?= number_format($g['tagihan_bulanan'], 0, '', '.'); ?>
+                                                                    </div>
+                                                                </div>
 
                                                                 <?php if ($g['keterangan_stopclock'] !== null) : ?>
                                                                     <hr>
@@ -565,6 +589,7 @@
             ],
             "responsive": true,
             "lengthChange": false,
+            "pageLength": 100,
             "autoWidth": false,
             "ordering": true,
             "info": true,
