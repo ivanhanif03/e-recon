@@ -68,8 +68,12 @@ class Pages extends BaseController
 
         //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
         $get_total_all = $this->GangguanModel->getTotalGangguan();
-        // $total_gangguan = $this->GangguanModel->getTotalGangguanSla();
         $get_total_provider = $this->GangguanModel->getTotalGangguanProvider($id_provider);
+
+        //GET TOTAL GANGGUAN SLA BASED USER PROVIDER OR NOT
+        $get_total_sla = $this->GangguanModel->getTotalGangguanSla();
+        $get_total_sla_provider = $this->GangguanModel->getTotalGangguanSlaProvider($id_provider);
+
 
         //GET JUMLAH TOTAL SLA CONVERT TO FLOAT
         $sum_sla_all = $this->GangguanModel->getJumlahAllSla();
@@ -103,6 +107,7 @@ class Pages extends BaseController
         if ($provider != null) {
             $current_gangguan = $get_data_provider;
             $total_gangguan = $get_total_provider;
+            $total_gangguan_sla = $get_total_sla_provider;
             $sum_sla = $sum_sla_provider;
             $sum_restitusi = $sum_restitusi_provider;
             $sum_biaya_bulanan = $sum_biaya_provider;
@@ -113,6 +118,7 @@ class Pages extends BaseController
         } else {
             $current_gangguan = $get_data_all;
             $total_gangguan = $get_total_all;
+            $total_gangguan_sla = $get_total_sla;
             $sum_sla = $sum_sla_all;
             $sum_restitusi = $sum_restitusi_all;
             $sum_biaya_bulanan = $sum_biaya_all;
@@ -122,10 +128,10 @@ class Pages extends BaseController
         }
 
         //SET DEFAULT TOTAL GANGGUAN IF NULL
-        if ($total_gangguan == 0) {
-            $total_gangguan = 1;
+        if ($total_gangguan_sla == 0) {
+            $total_gangguan_sla = 1;
         } else {
-            $total_gangguan;
+            $total_gangguan_sla;
         }
 
         //SET DEFAULT SUM SLA IF NULL
@@ -140,7 +146,7 @@ class Pages extends BaseController
         // $buaya_bulanan = (float)$sum_biaya;
 
         //AVERAGE SLA KESELURUHAN PERBULAN
-        $avg_sla = $sla / $total_gangguan;
+        $avg_sla = $sla / $total_gangguan_sla;
         $avg_sla_format = number_format($avg_sla, 2, '.', '');
 
         //GET CURRENT MONTH
@@ -212,6 +218,7 @@ class Pages extends BaseController
         //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
         $get_data_all = $this->GangguanModel->getGangguanCurrent();
         $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
+        $get_data_all_provider = $this->GangguanModel->getAllGangguanProvider($id_provider);
 
         //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
         $get_total_all = $this->GangguanModel->getTotalGangguan();
@@ -233,6 +240,7 @@ class Pages extends BaseController
         //SET DATA IF USER PROVIDER OR NOT
         if ($provider != null) {
             $current_gangguan = $get_data_provider;
+            $total_gangguan_all = $get_data_all_provider;
             $total_gangguan = $get_total_provider;
             $sum_sla = $sum_sla_provider;
             $sum_restitusi = $sum_restitusi_provider;
@@ -277,6 +285,7 @@ class Pages extends BaseController
             'total_gangguan' => $total_gangguan,
             'current_gangguan' => $current_gangguan,
             'avg_sla' => $avg_sla_format,
+            'total_gangguan_all' => $total_gangguan_all,
             'month' => $month,
             'sum_denda' => $sum_restitusi,
             'sum_tagihan_bulanan' => $sum_biaya_bulanan,

@@ -24,6 +24,7 @@ class GangguanProvider extends BaseController
         $now = date('Y-m-d H:i:s');
 
         $provider = user()->provider;
+        // dd($provider);
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;

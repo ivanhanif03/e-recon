@@ -88,9 +88,23 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            ->where('link.id_provider', $id_provider)
             ->where('gangguan.approval', 'NO')
             ->orWhere('gangguan.approval', null)
+            ->where('link.id_provider', $id_provider)
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
+    public function getAllGangguanProvider($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.nama_link')
+            ->select('link.jenis_link')
+            ->select('status.kategori')
+            ->select('gangguan.*')
+            ->where('link.id_provider', $id_provider)
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
@@ -200,6 +214,17 @@ class GangguanModel extends Model
             ->select('*')
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('gangguan.sla !=', null)
+            ->countAllResults();
+    }
+
+    public function getTotalGangguanSlaProvider($id_provider)
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->select('*')
+            ->where('MONTH(gangguan.start)', date('m'))
+            ->where('gangguan.sla !=', null)
+            ->where('link.id_provider', $id_provider)
             ->countAllResults();
     }
 

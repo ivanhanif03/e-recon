@@ -42,7 +42,7 @@
                             <table id="tableDashboard" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Link</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>
@@ -55,7 +55,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($current_gangguan as $g) : ?>
+                                    <?php foreach ($total_gangguan_all as $g) : ?>
                                         <tr>
                                             <td data-toggle=" tooltip" data-placement="top" title="Detail">
                                                 <a class="font-weight-bold" href="" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>">
@@ -66,8 +66,20 @@
                                             <td><?= $g['jenis_link']; ?></td>
                                             <td class=" text-primary"><?= $g['start']; ?></td>
                                             <td class="text-danger"><?= $g['waktu_submit']; ?></td>
-                                            <td><?= $g['offline']; ?> s</td>
-                                            <td><?= $g['sla']; ?> %</td>
+                                            <td>
+                                                <?php if ($g['offline'] === null) : ?>
+
+                                                <?php else : ?>
+                                                    <?= $g['offline']; ?> dtk
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($g['sla'] === null) : ?>
+
+                                                <?php else : ?>
+                                                    <?= $g['sla']; ?> %
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="text-uppercase">
                                                 <span class="badge badge-pill 
                                                 <?php if ($g['id_status'] === '1') : ?>
@@ -463,7 +475,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Link</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>
