@@ -97,7 +97,7 @@
     $(function() {
         $("#tableDashboard").DataTable({
             "order": [
-                [3, 'asc']
+                [4, 'asc']
             ],
             "responsive": true,
             "lengthChange": false,

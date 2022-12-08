@@ -46,7 +46,7 @@
                                                 <option value="">-- Pilih Provider --</option>
                                                 <option value="">Semua Provider</option>
                                                 <option value="telkom">Telkom</option>
-                                                <option value="trigatra">Trigatra</option>
+                                                <option value="tigatra">Trigatra</option>
                                                 <option value="primaLink">PrimaLink</option>
                                                 <option value="lintasArta">LintasArta</option>
                                                 <option value="ipwan">IPWAN</option>

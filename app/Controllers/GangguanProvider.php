@@ -27,7 +27,7 @@ class GangguanProvider extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;
@@ -73,7 +73,7 @@ class GangguanProvider extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;

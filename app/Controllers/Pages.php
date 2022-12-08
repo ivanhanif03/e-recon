@@ -22,7 +22,7 @@ class Pages extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;
@@ -99,7 +99,7 @@ class Pages extends BaseController
         $avg_sla_format = number_format($avg_sla, 2, '.', '');
 
         //GET CURRENT MONTH
-        $month = date("F", strtotime('m-y'));
+        $month = date("F", strtotime('m'));
 
         $data = [
             'title' => 'Daftar Gangguan Bulan ' . $month,
@@ -123,7 +123,7 @@ class Pages extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;
@@ -224,7 +224,7 @@ class Pages extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;
@@ -325,7 +325,7 @@ class Pages extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;
@@ -426,7 +426,7 @@ class Pages extends BaseController
         $id_provider = 0;
         if ($provider == "Telkom") {
             $id_provider = 1;
-        } elseif ($provider == "Trigatra") {
+        } elseif ($provider == "Tigatra") {
             $id_provider = 2;
         } elseif ($provider == "PrimaLink") {
             $id_provider = 3;

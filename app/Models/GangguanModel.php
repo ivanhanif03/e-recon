@@ -210,6 +210,7 @@ class GangguanModel extends Model
             ->join('status', 'status.id=gangguan.id_status', 'left')
             ->join('branch', 'branch.id=link.id_branch', 'left')
             ->join('jenis_branch', 'jenis_branch.id=branch.id_jenis_branch', 'left')
+            ->join('provider', 'provider.id=link.id_provider', 'left')
             // ->select('link.nama_link')
             ->select('*')
             ->where('MONTH(gangguan.start)', date('m'))
