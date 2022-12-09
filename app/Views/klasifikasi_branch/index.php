@@ -90,7 +90,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="<?= base_url('/klasifikasi_branch/update') . '/' . $kls['id']; ?>" method="post">
+                                                    <form action="<?= base_url('/klasifikasibranch/update') . '/' . $kls['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <div class="modal-body">
                                                             <div class="row">
