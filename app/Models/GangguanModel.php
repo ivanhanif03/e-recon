@@ -95,6 +95,19 @@ class GangguanModel extends Model
             ->get()->getResultArray();
     }
 
+    public function getAllGangguan()
+    {
+        return $this->db->table('gangguan')
+            ->join('link', 'link.id=gangguan.id_link', 'left')
+            ->join('status', 'status.id=gangguan.id_status', 'left')
+            ->select('link.nama_link')
+            ->select('link.jenis_link')
+            ->select('status.kategori')
+            ->select('gangguan.*')
+            ->orderBy('gangguan.id')
+            ->get()->getResultArray();
+    }
+
     public function getAllGangguanProvider($id_provider)
     {
         return $this->db->table('gangguan')

@@ -215,10 +215,13 @@ class Pages extends BaseController
             $id_provider = 9;
         }
 
+        //GET ALL GANGGUAN
+        $get_data_all_provider = $this->GangguanModel->getAllGangguanProvider($id_provider);
+        $get_all = $this->GangguanModel->getAllGangguan();
+
         //GET CURRENT GANGGUAN BASED USER PROVIDER OR NOT
         $get_data_all = $this->GangguanModel->getGangguanCurrent();
         $get_data_provider = $this->GangguanModel->getGangguanSelesaiProvider($id_provider);
-        $get_data_all_provider = $this->GangguanModel->getAllGangguanProvider($id_provider);
 
         //GET TOTAL GANGGUAN BASED USER PROVIDER OR NOT
         $get_total_all = $this->GangguanModel->getTotalGangguan();
@@ -247,6 +250,7 @@ class Pages extends BaseController
             $sum_biaya_bulanan = $sum_biaya_provider;
         } else {
             $current_gangguan = $get_data_all;
+            $total_gangguan_all = $get_all;
             $total_gangguan = $get_total_all;
             $sum_sla = $sum_sla_all;
             $sum_restitusi = $sum_restitusi_all;
