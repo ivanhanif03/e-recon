@@ -88,9 +88,9 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
+            ->where('link.id_provider', $id_provider)
             ->where('gangguan.approval', 'NO')
             ->orWhere('gangguan.approval', null)
-            ->where('link.id_provider', $id_provider)
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }
