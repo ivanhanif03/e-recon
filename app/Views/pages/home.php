@@ -44,7 +44,7 @@
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3>Rp<?= number_format($sum_denda, 0, '', '.'); ?></h3>
+                            <h3>Rp<?= number_format($sum_denda, 0, '', ','); ?></h3>
                             <p>Total Restitusi</p>
                         </div>
                         <div class="icon">

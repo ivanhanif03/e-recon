@@ -109,8 +109,8 @@ class Pages extends BaseController
             $total_gangguan = $get_total_provider;
             $total_gangguan_sla = $get_total_sla_provider;
             $sum_sla = $sum_sla_provider;
-            $sum_restitusi = $sum_restitusi_provider;
-            $sum_biaya_bulanan = $sum_biaya_provider;
+            $sum_restitusi = (float)$sum_restitusi_provider;
+            $sum_biaya_bulanan = (float)$sum_biaya_provider;
             $finish = $finish_provider;
             $over = $over_provider;
             $process = $process_provider;
@@ -120,8 +120,8 @@ class Pages extends BaseController
             $total_gangguan = $get_total_all;
             $total_gangguan_sla = $get_total_sla;
             $sum_sla = $sum_sla_all;
-            $sum_restitusi = $sum_restitusi_all;
-            $sum_biaya_bulanan = $sum_biaya_all;
+            $sum_restitusi = (float)$sum_restitusi_all;
+            $sum_biaya_bulanan = (float)$sum_biaya_all;
             $finish = $finish;
             $over = $over;
             $stop_clock =   $stop_clock;

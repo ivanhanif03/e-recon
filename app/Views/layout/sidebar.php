@@ -71,6 +71,16 @@
 
                 <!-- Admin -->
                 <?php if (in_groups('admin')) : ?>
+                    <li class="nav-item mb-2 mt-2">
+                        <a href="<?= base_url(''); ?>" class="nav-link <?php if ($menu == 'dashboard') {
+                                                                            echo 'active';
+                                                                        } ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-header text-white"> <b>User</b></li>
                     <li class="nav-item <?php if ($menu == 'pengguna' || $menu == 'hak_akses') {
                                             echo 'menu-open';
