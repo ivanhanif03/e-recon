@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
                 'fullname' => 'User Trigatra',
                 'email'    => 'userprovider@tigatra.com',
                 'username'    => 'usertigatra',
-                'provider'    => 'Trigatra',
+                'provider'    => 'Tigatra',
                 'no_hp'    => '085277736123',
                 'hak_akses'    => 'user-provider',
                 'alamat'    => 'Jakpus',

@@ -114,7 +114,7 @@
                                                                     <div class="form-group">
                                                                         <label>Branch</label>
                                                                         <select class="form-control select2bs4 text-sm" name="nama_branch" id="nama_branch" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">
+                                                                            <option value="" >
                                                                                 Pilih Branch
                                                                             </option>
                                                                             <?php foreach ($branch as $b) : ?>
@@ -126,7 +126,7 @@
                                                                     <div class="form-group">
                                                                         <label>Provider</label>
                                                                         <select class="form-control select2bs4 text-sm" name="nama_provider" id="nama_provider" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">
+                                                                            <option value="" >
                                                                                 Pilih Provider
                                                                             </option>
                                                                             <?php foreach ($provider as $p) : ?>
@@ -138,7 +138,7 @@
                                                                     <div class="form-group">
                                                                         <label>PIC</label>
                                                                         <select class="form-control select2bs4 text-sm" name="fullname" id="fullname" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">
+                                                                            <option value="" >
                                                                                 Pilih PIC
                                                                             </option>
                                                                             <?php foreach ($users as $u) : ?>
@@ -150,7 +150,7 @@
                                                                     <div class="form-group">
                                                                         <label>Bandwidth</label>
                                                                         <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">Pilih Bandwidth</option>
+                                                                            <option value="" >Pilih Bandwidth</option>
                                                                             <?php if ($l['bandwidth'] = 32) : ?>
                                                                                 <option selected value="32">32 Kbps</option>
                                                                                 <option value="64">64 Kbps</option>
@@ -229,7 +229,7 @@
                                                                     <div class="form-group">
                                                                         <label>Jenis Link</label>
                                                                         <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">Pilih Jenis Link</option>
+                                                                            <option value="" >Pilih Jenis Link</option>
                                                                             <?php if ($l['jenis_link'] = 'MPLS') : ?>
                                                                                 <option selected value="MPLS">MPLS</option>
                                                                                 <option value="Internet">Internet</option>
@@ -293,8 +293,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Branch</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>" name="nama_branch" id="nama_branch_tambah" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_branch')) ? 'is-invalid' : ''; ?>" name="nama_branch" id="nama_branch_tambah" style="width: 100%;" required>
+                                    <option value="">
                                         Pilih Nama Branch</option>
                                     <?php foreach ($branch as $b) : ?>
                                         <?php if ($b['id']) ?>
@@ -306,8 +306,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Provider</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>" name="nama_provider" id="nama_provider_tambah" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('nama_provider')) ? 'is-invalid' : ''; ?>" name="nama_provider" id="nama_provider_tambah" style="width: 100%;" required>
+                                    <option value="" >
                                         Pilih Nama Provider</option>
                                     <?php foreach ($provider as $p) : ?>
                                         <option value="<?= $p['id'] . "_" . $p['nama_provider']; ?>">
@@ -318,8 +318,8 @@
                             </div>
                             <div class="form-group">
                                 <label>PIC</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('fullname')) ? 'is-invalid' : ''; ?>" name="fullname" id="fullname_tambah" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('fullname')) ? 'is-invalid' : ''; ?>" name="fullname" id="fullname_tambah" style="width: 100%;" required>
+                                    <option value="" >
                                         Pilih Nama PIC</option>
                                     <?php foreach ($users as $u) : ?>
                                         <option value="<?= $u['id']; ?>">
@@ -329,8 +329,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Bandwidth</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Bandwidth</option>
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;" required>
+                                    <option value="" >Pilih Bandwidth</option>
                                     <option value="32">32 Kbps</option>
                                     <option value="64">64 Kbps</option>
                                     <option value="128">128 Kbps</option>
@@ -339,18 +339,18 @@
                                     <option value="1000">1 Mbps</option>
                                     <option value="2000">2 Mbps</option>
                                     <option value="4000">4 Mbps</option>
-                                    <!-- <option selected="selected">5 Mbps</option>
-                                    <option selected="selected">6 Mbps</option>
-                                    <option selected="selected">8 Mbps</option>
-                                    <option selected="selected">10 Mbps</option>
-                                    <option selected="selected">15 Mbps</option>
-                                    <option selected="selected">20 Mbps</option> -->
+                                    <!-- <option >5 Mbps</option>
+                                    <option >6 Mbps</option>
+                                    <option >8 Mbps</option>
+                                    <option >10 Mbps</option>
+                                    <option >15 Mbps</option>
+                                    <option >20 Mbps</option> -->
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Link</label>
-                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;">
-                                    <option disabled="disabled" selected="selected">Pilih Jenis Link</option>
+                                <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;" required>
+                                    <option value="" >Pilih Jenis Link</option>
                                     <option value="MPLS">MPLS</option>
                                     <option value="Internet">Internet</option>
                                 </select>

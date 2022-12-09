@@ -3,7 +3,11 @@
         'name' => 'codeigniter4/appstarter',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+<<<<<<< HEAD
+        'reference' => 'd67eaeb350ad669a6fc70b1c977868649b9c68fb',
+=======
         'reference' => '3deb3864d13c138ed8e04f9515d69e4fc974039d',
+>>>>>>> eaa531a270c7ece44e93a439bda280bccbff0ff2
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +17,11 @@
         'codeigniter4/appstarter' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
+            'reference' => 'd67eaeb350ad669a6fc70b1c977868649b9c68fb',
+=======
             'reference' => '3deb3864d13c138ed8e04f9515d69e4fc974039d',
+>>>>>>> eaa531a270c7ece44e93a439bda280bccbff0ff2
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -341,9 +349,9 @@
             'dev_requirement' => true,
         ),
         'symfony/deprecation-contracts' => array(
-            'pretty_version' => 'v3.2.0',
-            'version' => '3.2.0.0',
-            'reference' => '1ee04c65529dea5d8744774d474e7cbd2f1206d3',
+            'pretty_version' => 'v3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => '26954b3d62a6c5fd0ea8a2a00c0353a14978d05c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(),
