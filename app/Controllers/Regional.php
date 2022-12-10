@@ -9,19 +9,19 @@ class Regional extends BaseController
     protected $RegionalModel;
 
     public function __construct()
-    {   
+    {
         $this->RegionalModel = new RegionalModel();
     }
 
     public function index()
-    {         
+    {
         $data = [
             'title' => 'Daftar Regional',
             'menu' => 'regional',
             'validation' => \Config\Services::validation(),
             'regional' => $this->RegionalModel->findAll()
         ];
-        
+
         return view('regional/index', $data);
     }
 
@@ -29,7 +29,7 @@ class Regional extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'kode_regional' => 'required',
+            'kode_regional' => 'required|is_unique[regional.kode_regional,id,{id}]',
             'nama_regional' => 'required'
         ])) {
             return redirect()->to('/regional/index')->withInput()->with('errors', $this->validator->getErrors());
@@ -45,7 +45,7 @@ class Regional extends BaseController
         return redirect()->to('/regional/index');
     }
 
-    
+
     public function delete($id)
     {
         $this->RegionalModel->delete($id);
@@ -53,7 +53,7 @@ class Regional extends BaseController
         return redirect()->to('regional/index');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Edit Regional',
@@ -63,7 +63,7 @@ class Regional extends BaseController
         return view('regional/index', $data);
     }
 
-    public function update($id) 
+    public function update($id)
     {
         $this->RegionalModel->save([
             'id' => $id,

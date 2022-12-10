@@ -12,7 +12,7 @@ class Branch extends BaseController
     protected $BranchModel, $RegionalModel, $JenisBranchModel, $KlasifikasiBranchModel;
 
     public function __construct()
-    {   
+    {
         $this->BranchModel = new BranchModel();
         $this->RegionalModel = new RegionalModel();
         $this->JenisBranchModel = new JenisBranchModel();
@@ -20,7 +20,7 @@ class Branch extends BaseController
     }
 
     public function index()
-    {         
+    {
         $data = [
             'title' => 'Daftar Branch',
             'menu' => 'branch',
@@ -32,21 +32,21 @@ class Branch extends BaseController
         ];
 
         // dd($data);
-        
+
         return view('branch/index', $data);
     }
 
     public function save()
     {
         //Validation
-        // if (!$this->validate([
-        //     'kode_branch' => 'required',
-        //     'nama_branch' => 'required',
-        //     'alamat' => 'required',
-        //     'no_telp' => 'required',
-        // ])) {
-        //     return redirect()->to('/branch/index')->withInput()->with('errors', $this->validator->getErrors());
-        // }
+        if (!$this->validate([
+            'kode_branch' => 'required|is_unique[branch.kode_branch,id,{id}]',
+            'nama_branch' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+        ])) {
+            return redirect()->to('/branch/index')->withInput()->with('errors', $this->validator->getErrors());
+        }
 
         $this->BranchModel->save([
             'kode_branch' => $this->request->getVar('kode_branch'),
@@ -63,7 +63,7 @@ class Branch extends BaseController
         return redirect()->to('/branch/index');
     }
 
-    
+
     public function delete($id)
     {
         $this->BranchModel->delete($id);
@@ -71,7 +71,7 @@ class Branch extends BaseController
         return redirect()->to('branch/index');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Edit Branch',
@@ -81,7 +81,7 @@ class Branch extends BaseController
         return view('branch/index', $data);
     }
 
-    public function update($id) 
+    public function update($id)
     {
         $this->BranchModel->save([
             'id' => $id,
@@ -92,7 +92,7 @@ class Branch extends BaseController
             'id_regional' => $this->request->getVar('regional'),
             'id_jenis_branch' => $this->request->getVar('jenis_branch'),
             'id_klasifikasi_branch' => $this->request->getVar('klasifikasi_branch'),
-            
+
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');
