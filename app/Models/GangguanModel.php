@@ -34,7 +34,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->join('status', 'status.id=gangguan.id_status', 'left')
-            ->select('link.nama_link')
+            ->select('link.*')
             ->select('status.kategori')
             ->where('gangguan.approval', 'YES')
             ->select('gangguan.*')

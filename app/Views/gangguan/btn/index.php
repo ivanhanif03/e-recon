@@ -378,15 +378,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                    <?php if (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
-                                                        <!-- Batal -->
-                                                        <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+                                                        <?php if (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == null)) : ?>
+                                                        <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
+                                                            <!-- Batal -->
+                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
-                                                        <!-- Reject -->
-                                                        <button type="submit" data-toggle="modal" data-target="#modal-reject-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject StopClock</button>
+                                                            <!-- Reject -->
+                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject StopClock</button>
 
-                                                        <!-- Approval -->
-                                                        <button type="button" data-toggle="modal" data-target="#modal-approval-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-secondary">Approval StopClock</button>
+                                                            <!-- Approval -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-stopclock<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-secondary">Approval StopClock</button>
                                                         <?php elseif (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] !== null) && ($g['id_status'] !== 2) && ($g['approval'] == 'YES')) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
@@ -712,7 +713,7 @@
                                     <?php foreach ($link as $l) : ?>
                                         <!-- <option hidden="hidden" value="<?= $l['nama_link']; ?>"></option> -->
                                         <option value="<?= $l['id'] . "_" . $l['nama_link']; ?>">
-                                            <?= $l['nama_link']; ?>
+                                            <?= $l['nama_link']; ?> - <?= $l['jenis_link']; ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
