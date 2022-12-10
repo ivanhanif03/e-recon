@@ -9,19 +9,19 @@ class Provider extends BaseController
     protected $ProviderModel;
 
     public function __construct()
-    {   
+    {
         $this->ProviderModel = new ProviderModel();
     }
 
     public function index()
-    {      
+    {
         $data = [
             'title' => 'Daftar Provider',
             'menu' => 'provider',
             'validation' => \Config\Services::validation(),
             'provider' => $this->ProviderModel->findAll()
         ];
-        
+
         return view('provider/index', $data);
     }
 
@@ -29,7 +29,7 @@ class Provider extends BaseController
     {
         //Validation
         if (!$this->validate([
-            'kode_provider' => 'required|max_length[3]|is_unique[provider.kode_provider]',
+            'kode_provider' => 'required|max_length[3]|is_unique[provider.kode_provider,id,{id}]',
             'nama_provider' => 'required'
         ])) {
             return redirect()->to('/provider/index')->withInput()->with('errors', $this->validator->getErrors());
@@ -53,7 +53,7 @@ class Provider extends BaseController
         return redirect()->to('provider/index');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Edit Provider',
@@ -63,7 +63,7 @@ class Provider extends BaseController
         return view('provider/index', $data);
     }
 
-    public function update($id) 
+    public function update($id)
     {
         $this->ProviderModel->save([
             'id' => $id,
