@@ -378,7 +378,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer d-flex bd-highlight">
-                                                        <?php if (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == null)) : ?>
+                                                        <?php if (($g['approval_stopclock'] == 'YES') && ($g['approval_stopclock_spv'] == 'YES') && ($g['id_status'] == 4) && ($g['approval'] == null)) : ?>
+                                                        <?php elseif (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == null)) : ?>
                                                         <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>

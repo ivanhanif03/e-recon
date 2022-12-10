@@ -81,4 +81,18 @@ class GangguanSupervisor extends BaseController
 
         return redirect()->to('/gangguan/supervisor');
     }
+
+    public function reject($id)
+    {
+        $this->GangguanModel->save([
+            'id' => $id,
+            'ket_reject_stopclock_spv' => $this->request->getVar('keterangan_reject'),
+            'approval_stopclock_spv' => "NO",
+            'id_status' => 1,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data rejected successfully');
+
+        return redirect()->to('/gangguan/supervisor');
+    }
 }

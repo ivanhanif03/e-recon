@@ -262,7 +262,7 @@
                                         <div class="modal fade" id="modal-reject-gangguan<?= $g['id'] ?>">
                                             <div class="modal-dialog modal-md">
                                                 <div class="modal-content border-0">
-                                                    <form action="<?= base_url('/gangguanBtn/reject/') . '/' . $g['id']; ?>" method="POST">
+                                                    <form action="<?= base_url('/gangguanSupervisor/reject/') . '/' . $g['id']; ?>" method="POST">
                                                         <div class="modal-header">
                                                             <h4 class="modal-title">Konfirmasi Reject Perbaikan</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
