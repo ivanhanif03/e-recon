@@ -34,7 +34,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->join('status', 'status.id=gangguan.id_status', 'left')
-            ->select('link.nama_link')
+            ->select('link.*')
             ->select('status.kategori')
             ->where('gangguan.approval', 'YES')
             ->select('gangguan.*')
@@ -88,9 +88,9 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            ->where('link.id_provider', $id_provider)
             ->where('gangguan.approval', 'NO')
             ->orWhere('gangguan.approval', null)
+            ->where('link.id_provider', $id_provider)
             ->orderBy('gangguan.id')
             ->get()->getResultArray();
     }

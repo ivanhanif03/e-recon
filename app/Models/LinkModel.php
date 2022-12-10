@@ -24,4 +24,12 @@ class LinkModel extends Model
             ->orderBy('link.id')
             ->get()->getResultArray();
     }
+
+    public function getJumlahBranch($id_branch)
+    {
+        return  $this->db->table('link')
+            ->select('link.id_branch', 'count_branch')
+            ->where('link.id_branch', $id_branch)
+            ->countAllResults();
+    }
 }

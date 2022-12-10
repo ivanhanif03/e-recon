@@ -46,6 +46,7 @@ class GangguanProvider extends BaseController
             $id_provider = 9;
         }
 
+        // dd($id_provider);
         $data = [
             'now' => $now,
             'title' => 'Daftar Gangguan',

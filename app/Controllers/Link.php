@@ -75,19 +75,27 @@ class Link extends BaseController
             $biaya_bulanan = 6100000;
         }
 
+        $id_branch = $this->request->getVar('nama_branch');
+        $count_branch = $this->LinkModel->getJumlahBranch($id_branch);
 
-        $data = $this->LinkModel->save([
-            'nama_link' => $nama_link,
-            'id_branch' => $this->request->getVar('nama_branch'),
-            'id_provider' => $this->request->getVar('nama_provider'),
-            'id_pic' => $this->request->getVar('fullname'),
-            'bandwidth' => $this->request->getVar('bandwidth'),
-            'jenis_link' => $this->request->getVar('jenis_link'),
-            'biaya_bulanan' => $biaya_bulanan,
-        ]);
+        if ($count_branch < 2) {
+            $this->LinkModel->save([
+                'nama_link' => $nama_link,
+                'id_branch' => $this->request->getVar('nama_branch'),
+                'id_provider' => $this->request->getVar('nama_provider'),
+                'id_pic' => $this->request->getVar('fullname'),
+                'bandwidth' => $this->request->getVar('bandwidth'),
+                'jenis_link' => $this->request->getVar('jenis_link'),
+                'biaya_bulanan' => $biaya_bulanan,
+            ]);
+
+            session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert" id="alert-delete">Data created successfully</div>');
+        } else {
+            session()->setFlashdata('pesan', '<div class="alert alert-danger" role="alert" id="alert-delete">Gagal, link ' . $nama_branch . ' sudah terdaftar!</div>');
+        }
+
         // dd($data);
 
-        session()->setFlashdata('pesan', 'Data created successfully');
 
         return redirect()->to('/link/index');
     }
