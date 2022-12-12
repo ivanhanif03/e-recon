@@ -63,7 +63,7 @@
                                             <td class="text-primary"> <?= $g['start']; ?></td>
                                             <td class="text-danger"> <?= $g['waktu_submit']; ?></td>
                                             <td> <?= $g['offline']; ?> detik</td>
-                                            <td> <?= $g['sla']; ?> %</td>
+                                            <td> <?= $g['sla']; ?>%</td>
                                             <td class="text-success font-weight-bold text-right"><?= number_format($g['restitusi'], 0, '', ','); ?></td>
                                         </tr>
 

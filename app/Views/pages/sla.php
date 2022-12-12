@@ -62,7 +62,7 @@
                                             <td class="text-primary"> <?= $g['start']; ?></td>
                                             <td class="text-danger"> <?= $g['waktu_submit']; ?></td>
                                             <td> <?= $g['offline']; ?> detik</td>
-                                            <td> <?= $g['sla']; ?> %</td>
+                                            <td> <?= $g['sla']; ?>%</td>
                                         </tr>
 
                                     <?php endforeach; ?>

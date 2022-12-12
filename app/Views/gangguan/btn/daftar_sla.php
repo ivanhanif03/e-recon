@@ -86,7 +86,7 @@
                                             <td><?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
                                             <td class="text-primary font-weight-bold"><?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td>
                                             <td><?= $g['offline']; ?> detik</td>
-                                            <td><?= $g['sla']; ?> %</td>
+                                            <td><?= $g['sla']; ?>%</td>
                                             <td class="text-uppercase">
                                                 <span class="badge badge-pill 
                                                 <?php if ($g['id_status'] === '1') : ?>
@@ -596,6 +596,7 @@
 <script>
     $(function() {
         $("#tableGangguan").DataTable({
+
             "order": [
                 [3, 'asc']
             ],
@@ -605,7 +606,17 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print",
+            "buttons": ["copy", "csv", "excel", {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    header: true,
+                    title: 'Daftar SLA <?= date('Y') ?>'
+                }, "print",
                 "colvis"
             ]
         }).buttons().container().appendTo(

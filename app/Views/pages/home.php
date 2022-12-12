@@ -71,7 +71,7 @@
 
                     <div class="small-box bg-white shadow-none border-none">
                         <div class="inner">
-                            <h3><?= $avg_sla; ?> %</h3>
+                            <h3><?= $avg_sla; ?>%</h3>
                             <p>Avg Persentase SLA</p>
                         </div>
                         <div class="icon">
@@ -268,7 +268,7 @@
                                             <td class="text-primary"><?= $gc['start']; ?></td>
                                             <td class="text-danger"><?= $gc['waktu_submit']; ?></td>
                                             <td><?= $gc['offline']; ?> s</td>
-                                            <td><?= $gc['sla']; ?> %</td>
+                                            <td><?= $gc['sla']; ?>%</td>
                                             <td class="text-uppercase">
                                                 <span class="badge badge-pill 
                                                 <?php if ($gc['id_status'] === '1') : ?>
