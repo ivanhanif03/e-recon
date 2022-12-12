@@ -35,10 +35,11 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>No HP</th>
                                         <th>Provider</th>
-                                        <th>Hak Akses</th>
+                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
@@ -53,10 +54,11 @@
                                                     <?= $p['fullname']; ?>
                                                 </a>
                                             </td>
+                                            <td class="align-middle"><?= $p['username']; ?></td>
                                             <td class="align-middle"><?= $p['email']; ?></td>
                                             <td class="align-middle"><?= $p['no_hp']; ?></td>
                                             <td class="align-middle text-capitalize"><?= $p['provider']; ?></td>
-                                            <td class="align-middle"><?= $p['hak_akses']; ?></td>
+                                            <!-- <td class="align-middle"><?= $p['hak_akses']; ?></td> -->
                                             <td class="text-center">
                                                 <!-- Edit -->
                                                 <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-edit-user<?= $p['id']; ?>"><i class="nav-icon fas fa-edit"></i>
@@ -176,10 +178,11 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>No HP</th>
                                         <th>Provider</th>
-                                        <th>Hak Akses</th>
+                                        <!-- <th>Hak Akses</th> -->
                                         <th style="width: 80px" class="text-center"><i class="nav-icon fas fa-cog"></i>
                                         </th>
                                     </tr>
