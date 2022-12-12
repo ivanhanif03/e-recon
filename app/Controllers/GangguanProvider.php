@@ -118,7 +118,7 @@ class GangguanProvider extends BaseController
                     'errors' => [
                         'uploaded' => 'Harus ada file yang diupload',
                         'mime_in' => 'File extention harus berupa jpg,jpeg,png',
-                        'max_size' => 'Ukuran file maksimal 2 MB'
+                        'max_size' => 'Ukuran file maksimal 500 Kb'
                     ]
 
                 ]
