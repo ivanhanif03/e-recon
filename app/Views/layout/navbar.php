@@ -34,6 +34,7 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li> -->
+        <li class="mt-1"><?= user()->fullname; ?></li>
         <li class="dropdown user-menu">
             <a href="#" class="nav-link" data-toggle="dropdown">
                 <img src="/img/<?= user()->user_image; ?>" class="user-image border" alt="User Image">
