@@ -96,8 +96,8 @@
                                                     <?= $g['kategori']; ?>
                                                 </span>
                                             </td>
-                                            <td>Rp<?= number_format($g['restitusi'], 0, '', '.'); ?></td>
-                                            <td>Rp<?= number_format($g['tagihan_bulanan'], 0, '', '.'); ?></td>
+                                            <td>Rp<?= number_format((float)$g['restitusi'], 0, '', '.'); ?></td>
+                                            <td>Rp<?= number_format((float)$g['tagihan_bulanan'], 0, '', '.'); ?></td>
                                         </tr>
 
                                         <!-- Start Modal Detail -->
@@ -244,7 +244,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8">
-                                                                        Rp<?= number_format($g['restitusi'], 0, '', '.'); ?>
+                                                                        Rp<?= number_format((float)$g['restitusi'], 0, '', '.'); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -256,7 +256,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-success font-weight-bold">
-                                                                        Rp<?= number_format($g['tagihan_bulanan'], 0, '', '.'); ?>
+                                                                        Rp<?= number_format((float)$g['tagihan_bulanan'], 0, '', '.'); ?>
                                                                     </div>
                                                                 </div>
 
