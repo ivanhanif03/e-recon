@@ -400,7 +400,17 @@
                                                         <?php elseif (($g['approval_stopclock'] == 'NO') && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 1) && ($g['approval'] == null)) : ?>
                                                         <?php elseif (($g['approval_stopclock'] == 'YES') && ($g['approval_stopclock_spv'] == 'YES') && ($g['id_status'] == 4) && ($g['approval'] == null)) : ?>
                                                         <?php elseif (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == null)) : ?>
-                                                        <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
+                                                            <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO') && ($g['start_stopclock'] == null)) : ?>
+                                                                        <!-- Batal -->
+                                                            <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
+
+                                                            <!-- Reject -->
+                                                            <button type="submit" data-toggle="modal" data-target="#modal-reject-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-danger">Reject</button>
+
+                                                            <!-- Approval -->
+                                                            <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
+
+                                                            <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
