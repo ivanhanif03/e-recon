@@ -330,6 +330,7 @@
             "buttons": [
                 "copy",
                 "excel",
+                "pdf",
                 {
                     extend: 'print',
                     customize: function(doc) {
@@ -386,6 +387,16 @@
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(220, 53, 69,1)',
                 data: arrayOver
+            }, {
+                label: 'Gangguan AAA',
+                backgroundColor: 'rgba(220, 53, 69, 1)',
+                borderColor: 'rgba(220, 53, 69, 1)',
+                pointRadius: false,
+                pointColor: 'rgba(220, 53, 69, 1)',
+                pointStrokeColor: '#c1c7d1',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220, 53, 69,1)',
+                data: [2, 3, 4, 5, 6, 7, 8, 9, 1, 2]
             }]
         }
         var gangguanChartOptions = {

@@ -77,8 +77,12 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <!-- PERBAIKAN SELESAI -->
-                                                <?php if ($g['approval'] === 'YES') : ?>
+                                                <!-- MULAI WAKTU STOPCLOCK -->
+                                                <?php if (($g['id_status'] === '4') && ($g['approval_stopclock_spv'] === 'YES')) : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-backdrop="static" data-target="#modal-end-stopclock<?= $g['id']; ?>"><i class="nav-icon fas fa-play"></i></a>
+
+                                                    <!-- PERBAIKAN SELESAI -->
+                                                <?php elseif ($g['approval'] === 'YES') : ?>
                                                     <a href="" class="btn btn-sm <?php if ($g['id_status'] === '3') : ?>btn-outline-danger<?php elseif ($g['id_status'] === '5') : ?>btn-outline-success<?php else : ?>btn-outline-secondary<?php endif; ?>" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas <?php if (($g['id_status'] === '3') || ($g['id_status'] === '5')) : ?>fa-check<?php else : ?>fa-list <?php endif; ?>"></i></a>
 
                                                     <!-- STATUS ON PROCESS AWAL -->
@@ -245,7 +249,7 @@
                                                                             <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+                                                                    <!-- <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Waktu Tambahan</b>
@@ -256,7 +260,7 @@
                                                                         <div class="col-8">
                                                                             <?= $g['extra_time_stopclock']; ?> Jam
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                     <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
@@ -554,6 +558,34 @@
                                             </div>
                                         </div>
                                         <!-- End Modal Edit -->
+
+                                        <!-- Start Stopclock -->
+                                        <div class="modal fade" id="modal-end-stopclock<?= $g['id'] ?>">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content border-0">
+                                                    <form action="<?= base_url('/gangguanBtn/endStopClock/') . '/' . $g['id']; ?>" method="POST">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Konfirmasi Selesai StopClock</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <span> <b>Anda yakin mengakhiri StopClock?</b> </span><br>
+                                                            <span class="text-capitalize font-weight-bolder text-primary">
+                                                                <?= $g['no_tiket']; ?>
+                                                            </span>
+                                                            : <?= $g['nama_gangguan']; ?>
+                                                            <hr>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Akhiri</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <!-- APPROVAL PERBAIKAN -->
                                         <!-- Start Modal Confirmation Reject -->

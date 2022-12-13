@@ -208,6 +208,38 @@ class GangguanBtn extends BaseController
         return redirect()->to('/gangguan/btn');
     }
 
+    public function endStopClock($id)
+    {
+        $data_start_stopclock = $this->GangguanModel->getWaktuStartStopClock($id);
+
+        //CONVER TO STRING
+        $string_data_start = (string)$data_start_stopclock->start_stopclock;
+        $string_data_now = (string)date('Y-m-d H:i:s');
+
+        //STRING TO TIME
+        $waktu_start_stopclock = strtotime($string_data_start);
+        $waktu_now = strtotime($string_data_now);
+
+        //DURASI PENGERJAAN
+        $extra_time = $waktu_now - $waktu_start_stopclock;
+
+        //START AND END GANGGUAN
+        $start = date('Y-m-d H:i:s');
+        $end = date('Y-m-d H:i:s', strtotime('+ 2 hours'));
+
+        $this->GangguanModel->save([
+            'id' => $id,
+            'start' => $start,
+            'end' => $end,
+            'extra_time_stopclock' => $extra_time,
+            'id_status' => 1,
+        ]);
+
+        session()->setFlashdata('pesan', 'Data approved successfully');
+
+        return redirect()->to('/gangguan/btn/index');
+    }
+
 
     public function delete($id)
     {

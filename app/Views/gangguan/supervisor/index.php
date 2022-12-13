@@ -222,7 +222,7 @@
                                                                             <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+                                                                    <!-- <hr>
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Waktu Tambahan</b>
@@ -233,7 +233,7 @@
                                                                         <div class="col-8">
                                                                             <?= $g['extra_time_stopclock']; ?> Jam
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
                                                             </div>

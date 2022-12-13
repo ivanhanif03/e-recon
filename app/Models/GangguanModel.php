@@ -180,6 +180,14 @@ class GangguanModel extends Model
             ->get()->getRow();
     }
 
+    public function getWaktuStartStopClock($id)
+    {
+        return $this->db->table('gangguan')
+            ->select('start_stopclock')
+            ->where('id', $id)
+            ->get()->getRow();
+    }
+
     public function getWaktuExtra($id)
     {
         return $this->db->table('gangguan')

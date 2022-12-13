@@ -71,8 +71,8 @@ class GangguanSupervisor extends BaseController
 
         $this->GangguanModel->save([
             'id' => $id,
-            'start' => $start_update,
-            'end' => $end_update,
+            // 'start' => $start_update,
+            // 'end' => $end_update,
             'id_status' => 4,
             'approval_stopclock_spv' => 'YES'
         ]);

@@ -604,7 +604,7 @@
                                                                             <?= $validation->getError('keterangan_stopclock'); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="form-group">
+                                                                    <!-- <div class="form-group">
                                                                         <label>Tambahan Waktu Penyelesaian</label>
                                                                         <select class="form-control text-sm" name="extra_time" id="extra_time" style="width: 100%;">
                                                                             <option disabled="disabled" selected="selected">
@@ -628,7 +628,7 @@
                                                                                 6 Jam
                                                                             </option>
                                                                         </select>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>

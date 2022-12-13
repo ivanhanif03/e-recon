@@ -148,14 +148,14 @@ class GangguanProvider extends BaseController
     public function stopClock($id)
     {
         //GET TAMBAHAN EXTRA TIME 
-        $extra_time = $this->request->getVar('extra_time');
+        // $extra_time = $this->request->getVar('extra_time');
 
         $this->GangguanModel->save([
             'id' => $id,
             'id_status' => 2,
             'keterangan_stopclock' => $this->request->getVar('keterangan_stopclock'),
             'start_stopclock' => date('Y-m-d H:i:s'),
-            'extra_time_stopclock' => $extra_time
+            // 'extra_time_stopclock' => $extra_time
         ]);
 
         session()->setFlashdata('pesan', 'Data created successfully');
