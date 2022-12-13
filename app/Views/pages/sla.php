@@ -42,7 +42,7 @@
                             <table id="tableDashboard" class="table table-striped display">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Branch</th>
                                         <th>Provider</th>
                                         <th>Jenis Link</th>
@@ -59,8 +59,8 @@
                                             <td> <?= $g['nama_branch']; ?></td>
                                             <td> <?= $g['nama_provider']; ?></td>
                                             <td> <?= $g['jenis_link']; ?></td>
-                                            <td class="text-primary"> <?= $g['start']; ?></td>
-                                            <td class="text-danger"> <?= $g['waktu_submit']; ?></td>
+                                            <td class="text-primary"> <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td></td>
+                                            <td class="text-danger"> <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td></td>
                                             <td> <?= $g['offline']; ?> detik</td>
                                             <td> <?= $g['sla']; ?>%</td>
                                         </tr>
@@ -69,7 +69,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Branch</th>
                                         <th>Provider</th>
                                         <th>Jenis Link</th>
@@ -106,6 +106,7 @@
             "buttons": [
                 "copy",
                 "excel",
+                "pdf",
                 {
                     extend: 'print',
                     customize: function(doc) {

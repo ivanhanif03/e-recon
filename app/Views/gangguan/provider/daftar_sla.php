@@ -107,7 +107,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <b>Nomor Tiker</b>
+                                                                        <b>Nomor Tiket</b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :

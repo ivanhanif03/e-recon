@@ -64,8 +64,8 @@
                                             </td>
                                             <td><?= $g['nama_link']; ?></td>
                                             <td><?= $g['jenis_link']; ?></td>
-                                            <td class=" text-primary"><?= $g['start']; ?></td>
-                                            <td class="text-danger"><?= $g['waktu_submit']; ?></td>
+                                            <td class=" text-primary"><?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
+                                            <td class="text-danger"><?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td>
                                             <td>
                                                 <?php if ($g['offline'] === null) : ?>
 
@@ -77,7 +77,7 @@
                                                 <?php if ($g['sla'] === null) : ?>
 
                                                 <?php else : ?>
-                                                    <?= $g['sla']; ?> %
+                                                    <?= $g['sla']; ?>%
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-uppercase">
@@ -115,7 +115,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <b>Nomor Tiker</b>
+                                                                        <b>No. Tiket</b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :
@@ -171,7 +171,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-primary">
-                                                                        <?= $g['start']; ?>
+                                                                    <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -183,7 +183,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-danger">
-                                                                        <?= $g['end']; ?>
+                                                                    <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -288,7 +288,7 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8 text-secondary font-weight-bold">
-                                                                            <?= $g['start_stopclock']; ?>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
@@ -300,7 +300,7 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <?= $g['extra_time_stopclock']; ?> Jam
+                                                                            <?= $g['extra_time_stopclock']; ?> Detik
                                                                         </div>
                                                                     </div>
                                                                     <hr>
@@ -400,7 +400,7 @@
                                                                         </div>
                                                                         <div class="col-8">
                                                                             <b>
-                                                                                <?= $g['waktu_submit']; ?>
+                                                                            <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
                                                                             </b>
                                                                         </div>
                                                                     </div>
@@ -511,7 +511,7 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "excel", {
+            "buttons": ["copy", "excel","pdf", {
                 extend: 'print',
                 customize: function(doc) {
                     $(doc.document.body).find('h1').css('font-size', '20pt');

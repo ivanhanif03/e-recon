@@ -32,7 +32,7 @@
                             <table id="tableGangguan" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Nama Gangguan</th>
                                         <th>Link</th>
                                         <th>Start</th>
@@ -106,7 +106,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <b>Nomor Tiker</b>
+                                                                        <b>Nomor Tiket</b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :
@@ -282,7 +282,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <b>Nomor Tiker</b>
+                                                                        <b>Nomor Tiket</b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :
@@ -645,7 +645,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Nama Gangguan</th>
                                         <th>Link</th>
                                         <th>Start</th>

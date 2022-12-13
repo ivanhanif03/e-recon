@@ -32,8 +32,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Branch</th>
-                                        <th>Nama Link</th>
                                         <th>Provider</th>
+                                        <th>Nama Link</th>
                                         <!-- <th>PIC</th> -->
                                         <th>Bandwidth</th>
                                         <th>Jenis Link</th>
@@ -48,8 +48,8 @@
                                         <tr>
                                             <td><?= $i++; ?></td>
                                             <td><?= $l['nama_branch']; ?></td>
-                                            <td><?= $l['nama_link']; ?></td>
                                             <td><?= $l['nama_provider']; ?></td>
+                                            <td><?= $l['nama_link']; ?></td>
                                             <td><?php if ($l['bandwidth'] >= 1000) : ?>
                                                     <?= $l['bandwidth'] / 1000 ?> Mbps
                                                 <?php else : ?>
@@ -256,8 +256,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Branch</th>
-                                        <th>Nama Link</th>
                                         <th>Provider</th>
+                                        <th>Nama Link</th>
                                         <!-- <th>PIC</th> -->
                                         <th>Bandwidth</th>
                                         <th>Jenis Link</th>

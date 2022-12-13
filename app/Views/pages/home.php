@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <p class="text-center">
-                                        <strong>Grafik Perbandingan Jumlah Gangguan Finish dan Over SLA <?= date('Y'); ?> </strong>
+                                        <strong>Grafik Perbandingan Jumlah Gangguan Jaringan Provider Tahun  <?= date('Y'); ?> </strong>
                                     </p>
                                     <div class="chart">
 
@@ -177,7 +177,7 @@
                                     <div class="description-block border-right">
                                         <span class="description-percentage text-success"><i class="fas fa-check-circle"></i></span>
                                         <h5 class="description-header"><?= $finish; ?></h5>
-                                        <span class="description-text">TOTAL GANGGUAN FINISH</span>
+                                        <span class="description-text">TOTAL GANGGUAN SESUAI SLA</span>
                                     </div>
 
                                 </div>
@@ -186,7 +186,7 @@
                                     <div class="description-block border-right">
                                         <span class="description-percentage text-danger"><i class="fas fa-exclamation-circle"></i></span>
                                         <h5 class="description-header"><?= $over; ?></h5>
-                                        <span class="description-text">TOTAL GANGGUAN OVER</span>
+                                        <span class="description-text">TOTAL GANGGUAN OVER SLA</span>
                                     </div>
 
                                 </div>
@@ -223,9 +223,12 @@
                                 <div class="col-lg-6 col-sm-4 align-self-center">
                                     <h3 class="card-title">Daftar Gangguan</h3>
                                 </div>
+                            <?php 
+                            if ((user()->provider)== null) : ?>
+                            
                                 <div class="col-6 d-flex justify-content-end">
                                     <div class="col-4 mt-2 form-group">
-                                        <!-- <label></label> -->
+                                        <label></label>
                                         <select class="form-control provider" name="">
                                             <option value="">-- Pilih Provider --</option>
                                             <option value="">Semua Provider</option>
@@ -240,14 +243,16 @@
                                             <option value="millenial">Millenial</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> 
+                                <?php else : ?>
+                                    <?php endif; ?>
                             </div>
                         </div>
                         <div class="card-body">
                             <table id="tableDashboard" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Link</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>
@@ -265,8 +270,8 @@
                                             <td><?= $gc['no_tiket']; ?></td>
                                             <td><?= $gc['nama_link']; ?></td>
                                             <td><?= $gc['jenis_link']; ?></td>
-                                            <td class="text-primary"><?= $gc['start']; ?></td>
-                                            <td class="text-danger"><?= $gc['waktu_submit']; ?></td>
+                                            <td class="text-primary"><?= date("d-m-Y H:i:s", strtotime($gc['start'])); ?></td>
+                                            <td class="text-danger"><?= date("d-m-Y H:i:s", strtotime($gc['waktu_submit'])); ?></td>
                                             <td><?= $gc['offline']; ?> s</td>
                                             <td><?= $gc['sla']; ?>%</td>
                                             <td class="text-uppercase">
@@ -292,7 +297,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Link</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>

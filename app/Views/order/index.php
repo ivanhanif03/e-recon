@@ -28,7 +28,7 @@
                             <table id="tableOrder" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Provider</th>
                                         <th>PIC</th>
                                         <th>Alamat</th>
@@ -58,7 +58,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nomor Tiket</th>
+                                        <th>No. Tiket</th>
                                         <th>Provider</th>
                                         <th>PIC</th>
                                         <th>Alamat</th>
