@@ -175,8 +175,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-primary">
-                                                                        <?= $g['start']; ?>
-                                                                    </div>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?> </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
@@ -187,8 +186,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-danger">
-                                                                        <?= $g['end']; ?>
-                                                                    </div>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?> </div>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
@@ -244,7 +242,7 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8 text-secondary font-weight-bold">
-                                                                            <?= $g['start_stopclock']; ?>
+                                                                            <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
@@ -356,7 +354,7 @@
                                                                         </div>
                                                                         <div class="col-8">
                                                                             <b>
-                                                                                <?= $g['waktu_submit']; ?>
+                                                                                <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
                                                                             </b>
                                                                         </div>
                                                                     </div>
@@ -400,8 +398,8 @@
                                                         <?php elseif (($g['approval_stopclock'] == 'NO') && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 1) && ($g['approval'] == null)) : ?>
                                                         <?php elseif (($g['approval_stopclock'] == 'YES') && ($g['approval_stopclock_spv'] == 'YES') && ($g['id_status'] == 4) && ($g['approval'] == null)) : ?>
                                                         <?php elseif (($g['approval_stopclock'] !== null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == null)) : ?>
-                                                            <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO') && ($g['start_stopclock'] == null)) : ?>
-                                                                        <!-- Batal -->
+                                                        <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO') && ($g['start_stopclock'] == null)) : ?>
+                                                            <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 
                                                             <!-- Reject -->
@@ -410,7 +408,7 @@
                                                             <!-- Approval -->
                                                             <button type="button" data-toggle="modal" data-target="#modal-approval-gangguan<?= $g['id']; ?>" data-dismiss="modal" class="btn btn-primary">Approval</button>
 
-                                                            <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
+                                                        <?php elseif (($g['approval_stopclock'] == null) && ($g['approval_stopclock_spv'] == null) && ($g['id_status'] == 2) && ($g['approval'] == 'NO')) : ?>
                                                             <!-- Batal -->
                                                             <button type="button" class="btn btn-warning mr-auto" data-dismiss="modal">Batal</button>
 

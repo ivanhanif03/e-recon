@@ -31,8 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Link</th>
                                         <th>Branch</th>
+                                        <th>Nama Link</th>
                                         <th>Provider</th>
                                         <!-- <th>PIC</th> -->
                                         <th>Bandwidth</th>
@@ -47,8 +47,8 @@
                                     foreach ($link as $l) : ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><?= $l['nama_link']; ?></td>
                                             <td><?= $l['nama_branch']; ?></td>
+                                            <td><?= $l['nama_link']; ?></td>
                                             <td><?= $l['nama_provider']; ?></td>
                                             <td><?php if ($l['bandwidth'] >= 1000) : ?>
                                                     <?= $l['bandwidth'] / 1000 ?> Mbps
@@ -255,8 +255,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Link</th>
                                         <th>Branch</th>
+                                        <th>Nama Link</th>
                                         <th>Provider</th>
                                         <!-- <th>PIC</th> -->
                                         <th>Bandwidth</th>

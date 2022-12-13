@@ -214,7 +214,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-primary">
-                                                                        <?= $g['start']; ?>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -226,7 +226,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-danger">
-                                                                        <?= $g['end']; ?>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -331,7 +331,7 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8 text-secondary font-weight-bold">
-                                                                            <?= $g['start_stopclock']; ?>
+                                                                            <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
@@ -443,7 +443,7 @@
                                                                         </div>
                                                                         <div class="col-8">
                                                                             <b>
-                                                                                <?= $g['waktu_submit']; ?>
+                                                                                <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
                                                                             </b>
                                                                         </div>
                                                                     </div>
