@@ -83,7 +83,8 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-# vendor/
+vendor/
+public/img_submit
 
 #-------------------------
 # IDE / Development Files
