@@ -367,7 +367,7 @@
         var gangguanChartData = {
             labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
-                label: 'Gangguan Finish',
+                label: 'Gangguan sesuai SLA',
                 backgroundColor: 'rgba(0, 123, 255,0.9)',
                 borderColor: 'rgba(0, 123, 255,0.8)',
                 pointRadius: false,
