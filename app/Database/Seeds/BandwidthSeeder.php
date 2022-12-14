@@ -11,7 +11,7 @@ class BandwidthSeeder extends Seeder
         $data = [
             [
                 'bandwidth' => 32,
-                'harga' => 1250000
+                'biaya_bulanan' => 1250000
             ],
             [
                 'bandwidth' => 64,
