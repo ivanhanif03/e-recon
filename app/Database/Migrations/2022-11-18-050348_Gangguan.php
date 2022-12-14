@@ -51,6 +51,15 @@ class Gangguan extends Migration
                 'constraint' => '255',
                 'null' => true
             ],
+            'keterangan_start' => [
+                'type'      => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true
+            ],
+            'waktu_start' => [
+                'type'      => 'DATETIME',
+                'null' => true
+            ],
             'keterangan_submit' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255',
@@ -63,6 +72,11 @@ class Gangguan extends Migration
             ],
             'waktu_submit' => [
                 'type'      => 'DATETIME',
+                'null' => true
+            ],
+            'waktu_perbaikan' => [
+                'type'      => 'INT',
+                'constraint' => '11',
                 'null' => true
             ],
             'keterangan_reject' => [
@@ -80,8 +94,8 @@ class Gangguan extends Migration
                 'null' => true
             ],
             'extra_time_stopclock' => [
-                'type'      => 'VARCHAR',
-                'constraint' => '5',
+                'type'      => 'INT',
+                'constraint' => '11',
                 'null' => true
             ],
             'approval_stopclock' => [

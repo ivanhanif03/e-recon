@@ -87,8 +87,12 @@
                                                 <?php elseif ($g['id_status'] === '2') : ?>
                                                 badge-primary
                                                 <?php elseif ($g['id_status'] === '3') : ?>
-                                                badge-danger
+                                                badge-success
                                                 <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-success
+                                                <?php elseif ($g['id_status'] === '5') : ?>
+                                                badge-danger
+                                                <?php elseif ($g['id_status'] === '6') : ?>
                                                 badge-secondary
                                                 <?php else : ?>
                                                 badge-success
@@ -171,7 +175,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-primary">
-                                                                    <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -183,7 +187,7 @@
                                                                         :
                                                                     </div>
                                                                     <div class="col-8 text-danger">
-                                                                    <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?>
+                                                                        <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?>
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -288,7 +292,7 @@
                                                                             :
                                                                         </div>
                                                                         <div class="col-8 text-secondary font-weight-bold">
-                                                                        <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
+                                                                            <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
                                                                     <hr>
@@ -400,7 +404,7 @@
                                                                         </div>
                                                                         <div class="col-8">
                                                                             <b>
-                                                                            <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
+                                                                                <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
                                                                             </b>
                                                                         </div>
                                                                     </div>
@@ -511,7 +515,7 @@
             "autoWidth": false,
             "ordering": true,
             "info": true,
-            "buttons": ["copy", "excel","pdf", {
+            "buttons": ["copy", "excel", "pdf", {
                 extend: 'print',
                 customize: function(doc) {
                     $(doc.document.body).find('h1').css('font-size', '20pt');

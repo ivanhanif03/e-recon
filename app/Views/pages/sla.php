@@ -47,9 +47,10 @@
                                         <th>Provider</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>
-                                        <th>Close</th>
+                                        <th>Submit</th>
                                         <th>Offline</th>
                                         <th>SLA</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,10 +60,30 @@
                                             <td> <?= $g['nama_branch']; ?></td>
                                             <td> <?= $g['nama_provider']; ?></td>
                                             <td> <?= $g['jenis_link']; ?></td>
-                                            <td class="text-primary"> <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td></td>
-                                            <td class="text-danger"> <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td></td>
+                                            <td class="text-primary"> <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?></td>
+                                            </td>
+                                            <td class="text-danger"> <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?></td>
+                                            </td>
                                             <td> <?= $g['offline']; ?> detik</td>
                                             <td> <?= $g['sla']; ?>%</td>
+                                            <td class="text-uppercase"><span class="badge badge-pill 
+                                                <?php if ($g['id_status'] === '1') : ?>
+                                                badge-warning
+                                                <?php elseif ($g['id_status'] === '2') : ?>
+                                                badge-primary
+                                                <?php elseif ($g['id_status'] === '3') : ?>
+                                                badge-success
+                                                <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-success
+                                                <?php elseif ($g['id_status'] === '5') : ?>
+                                                badge-danger
+                                                <?php elseif ($g['id_status'] === '6') : ?>
+                                                badge-secondary
+                                                <?php else : ?>
+                                                badge-success
+                                                <?php endif ?>">
+                                                    <?= $g['kategori']; ?>
+                                                </span></td>
                                         </tr>
 
                                     <?php endforeach; ?>
@@ -74,9 +95,10 @@
                                         <th>Provider</th>
                                         <th>Jenis Link</th>
                                         <th>Open</th>
-                                        <th>Close</th>
+                                        <th>Submit</th>
                                         <th>Offline</th>
                                         <th>SLA</th>
+                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                             </table>

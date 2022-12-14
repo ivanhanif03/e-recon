@@ -98,7 +98,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <p class="text-center">
-                                        <strong>Grafik Perbandingan Jumlah Gangguan Jaringan Provider Tahun  <?= date('Y'); ?> </strong>
+                                        <strong>Grafik Perbandingan Jumlah Gangguan Jaringan Provider Tahun <?= date('Y'); ?> </strong>
                                     </p>
                                     <div class="chart">
 
@@ -223,29 +223,29 @@
                                 <div class="col-lg-6 col-sm-4 align-self-center">
                                     <h3 class="card-title">Daftar Gangguan</h3>
                                 </div>
-                            <?php 
-                            if ((user()->provider)== null) : ?>
-                            
-                                <div class="col-6 d-flex justify-content-end">
-                                    <div class="col-4 mt-2 form-group">
-                                        <label></label>
-                                        <select class="form-control provider" name="">
-                                            <option value="">-- Pilih Provider --</option>
-                                            <option value="">Semua Provider</option>
-                                            <option value="telkom">Telkom</option>
-                                            <option value="tigatra">Tigatra</option>
-                                            <option value="primaLink">PrimaLink</option>
-                                            <option value="lintasArta">LintasArta</option>
-                                            <option value="ipwan">IPWAN</option>
-                                            <option value="bas">BAS</option>
-                                            <option value="comnet">ComNet</option>
-                                            <option value="iforte">IForte</option>
-                                            <option value="millenial">Millenial</option>
-                                        </select>
+                                <?php
+                                if ((user()->provider) == null) : ?>
+
+                                    <div class="col-6 d-flex justify-content-end">
+                                        <div class="col-4 mt-2 form-group">
+                                            <label></label>
+                                            <select class="form-control provider" name="">
+                                                <option value="">-- Pilih Provider --</option>
+                                                <option value="">Semua Provider</option>
+                                                <option value="telkom">Telkom</option>
+                                                <option value="tigatra">Tigatra</option>
+                                                <option value="primaLink">PrimaLink</option>
+                                                <option value="lintasArta">LintasArta</option>
+                                                <option value="ipwan">IPWAN</option>
+                                                <option value="bas">BAS</option>
+                                                <option value="comnet">ComNet</option>
+                                                <option value="iforte">IForte</option>
+                                                <option value="millenial">Millenial</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div> 
                                 <?php else : ?>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="card-body">
@@ -281,8 +281,12 @@
                                                 <?php elseif ($gc['id_status'] === '2') : ?>
                                                 badge-primary
                                                 <?php elseif ($gc['id_status'] === '3') : ?>
-                                                badge-danger
+                                                badge-success
                                                 <?php elseif ($gc['id_status'] === '4') : ?>
+                                                badge-success
+                                                <?php elseif ($gc['id_status'] === '5') : ?>
+                                                badge-danger
+                                                <?php elseif ($gc['id_status'] === '6') : ?>
                                                 badge-secondary
                                                 <?php else : ?>
                                                 badge-success
@@ -392,16 +396,6 @@
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(220, 53, 69,1)',
                 data: arrayOver
-            }, {
-                label: 'Gangguan AAA',
-                backgroundColor: 'rgba(220, 53, 69, 1)',
-                borderColor: 'rgba(220, 53, 69, 1)',
-                pointRadius: false,
-                pointColor: 'rgba(220, 53, 69, 1)',
-                pointStrokeColor: '#c1c7d1',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(220, 53, 69,1)',
-                data: [2, 3, 4, 5, 6, 7, 8, 9, 1, 2]
             }]
         }
         var gangguanChartOptions = {

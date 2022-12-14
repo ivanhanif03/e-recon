@@ -103,6 +103,8 @@ class Link extends BaseController
             'id_branch' => $this->request->getVar('nama_branch'),
             'id_provider' => $this->request->getVar('nama_provider'),
             'id_pic' => $this->request->getVar('fullname'),
+            'id_bandwidth' => $this->request->getVar('bandwidth'),
+            'jenis_link' => $this->request->getVar('jenis_link'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');

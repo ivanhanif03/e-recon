@@ -9,7 +9,7 @@ class GangguanModel extends Model
     protected $table = 'gangguan';
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
-    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock', 'approval_stopclock', 'ket_reject_stopclock', 'approval_stopclock_spv', 'ket_reject_stopclock_spv', 'offline', 'sla', 'restitusi', 'tagihan_bulanan'];
+    protected $allowedFields = ['no_tiket', 'nama_gangguan', 'id_link', 'detail', 'start', 'end', 'id_status', 'approval', 'keterangan_start', 'waktu_respon', 'waktu_start', 'keterangan_submit', 'keterangan_reject', 'bukti_submit', 'waktu_submit', 'waktu_perbaikan', 'keterangan_stopclock', 'start_stopclock', 'extra_time_stopclock', 'approval_stopclock', 'ket_reject_stopclock', 'approval_stopclock_spv', 'ket_reject_stopclock_spv', 'offline', 'sla', 'restitusi', 'tagihan_bulanan'];
 
 
     public function getGangguan()
@@ -20,9 +20,6 @@ class GangguanModel extends Model
             ->select('link.nama_link')
             ->select('status.kategori')
             ->select('gangguan.*')
-            // ->where('gangguan.id_status', '1')
-            // ->orWhere('gangguan.id_status', '2')
-            // ->where('gangguan.approval', null)
             ->Where('gangguan.approval', null)
             ->orWhere('gangguan.approval', 'NO')
             ->orderBy('gangguan.id')
@@ -184,6 +181,14 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('start_stopclock')
+            ->where('id', $id)
+            ->get()->getRow();
+    }
+
+    public function getWaktuStartGangguan($id)
+    {
+        return $this->db->table('gangguan')
+            ->select('waktu_start')
             ->where('id', $id)
             ->get()->getRow();
     }
@@ -351,7 +356,7 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('*')
-            ->where('gangguan.id_status', 5)
+            ->where('gangguan.id_status', 7)
             ->where('MONTH(gangguan.start)', $month)
             ->where('YEAR(gangguan.start)', date('Y'))
             ->countAllResults();
@@ -361,7 +366,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->select('*')
-            ->where('gangguan.id_status', 5)
+            ->where('gangguan.id_status', 7)
             ->where('MONTH(gangguan.start)', $month)
             ->where('YEAR(gangguan.start)', date('Y'))
             ->where('link.id_provider', $provider)
@@ -372,7 +377,7 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('*')
-            ->where('gangguan.id_status', 5)
+            ->where('gangguan.id_status', 7)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->countAllResults();
@@ -382,7 +387,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->select('*')
-            ->where('gangguan.id_status', 5)
+            ->where('gangguan.id_status', 7)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->where('link.id_provider', $provider)
@@ -393,7 +398,7 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('*')
-            ->where('gangguan.id_status', 3)
+            ->where('gangguan.id_status', 5)
             ->where('MONTH(gangguan.start)', $month)
             ->where('YEAR(gangguan.start)', date('Y'))
             ->countAllResults();
@@ -404,7 +409,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->select('*')
-            ->where('gangguan.id_status', 3)
+            ->where('gangguan.id_status', 5)
             ->where('MONTH(gangguan.start)', $month)
             ->where('YEAR(gangguan.start)', date('Y'))
             ->where('link.id_provider', $provider)
@@ -415,7 +420,7 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('*')
-            ->where('gangguan.id_status', 3)
+            ->where('gangguan.id_status', 5)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->countAllResults();
@@ -426,7 +431,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->select('*')
-            ->where('gangguan.id_status', 3)
+            ->where('gangguan.id_status', 5)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->where('link.id_provider', $id_provider)
@@ -459,7 +464,7 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->select('*')
-            ->where('gangguan.id_status', 4)
+            ->where('gangguan.id_status', 6)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->countAllResults();
@@ -470,7 +475,7 @@ class GangguanModel extends Model
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
             ->select('*')
-            ->where('gangguan.id_status', 4)
+            ->where('gangguan.id_status', 6)
             ->where('MONTH(gangguan.start)', date('m'))
             ->where('YEAR(gangguan.start)', date('Y'))
             ->where('link.id_provider', $id_provider)

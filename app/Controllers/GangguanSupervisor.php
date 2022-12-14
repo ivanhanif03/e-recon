@@ -73,7 +73,7 @@ class GangguanSupervisor extends BaseController
             'id' => $id,
             // 'start' => $start_update,
             // 'end' => $end_update,
-            'id_status' => 4,
+            'id_status' => 6,
             'approval_stopclock_spv' => 'YES'
         ]);
 

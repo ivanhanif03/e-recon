@@ -148,9 +148,9 @@ class GangguanBtn extends BaseController
         $status = 0;
 
         if ($waktu_submit > $waktu_end) {
-            $status = 3;
-        } else {
             $status = 5;
+        } else {
+            $status = 7;
         }
 
         $this->GangguanModel->save([
@@ -174,7 +174,7 @@ class GangguanBtn extends BaseController
             'id' => $id,
             'keterangan_reject' => $this->request->getVar('keterangan_reject'),
             'approval' => "NO",
-            'id_status' => 1,
+            'id_status' => 2,
         ]);
 
         session()->setFlashdata('pesan', 'Data rejected successfully');
@@ -220,7 +220,7 @@ class GangguanBtn extends BaseController
         $waktu_start_stopclock = strtotime($string_data_start);
         $waktu_now = strtotime($string_data_now);
 
-        //DURASI PENGERJAAN
+        //DURASI STOPCLOCK
         $extra_time = $waktu_now - $waktu_start_stopclock;
 
         //START AND END GANGGUAN

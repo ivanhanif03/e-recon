@@ -10,16 +10,22 @@ class StatusSeeder extends Seeder
     {
         $data = [
             [
-                'kategori' => 'on process'
+                'kategori' => 'menunggu perbaikan'
             ],
             [
-                'kategori' => 'waiting approval'
+                'kategori' => 'sedang perbaikan'
+            ],
+            [
+                'kategori' => 'menunggu approval perbaikan'
+            ],
+            [
+                'kategori' => 'menunggu approval stopclock'
             ],
             [
                 'kategori' => 'over sla'
             ],
             [
-                'kategori' => 'stop clock'
+                'kategori' => 'stopclock'
             ],
             [
                 'kategori' => 'finish'

@@ -52,8 +52,12 @@
                                                 <?php elseif ($g['id_status'] === '2') : ?>
                                                 badge-primary
                                                 <?php elseif ($g['id_status'] === '3') : ?>
-                                                badge-danger
+                                                badge-success
                                                 <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-success
+                                                <?php elseif ($g['id_status'] === '5') : ?>
+                                                badge-danger
+                                                <?php elseif ($g['id_status'] === '6') : ?>
                                                 badge-secondary
                                                 <?php else : ?>
                                                 badge-success
@@ -68,14 +72,10 @@
                                             </td>
                                             <td class="text-center">
                                                 <!-- STOPCLOCK APPROVED -->
-                                                <?php if ($g['approval'] === 'YES') : ?>
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
+                                                <?php if (($g['approval_stopclock'] === 'YES') && ($g['approval_stopclock_spv'] == null)) : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-success" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
 
-                                                    <!-- STATUS SUBMITTED -->
-                                                <?php elseif ($g['id_status'] === '2') : ?>
-                                                    <!-- Detail -->
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-backdrop="static" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-list"></i></a>
-
+                                                <?php else : ?>
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -181,8 +181,12 @@
                                                                         <?php elseif ($g['id_status'] === '2') : ?>
                                                                         badge-primary
                                                                         <?php elseif ($g['id_status'] === '3') : ?>
-                                                                        badge-danger
+                                                                        badge-success
                                                                         <?php elseif ($g['id_status'] === '4') : ?>
+                                                                        badge-success
+                                                                        <?php elseif ($g['id_status'] === '5') : ?>
+                                                                        badge-danger
+                                                                        <?php elseif ($g['id_status'] === '6') : ?>
                                                                         badge-secondary
                                                                         <?php else : ?>
                                                                         badge-success

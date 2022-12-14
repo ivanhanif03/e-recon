@@ -164,12 +164,12 @@
                                                                         <label>Jenis Link</label>
                                                                         <select class="form-control select2bs4 text-sm <?= ($validation->hasError('jenis_link')) ? 'is-invalid' : ''; ?>" name="jenis_link" id="jenis_link" style="width: 100%;">
                                                                             <option value="">Pilih Jenis Link</option>
-                                                                            <?php if ($l['jenis_link'] = 'MPLS') : ?>
+                                                                            <?php if ($l['jenis_link'] == 'MPLS') : ?>
                                                                                 <option selected value="MPLS">MPLS</option>
                                                                                 <option value="Internet">Internet</option>
-                                                                            <?php else : ?>
-                                                                                <option value="Internet">Internet</option>
-                                                                                <option selected value="MPLS">MPLS</option>
+                                                                            <?php elseif ($l['jenis_link'] == 'Internet') : ?>
+                                                                                <option selected value="Internet">Internet</option>
+                                                                                <option value="MPLS">MPLS</option>
                                                                             <?php endif; ?>
                                                                         </select>
                                                                     </div>

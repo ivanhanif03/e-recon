@@ -60,8 +60,12 @@
                                                 <?php elseif ($g['id_status'] === '2') : ?>
                                                 badge-primary
                                                 <?php elseif ($g['id_status'] === '3') : ?>
-                                                badge-danger
+                                                badge-success
                                                 <?php elseif ($g['id_status'] === '4') : ?>
+                                                badge-success
+                                                <?php elseif ($g['id_status'] === '5') : ?>
+                                                badge-danger
+                                                <?php elseif ($g['id_status'] === '6') : ?>
                                                 badge-secondary
                                                 <?php else : ?>
                                                 badge-success
@@ -75,15 +79,24 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($g['id_status'] == '1') : ?>
+                                                <?php if (($g['id_status'] == '1') && ($g['extra_time_stopclock'] !== null)) : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-start-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Start Perbaikan" class="nav-icon fas fa-edit"></i></a>
+                                                <?php elseif (($g['id_status'] == '1') && ($g['extra_time_stopclock'] == null)) : ?>
                                                     <!-- Sumbmit -->
-                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-edit"></i></a>
+                                                    <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-start-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Start Perbaikan" class="nav-icon fas fa-edit"></i></a>
                                                     <!-- Stop Clock -->
                                                     <a href="" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modal-stopclock-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Stop Clock" class="nav-icon fas fa-clock"></i></a>
-                                                <?php elseif ($g['id_status'] === '2') : ?>
+                                                <?php elseif (($g['id_status'] === '2') && ($g['extra_time_stopclock'] !== null)) : ?>
                                                     <!-- Detail -->
-                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-check"></i></a>
-                                                <?php elseif (($g['id_status'] === '4') && ($g['start'] < $now)) : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-clipboard-check"></i></a>
+                                                <?php elseif (($g['id_status'] === '2') && ($g['extra_time_stopclock'] == null)) : ?>
+                                                    <!-- Detail -->
+                                                    <a href="" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-clipboard-check"></i></a>
+                                                <?php elseif ($g['id_status'] === '3') : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal" data-backdrop="static" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-clipboard-check"></i></a>
+                                                <?php elseif ($g['id_status'] === '4') : ?>
+                                                    <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal" data-backdrop="static" data-target="#modal-detail-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Detail" class="nav-icon fas fa-clipboard-check"></i></a>
+                                                <?php elseif (($g['id_status'] === '1') && ($g['extra_time_stopclock'] !== null)) : ?>
                                                     <!-- Sumbmit -->
                                                     <a href="" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-backdrop="static" data-target="#modal-submit-gangguan<?= $g['id']; ?>"><i data-toggle="tooltip" data-placement="top" title="Sumbit Perbaikan" class="nav-icon fas fa-edit"></i></a>
                                                 <?php endif; ?>
@@ -293,7 +306,7 @@
                                                                         </b>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <b>Nama Gangguan</b>
@@ -305,7 +318,7 @@
                                                                         <?= $g['nama_gangguan']; ?>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <b>Link</b>
@@ -317,7 +330,7 @@
                                                                         <?= $g['nama_link']; ?>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <b>Detail Gangguan</b>
@@ -329,22 +342,22 @@
                                                                         <?= $g['detail']; ?>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <b>Start</b>
+                                                                        <b>Start Gangguan</b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :
                                                                     </div>
-                                                                    <div class="col-8 text-primary">
+                                                                    <div class="col-8 ">
                                                                         <?= date("d-m-Y H:i:s", strtotime($g['start'])); ?>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+
                                                                 <div class="row">
                                                                     <div class="col-3 ">
-                                                                        <b>End</b>
+                                                                        <b>End Gangguan </b>
                                                                     </div>
                                                                     <div class="col-1">
                                                                         :
@@ -353,7 +366,18 @@
                                                                         <?= date("d-m-Y H:i:s", strtotime($g['end'])); ?>
                                                                     </div>
                                                                 </div>
-                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-3 ">
+                                                                        <b>Offline </b>
+                                                                    </div>
+                                                                    <div class="col-1">
+                                                                        :
+                                                                    </div>
+                                                                    <div class="col-8">
+                                                                        <?= $g['offline'] ?> Detik
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="row">
                                                                     <div class="col-3">
                                                                         <b>Status</b>
@@ -368,7 +392,7 @@
                                                                         <?php elseif ($g['id_status'] === '2') : ?>
                                                                         badge-primary
                                                                         <?php elseif ($g['id_status'] === '3') : ?>
-                                                                        badge-danger
+                                                                        badge-success
                                                                         <?php elseif ($g['id_status'] === '4') : ?>
                                                                         badge-secondary
                                                                         <?php else : ?>
@@ -381,12 +405,12 @@
 
                                                                 <?php if ($g['keterangan_stopclock'] !== null) : ?>
                                                                     <hr>
-                                                                    <h6 class="text-danger">
+                                                                    <h6 class="text-secondary">
                                                                         <b>
                                                                             STOPCLOCK
                                                                         </b>
                                                                     </h6>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Keterangan StopClock</b>
@@ -398,10 +422,10 @@
                                                                             <?= $g['keterangan_stopclock']; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
-                                                                            <b>Start StopClock</b>
+                                                                            <b>Waktu StopClock</b>
                                                                         </div>
                                                                         <div class="col-1">
                                                                             :
@@ -410,19 +434,19 @@
                                                                             <?= date("d-m-Y H:i:s", strtotime($g['start_stopclock'])); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
-                                                                            <b>Waktu Tambahan</b>
+                                                                            <b>Durasi StopClock</b>
                                                                         </div>
                                                                         <div class="col-1">
                                                                             :
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <?= $g['extra_time_stopclock']; ?> Jam
+                                                                            <?= $g['extra_time_stopclock']; ?> Detik
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Approval User</b>
@@ -434,7 +458,7 @@
                                                                             <?= $g['approval_stopclock']; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Approval SPV</b>
@@ -448,6 +472,50 @@
                                                                     </div>
                                                                 <?php else : ?>
                                                                 <?php endif; ?>
+                                                                <?php if ($g['waktu_start'] === null) : ?>
+                                                                <?php else : ?>
+                                                                    <hr>
+                                                                    <h6 class="text-warning">
+                                                                        <b>
+                                                                            START PERBAIKAN
+                                                                        </b>
+                                                                    </h6>
+
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Keterangan Start</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['keterangan_start']; ?>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Waktu Start</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= date("d-m-Y H:i:s", strtotime($g['waktu_start'])); ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Durasi Respon</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['waktu_respon'] ?> Detik
+                                                                        </div>
+                                                                    </div>
+                                                                <?php endif; ?>
                                                                 <?php if ($g['keterangan_reject'] !== null) : ?>
                                                                     <hr>
                                                                     <h6 class="text-danger">
@@ -455,7 +523,7 @@
                                                                             REJECT PERBAIKAN
                                                                         </b>
                                                                     </h6>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Keterangan</b>
@@ -477,7 +545,7 @@
                                                                             SUBMIT PERBAIKAN
                                                                         </b>
                                                                     </h6>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Keterangan Submit</b>
@@ -489,7 +557,7 @@
                                                                             <?= $g['keterangan_submit']; ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Waktu Submit</b>
@@ -497,11 +565,22 @@
                                                                         <div class="col-1">
                                                                             :
                                                                         </div>
-                                                                        <div class="col-8">
+                                                                        <div class="col-8 text-primary">
                                                                             <?= date("d-m-Y H:i:s", strtotime($g['waktu_submit'])); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
+
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <b>Durasi Perbaikan</b>
+                                                                        </div>
+                                                                        <div class="col-1">
+                                                                            :
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <?= $g['waktu_perbaikan'] ?> Detik
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <b>Bukti Submit</b>
@@ -521,6 +600,41 @@
                                             </div>
                                         </div>
                                         <!-- End Modal Detail -->
+
+                                        <!-- Start Modal Start -->
+                                        <div class="modal fade" id="modal-start-gangguan<?= $g['id']; ?>">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content border-0">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Form Mulai Perbaikan Gangguan</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="<?= base_url('gangguanprovider/start') . '/' . $g['id']; ?>" method="post">
+                                                        <?= csrf_field(); ?>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group">
+                                                                        <label for="keterangan_start">Keterangan Mulai Perbaikan</label>
+                                                                        <textarea class="form-control text-sm" rows="3" name="keterangan_start" id="keterangan_start" placeholder="Masukkan keterangan mulai perbaikan" <?= ($validation->hasError('keterangan_start')) ? 'is-invalid' : ''; ?> required></textarea>
+                                                                        <div class="invalid-feedback">
+                                                                            <?= $validation->getError('keterangan_start'); ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer d-flex bd-highlight">
+                                                            <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal Start -->
 
                                         <!-- Start Modal Submit -->
                                         <div class="modal fade" id="modal-submit-gangguan<?= $g['id']; ?>">
@@ -557,7 +671,7 @@
                                                                     <?php endif; ?>
                                                                     <div class="form-group">
                                                                         <label for="keterangan_submit">Keterangan Perbaikan</label>
-                                                                        <textarea class="form-control text-sm" rows="3" name="keterangan_submit" id="keterangan_submit" placeholder="Masukkan keterangan perbaikan" <?= ($validation->hasError('keterangan_submit')) ? 'is-invalid' : ''; ?> required></textarea>
+                                                                        <textarea class="form-control text-sm" rows="3" name="keterangan_submit" id="keterangan_submit" placeholder="Masukkan keterangan perbaikan" <?= ($validation->hasError('keterangan_submit')) ? 'is-invalid' : ''; ?> autofocus required></textarea>
                                                                         <div class="invalid-feedback">
                                                                             <?= $validation->getError('keterangan_submit'); ?>
                                                                         </div>
@@ -604,31 +718,6 @@
                                                                             <?= $validation->getError('keterangan_stopclock'); ?>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- <div class="form-group">
-                                                                        <label>Tambahan Waktu Penyelesaian</label>
-                                                                        <select class="form-control text-sm" name="extra_time" id="extra_time" style="width: 100%;">
-                                                                            <option disabled="disabled" selected="selected">
-                                                                                Pilih Durasi</option>
-                                                                            <option value="1">
-                                                                                1 Jam
-                                                                            </option>
-                                                                            <option value="2">
-                                                                                2 Jam
-                                                                            </option>
-                                                                            <option value="3">
-                                                                                3 Jam
-                                                                            </option>
-                                                                            <option value="4">
-                                                                                4 Jam
-                                                                            </option>
-                                                                            <option value="5">
-                                                                                5 Jam
-                                                                            </option>
-                                                                            <option value="6">
-                                                                                6 Jam
-                                                                            </option>
-                                                                        </select>
-                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>
