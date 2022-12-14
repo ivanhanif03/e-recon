@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BandwidthModel;
 use App\Models\LinkModel;
 use App\Models\BranchModel;
 use App\Models\PenggunaModel;
@@ -9,7 +10,7 @@ use App\Models\ProviderModel;
 
 class Link extends BaseController
 {
-    protected $LinkModel, $BranchModel, $ProviderModel, $PenggunaModel;
+    protected $LinkModel, $BranchModel, $ProviderModel, $PenggunaModel, $BandwidthModel;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Link extends BaseController
         $this->BranchModel = new BranchModel();
         $this->ProviderModel = new ProviderModel();
         $this->PenggunaModel = new PenggunaModel();
+        $this->BandwidthModel = new BandwidthModel();
     }
 
     public function index()
@@ -28,10 +30,9 @@ class Link extends BaseController
             'link' => $this->LinkModel->getLink(),
             'branch' => $this->BranchModel->findAll(),
             'provider' => $this->ProviderModel->findAll(),
+            'bandwidth' => $this->BandwidthModel->findAll(),
             'users' => $this->PenggunaModel->getPenggunaProvider(),
         ];
-
-        // dd($data);
 
         return view('link/index', $data);
     }
@@ -53,28 +54,6 @@ class Link extends BaseController
         //COMBINER BRANCH & PROVIDER
         $nama_link = $nama_branch . " " . $nama_provider;
 
-        //SET BIAYA BULANAN
-        $biaya_bulanan = 0;
-        if ($bandwidth == '32') {
-            $biaya_bulanan = 1250000;
-        } elseif ($bandwidth == '64') {
-            $biaya_bulanan = 1125000;
-        } elseif ($bandwidth == '128') {
-            $biaya_bulanan = 1550000;
-        } elseif ($bandwidth == '256') {
-            $biaya_bulanan = 2500000;
-        } elseif ($bandwidth == '512') {
-            $biaya_bulanan = 2950000;
-        } elseif ($bandwidth == '1000') {
-            $biaya_bulanan = 3750000;
-        } elseif ($bandwidth == '2000') {
-            $biaya_bulanan = 4550000;
-        } elseif ($bandwidth == '4000') {
-            $biaya_bulanan = 6100000;
-        } else {
-            $biaya_bulanan = 6100000;
-        }
-
         $id_branch = $this->request->getVar('nama_branch');
         $count_branch = $this->LinkModel->getJumlahBranch($id_branch);
 
@@ -84,9 +63,8 @@ class Link extends BaseController
                 'id_branch' => $this->request->getVar('nama_branch'),
                 'id_provider' => $this->request->getVar('nama_provider'),
                 'id_pic' => $this->request->getVar('fullname'),
-                'bandwidth' => $this->request->getVar('bandwidth'),
+                'id_bandwidth' => $this->request->getVar('bandwidth'),
                 'jenis_link' => $this->request->getVar('jenis_link'),
-                'biaya_bulanan' => $biaya_bulanan,
             ]);
 
             session()->setFlashdata('pesan', '<div class="alert alert-success" role="alert" id="alert-delete">Data created successfully</div>');

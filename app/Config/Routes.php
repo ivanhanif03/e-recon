@@ -73,6 +73,12 @@ $routes->get('/link/index', 'Link::index', ['filter' => 'role:admin']);
 $routes->delete('/link/(:num)', 'Link::delete/$1', ['filter' => 'role:admin']);
 // $routes->get('/link/edit/(:segment)', 'Link::edit/$1');
 
+//Bandwidth
+$routes->get('/bandwidth', 'Bandwidth::index', ['filter' => 'role:admin']);
+$routes->get('/bandwidth/index', 'Bandwidth::index', ['filter' => 'role:admin']);
+$routes->delete('/bandwidth/(:num)', 'Bandwidth::delete/$1', ['filter' => 'role:admin']);
+// $routes->get('/regional/edit/(:segment)', 'Regional::edit/$1');
+
 //Regional
 $routes->get('/regional', 'Regional::index', ['filter' => 'role:admin']);
 $routes->get('/regional/index', 'Regional::index', ['filter' => 'role:admin']);

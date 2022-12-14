@@ -147,81 +147,17 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Bandwidth</label>
-                                                                        <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;">
-                                                                            <option value="">Pilih Bandwidth</option>
-                                                                            <?php if ($l['bandwidth'] = 32) : ?>
-                                                                                <option selected value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 64) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option selected value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 128) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option selected value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 256) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option selected value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 512) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option selected value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 1000) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option selected value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php elseif ($l['bandwidth'] = 2000) : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option selected value="2000">2 Mbps</option>
-                                                                                <option value="4000">4 Mbps</option>
-                                                                            <?php else : ?>
-                                                                                <option value="32">32 Kbps</option>
-                                                                                <option value="64">64 Kbps</option>
-                                                                                <option value="128">128 Kbps</option>
-                                                                                <option value="256">256 Kbps</option>
-                                                                                <option value="512">512 Kbps</option>
-                                                                                <option value="1000">1 Mbps</option>
-                                                                                <option value="2000">2 Mbps</option>
-                                                                                <option selected value="4000">4 Mbps</option>
-                                                                            <?php endif; ?>
+                                                                        <select class="form-control select2bs4 text-sm" name="bandwidth" id="bandwidth" style="width: 100%;">
+                                                                            <option value="">
+                                                                                Pilih Bandwidth
+                                                                            </option>
+                                                                            <?php foreach ($bandwidth as $b) : ?>
+                                                                                <option value="<?= $b['id']; ?>" <?php if ($b['bandwidth'] == $l['bandwidth']) : ?>selected<?php endif; ?>>
+                                                                                    <?php if ($b['bandwidth'] >= 1000) : ?>
+                                                                                        <?= $b['bandwidth'] / 1000 ?> Mbps
+                                                                                    <?php else : ?>
+                                                                                        <?= $b['bandwidth']; ?> Kbps
+                                                                                    <?php endif; ?> <?php endforeach; ?>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
@@ -328,21 +264,17 @@
                             <div class="form-group">
                                 <label>Bandwidth</label>
                                 <select class="form-control select2bs4 text-sm <?= ($validation->hasError('bandwidth')) ? 'is-invalid' : ''; ?>" name="bandwidth" id="bandwidth" style="width: 100%;" required>
-                                    <option value="">Pilih Bandwidth</option>
-                                    <option value="32">32 Kbps</option>
-                                    <option value="64">64 Kbps</option>
-                                    <option value="128">128 Kbps</option>
-                                    <option value="256">256 Kbps</option>
-                                    <option value="512">512 Kbps</option>
-                                    <option value="1000">1 Mbps</option>
-                                    <option value="2000">2 Mbps</option>
-                                    <option value="4000">4 Mbps</option>
-                                    <!-- <option >5 Mbps</option>
-                                    <option >6 Mbps</option>
-                                    <option >8 Mbps</option>
-                                    <option >10 Mbps</option>
-                                    <option >15 Mbps</option>
-                                    <option >20 Mbps</option> -->
+                                    <option value="">
+                                        Pilih Bandwidth</option>
+                                    <?php foreach ($bandwidth as $b) : ?>
+                                        <option value="<?= $b['id']; ?>">
+                                            <?php if ($b['bandwidth'] >= 1000) : ?>
+                                                <?= $b['bandwidth'] / 1000 ?> Mbps
+                                            <?php else : ?>
+                                                <?= $b['bandwidth']; ?> Kbps
+                                            <?php endif; ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">

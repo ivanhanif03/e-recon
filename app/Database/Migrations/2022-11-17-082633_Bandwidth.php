@@ -23,6 +23,12 @@ class Bandwidth extends Migration
                 'type'           => 'FLOAT',
                 'constraint'     => '20'
             ],
+            'created_at'      => [
+                'type'           => 'DATETIME',
+            ],
+            'updated_at'      => [
+                'type'           => 'DATETIME',
+            ],
         ]);
 
         // Membuat primary key

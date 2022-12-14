@@ -170,6 +170,16 @@
                         </a>
                     </li>
                     <li class="nav-item mb-2">
+                        <a href="<?= base_url('bandwidth'); ?>" class="nav-link <?php if ($menu == 'bandwidth') {
+                                                                                    echo 'active';
+                                                                                } ?>">
+                            <i class="nav-icon fas fa-wifi"></i>
+                            <p>
+                                Bandwidth
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
                         <a href="<?= base_url('link'); ?>" class="nav-link <?php if ($menu == 'link') {
                                                                                 echo 'active';
                                                                             } ?>">

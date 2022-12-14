@@ -6,8 +6,8 @@ use CodeIgniter\Database\Migration;
 
 class Status extends Migration
 {
-    public function up()
-    {
+	public function up()
+	{
 		$this->forge->addField([
 			'id'          => [
 				'type'           => 'INT',
@@ -26,11 +26,11 @@ class Status extends Migration
 
 		// Membuat tabel 
 		$this->forge->createTable('status', TRUE);
-    }
+	}
 
-    public function down()
-    {
-        // menghapus tabel
+	public function down()
+	{
+		// menghapus tabel
 		$this->forge->dropTable('status');
-    }
+	}
 }
