@@ -15,31 +15,31 @@ class BandwidthSeeder extends Seeder
             ],
             [
                 'bandwidth' => 64,
-                'harga' => 1125000
+                'biaya_bulanan' => 1125000
             ],
             [
                 'bandwidth' => 128,
-                'harga' => 1550000
+                'biaya_bulanan' => 1550000
             ],
             [
                 'bandwidth' => 256,
-                'harga' => 2500000
+                'biaya_bulanan' => 2500000
             ],
             [
                 'bandwidth' => 512,
-                'harga' => 2950000
+                'biaya_bulanan' => 2950000
             ],
             [
                 'bandwidth' => 1000,
-                'harga' => 3750000
+                'biaya_bulanan' => 3750000
             ],
             [
                 'bandwidth' => 2000,
-                'harga' => 4550000
+                'biaya_bulanan' => 4550000
             ],
             [
                 'bandwidth' => 4000,
-                'harga' => 6100000
+                'biaya_bulanan' => 6100000
             ],
         ];
 

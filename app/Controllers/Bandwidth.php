@@ -30,14 +30,14 @@ class Bandwidth extends BaseController
         //Validation
         if (!$this->validate([
             'bandwidth' => 'required|is_unique[bandwidth.bandwidth,id,{id}]',
-            'harga' => 'required'
+            'biaya_bulanan' => 'required'
         ])) {
             return redirect()->to('/bandwidth/index')->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $this->BandwidthModel->save([
             'bandwidth' => $this->request->getVar('bandwidth'),
-            'harga' => $this->request->getVar('harga'),
+            'biaya_bulanan' => $this->request->getVar('biaya_bulanan'),
         ]);
 
         session()->setFlashdata('pesan', 'Data created successfully');
@@ -67,7 +67,7 @@ class Bandwidth extends BaseController
         $this->BandwidthModel->save([
             'id' => $id,
             'bandwidth' => $this->request->getVar('bandwidth'),
-            'harga' => $this->request->getVar('harga'),
+            'biaya_bulanan' => $this->request->getVar('biaya_bulanan'),
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully');

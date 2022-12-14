@@ -8,7 +8,7 @@ class BandwidthModel extends Model
 {
     protected $table = 'bandwidth';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id', 'bandwidth', 'harga'];
+    protected $allowedFields = ['id', 'bandwidth', 'biaya_bulanan'];
 
     public function getBandwidth()
     {

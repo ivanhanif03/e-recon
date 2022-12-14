@@ -19,7 +19,7 @@ class Bandwidth extends Migration
                 'type'           => 'INT',
                 'constraint'     => '10'
             ],
-            'harga'       => [
+            'biaya_bulanan'       => [
                 'type'           => 'FLOAT',
                 'constraint'     => '20'
             ],

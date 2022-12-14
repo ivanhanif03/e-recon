@@ -34,17 +34,14 @@ class Link extends Migration
 				'constraint'     => '11',
 				'unsigned'       => true,
 			],
-			'bandwidth'          => [
+			'id_bandwidth'      => [
 				'type'           => 'INT',
 				'constraint'     => '11',
+				'unsigned'       => true,
 			],
 			'jenis_link'          => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '255',
-			],
-			'biaya_bulanan'          => [
-				'type'           => 'INT',
-				'constraint'     => '50',
 			],
 			'created_at'      => [
 				'type'           => 'DATETIME',
@@ -62,6 +59,7 @@ class Link extends Migration
 		$this->forge->addForeignKey('id_branch', 'branch', 'id', '', 'CASCADE');
 		$this->forge->addForeignKey('id_provider', 'provider', 'id', '', 'CASCADE');
 		$this->forge->addForeignKey('id_pic', 'users', 'id', '', 'CASCADE');
+		$this->forge->addForeignKey('id_bandwidth', 'bandwidth', 'id', '', 'CASCADE');
 
 		// Membuat tabel 
 		$this->forge->createTable('link', TRUE);

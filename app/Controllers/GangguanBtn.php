@@ -128,7 +128,7 @@ class GangguanBtn extends BaseController
         $biaya_bulanan = $this->GangguanModel->getBiayaBulanan($id);
         $biaya = (float)$biaya_bulanan;
 
-        // dd($biaya);
+        //CALCULATE BIAYA RESTITUSI
         if ($sla >= 99.8) {
             $denda = ($biaya * 0);
         } elseif ($sla >= 98.8 and $sla < 99.8) {

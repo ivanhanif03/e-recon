@@ -200,7 +200,8 @@ class GangguanModel extends Model
     {
         return $this->db->table('gangguan')
             ->join('link', 'link.id=gangguan.id_link', 'left')
-            ->select('link.biaya_bulanan', 'biaya_bulanan')
+            ->join('bandwidth', 'bandwidth.id=link.id_bandwidth', 'left')
+            ->select('bandwidth.biaya_bulanan', 'biaya_bulanan')
             ->where('gangguan.id', $id)
             ->get()->getRow()->biaya_bulanan;
     }
