@@ -60,6 +60,11 @@ class Gangguan extends Migration
                 'type'      => 'DATETIME',
                 'null' => true
             ],
+        'waktu_respon' => [
+            'type'      => 'INT',
+            'constraint' => '11',
+            'null' => true
+        ],
             'keterangan_submit' => [
                 'type'      => 'VARCHAR',
                 'constraint' => '255',
